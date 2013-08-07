@@ -11,8 +11,8 @@ namespace Skadoosh.Common.DomainModels
     {
         public static AccountUser CreateWith(this MobileServiceUser mobileUser)
         {
-            //return new AccountUser() { UserId = mobileUser.UserId };
-            return null;
+            return new AccountUser() { UserId = mobileUser.UserId };
+     
         }
     }
 
@@ -24,31 +24,31 @@ namespace Skadoosh.Common.DomainModels
         private string lastName;
         private string email;
 
-        //public int Id
-        //{
-        //    get { return id; }
-        //    set { id = value; Notify(); }
-        //}
-        //public string UserId
-        //{
-        //    get { return userId; }
-        //    set { userId = value; Notify(); }
-        //}
-        //public string FirstName
-        //{
-        //    get { return firstName; }
-        //    set { firstName = value; Notify(); }
-        //}
-        //public string LastName
-        //{
-        //    get { return lastName; }
-        //    set { lastName = value; Notify(); }
-        //}
-        //public string Email
-        //{
-        //    get { return email; }
-        //    set { email = value; Notify(); }
-        //}
+        public int Id
+        {
+            get { return id; }
+            set { SetProperty<int>(ref id, value); }
+        }
+        public string UserId
+        {
+            get { return userId; }
+            set { SetProperty<string>(ref userId, value); }
+        }
+        public string FirstName
+        {
+            get { return firstName; }
+            set { SetProperty<string>(ref firstName, value); }
+        }
+        public string LastName
+        {
+            get { return lastName; }
+            set { SetProperty<string>(ref lastName, value); }
+        }
+        public string Email
+        {
+            get { return email; }
+            set { SetProperty<string>(ref email, value); }
+        }
 
     }
 

@@ -9,9 +9,23 @@ using System.Threading.Tasks;
 
 namespace Skadoosh.Common.DomainModels
 {
+    public class Global
+    {
+        private static readonly string azureKey = "cWjMTkNykoYJWqzkUeYFWjOcgLdwUs85";
+        private static readonly string azureUrl = "https://skadoosh.azure-mobile.net/";
+        public static readonly MobileServiceClient MobileService = new MobileServiceClient(azureUrl, azureKey);
+    }
+
 
     public abstract class NotifyBase : INotifyPropertyChanged
     {
+        private IMobileServiceClient AzureClient
+        {
+            get
+            {
+                return Global.MobileService;
+            }
+        }
         //private readonly static string azureKey = "cWjMTkNykoYJWqzkUeYFWjOcgLdwUs85";
         //private readonly static string azureUrl = "https://skadoosh.azure-mobile.net/";
         //private static MobileServiceClient mobileService = new MobileServiceClient(azureKey, azureUrl);

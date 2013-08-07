@@ -17,9 +17,6 @@ namespace Skadoosh.Common.ViewModels
     public class SkadooshVM : NotifyBase
     {
 
-        //private static readonly string azureKey = "cWjMTkNykoYJWqzkUeYFWjOcgLdwUs85";
-        //private static readonly string azureUrl = "https://skadoosh.azure-mobile.net/";
-        //private static readonly MobileServiceClient MobileService = new MobileServiceClient(azureKey, azureUrl);
 
         private AccountUser currentUser;
         private ObservableCollection<Survey> surveys;
@@ -78,14 +75,14 @@ namespace Skadoosh.Common.ViewModels
 
         public async void UnitTestTableInitialize()
         {
-                    string azureKey = "cWjMTkNykoYJWqzkUeYFWjOcgLdwUs85";
-        string azureUrl = "https://skadoosh.azure-mobile.net/";
-        MobileServiceClient MobileService = new MobileServiceClient(azureUrl,azureKey);
-            var s = new Survey() { SurveyTitle = "Weather" };
+            string azureKey = "cWjMTkNykoYJWqzkUeYFWjOcgLdwUs85";
+            string azureUrl = "https://skadoosh.azure-mobile.net/";
+            MobileServiceClient MobileService = new MobileServiceClient(azureUrl, azureKey);
+            var s = new Survey() { SurveyTitle = "test", ChannelName="Ttrest", Description="asgsdga" };
             var table = MobileService.GetTable<Survey>();
             await table.InsertAsync(s);
 
-            var question = new Question() { QuestionText = "Choose favorite weather?", SurveyId = s.Id, QuestionType = 2 };
+            var question = new Question() { QuestionText = "Choose test test?", SurveyId = s.Id, QuestionType = 2 };
             await MobileService.GetTable<Question>().InsertAsync(question);
 
 
