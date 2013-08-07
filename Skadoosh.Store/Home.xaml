@@ -29,7 +29,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="Assets/RisingWhite.png" Opacity="0.95" ></ImageBrush>
+            <ImageBrush ImageSource="Assets/RisingSun2.png" Opacity="1" ></ImageBrush>
         </Grid.Background>
 
         <!-- Back button and page title -->
