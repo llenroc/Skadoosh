@@ -29,7 +29,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="Assets/RisingSun2.png" Opacity="1" ></ImageBrush>
+            <ImageBrush ImageSource="Assets/RisingWhite.png" Opacity="0.95" ></ImageBrush>
         </Grid.Background>
 
         <!-- Back button and page title -->
@@ -54,7 +54,7 @@
             </TextBlock>
         </GridView>
         <GridView  Grid.Row="2" Padding="116,136,116,46">
-            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped"  >
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnPresenter" >
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Source="Assets/presenter.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
@@ -63,7 +63,7 @@
                     <TextBlock Text="Create live surveys" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                 </StackPanel>
             </Grid>
-            <Grid HorizontalAlignment="Left" Width="250" Height="250">
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnParticipate"  >
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Source="Assets/Participate.png" Margin="20"  Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
@@ -72,7 +72,7 @@
                     <TextBlock Text="Live session" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                 </StackPanel>
             </Grid>
-            <Grid HorizontalAlignment="Left" Width="250" Height="250">
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnGroupInvite">
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Source="Assets/Group.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>

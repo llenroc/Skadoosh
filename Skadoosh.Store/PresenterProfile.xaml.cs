@@ -1,9 +1,7 @@
-﻿using Skadoosh.Common.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.ServiceModel.Channels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -21,16 +19,11 @@ namespace Skadoosh.Store
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class Home : Skadoosh.Store.Common.LayoutAwarePage
+    public sealed partial class PresenterProfile : Skadoosh.Store.Common.LayoutAwarePage
     {
-        public Home()
+        public PresenterProfile()
         {
             this.InitializeComponent();
-            this.Loaded += (e, a) =>
-            {
-                var obj = new SkadooshVM();
-                this.DataContext = new SkadooshVM();
-            };
         }
 
         /// <summary>
@@ -54,20 +47,6 @@ namespace Skadoosh.Store
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-        }
-
-        private void itemTapped(object sender, TappedRoutedEventArgs e)
-        {
-            switch(((Grid)sender).Name)
-            {
-                case "btnPresenter":
-                    Frame.Navigate(typeof(SignOn), (SkadooshVM)this.DataContext);
-                    break;
-                case "btnParticipate":
-                    break;
-                case "btnGroupInvite":
-                    break;
-            }
         }
     }
 }

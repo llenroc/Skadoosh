@@ -121,9 +121,15 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="PresenterProfile.xaml.cs">
+      <DependentUpon>PresenterProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignOn.xaml.cs">
       <DependentUpon>SignOn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SurveyLibrary.xaml.cs">
+      <DependentUpon>SurveyLibrary.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +172,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="PresenterProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SignOn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SurveyLibrary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
