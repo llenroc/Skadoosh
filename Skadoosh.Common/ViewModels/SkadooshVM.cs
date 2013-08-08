@@ -1,6 +1,5 @@
 ﻿
-using Microsoft.WindowsAzure.MobileServices;
-using Newtonsoft.Json;
+
 using Skadoosh.Common.DomainModels;
 using System;
 using System.Collections.Generic;
