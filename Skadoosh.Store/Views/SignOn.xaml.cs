@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
+using Skadoosh.Store.Views.Participate;
 using Skadoosh.Store.Views.Presenter;
 using System;
 using System.Collections.Generic;
@@ -85,24 +86,25 @@ namespace Skadoosh.Store.Views
                     await baseVM.AzureClient.LoginAsync(provider);
                     if (baseVM.AzureClient.CurrentUser != null)
                     {
-                        var profile = await baseVM.ProfileExists();
-                        if (profile)
+                        var vmName = baseVM.GetType().Name;
+                        if (vmName == "ParticipateStaticVM")
                         {
-                            switch (baseVM.GetType().Name)
-                            {
-                                case "PresenterVM":
-                                    Frame.Navigate(typeof(SurveyLibrary), baseVM);
-                                    break;
-                                case "ParticipateLiveVM":
-                                    break;
-                                case "ParticipateStaticVM":
-                                    break;
-                            } 
+
+                            //Frame.Navigate(typeof(SurveySelect), baseVM);
                         }
                         else
                         {
-
+                            var profile = await baseVM.ProfileExists();
+                            if (profile)
+                            {
+                                Frame.Navigate(typeof(SurveyLibrary), baseVM);
+                            }
+                            else
+                            {
+                                Frame.Navigate(typeof(PresenterProfile), baseVM);
+                            }
                         }
+                        
                     }
 
                 }

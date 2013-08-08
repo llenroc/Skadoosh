@@ -119,6 +119,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BindableBase.cs" />
+    <Compile Include="Common\Temp.cs" />
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -127,6 +128,15 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Views\Participate\ParticipateLive.xaml.cs">
+      <DependentUpon>ParticipateLive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Participate\ParticipateStatic.xaml.cs">
+      <DependentUpon>ParticipateStatic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Participate\SelectSurvey.xaml.cs">
+      <DependentUpon>SelectSurvey.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Presenter\PresenterProfile.xaml.cs">
       <DependentUpon>PresenterProfile.xaml</DependentUpon>
     </Compile>
@@ -178,6 +188,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Participate\ParticipateLive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Participate\ParticipateStatic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Participate\SelectSurvey.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Presenter\PresenterProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,9 +213,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Participate\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Microsoft.Threading.Tasks">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.dll</HintPath>

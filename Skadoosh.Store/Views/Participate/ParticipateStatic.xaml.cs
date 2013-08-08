@@ -1,10 +1,7 @@
-﻿using Skadoosh.Common.ViewModels;
-using Skadoosh.Store.Views.Participate;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.ServiceModel.Channels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -17,20 +14,16 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
-namespace Skadoosh.Store.Views
+namespace Skadoosh.Store.Views.Participate
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class Home : Skadoosh.Store.Common.LayoutAwarePage
+    public sealed partial class ParticipateStatic : Skadoosh.Store.Common.LayoutAwarePage
     {
-        public Home()
+        public ParticipateStatic()
         {
             this.InitializeComponent();
-            this.Loaded += (e, a) =>
-            {
-               // LoginPopup_Loaded_1(e, a);
-            };
         }
 
         /// <summary>
@@ -54,39 +47,6 @@ namespace Skadoosh.Store.Views
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-        }
-
-        private void itemTapped(object sender, TappedRoutedEventArgs e)
-        {
-            switch (((Grid)sender).Name)
-            {
-                case "btnPresenter":
-                    Frame.Navigate(typeof(SignOn), new PresenterVM());
-                    break;
-                case "btnParticipate":
-         
-
-
-
-        
-                 
-            //        this.LoginPopup.Opened+=(z,a)=>{
-            //LoginPopup.HorizontalOffset = (Window.Current.Bounds.Width - gdChild.ActualWidth) / 2;
-            //LoginPopup.VerticalOffset = (Window.Current.Bounds.Height - gdChild.ActualHeight) / 2;
-            //        };
-                    FadeOutButtons.Begin();
-                    this.pop.ShowLogin();
-                    //Frame.Navigate(typeof(SurveySelect), new ParticipateLiveVM());
-                    break;
-                case "btnGroupInvite":
-                    Frame.Navigate(typeof(SignOn), new ParticipateStaticVM());
-                    break;
-            }
-        }
-
-        private void LoginPopup_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
