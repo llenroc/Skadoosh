@@ -86,15 +86,6 @@
     <BundleResource Include="Resources\Default-568h@2x.png" />
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="azure-mobile-services">
-      <Visible>False</Visible>
-      <Version>1.0.4</Version>
-    </XamarinComponentReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.WindowsAzure.MobileServices.iOS">
-      <HintPath>..\Components\azure-mobile-services-1.0.4\lib\ios\Microsoft.WindowsAzure.MobileServices.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
