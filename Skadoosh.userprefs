@@ -1,12 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Skadoosh.Common/ViewModels/SkadooshVM.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="Skadoosh.Common/DomainModels/Survey.cs" Line="1" Column="1" />
-      <File FileName="Skadoosh.Common/ViewModels/SkadooshVM.cs" Line="83" Column="4" />
-      <File FileName="Skadoosh.Touch.UnitTest/UnitTestAppDelegate.cs" Line="1" Column="1" />
-      <File FileName="Skadoosh.Touch.UnitTest/Main.cs" Line="1" Column="1" />
-      <File FileName="Skadoosh.Touch.UnitTest/AzureTest.cs" Line="1" Column="1" />
+      <File FileName="Skadoosh.Common/ViewModels/SkadooshVM.cs" Line="1" Column="1" />
       <File FileName="Common.Library/Services/SqlLiteService.cs" Line="1" Column="1" />
       <File FileName="Common.Library/Services/RESTService.cs" Line="1" Column="1" />
       <File FileName="Common.Library/Services/LocalStorageService.cs" Line="1" Column="1" />
@@ -14,17 +11,11 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Common.Library" expanded="True" />
-          <Node name="Skadoosh.Common" expanded="True">
-            <Node name="ViewModels" expanded="True">
-              <Node name="SkadooshVM.cs" selected="True" />
-            </Node>
-          </Node>
-          <Node name="Skadoosh.Droid" expanded="True" />
-          <Node name="Skadoosh.Touch.UnitTest" expanded="True">
+          <Node name="Skadoosh.Touch" expanded="True">
             <Node name="References" expanded="True" />
-            <Node name="ComponentReferenceFolder" expanded="True" />
-            <Node name="ViewModels" expanded="True" />
+            <Node name="ComponentReferenceFolder" expanded="True">
+              <Node name="ComponentReference" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
