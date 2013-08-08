@@ -106,29 +106,35 @@
     <Compile Include="..\Skadoosh.Common\DomainModels\Survey.cs">
       <Link>Models\Survey.cs</Link>
     </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\SkadooshVM.cs">
-      <Link>ViewModel\SkadooshVM.cs</Link>
+    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
+      <Link>ViewModel\ParticipateLiveVM.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateStaticVM.cs">
+      <Link>ViewModel\ParticipateStaticVM.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\ViewModels\PresenterVM.cs">
+      <Link>ViewModel\PresenterVM.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Home.xaml.cs">
+    <Compile Include="Common\BindableBase.cs" />
+    <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\BooleanNegationConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="PresenterProfile.xaml.cs">
+    <Compile Include="Views\Presenter\PresenterProfile.xaml.cs">
       <DependentUpon>PresenterProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SignOn.xaml.cs">
+    <Compile Include="Views\SignOn.xaml.cs">
       <DependentUpon>SignOn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SurveyLibrary.xaml.cs">
+    <Compile Include="Views\Presenter\SurveyLibrary.xaml.cs">
       <DependentUpon>SurveyLibrary.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -164,7 +170,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Home.xaml">
+    <Page Include="Views\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,15 +178,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PresenterProfile.xaml">
+    <Page Include="Views\Presenter\PresenterProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SignOn.xaml">
+    <Page Include="Views\SignOn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SurveyLibrary.xaml">
+    <Page Include="Views\Presenter\SurveyLibrary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -207,6 +213,9 @@
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Participate\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

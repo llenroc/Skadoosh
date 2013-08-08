@@ -12,16 +12,17 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+// The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
-namespace Skadoosh.Store
+namespace Skadoosh.Store.Views.Presenter
 {
     /// <summary>
-    /// A basic page that provides characteristics common to most applications.
+    /// A page that displays a collection of item previews.  In the Split Application this page
+    /// is used to display and select one of the available groups.
     /// </summary>
-    public sealed partial class PresenterProfile : Skadoosh.Store.Common.LayoutAwarePage
+    public sealed partial class SurveyLibrary : Skadoosh.Store.Common.LayoutAwarePage
     {
-        public PresenterProfile()
+        public SurveyLibrary()
         {
             this.InitializeComponent();
         }
@@ -37,16 +38,7 @@ namespace Skadoosh.Store
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-        }
-
-        /// <summary>
-        /// Preserves state associated with this page in case the application is suspended or the
-        /// page is discarded from the navigation cache.  Values must conform to the serialization
-        /// requirements of <see cref="SuspensionManager.SessionState"/>.
-        /// </summary>
-        /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
-        protected override void SaveState(Dictionary<String, Object> pageState)
-        {
+            // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
         }
     }
 }

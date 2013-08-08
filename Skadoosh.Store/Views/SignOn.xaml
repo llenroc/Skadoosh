@@ -1,6 +1,6 @@
 ﻿<common:LayoutAwarePage
     x:Name="pageRoot"
-    x:Class="Skadoosh.Store.Home"
+    x:Class="Skadoosh.Store.Views.SignOn"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,14 +8,12 @@
     xmlns:common="using:Skadoosh.Store.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" >
+    mc:Ignorable="d">
 
     <Page.Resources>
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">Skadoosh Home</x:String>
-
-
+        <x:String x:Key="AppName">Account Login</x:String>
     </Page.Resources>
 
     <!--
@@ -29,56 +27,77 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="Assets/RisingWhite.png" Opacity="0.95" ></ImageBrush>
+            <ImageBrush ImageSource="ms-appx:///Assets/RisingWhite.png" Opacity="0.95" ></ImageBrush>
         </Grid.Background>
 
         <!-- Back button and page title -->
         <Grid >
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-               
+
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <Image Grid.Column="1" HorizontalAlignment="Left" Margin="0 40 30 30"  Source="Assets/SkadooshOnly.png"/>
-            <Image Grid.Column="1" Source="Assets/Fuse.png"  Margin="0,116,30,9" ></Image>
+            <Button x:Name="backButton" Click="GoBack" Margin="36,45,36,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+   
+                <Button.Template>
+                
+                    <ControlTemplate>
+
+                        <Image Source="ms-appx:///Assets/Hand.png"></Image>
+                       
+                    </ControlTemplate>
+                   
+                </Button.Template>
+
+            </Button>
+            <Image Grid.Column="1" HorizontalAlignment="Left" Margin="0 40 30 30"  Source="ms-appx:///Assets/SkadooshOnly.png"/>
+            <Image Grid.Column="1" Source="ms-appx:///Assets/Fuse.png"  Margin="0,116,30,9" ></Image>
 
         </Grid>
 
         <GridView  Grid.Row="1" Padding="116,75,116,46">
             <TextBlock Style="{StaticResource PageSubheaderTextStyle}" Foreground="Black">
                
-                Select Where To Begin.
+                Select A Login Account.
             </TextBlock>
         </GridView>
         <GridView  Grid.Row="2" Padding="116,136,116,46">
-            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnPresenter" >
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnFaceBook" >
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                    <Image Source="Assets/presenter.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                    <Image Source="ms-appx:///Assets/facebook.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock Text="Presenter" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
-                    <TextBlock Text="Create live surveys" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    <TextBlock Text="Facebook" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+                    
                 </StackPanel>
             </Grid>
-            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnParticipate"  >
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnGoogle">
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                    <Image Source="Assets/Participate.png" Margin="20"  Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                    <Image Source="ms-appx:///Assets/google.png" Margin="20"  Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock Text="Participate" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
-                    <TextBlock Text="Live session" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    <TextBlock Text="Google" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+
                 </StackPanel>
             </Grid>
-            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnGroupInvite">
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnTwitter">
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                    <Image Source="Assets/Group.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                    <Image Source="ms-appx:///Assets/twitter.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock Text="Group Invite" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
-                    <TextBlock Text="Take an archived survey" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    <TextBlock Text="Twitter" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+            
+                </StackPanel>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnWindows">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                    <Image Source="ms-appx:///Assets/live.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                </Border>
+                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                    <TextBlock Text="Windows Live" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+               
                 </StackPanel>
             </Grid>
         </GridView>

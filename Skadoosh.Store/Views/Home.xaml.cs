@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.ServiceModel.Channels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -15,14 +16,14 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
-namespace Skadoosh.Store
+namespace Skadoosh.Store.Views
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class SignOn : Skadoosh.Store.Common.LayoutAwarePage
+    public sealed partial class Home : Skadoosh.Store.Common.LayoutAwarePage
     {
-        public SignOn()
+        public Home()
         {
             this.InitializeComponent();
         }
@@ -38,8 +39,6 @@ namespace Skadoosh.Store
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            var obj = (SkadooshVM)navigationParameter; 
-            this.DataContext = (SkadooshVM)navigationParameter;
         }
 
         /// <summary>
@@ -50,6 +49,22 @@ namespace Skadoosh.Store
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void itemTapped(object sender, TappedRoutedEventArgs e)
+        {
+            switch (((Grid)sender).Name)
+            {
+                case "btnPresenter":
+                    Frame.Navigate(typeof(SignOn), new PresenterVM());
+                    break;
+                case "btnParticipate":
+                    Frame.Navigate(typeof(SignOn), new ParticipateLiveVM());
+                    break;
+                case "btnGroupInvite":
+                    Frame.Navigate(typeof(SignOn), new ParticipateStaticVM());
+                    break;
+            }
         }
     }
 }

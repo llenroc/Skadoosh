@@ -13,27 +13,40 @@ namespace Skadoosh.Common.DomainModels
     {
         private static readonly string azureKey = "cWjMTkNykoYJWqzkUeYFWjOcgLdwUs85";
         private static readonly string azureUrl = "https://skadoosh.azure-mobile.net/";
-        public static readonly MobileServiceClient MobileService = new MobileServiceClient(azureUrl, azureKey);
+        public static MobileServiceClient MobileService = new MobileServiceClient(azureUrl, azureKey);
     }
 
 
     public abstract class NotifyBase : INotifyPropertyChanged
     {
-        private IMobileServiceClient AzureClient
+
+        public MobileServiceClient AzureClient
         {
             get
             {
                 return Global.MobileService;
             }
+            set
+            {
+                Global.MobileService = value;
+            }
         }
-        //private readonly static string azureKey = "cWjMTkNykoYJWqzkUeYFWjOcgLdwUs85";
-        //private readonly static string azureUrl = "https://skadoosh.azure-mobile.net/";
-        //private static MobileServiceClient mobileService = new MobileServiceClient(azureKey, azureUrl);
 
-        //public static MobileServiceClient AzureService
-        //{
-        //    get { return mobileService; }
-        //}
+
+        public async Task<bool> ProfileExists()
+        {
+            var list = AzureClient.GetTable<AccountUser>().Where(x => x.UserId == AzureClient.CurrentUser.UserId).ToCollectionAsync();
+            var collection = await list;
+            if (collection != null && collection.FirstOrDefault()!=null)
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+
 
         /// <summary>
         /// Multicast event for property change notifications.

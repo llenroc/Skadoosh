@@ -63,9 +63,8 @@
     <Compile Include="DomainModels\NotifyBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DomainModels\Survey.cs" />
-    <Compile Include="ViewModels\Home.cs" />
-    <Compile Include="ViewModels\ParticipateLive.cs" />
-    <Compile Include="ViewModels\ParticipateStatic.cs" />
+    <Compile Include="ViewModels\ParticipateLiveVM.cs" />
+    <Compile Include="ViewModels\ParticipateStaticVM.cs" />
     <Compile Include="ViewModels\PresenterVM.cs" />
     <Compile Include="ViewModels\SkadooshVM.cs" />
   </ItemGroup>
