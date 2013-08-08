@@ -9,11 +9,53 @@ using System.Threading.Tasks;
 
 namespace Skadoosh.Common.DomainModels
 {
+
     public class Global
     {
         private static readonly string azureKey = "cWjMTkNykoYJWqzkUeYFWjOcgLdwUs85";
         private static readonly string azureUrl = "https://skadoosh.azure-mobile.net/";
         public static MobileServiceClient MobileService = new MobileServiceClient(azureUrl, azureKey);
+    }
+
+
+    public class ParticipateBase : NotifyBase
+    {
+        private string channelSelected;
+        private Survey selectedSurvey;
+
+        public Survey SelectedSurvey
+        {
+            get { return selectedSurvey; }
+            set { SetProperty<Survey>(ref selectedSurvey, value); }
+        }
+
+        public string ChannelSelected
+        {
+            get
+            {
+                return channelSelected;
+            }
+            set
+            {
+                SetProperty<string>(ref channelSelected, value);
+            }
+        }
+
+        public async Task<bool> FindSurvey()
+        {
+            var list = AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelSelected).ToListAsync();
+            var collection = await list;
+            var survey = collection.FirstOrDefault();
+            if (survey != null)
+            {
+                SelectedSurvey = survey;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
 
@@ -35,7 +77,7 @@ namespace Skadoosh.Common.DomainModels
 
         public async Task<bool> ProfileExists()
         {
-            var list = AzureClient.GetTable<AccountUser>().Where(x => x.UserId == AzureClient.CurrentUser.UserId).ToCollectionAsync();
+            var list = AzureClient.GetTable<AccountUser>().Where(x => x.UserId == AzureClient.CurrentUser.UserId).ToListAsync();
             var collection = await list;
             if (collection != null && collection.FirstOrDefault()!=null)
             {
