@@ -11,11 +11,11 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Skadoosh.Touch" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="ComponentReferenceFolder" expanded="True">
-              <Node name="ComponentReference" selected="True" />
+          <Node name="Skadoosh.TouchPad" expanded="True">
+            <Node name="References" expanded="True">
+              <Node name="Microsoft.WindowsAzure.MobileServices.iOS" expanded="True" />
             </Node>
+            <Node name="ComponentReferenceFolder" expanded="True" selected="True" />
           </Node>
         </State>
       </Pad>
