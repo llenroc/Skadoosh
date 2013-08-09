@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Skadoosh.Common/DomainModels/Survey.cs">
     <Files>
       <File FileName="Skadoosh.Common/DomainModels/Survey.cs" Line="1" Column="1" />
       <File FileName="Skadoosh.Common/ViewModels/SkadooshVM.cs" Line="1" Column="1" />
@@ -11,12 +11,7 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Skadoosh.TouchPad" expanded="True">
-            <Node name="References" expanded="True">
-              <Node name="Microsoft.WindowsAzure.MobileServices.iOS" expanded="True" />
-            </Node>
-            <Node name="ComponentReferenceFolder" expanded="True" selected="True" />
-          </Node>
+          <Node name="Skadoosh.Touch" selected="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
