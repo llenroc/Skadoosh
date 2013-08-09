@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,7 @@ namespace Skadoosh.Common.DomainModels
 
     }
 
-    public class Survey : NotifyBase
+    public class Survey
     {
         public int Id { get; set; }
         public int AccountUserId { get; set; }
@@ -63,7 +64,7 @@ namespace Skadoosh.Common.DomainModels
         public DateTime EndTime { get; set; }
     }
 
-    public class Question : NotifyBase
+    public class Question
     {
         public int Id { get; set; }
         public int SurveyId { get; set; }
@@ -72,7 +73,7 @@ namespace Skadoosh.Common.DomainModels
         
     }
 
-    public class Responses : NotifyBase
+    public class Responses
     {
         public int Id { get; set; }
         public int SurveyId { get; set; }
@@ -81,14 +82,14 @@ namespace Skadoosh.Common.DomainModels
         public int? AccountId { get; set; }
     }
 
-    public class Option : NotifyBase
+    public class Option
     {
         public int Id { get; set; }
         public int QuestionId { get; set; }
         public string OptionText { get; set; }
     }
 
-    public class SurveyNotificationChannel : NotifyBase
+    public class SurveyNotificationChannel
     {
         public int Id { get; set; }
         public string ChannelName { get; set; }

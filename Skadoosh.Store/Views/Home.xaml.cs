@@ -27,11 +27,21 @@ namespace Skadoosh.Store.Views
         public Home()
         {
             this.InitializeComponent();
-            this.Loaded += (e, a) =>
+
+            //new SkadooshVM().UnitTestTableInitialize();
+
+            this.pop.PopupClosing += (e, a) =>
             {
-               // LoginPopup_Loaded_1(e, a);
+                FadeInButtons.Begin();
+                var vm = pop.DataContext as ParticipateLiveVM;
+                if (!pop.IsCancel && !string.IsNullOrEmpty(vm.ChannelSelected))
+                {
+                    Frame.Navigate(typeof(ParticipateLive), vm);
+                }
             };
         }
+
+
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
@@ -64,19 +74,8 @@ namespace Skadoosh.Store.Views
                     Frame.Navigate(typeof(SignOn), new PresenterVM());
                     break;
                 case "btnParticipate":
-         
-
-
-
-        
-                 
-            //        this.LoginPopup.Opened+=(z,a)=>{
-            //LoginPopup.HorizontalOffset = (Window.Current.Bounds.Width - gdChild.ActualWidth) / 2;
-            //LoginPopup.VerticalOffset = (Window.Current.Bounds.Height - gdChild.ActualHeight) / 2;
-            //        };
                     FadeOutButtons.Begin();
-                    this.pop.ShowLogin();
-                    //Frame.Navigate(typeof(SurveySelect), new ParticipateLiveVM());
+                    this.pop.ShowLogin(new ParticipateLiveVM());
                     break;
                 case "btnGroupInvite":
                     Frame.Navigate(typeof(SignOn), new ParticipateStaticVM());
@@ -84,9 +83,6 @@ namespace Skadoosh.Store.Views
             }
         }
 
-        private void LoginPopup_Loaded_1(object sender, RoutedEventArgs e)
-        {
 
-        }
     }
 }

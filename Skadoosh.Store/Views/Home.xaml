@@ -16,8 +16,6 @@
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">Skadoosh Home</x:String>
 
-        <common:WidthConverter x:Key="wc" />
-        <common:HeightConverter x:Key="hc" />
         <Storyboard x:Name="FadeOutButtons">
             <FadeOutThemeAnimation Storyboard.TargetName="gridButtons" />
             <FadeOutThemeAnimation Storyboard.TargetName="selectionTitle" />

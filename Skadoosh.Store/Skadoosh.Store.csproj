@@ -115,6 +115,9 @@
     <Compile Include="..\Skadoosh.Common\ViewModels\PresenterVM.cs">
       <Link>ViewModel\PresenterVM.cs</Link>
     </Compile>
+    <Compile Include="..\Skadoosh.Common\ViewModels\SkadooshVM.cs">
+      <Link>ViewModel\SkadooshVM.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>

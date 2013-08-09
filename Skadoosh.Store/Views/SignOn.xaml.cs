@@ -31,6 +31,17 @@ namespace Skadoosh.Store.Views
         public SignOn()
         {
             this.InitializeComponent();
+
+            this.pop.PopupClosing += (e, a) =>
+            {
+                FadeInButtons.Begin();
+                var vm = pop.DataContext as ParticipateLiveVM;
+                if (!pop.IsCancel && !string.IsNullOrEmpty(vm.ChannelSelected))
+                {
+                    Frame.Navigate(typeof(ParticipateLive), vm);
+                }
+            };
+
         }
 
         /// <summary>
