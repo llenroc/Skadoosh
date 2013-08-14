@@ -18,7 +18,21 @@ namespace Skadoosh.Common.DomainModels
     }
 
 
-    public class ParticipateBase : NotifyBase
+    public abstract class NotifyBase : INotifyPropertyChanged
+    {
+       
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void Notify(string propName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
+    }
+
+    public class ParticipateBase : ViewModelBase
     {
         private string channelSelected;
         private Survey selectedSurvey;
@@ -26,7 +40,7 @@ namespace Skadoosh.Common.DomainModels
         public Survey SelectedSurvey
         {
             get { return selectedSurvey; }
-            set { SetProperty<Survey>(ref selectedSurvey, value); }
+            set { selectedSurvey = value; Notify("SelectedSurvey"); }
         }
 
         public string ChannelSelected
@@ -37,7 +51,7 @@ namespace Skadoosh.Common.DomainModels
             }
             set
             {
-                SetProperty<string>(ref channelSelected, value);
+                channelSelected = value; Notify("ChannelSelected");
             }
         }
 
@@ -59,7 +73,7 @@ namespace Skadoosh.Common.DomainModels
     }
 
 
-    public abstract class NotifyBase : INotifyPropertyChanged
+    public abstract class ViewModelBase : NotifyBase
     {
 
         public MobileServiceClient AzureClient
@@ -77,9 +91,9 @@ namespace Skadoosh.Common.DomainModels
 
         public async Task<bool> ProfileExists()
         {
-            var list = AzureClient.GetTable<AccountUser>().Where(x => x.UserId == AzureClient.CurrentUser.UserId).ToListAsync();
-            var collection = await list;
-            if (collection != null && collection.FirstOrDefault()!=null)
+            var list = await AzureClient.GetTable<AccountUser>().Where(x => x.UserId == AzureClient.CurrentUser.UserId).ToListAsync();
+
+            if (list != null && list.FirstOrDefault() != null)
             {
                 return true;
             }
@@ -88,47 +102,5 @@ namespace Skadoosh.Common.DomainModels
             }
         }
 
-
-
-        /// <summary>
-        /// Multicast event for property change notifications.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Checks if a property already matches a desired value.  Sets the property and
-        /// notifies listeners only when necessary.
-        /// </summary>
-        /// <typeparam name="T">Type of the property.</typeparam>
-        /// <param name="storage">Reference to a property with both getter and setter.</param>
-        /// <param name="value">Desired value for the property.</param>
-        /// <param name="propertyName">Name of the property used to notify listeners.  This
-        /// value is optional and can be provided automatically when invoked from compilers that
-        /// support CallerMemberName.</param>
-        /// <returns>True if the value was changed, false if the existing value matched the
-        /// desired value.</returns>
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
-        {
-            if (object.Equals(storage, value)) return false;
-
-            storage = value;
-            this.OnPropertyChanged(propertyName);
-            return true;
-        }
-
-        /// <summary>
-        /// Notifies listeners that a property value has changed.
-        /// </summary>
-        /// <param name="propertyName">Name of the property used to notify listeners.  This
-        /// value is optional and can be provided automatically when invoked from compilers
-        /// that support <see cref="CallerMemberNameAttribute"/>.</param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            var eventHandler = this.PropertyChanged;
-            if (eventHandler != null)
-            {
-                eventHandler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }

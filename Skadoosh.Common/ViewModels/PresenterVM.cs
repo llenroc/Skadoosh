@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Skadoosh.Common.ViewModels
 {
-    public class PresenterVM : NotifyBase
+    public class PresenterVM : ViewModelBase
     {
     }
 }

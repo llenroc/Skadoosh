@@ -28,27 +28,27 @@ namespace Skadoosh.Common.DomainModels
         public int Id
         {
             get { return id; }
-            set { SetProperty<int>(ref id, value); }
+            set { id = value; Notify("Id"); }
         }
         public string UserId
         {
             get { return userId; }
-            set { SetProperty<string>(ref userId, value); }
+            set { userId = value; Notify("UserId"); }
         }
         public string FirstName
         {
             get { return firstName; }
-            set { SetProperty<string>(ref firstName, value); }
+            set { firstName = value; Notify("FirstName"); }
         }
         public string LastName
         {
             get { return lastName; }
-            set { SetProperty<string>(ref lastName, value); }
+            set { lastName = value; Notify("LastName"); }
         }
         public string Email
         {
             get { return email; }
-            set { SetProperty<string>(ref email, value); }
+            set { email = value; Notify("Email"); }
         }
 
     }

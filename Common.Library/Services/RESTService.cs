@@ -6,11 +6,45 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 using System.IO.IsolatedStorage;
+using System.Threading.Tasks;
+using Common.Library.Interfaces;
 
 namespace Statera.Xamarin.Common
 {
-    public class RESTService
+    public class RESTService : IRESTService
     {
+
+        public async Task<T> GetAsync<T>(string url)
+        {
+            var request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            WebResponse responseObject = await Task<WebResponse>.Factory.FromAsync(request.BeginGetResponse, request.EndGetResponse, request);
+            var responseStream = responseObject.GetResponseStream();
+            var sr = new StreamReader(responseStream);
+            string content = await sr.ReadToEndAsync();
+            return JsonConvert.DeserializeObject<T>(content);
+        }
+
+        private async Task<T> PostAsync<T>(string url, object obj)
+        {
+            var request = WebRequest.Create(new Uri(url)) as HttpWebRequest;
+            request.Method = "POST";
+
+            byte[] data = ConvertToByteArray(obj);
+            request.ContentLength = data.Length;
+
+            using (var requestStream = await Task<Stream>.Factory.FromAsync(request.BeginGetRequestStream, request.EndGetRequestStream, request))
+            {
+                await requestStream.WriteAsync(data, 0, data.Length);
+            }
+
+            WebResponse responseObject = await Task<WebResponse>.Factory.FromAsync(request.BeginGetResponse, request.EndGetResponse, request);
+            var responseStream = responseObject.GetResponseStream();
+            var sr = new StreamReader(responseStream);
+            string content = await sr.ReadToEndAsync();
+
+            return JsonConvert.DeserializeObject<T>(content);
+        }
+
 
         public void Get<T>(string url, Action<T> successAction, Action<WebException> errorAction)
         {
@@ -25,8 +59,8 @@ namespace Statera.Xamarin.Common
                         var s = response.GetResponseStream();
                         var sr = new StreamReader(s);
                         var content = sr.ReadToEnd();
-                        s.Flush();
-                        successAction(JsonConvert.DeserializeObject<T>(content));
+                        var obj = JsonConvert.DeserializeObject<T>(content);
+                        successAction(obj);
                     }
                 }, httpReq);
             }

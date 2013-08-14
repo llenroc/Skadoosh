@@ -26,7 +26,7 @@ namespace Skadoosh.Store.Views
     /// </summary>
     public sealed partial class SignOn : Skadoosh.Store.Common.LayoutAwarePage
     {
-        private NotifyBase baseVM;
+        private ViewModelBase baseVM;
 
         public SignOn()
         {
@@ -55,7 +55,7 @@ namespace Skadoosh.Store.Views
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            baseVM = (NotifyBase)navigationParameter; 
+            baseVM = (ViewModelBase)navigationParameter; 
         }
 
         /// <summary>
@@ -89,12 +89,11 @@ namespace Skadoosh.Store.Views
 
         private async void Login(MobileServiceAuthenticationProvider provider)
         {
-            MobileServiceUser user = null;
-            while (user == null)
-            {
+
                 try
                 {
-                    await baseVM.AzureClient.LoginAsync(provider);
+                    var x = await baseVM.AzureClient.LoginAsync(provider);
+              
                     if (baseVM.AzureClient.CurrentUser != null)
                     {
                         var vmName = baseVM.GetType().Name;
@@ -124,7 +123,7 @@ namespace Skadoosh.Store.Views
                     //message = e + "You must log in. Login Required";
                 }
 
-            }
+            
 
         }
     }

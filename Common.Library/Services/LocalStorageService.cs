@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Common.Library.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,9 +9,9 @@ using System.Text;
 
 namespace Statera.Xamarin.Common
 {
-    public class LocalStorageService
+    public class LocalStorageService : ILocalStorageService
     {
-        private T GetIsolatedStorage<T>(string contentName) where T:new()
+        public T GetIsolatedStorage<T>(string contentName) where T:new()
         {
             using (var isoStorage = IsolatedStorageFile.GetUserStoreForApplication())
             {
@@ -28,7 +29,7 @@ namespace Statera.Xamarin.Common
                 }
             }
         }
-        private void SaveIsolatedStorage<T>(string contentName, object obj)
+        public void SaveIsolatedStorage<T>(string contentName, object obj)
         {
             using (var isoStorage = IsolatedStorageFile.GetUserStoreForApplication())
             {

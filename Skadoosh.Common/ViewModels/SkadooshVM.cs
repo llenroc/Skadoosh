@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Skadoosh.Common.ViewModels
 {
 
-    public class SkadooshVM : NotifyBase
+    public class SkadooshVM : ViewModelBase
     {
 
         public SkadooshVM()

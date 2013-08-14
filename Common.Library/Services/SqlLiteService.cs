@@ -25,6 +25,7 @@ using Sqlite3Statement = Sqlite.Statement;
     using Sqlite3Statement = System.IntPtr;
 using System.Threading.Tasks;
 using System.Collections;
+using Common.Library.Interfaces;
 #endif
 
 namespace Statera.Xamarin.Common
@@ -71,7 +72,7 @@ namespace Statera.Xamarin.Common
     /// <summary>
     /// Represents an open connection to a SQLite database.
     /// </summary>
-    public partial class SQLiteConnection : IDisposable
+    public partial class SQLiteConnection : IDisposable, ISQLiteConnection
     {
         private bool _open;
         private TimeSpan _busyTimeout;
