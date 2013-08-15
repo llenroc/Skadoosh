@@ -43,29 +43,20 @@
 
         <!-- Back button and page title -->
         <Grid >
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" Margin="36,45,36,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
-   
-                <Button.Template>
-                
+                <Button.Template>           
                     <ControlTemplate>
-
                         <Image Source="ms-appx:///Assets/Hand.png"></Image>
-                       
-                    </ControlTemplate>
-                   
+                    </ControlTemplate>  
                 </Button.Template>
-
             </Button>
             <Image Grid.Column="1" HorizontalAlignment="Left" Margin="0 40 30 30"  Source="ms-appx:///Assets/SkadooshOnly.png"/>
             <Image Grid.Column="1" Source="ms-appx:///Assets/Fuse.png"  Margin="0,116,30,9" ></Image>
-
         </Grid>
 
         <GridView  Grid.Row="1" Padding="116,75,116,46" x:Name="selectionTitle">

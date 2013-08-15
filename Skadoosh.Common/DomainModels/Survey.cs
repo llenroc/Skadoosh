@@ -8,6 +8,12 @@ using System.Text;
 namespace Skadoosh.Common.DomainModels
 {
 
+    public enum QuestionType
+    {
+        Single,
+        Multiple
+    }
+
     public static class SkadooshExtensions
     {
         public static AccountUser CreateWith(this MobileServiceUser mobileUser)
@@ -53,46 +59,164 @@ namespace Skadoosh.Common.DomainModels
 
     }
 
-    public class Survey
+    public class Survey : NotifyBase
     {
-        public int Id { get; set; }
-        public int AccountUserId { get; set; }
-        public string ChannelName { get; set; }
-        public string SurveyTitle { get; set; }
-        public string Description { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-    }
-
-    public class Question
-    {
-        public int Id { get; set; }
-        public int SurveyId { get; set; }
-        public string QuestionText { get; set; }
-        public int QuestionType { get; set; }
+        private int id;
+        private int accountUserId;
+        private string channelName;
+        private string surveyTitle;
+        private string description;
+        private DateTime? startTime;
+        private DateTime? endTime;
+        public int Id
+        {
+            get { return id; }
+            set { id = value; Notify("Id"); }
+        }
+        public int AccountUserId
+        {
+            get { return accountUserId; }
+            set { accountUserId = value; Notify("AccountUserId");}
+        }
+        public string ChannelName
+        {
+            get { return channelName; }
+            set { channelName = value; Notify("ChannelName"); }
+        }
+        public string SurveyTitle
+        {
+            get { return surveyTitle; }
+            set { surveyTitle = value; Notify("SurveyTitle");}
+        }
+        public string Description
+        {
+            get { return description; }
+            set { description = value; Notify("Description");}
+        }
+        public DateTime? StartTime
+        {
+            get { return startTime; }
+            set { startTime = value; Notify("StartTime");}
+        }
+        public DateTime? EndTime
+        {
+            get { return endTime; }
+            set { endTime = value; Notify("EndTime");}
+        }
         
     }
 
-    public class Responses
+    public class Question : NotifyBase
     {
-        public int Id { get; set; }
-        public int SurveyId { get; set; }
-        public int QuestionId { get; set; }
-        public int OptionId { get; set; }
-        public int? AccountId { get; set; }
+        private int id;
+        private int surveyId;
+        private string questionText;
+        private int questionType;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; Notify("Id"); }
+        }
+        public int SurveyId
+        {
+            get { return surveyId; }
+            set { surveyId = value; Notify("SurveyId");}
+        }
+        public string QuestionText
+        {
+            get { return questionText; }
+            set { questionText = value;  Notify("QuestionText");}
+        }
+
+        public int QuestionType
+        {
+            get { return questionType; }
+            set { questionType = value; Notify("QuestionType");}
+        }
+            
     }
 
-    public class Option
+    public class Responses : NotifyBase
     {
-        public int Id { get; set; }
-        public int QuestionId { get; set; }
-        public string OptionText { get; set; }
+        private int id;
+        private int surveyId;
+        private int questionId;
+        private int optionId;
+        private int? accountId;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; Notify("Id"); }
+        }
+        public int SurveyId
+        {
+            get { return surveyId; }
+            set { surveyId = value; Notify("SurveyId"); }
+        }
+        public int QuestionId
+        {
+            get { return questionId; }
+            set { questionId = value; Notify("QuestionId");}
+        }
+        public int OptionId
+        {
+            get { return optionId; }
+            set { optionId = value; Notify("OptionId");}
+        }
+        public int? AccountId
+        {
+            get { return accountId; }
+            set { accountId = value; Notify("AccountId");}
+        }
+        
     }
 
-    public class SurveyNotificationChannel
+    public class Option : NotifyBase
     {
-        public int Id { get; set; }
-        public string ChannelName { get; set; }
-        public string UrlNotification { get; set; }
+        private int id;
+        private int questionId;
+        private string optionText;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; Notify("Id"); }
+        }
+        public int QuestionId
+        {
+            get { return questionId; }
+            set { questionId = value; Notify("QuestionId"); }
+        }
+        public string OptionText
+        {
+            get { return optionText; }
+            set { optionText = value; Notify("OptionText"); }
+        }
+        
+    }
+
+    public class SurveyNotificationChannel : NotifyBase
+    {
+        private int id;
+        private string channelName;
+        private string urlNotification;
+        public int Id
+        {
+            get { return id; }
+            set { id = value; Notify("Id"); }
+        }
+        public string ChannelName
+        {
+            get { return channelName; }
+            set { channelName = value; Notify("ChannelName"); }
+        }
+        public string UrlNotification
+        {
+            get { return urlNotification; }
+            set { urlNotification = value; Notify("UrlNotification"); }
+        }
+        
     }
 }

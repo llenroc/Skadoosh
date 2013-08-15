@@ -76,6 +76,14 @@ namespace Skadoosh.Common.DomainModels
     public abstract class ViewModelBase : NotifyBase
     {
 
+        private AccountUser user;
+
+        public AccountUser User
+        {
+            get { return user; }
+            set { user = value; Notify("User"); }
+        }
+
         public MobileServiceClient AzureClient
         {
             get
@@ -88,16 +96,37 @@ namespace Skadoosh.Common.DomainModels
             }
         }
 
+        public ViewModelBase()
+        {
+            User = new AccountUser();
+        }
 
+
+        public async Task<bool> CreateProfile()
+        {
+            var list = await AzureClient.GetTable<AccountUser>().Where(x => x.UserId == User.UserId).ToListAsync();
+            if (list == null || list.FirstOrDefault() == null)
+            {
+                var table = AzureClient.GetTable<AccountUser>();
+                await table.InsertAsync(User);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public async Task<bool> ProfileExists()
         {
             var list = await AzureClient.GetTable<AccountUser>().Where(x => x.UserId == AzureClient.CurrentUser.UserId).ToListAsync();
 
             if (list != null && list.FirstOrDefault() != null)
             {
+                User = list.First();
                 return true;
             }
             else{
+                User.UserId = AzureClient.CurrentUser.UserId;
                 return false;
             }
         }

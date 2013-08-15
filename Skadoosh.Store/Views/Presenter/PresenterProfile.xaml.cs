@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Skadoosh.Common.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace Skadoosh.Store.Views.Presenter
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            this.DataContext = (PresenterVM)navigationParameter; 
         }
 
         /// <summary>
@@ -47,6 +49,19 @@ namespace Skadoosh.Store.Views.Presenter
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var result = await ((PresenterVM)this.DataContext).CreateProfile();
+            if (result)
+            {
+                Frame.Navigate(typeof(SurveyLibrary), this.DataContext);
+            }
+            else
+            {
+
+            }
         }
     }
 }

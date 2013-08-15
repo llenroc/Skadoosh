@@ -62,7 +62,9 @@
             </TextBlock>
         </GridView>
         <GridView  Grid.Row="2" Padding="116,136,116,46" x:Name="gridButtons">
+            
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnPresenter" >
+
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Source="ms-appx:///Assets/presenter.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>

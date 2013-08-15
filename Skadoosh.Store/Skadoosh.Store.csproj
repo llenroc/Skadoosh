@@ -121,7 +121,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\Temp.cs" />
+    <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -168,6 +168,8 @@
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\Participate.png" />
     <Content Include="Assets\presenter.png" />
+    <Content Include="Assets\Profile.png" />
+    <Content Include="Assets\Profile1.png" />
     <Content Include="Assets\RisingSun2.png" />
     <Content Include="Assets\RisingWhite.png" />
     <Content Include="Assets\skadooshOnly.png" />
