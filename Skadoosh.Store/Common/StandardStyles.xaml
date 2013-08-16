@@ -399,6 +399,56 @@
         </Setter>
     </Style>
 
+    <Style x:Key="EditAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="EditAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Edit"/>
+        <Setter Property="Content" Value="&#xE104;"/>
+    </Style>
+    <Style x:Key="RefreshAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="RefreshAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Refresh"/>
+        <Setter Property="Content" Value="&#xE117;"/>
+    </Style>
+    <Style x:Key="RemoveAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="RemoveAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Remove"/>
+        <Setter Property="Content" Value="&#xE108;"/>
+    </Style>
+    <Style x:Key="HelpAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="HelpAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Help"/>
+        <Setter Property="Content" Value="&#xE11B;"/>
+    </Style>
+    <Style x:Key="AddAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="AddAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Add"/>
+        <Setter Property="Content" Value="&#xE109;"/>
+    </Style>
+    <Style x:Key="SaveAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="SaveAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Save"/>
+        <Setter Property="Content" Value="&#xE105;"/>
+    </Style>
+    <Style x:Key="DiscardAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="DiscardAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Discard"/>
+        <Setter Property="Content" Value="&#xE107;"/>
+    </Style>
+    <Style x:Key="OutAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="OutAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Out"/>
+        <Setter Property="Content" Value="&#xE110;"/>
+    </Style>
+    <Style x:Key="SetLockScreenAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="SetLockscreenAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Set Lockscreen"/>
+        <Setter Property="Content" Value="&#xE18C;"/>
+    </Style>
+    <Style x:Key="PermissionsAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PermissionsAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Permisions"/>
+        <Setter Property="Content" Value="&#xE192;"/>
+    </Style>
     <!-- 
         Standard AppBarButton Styles for use with Button and ToggleButton
     

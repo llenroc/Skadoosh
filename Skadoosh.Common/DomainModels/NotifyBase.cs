@@ -36,7 +36,14 @@ namespace Skadoosh.Common.DomainModels
     {
         private string channelSelected;
         private Survey selectedSurvey;
+        private bool isLoggedIn;
 
+        public bool IsLoggedIn
+        {
+            get { return isLoggedIn; }
+            set { isLoggedIn = value; Notify("IsLoggedIn");}
+        }
+        
         public Survey SelectedSurvey
         {
             get { return selectedSurvey; }

@@ -66,8 +66,9 @@ namespace Skadoosh.Common.DomainModels
         private string channelName;
         private string surveyTitle;
         private string description;
-        private DateTime? startTime;
-        private DateTime? endTime;
+        private bool isActive;
+        private bool isLiveSurvey;
+
         public int Id
         {
             get { return id; }
@@ -93,17 +94,17 @@ namespace Skadoosh.Common.DomainModels
             get { return description; }
             set { description = value; Notify("Description");}
         }
-        public DateTime? StartTime
+        public bool IsActive
         {
-            get { return startTime; }
-            set { startTime = value; Notify("StartTime");}
+            get { return isActive; }
+            set { isActive = value; Notify("IsActive"); }
         }
-        public DateTime? EndTime
+        public bool IsLiveSurvey
         {
-            get { return endTime; }
-            set { endTime = value; Notify("EndTime");}
+            get { return isLiveSurvey; }
+            set { isLiveSurvey = value; Notify("IsLiveSurvey"); }
         }
-        
+     
     }
 
     public class Question : NotifyBase
@@ -112,6 +113,7 @@ namespace Skadoosh.Common.DomainModels
         private int surveyId;
         private string questionText;
         private int questionType;
+        private bool isActive;
 
         public int Id
         {
@@ -133,6 +135,11 @@ namespace Skadoosh.Common.DomainModels
         {
             get { return questionType; }
             set { questionType = value; Notify("QuestionType");}
+        }
+        public bool IsActive
+        {
+            get { return isActive; }
+            set { isActive = value; Notify("IsActive"); }
         }
             
     }

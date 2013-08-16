@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -44,22 +45,55 @@ namespace Skadoosh.Store.Views.Presenter
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            VM = (PresenterVM)navigationParameter; 
+            VM = (PresenterVM)navigationParameter;
+            await VM.LoadSurveysForCurrentUser();
+            if (VM.SurveyCollection == null || !VM.SurveyCollection.Any())
+            {
+                CollectionIsEmptyNotification();
+            }
         }
 
         private void CreateSurvey(object sender, RoutedEventArgs e)
         {
-            var x = "Here";
+            VM.CurrentSurvey = new Survey() { AccountUserId = VM.User.Id };
+            Frame.Navigate(typeof(EditSurvery), VM);
         }
 
 
         private void SurveySelected(object sender, TappedRoutedEventArgs e)
         {
             VM.CurrentSurvey = ((Grid)sender).DataContext as Survey;
-            VM.LoadQuestionsForCurrentSurvey();
-            Frame.Navigate(typeof(QuestionView), VM);
+            Frame.Navigate(typeof(SurveyQuestionsView), VM);
         }
+
+        private async void CollectionIsEmptyNotification()
+        {
+            // Create the message dialog and set its content
+            var messageDialog = new MessageDialog("There are no surveys created in this library. Open the application bar up to create a survey","Empty Library");
+          
+
+            // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
+            messageDialog.Commands.Add(new UICommand(
+                "I Understand",
+                new UICommandInvokedHandler(this.CommandInvokedHandler)));
+
+            // Set the command that will be invoked by default
+            messageDialog.DefaultCommandIndex = 0;
+
+            // Set the command to be invoked when escape is pressed
+            messageDialog.CancelCommandIndex = 1;
+
+            // Show the message dialog
+            await messageDialog.ShowAsync();
+        }
+
+        private void CommandInvokedHandler(IUICommand command)
+        {
+           
+
+        }
+
     }
 }

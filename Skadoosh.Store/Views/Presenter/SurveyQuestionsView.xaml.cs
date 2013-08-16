@@ -1,10 +1,12 @@
-﻿using Skadoosh.Common.ViewModels;
+﻿using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -22,7 +24,7 @@ namespace Skadoosh.Store.Views.Presenter
     /// A page that displays a group title, a list of items within the group, and details for
     /// the currently selected item.
     /// </summary>
-    public sealed partial class QuestionView : Skadoosh.Store.Common.LayoutAwarePage
+    public sealed partial class SurveyQuestionsView : Skadoosh.Store.Common.LayoutAwarePage
     {
 
         private PresenterVM VM
@@ -31,7 +33,7 @@ namespace Skadoosh.Store.Views.Presenter
             set { this.DataContext = value; }
         }
 
-        public QuestionView()
+        public SurveyQuestionsView()
         {
             this.InitializeComponent();
         }
@@ -49,7 +51,11 @@ namespace Skadoosh.Store.Views.Presenter
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            VM = (PresenterVM)navigationParameter; 
+            VM = (PresenterVM)navigationParameter;
+            if (VM.QuestionCollection == null || !VM.QuestionCollection.Any())
+            {
+                CollectionIsEmptyNotification();
+            }
 
             if (pageState == null)
             {
@@ -188,5 +194,39 @@ namespace Skadoosh.Store.Views.Presenter
         }
 
         #endregion
+
+
+        private async void CollectionIsEmptyNotification()
+        {
+            // Create the message dialog and set its content
+            var messageDialog = new MessageDialog("There are no question created for this survey. Open the application bar up to create questions", "No Questions");
+
+
+            // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
+            messageDialog.Commands.Add(new UICommand(
+                "I Understand",
+                new UICommandInvokedHandler(this.CommandInvokedHandler)));
+
+            // Set the command that will be invoked by default
+            messageDialog.DefaultCommandIndex = 0;
+
+            // Set the command to be invoked when escape is pressed
+            messageDialog.CancelCommandIndex = 1;
+
+            // Show the message dialog
+            await messageDialog.ShowAsync();
+        }
+
+        private void CommandInvokedHandler(IUICommand command)
+        {
+
+
+        }
+
+        private void CreateQuestion(object sender, RoutedEventArgs e)
+        {
+            VM.CurrentQuestion = new Question() { SurveyId=VM.CurrentSurvey.Id };
+            Frame.Navigate(typeof(EditQuestion), VM);
+        }
     }
 }
