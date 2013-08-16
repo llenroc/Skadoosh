@@ -1,4 +1,5 @@
-﻿using Skadoosh.Common.ViewModels;
+﻿using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,12 @@ namespace Skadoosh.Store.Views.Presenter
     /// </summary>
     public sealed partial class SurveyLibrary : Skadoosh.Store.Common.LayoutAwarePage
     {
+        private PresenterVM VM
+        {
+            get { return (PresenterVM)this.DataContext; }
+            set { this.DataContext = value; }
+        }
+
         public SurveyLibrary()
         {
             this.InitializeComponent();
@@ -39,7 +46,20 @@ namespace Skadoosh.Store.Views.Presenter
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            this.DataContext = (PresenterVM)navigationParameter; 
+            VM = (PresenterVM)navigationParameter; 
+        }
+
+        private void CreateSurvey(object sender, RoutedEventArgs e)
+        {
+            var x = "Here";
+        }
+
+
+        private void SurveySelected(object sender, TappedRoutedEventArgs e)
+        {
+            VM.CurrentSurvey = ((Grid)sender).DataContext as Survey;
+            VM.LoadQuestionsForCurrentSurvey();
+            Frame.Navigate(typeof(QuestionView), VM);
         }
     }
 }

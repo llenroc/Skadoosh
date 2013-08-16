@@ -50,7 +50,20 @@ namespace Skadoosh.Common.ViewModels
         public PresenterVM()
         {
             SurveyCollection = new ObservableCollection<Survey>();
+
+
+             
+            SurveyCollection.Add(new Survey() { Id = 1, SurveyTitle = "Test1" });
+            SurveyCollection.Add(new Survey() { Id = 2, SurveyTitle = "Test2" });
+            SurveyCollection.Add(new Survey() { Id = 3, SurveyTitle = "Test3" });
+            SurveyCollection.Add(new Survey() { Id = 4, SurveyTitle = "Test4" });
+            SurveyCollection.Add(new Survey() { Id = 5, SurveyTitle = "Test5" });
+            SurveyCollection.Add(new Survey() { Id = 6, SurveyTitle = "Test6" });
+            SurveyCollection.Add(new Survey() { Id = 7, SurveyTitle = "Test7" });
+            SurveyCollection.Add(new Survey() { Id = 8, SurveyTitle = "Test8" });
+
             QuestionCollection = new ObservableCollection<Question>();
+            questionCollection.Add(new Question() { Id = 1, QuestionText = "What is your favorite Color?", QuestionType = 1, SurveyId = 1 });
             OptionCollection = new ObservableCollection<Option>();
         }
 
@@ -115,15 +128,15 @@ namespace Skadoosh.Common.ViewModels
         {
             if (CurrentSurvey != null)
             {
-                QuestionCollection.Clear();
-                var list = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync();
-                if (list != null && list.Any())
-                {
-                    foreach (var item in list)
-                    {
-                        QuestionCollection.Add(item);
-                    }
-                }
+                //QuestionCollection.Clear();
+                //var list = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync();
+                //if (list != null && list.Any())
+                //{
+                //    foreach (var item in list)
+                //    {
+                //        QuestionCollection.Add(item);
+                //    }
+                //}
             }
         }
         public async void LoadOptionsForCurrentQuestion()

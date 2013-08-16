@@ -11,21 +11,49 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-
+        <Style x:Key="EditAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="EditAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Edit"/>
+            <Setter Property="Content" Value="&#xE104;"/>
+        </Style>
+        <Style x:Key="RefreshAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="RefreshAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Refresh"/>
+            <Setter Property="Content" Value="&#xE117;"/>
+        </Style>
+        <Style x:Key="RemoveAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="RemoveAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Remove"/>
+            <Setter Property="Content" Value="&#xE108;"/>
+        </Style>
+        <Style x:Key="HelpAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="HelpAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Help"/>
+            <Setter Property="Content" Value="&#xE11B;"/>
+        </Style>
+        <Style x:Key="AddAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+            <Setter Property="AutomationProperties.AutomationId" Value="AddAppBarButton"/>
+            <Setter Property="AutomationProperties.Name" Value="Add"/>
+            <Setter Property="Content" Value="&#xE109;"/>
+        </Style>
+        <DataTemplate x:Key="Survey250x250ItemTemplate">
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="SurveySelected"  >
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                    <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                </Border>
+                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                    <TextBlock Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+                    <TextBlock Text="{Binding Description}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
         <!-- Collection of items displayed by this page -->
-        <CollectionViewSource
-            x:Name="itemsViewSource"
-            Source="{Binding Items}"/>
+        <CollectionViewSource x:Name="itemsViewSource" Source="{Binding SurveyCollection}"/>
 
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
+        <x:String x:Key="AppName">Survey Administration</x:String>
     </Page.Resources>
 
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
+
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
@@ -39,20 +67,20 @@
         <GridView
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemsGridView"
-            AutomationProperties.Name="Items"
+            AutomationProperties.Name="items"
             TabIndex="1"
             Grid.RowSpan="2"
             Padding="116,136,116,46"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Standard250x250ItemTemplate}"
-            SelectionMode="None"
+            ItemTemplate="{StaticResource Survey250x250ItemTemplate}"
+            SelectionMode="None" 
             IsSwipeEnabled="false"/>
 
         <!-- Vertical scrolling list only used when snapped -->
         <ListView
             x:Name="itemListView"
             AutomationProperties.AutomationId="ItemsListView"
-            AutomationProperties.Name="Items"
+            AutomationProperties.Name="items"
             TabIndex="1"
             Grid.Row="1"
             Visibility="Collapsed"
@@ -60,7 +88,7 @@
             Padding="10,0,0,60"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
             ItemTemplate="{StaticResource Standard80ItemTemplate}"
-            SelectionMode="None"
+            SelectionMode="None" 
             IsSwipeEnabled="false"/>
 
         <!-- Back button and page title -->
@@ -124,4 +152,21 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>
+
+    <Page.BottomAppBar>
+        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <!--<Button Style="{StaticResource EditAppBarButtonStyle}" />
+                    <Button Style="{StaticResource RemoveAppBarButtonStyle}" />-->
+                    <Button Style="{StaticResource AddAppBarButtonStyle}" Click="CreateSurvey" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource RefreshAppBarButtonStyle}" />
+                    <Button Style="{StaticResource HelpAppBarButtonStyle}" />
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+
 </common:LayoutAwarePage>
