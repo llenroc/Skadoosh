@@ -31,7 +31,9 @@ Supported Platforms:
 - Portable Class Libraries
 This package is only required for projects targeting .NET Framework 4.5, NET for Windows Store apps or Windows Phone 8 when consuming a library that uses this package.</description>
     <summary>Adds support for types added in later versions of .NET when targeting previous versions.</summary>
+    <releaseNotes />
     <copyright>Copyright © Microsoft Corporation</copyright>
+    <language />
     <tags>BCL Microsoft System Task IProgress</tags>
     <dependencies>
       <dependency id="Microsoft.Bcl.Build" version="1.0.4" />
