@@ -62,11 +62,7 @@ namespace Skadoosh.Store.Views.Presenter
         }
 
 
-        private void SurveySelected(object sender, TappedRoutedEventArgs e)
-        {
-            VM.CurrentSurvey = ((Grid)sender).DataContext as Survey;
-            Frame.Navigate(typeof(SurveyQuestionsView), VM);
-        }
+
 
         private async void CollectionIsEmptyNotification()
         {
@@ -93,6 +89,28 @@ namespace Skadoosh.Store.Views.Presenter
         {
            
 
+        }
+
+        private void SurveySelected(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            //VM.CurrentSurvey = ((Grid)sender).DataContext as Survey;
+            Frame.Navigate(typeof(SurveyQuestionsView), VM);
+        }
+
+        private void EditSurvey(object sender, RoutedEventArgs e)
+        {
+            //VM.CurrentSurvey = ((Grid)sender).DataContext as Survey;
+            Frame.Navigate(typeof(EditSurvery), VM);
+        }
+
+        private async void DeleteSurvey(object sender, RoutedEventArgs e)
+        {
+            VM.DeleteSurvey();
+            await VM.LoadSurveysForCurrentUser();
+            if (VM.SurveyCollection == null || !VM.SurveyCollection.Any())
+            {
+                CollectionIsEmptyNotification();
+            }
         }
 
     }

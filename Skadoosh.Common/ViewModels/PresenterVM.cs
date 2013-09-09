@@ -64,7 +64,14 @@ namespace Skadoosh.Common.ViewModels
             OptionCollection = new ObservableCollection<Option>();
         }
 
-
+        public async void DeleteSurvey()
+        {
+            var table = AzureClient.GetTable<Survey>();
+            if (CurrentSurvey != null && CurrentSurvey.Id != 0)
+            {
+                await table.DeleteAsync(CurrentSurvey);
+            }
+        }
         public async void UpdateSurvey()
         {
             var table = AzureClient.GetTable<Survey>();
@@ -76,6 +83,7 @@ namespace Skadoosh.Common.ViewModels
             {
                 await table.UpdateAsync(CurrentSurvey);
             }
+      
         }
         public async void UpdateQuestion()
         {

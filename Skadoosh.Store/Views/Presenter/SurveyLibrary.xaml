@@ -13,7 +13,7 @@
     <Page.Resources>
 
         <DataTemplate x:Key="Survey250x250ItemTemplate">
-            <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="SurveySelected"  >
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" DoubleTapped="SurveySelected">
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
@@ -48,8 +48,9 @@
             Grid.RowSpan="2"
             Padding="116,136,116,46"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Survey250x250ItemTemplate}"
-            SelectionMode="None" 
+            ItemTemplate="{StaticResource Survey250x250ItemTemplate}" 
+            SelectedItem="{Binding CurrentSurvey,Mode=TwoWay}"
+            SelectionMode="Single" 
             IsSwipeEnabled="false"/>
 
         <!-- Vertical scrolling list only used when snapped -->
@@ -134,6 +135,8 @@
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button Style="{StaticResource AddAppBarButtonStyle}" Click="CreateSurvey"  AutomationProperties.Name="Add Survey"/>
+                    <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Survey" Click="EditSurvey"/>
+                    <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Survey" Click="DeleteSurvey"/>
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
