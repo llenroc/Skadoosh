@@ -28,7 +28,7 @@ namespace Skadoosh.Common.ViewModels
             var table = this.AzureClient.GetTable<Survey>();
             await table.InsertAsync(s);
 
-            var question = new Question() { QuestionText = "What is your favority color?", SurveyId = s.Id, QuestionType = 2 };
+            var question = new Question() { QuestionText = "What is your favority color?", SurveyId = s.Id, IsMultiSelect = false };
             await AzureClient.GetTable<Question>().InsertAsync(question);
 
 

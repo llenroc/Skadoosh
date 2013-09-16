@@ -2,7 +2,9 @@
 using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Skadoosh.Common.DomainModels
@@ -57,6 +59,11 @@ namespace Skadoosh.Common.DomainModels
             set { email = value; Notify("Email"); }
         }
 
+        public AccountUser()
+        {
+
+        }
+
     }
 
     public class Survey : NotifyBase
@@ -68,6 +75,14 @@ namespace Skadoosh.Common.DomainModels
         private string description;
         private bool isActive;
         private bool isLiveSurvey;
+        private ObservableCollection<Question> questions;
+
+        [IgnoreDataMember]
+        public ObservableCollection<Question> Questions
+        {
+            get { return questions; }
+            set { questions = value; Notify("Questions"); }
+        }
 
         public int Id
         {
@@ -77,7 +92,7 @@ namespace Skadoosh.Common.DomainModels
         public int AccountUserId
         {
             get { return accountUserId; }
-            set { accountUserId = value; Notify("AccountUserId");}
+            set { accountUserId = value; Notify("AccountUserId"); }
         }
         public string ChannelName
         {
@@ -87,12 +102,12 @@ namespace Skadoosh.Common.DomainModels
         public string SurveyTitle
         {
             get { return surveyTitle; }
-            set { surveyTitle = value; Notify("SurveyTitle");}
+            set { surveyTitle = value; Notify("SurveyTitle"); }
         }
         public string Description
         {
             get { return description; }
-            set { description = value; Notify("Description");}
+            set { description = value; Notify("Description"); }
         }
         public bool IsActive
         {
@@ -104,7 +119,19 @@ namespace Skadoosh.Common.DomainModels
             get { return isLiveSurvey; }
             set { isLiveSurvey = value; Notify("IsLiveSurvey"); }
         }
-     
+
+        public bool IsNew
+        {
+            get
+            {
+                return (this.Id == 0);
+            }
+        }
+
+        public Survey()
+        {
+            Questions = new ObservableCollection<Question>();
+        }
     }
 
     public class Question : NotifyBase
@@ -112,9 +139,17 @@ namespace Skadoosh.Common.DomainModels
         private int id;
         private int surveyId;
         private string questionText;
-        private int questionType;
+        private bool isMultiSelect;
         private bool isActive;
+        private ObservableCollection<Option> options;
 
+        [IgnoreDataMember]
+	    public ObservableCollection<Option> Options
+	    {
+		    get { return options;}
+		    set { options = value; Notify("Options");}
+	    }
+	
         public int Id
         {
             get { return id; }
@@ -131,17 +166,29 @@ namespace Skadoosh.Common.DomainModels
             set { questionText = value;  Notify("QuestionText");}
         }
 
-        public int QuestionType
+        public bool IsMultiSelect
         {
-            get { return questionType; }
-            set { questionType = value; Notify("QuestionType");}
+            get { return isMultiSelect; }
+            set { isMultiSelect = value; Notify("IsMultiSelect"); }
         }
         public bool IsActive
         {
             get { return isActive; }
             set { isActive = value; Notify("IsActive"); }
         }
-            
+
+        public bool IsNew
+        {
+            get
+            {
+                return (this.Id == 0);
+            }
+        }
+
+        public Question()
+        {
+            Options = new ObservableCollection<Option>();
+        }
     }
 
     public class Responses : NotifyBase
@@ -200,6 +247,14 @@ namespace Skadoosh.Common.DomainModels
         {
             get { return optionText; }
             set { optionText = value; Notify("OptionText"); }
+        }
+
+        public bool IsNew
+        {
+            get
+            {
+                return (this.Id == 0);
+            }
         }
         
     }

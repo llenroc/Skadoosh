@@ -23,7 +23,7 @@ namespace Skadoosh.Store.Views.Presenter
     /// A page that displays a collection of item previews.  In the Split Application this page
     /// is used to display and select one of the available groups.
     /// </summary>
-    public sealed partial class SurveyLibrary : Skadoosh.Store.Common.LayoutAwarePage
+    public sealed partial class SurveyQuestions : Skadoosh.Store.Common.LayoutAwarePage
     {
         private PresenterVM VM
         {
@@ -31,7 +31,7 @@ namespace Skadoosh.Store.Views.Presenter
             set { this.DataContext = value; }
         }
 
-        public SurveyLibrary()
+        public SurveyQuestions()
         {
             this.InitializeComponent();
         }
@@ -45,30 +45,22 @@ namespace Skadoosh.Store.Views.Presenter
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (PresenterVM)navigationParameter;
-            await VM.LoadSurveysForCurrentUser();
-            if (VM.SurveyCollection == null || !VM.SurveyCollection.Any())
+            if (VM.CurrentSurvey.Questions == null || !VM.CurrentSurvey.Questions.Any())
             {
                 CollectionIsEmptyNotification();
             }
         }
-
-        private void CreateSurvey(object sender, RoutedEventArgs e)
-        {
-            VM.CurrentSurvey = new Survey() { AccountUserId = VM.User.Id };
-            Frame.Navigate(typeof(EditSurvery), VM);
-        }
-
 
 
 
         private async void CollectionIsEmptyNotification()
         {
             // Create the message dialog and set its content
-            var messageDialog = new MessageDialog("There are no surveys created in this library. Open the application bar up to create a survey","Empty Library");
-          
+            var messageDialog = new MessageDialog("There are no question created for this survey. Open the application bar up to create questions", "No Questions");
+
 
             // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
             messageDialog.Commands.Add(new UICommand(
@@ -87,31 +79,13 @@ namespace Skadoosh.Store.Views.Presenter
 
         private void CommandInvokedHandler(IUICommand command)
         {
-           
+
 
         }
-
-        private void SurveySelected(object sender, DoubleTappedRoutedEventArgs e)
+        private void CreateQuestion(object sender, RoutedEventArgs e)
         {
-            //VM.CurrentSurvey = ((Grid)sender).DataContext as Survey;
-            Frame.Navigate(typeof(SurveyQuestions), VM);
+            VM.CurrentQuestion = new Question() { SurveyId = VM.CurrentSurvey.Id };
+            Frame.Navigate(typeof(EditQuestion), VM);
         }
-
-        private void EditSurvey(object sender, RoutedEventArgs e)
-        {
-            //VM.CurrentSurvey = ((Grid)sender).DataContext as Survey;
-            Frame.Navigate(typeof(EditSurvery), VM);
-        }
-
-        private async void DeleteSurvey(object sender, RoutedEventArgs e)
-        {
-            VM.DeleteSurvey();
-            await VM.LoadSurveysForCurrentUser();
-            if (VM.SurveyCollection == null || !VM.SurveyCollection.Any())
-            {
-                CollectionIsEmptyNotification();
-            }
-        }
-
     }
 }

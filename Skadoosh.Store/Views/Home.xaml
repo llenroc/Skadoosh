@@ -42,7 +42,7 @@
 
         <!-- Back button and page title -->
         <Grid >
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -61,8 +61,8 @@
                 Select Where To Begin.
             </TextBlock>
         </GridView>
-        <GridView  Grid.Row="2" Padding="116,136,116,46" x:Name="gridButtons">
-            
+        <GridView  Grid.Row="1" Padding="116,136,116,46" x:Name="gridButtons" Margin="-10,0,10,0">
+
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnPresenter" >
 
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">

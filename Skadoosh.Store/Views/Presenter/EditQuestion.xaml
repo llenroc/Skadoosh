@@ -8,8 +8,8 @@
     xmlns:common="using:Skadoosh.Store.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vext="using:WinRTXamlToolkit.Controls.Extensions1"
     mc:Ignorable="d">
-
     <Page.Resources>
         <common:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
         <common:OneZeroConverter x:Key="OneZeroConverter"/>
@@ -61,7 +61,7 @@
             <Image Grid.Column="1" HorizontalAlignment="Left" Margin="0 40 30 30"  Source="ms-appx:///Assets/SkadooshOnly.png"/>
             <Image Grid.Column="1" Source="ms-appx:///Assets/Fuse.png"  Margin="0,116,30,9" ></Image>
         </Grid>
-        <Border Grid.Row="1"  Padding="20" Margin="38,36,42,292" Height="300" Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+        <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Opacity="0.9">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -72,6 +72,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
@@ -81,13 +82,36 @@
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource EditFields}">Question Text</TextBlock>
                 <TextBox Grid.Row="0" Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" ></TextBox>
 
-                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">Question Type</TextBlock>
-                <ToggleSwitch  OffContent="Single Select" OnContent="Multiple Select" Grid.Row="1" Grid.Column="2"  Margin="10" IsOn="{Binding CurrentQuestion.QuestionType, ConverterParameter=CurrentQuestion.QuestionType, Converter={StaticResource OneZeroConverter}, Mode=TwoWay}"></ToggleSwitch>
+                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">Is Multiselect</TextBlock>
+                <CheckBox Grid.Row="1" Grid.Column="2"  Margin="10" IsChecked="{Binding CurrentSurvey.IsMultiSelect, ConverterParameter=CurrentQuestion.IsActive, Converter={StaticResource BooleanNegationConverter}, Mode=TwoWay}" ></CheckBox>
+              
 
                 <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource EditFields}">Is Active</TextBlock>
                 <CheckBox Grid.Row="2" Grid.Column="2"  Margin="10" IsChecked="{Binding CurrentQuestion.IsActive, ConverterParameter=CurrentQuestion.IsActive, Converter={StaticResource BooleanNegationConverter}, Mode=TwoWay}"></CheckBox>
 
-                <Button Grid.Row="3" Grid.Column="2" Content="Save Question" Style="{StaticResource ExecuteButton}" Click="SaveQuestion"></Button>
+
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
+                    <TextBlock  Style="{StaticResource EditFields}">Options</TextBlock>
+                    <Button HorizontalAlignment="Right" Click="Button_Click">Add</Button>
+                </StackPanel>
+
+
+                <ListView Grid.Row="3" Grid.Column="2" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding CurrentQuestion.Options, Mode=TwoWay}" Margin="10" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBox  Text="{Binding OptionText, Mode=TwoWay}" ></TextBox>
+                                <Button Grid.Row="0" Grid.Column="1" >Delete</Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+                <Button Grid.Row="4" Grid.Column="2" Content="Save Question" Style="{StaticResource ExecuteButton}" Click="SaveQuestion"></Button>
 
 
             </Grid>

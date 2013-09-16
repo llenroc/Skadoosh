@@ -60,8 +60,13 @@ namespace Skadoosh.Store.Views.Presenter
         private void SaveQuestion(object sender, RoutedEventArgs e)
         {
             var q = VM.CurrentQuestion;
-            //VM.UpdateQuestion();
-           // Frame.GoBack();
+            VM.UpdateQuestion();
+            Frame.GoBack();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            VM.CurrentQuestion.Options.Add(new Skadoosh.Common.DomainModels.Option() { QuestionId = VM.CurrentQuestion.Id });
         }
     }
 }
