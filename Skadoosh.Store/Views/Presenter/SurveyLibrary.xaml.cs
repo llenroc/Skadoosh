@@ -49,6 +49,23 @@ namespace Skadoosh.Store.Views.Presenter
         {
             VM = (PresenterVM)navigationParameter;
             await VM.LoadSurveysForCurrentUser();
+            if (VM.IsLoading)
+            {
+                VM.LoadingCompleted += VM_LoadingCompleted;
+            }
+            else
+            {
+                if (VM.SurveyCollection == null || !VM.SurveyCollection.Any())
+                {
+                    CollectionIsEmptyNotification();
+                }
+            }
+
+        }
+
+        void VM_LoadingCompleted(object sender, EventArgs e)
+        {
+            VM.LoadingCompleted -= VM_LoadingCompleted;
             if (VM.SurveyCollection == null || !VM.SurveyCollection.Any())
             {
                 CollectionIsEmptyNotification();
@@ -105,7 +122,7 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void DeleteSurvey(object sender, RoutedEventArgs e)
         {
-            VM.DeleteSurvey();
+            VM.DeleteCurrentSurvey();
             await VM.LoadSurveysForCurrentUser();
             if (VM.SurveyCollection == null || !VM.SurveyCollection.Any())
             {

@@ -48,6 +48,24 @@ namespace Skadoosh.Store.Views.Presenter
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (PresenterVM)navigationParameter;
+            
+            if (VM.IsLoading)
+            {
+                VM.LoadingCompleted += VM_LoadingCompleted;
+            }
+            else
+            {
+                if (VM.CurrentSurvey.Questions == null || !VM.CurrentSurvey.Questions.Any())
+                {
+                    CollectionIsEmptyNotification();
+                }
+            }
+
+        }
+
+        void VM_LoadingCompleted(object sender, EventArgs e)
+        {
+            VM.LoadingCompleted -= VM_LoadingCompleted;
             if (VM.CurrentSurvey.Questions == null || !VM.CurrentSurvey.Questions.Any())
             {
                 CollectionIsEmptyNotification();
@@ -86,6 +104,16 @@ namespace Skadoosh.Store.Views.Presenter
         {
             VM.CurrentQuestion = new Question() { SurveyId = VM.CurrentSurvey.Id };
             Frame.Navigate(typeof(EditQuestion), VM);
+        }
+
+        private void EditQuestion(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(EditQuestion), VM);
+        }
+
+        private void DeleteQuestion(object sender, RoutedEventArgs e)
+        {
+            VM.DeleteCurrentQuestion();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.Foundation;
@@ -19,9 +20,17 @@ namespace Skadoosh.Store.Common
     /// </summary>
     public sealed class BooleanToVisibilityConverter : IValueConverter
     {
+        public bool IsReversed { get; set; }
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (value is bool && (bool)value) ? Visibility.Visible : Visibility.Collapsed;
+            if (IsReversed)
+            {
+                return (value is bool && (bool)value) ? Visibility.Collapsed : Visibility.Visible;
+            }
+            else
+            {
+                return (value is bool && (bool)value) ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -29,4 +38,48 @@ namespace Skadoosh.Store.Common
             return value is Visibility && (Visibility)value == Visibility.Visible;
         }
     }
+
+    public sealed class IsLiveSurveyImageConverter : IValueConverter
+    {
+  
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var isLive = (bool)value;
+            if (isLive)
+            {
+                return "ms-appx:///Assets/LiveSurvey.png";
+            }
+            else
+            {
+                return "ms-appx:///Assets/StaticSurvey.png";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return null;
+        }
+    }
+    public sealed class IsMultiQuestionImageConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var isLive = (bool)value;
+            if (isLive)
+            {
+                return "ms-appx:///Assets/MultiSelect.png";
+            }
+            else
+            {
+                return "ms-appx:///Assets/SingleSelect.png";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return null;
+        }
+    }
+
 }

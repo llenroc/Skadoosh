@@ -10,11 +10,6 @@ using System.Text;
 namespace Skadoosh.Common.DomainModels
 {
 
-    public enum QuestionType
-    {
-        Single,
-        Multiple
-    }
 
     public static class SkadooshExtensions
     {
@@ -77,13 +72,6 @@ namespace Skadoosh.Common.DomainModels
         private bool isLiveSurvey;
         private ObservableCollection<Question> questions;
 
-        [IgnoreDataMember]
-        public ObservableCollection<Question> Questions
-        {
-            get { return questions; }
-            set { questions = value; Notify("Questions"); }
-        }
-
         public int Id
         {
             get { return id; }
@@ -120,12 +108,19 @@ namespace Skadoosh.Common.DomainModels
             set { isLiveSurvey = value; Notify("IsLiveSurvey"); }
         }
 
+        [IgnoreDataMember]
         public bool IsNew
         {
             get
             {
                 return (this.Id == 0);
             }
+        }
+        [IgnoreDataMember]
+        public ObservableCollection<Question> Questions
+        {
+            get { return questions; }
+            set { questions = value; Notify("Questions"); }
         }
 
         public Survey()
@@ -143,13 +138,6 @@ namespace Skadoosh.Common.DomainModels
         private bool isActive;
         private ObservableCollection<Option> options;
 
-        [IgnoreDataMember]
-	    public ObservableCollection<Option> Options
-	    {
-		    get { return options;}
-		    set { options = value; Notify("Options");}
-	    }
-	
         public int Id
         {
             get { return id; }
@@ -163,7 +151,7 @@ namespace Skadoosh.Common.DomainModels
         public string QuestionText
         {
             get { return questionText; }
-            set { questionText = value;  Notify("QuestionText");}
+            set { questionText = value;  Notify("QuestionText");  }
         }
 
         public bool IsMultiSelect
@@ -177,6 +165,14 @@ namespace Skadoosh.Common.DomainModels
             set { isActive = value; Notify("IsActive"); }
         }
 
+        [IgnoreDataMember]
+        public ObservableCollection<Option> Options
+        {
+            get { return options; }
+            set { options = value; Notify("Options"); }
+        }
+
+        [IgnoreDataMember]
         public bool IsNew
         {
             get
@@ -184,6 +180,7 @@ namespace Skadoosh.Common.DomainModels
                 return (this.Id == 0);
             }
         }
+
 
         public Question()
         {
@@ -232,7 +229,8 @@ namespace Skadoosh.Common.DomainModels
         private int id;
         private int questionId;
         private string optionText;
-
+        private bool isDeleted;  
+   
         public int Id
         {
             get { return id; }
@@ -246,15 +244,30 @@ namespace Skadoosh.Common.DomainModels
         public string OptionText
         {
             get { return optionText; }
-            set { optionText = value; Notify("OptionText"); }
+            set
+            {
+                optionText = value;
+                Notify("OptionText");
+                if (string.IsNullOrEmpty(value))
+                {
+                    IsDeleted = true;
+                }
+            }
         }
 
+        [IgnoreDataMember]
         public bool IsNew
         {
             get
             {
                 return (this.Id == 0);
             }
+        }
+        [IgnoreDataMember]
+        public bool IsDeleted
+        {
+            get { return isDeleted; }
+            set { isDeleted = value; Notify("IsDeleted"); }
         }
         
     }

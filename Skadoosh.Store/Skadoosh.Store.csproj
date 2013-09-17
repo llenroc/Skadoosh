@@ -121,7 +121,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -175,18 +174,34 @@
     <Content Include="Assets\Hand.png" />
     <Content Include="Assets\HomeTitle.png" />
     <Content Include="Assets\live.png" />
+    <Content Include="Assets\LiveSurvey.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\MultiSelect.png" />
     <Content Include="Assets\Participate.png" />
     <Content Include="Assets\presenter.png" />
     <Content Include="Assets\Profile.png" />
     <Content Include="Assets\Profile1.png" />
     <Content Include="Assets\RisingSun2.png" />
     <Content Include="Assets\RisingWhite.png" />
+    <Content Include="Assets\SingleSelect.png" />
     <Content Include="Assets\skadooshOnly.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\StaticSurvey.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\SurveryEdit.png" />
+    <Content Include="Assets\ToggleState\GreenButton_Hover.png" />
+    <Content Include="Assets\ToggleState\GreenButton_Idle.png" />
+    <Content Include="Assets\ToggleState\GreenButton_Pressed.png" />
+    <Content Include="Assets\ToggleState\RedButton_Disabled.png" />
+    <Content Include="Assets\ToggleState\RedButton_Hover.png" />
+    <Content Include="Assets\ToggleState\RedButton_Idle.png" />
+    <Content Include="Assets\ToggleState\RedButton_Pressed.png" />
+    <Content Include="Assets\ToggleState\RedButtonMultiScale.scale-100.png" />
+    <Content Include="Assets\ToggleState\RedButtonMultiScale.scale-140.png" />
+    <Content Include="Assets\ToggleState\RedButtonMultiScale.scale-180.png" />
+    <Content Include="Assets\ToggleState\GrayButton.png" />
+    <Content Include="Assets\ToggleState\GreenButton_Disabled.png" />
     <Content Include="Assets\twitter.png" />
     <Content Include="Common\ReadMe.txt" />
     <None Include="Package.StoreAssociation.xml" />
@@ -267,6 +282,7 @@
       <HintPath>..\packages\WinRTXamlToolkit.1.5.2.0\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
