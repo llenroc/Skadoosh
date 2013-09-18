@@ -9,6 +9,8 @@
     xmlns:common="using:Skadoosh.Store.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions"
+    xmlns:xc="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -76,7 +78,7 @@
             <Image Grid.Column="1" Source="ms-appx:///Assets/Fuse.png"  Margin="0,116,30,9" ></Image>
         </Grid>
 
-        <Border Grid.Row="1"  Padding="20" Margin="38,36,42,292" Height="300" Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+        <Border Grid.Row="1"  Padding="20" Margin="38"  Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Opacity="0.9">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -94,13 +96,13 @@
                 <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Source="ms-appx:///Assets/Profile1.png" VerticalAlignment="Top" Margin="10 10 10 0"/>
 
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource ProfileFields}">First Name</TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="2"  Margin="10" Text="{Binding User.FirstName, Mode=TwoWay}" ></TextBox>
+                <TextBox Grid.Row="0" Grid.Column="2"  Margin="10" Text="{Binding User.FirstName, Mode=TwoWay}" Extensions:TextBoxValidationExtensions.Format="NonEmpty"></TextBox>
 
                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ProfileFields}">Last Name</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="2"  Margin="10" Text="{Binding User.LastName, Mode=TwoWay}"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="2"  Margin="10" Text="{Binding User.LastName, Mode=TwoWay}" Extensions:TextBoxValidationExtensions.Format="NonEmpty"></TextBox>
 
                 <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource ProfileFields}">Email Address</TextBlock>
-                <TextBox Grid.Row="2" Grid.Column="2"  Margin="10" Text="{Binding User.Email, Mode=TwoWay}"></TextBox>
+                        <TextBox Grid.Row="2" Grid.Column="2"  Margin="10" Text="{Binding User.Email, Mode=TwoWay}" Extensions:TextBoxValidationExtensions.Format="NonEmpty"></TextBox>
 
                 <Button Grid.Row="3" Grid.Column="2" Content="Save Profile" Style="{StaticResource ExecuteButton}" Click="Button_Click"></Button>
          

@@ -43,14 +43,36 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAzure.MobileServices.Android">
+      <HintPath>..\Resources\azure-mobile-services-1.0.4\lib\android\Microsoft.WindowsAzure.MobileServices.Android.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Skadoosh.Common\DomainModels\NotifyBase.cs">
+      <Link>DomainModels\NotifyBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\Survey.cs">
+      <Link>DomainModels\Survey.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
+      <Link>ViewModel\ParticipateLiveVM.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateStaticVM.cs">
+      <Link>ViewModel\ParticipateStaticVM.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\ViewModels\PresenterVM.cs">
+      <Link>ViewModel\PresenterVM.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\ViewModels\SkadooshVM.cs">
+      <Link>ViewModel\SkadooshVM.cs</Link>
+    </Compile>
     <Compile Include="Activity1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

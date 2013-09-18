@@ -71,6 +71,7 @@ namespace Skadoosh.Common.DomainModels
         private bool isActive;
         private bool isLiveSurvey;
         private ObservableCollection<Question> questions;
+      
 
         public int Id
         {
@@ -127,6 +128,7 @@ namespace Skadoosh.Common.DomainModels
         {
             Questions = new ObservableCollection<Question>();
         }
+
     }
 
     public class Question : NotifyBase
@@ -137,7 +139,7 @@ namespace Skadoosh.Common.DomainModels
         private bool isMultiSelect;
         private bool isActive;
         private ObservableCollection<Option> options;
-
+        private string questionTypeState;
         public int Id
         {
             get { return id; }
@@ -157,12 +159,12 @@ namespace Skadoosh.Common.DomainModels
         public bool IsMultiSelect
         {
             get { return isMultiSelect; }
-            set { isMultiSelect = value; Notify("IsMultiSelect"); }
+            set { isMultiSelect = value; Notify("IsMultiSelect"); SetQuestionTypeState(); }
         }
         public bool IsActive
         {
             get { return isActive; }
-            set { isActive = value; Notify("IsActive"); }
+            set { isActive = value; Notify("IsActive"); SetQuestionTypeState(); }
         }
 
         [IgnoreDataMember]
@@ -180,11 +182,22 @@ namespace Skadoosh.Common.DomainModels
                 return (this.Id == 0);
             }
         }
-
+        [IgnoreDataMember]
+        public string QuestionTypeState
+        {
+            get { return questionTypeState; }
+            set { questionTypeState = value; Notify("QuestionTypeState"); }
+        }
 
         public Question()
         {
             Options = new ObservableCollection<Option>();
+        }
+        private void SetQuestionTypeState()
+        {
+            var type = IsMultiSelect ? "Multiple Select" : "Single Select";
+            var state = IsActive ? "Active" : "Not Active";
+            QuestionTypeState = string.Format("{0} : {1}", type, state);
         }
     }
 

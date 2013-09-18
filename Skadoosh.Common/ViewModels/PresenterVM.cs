@@ -11,33 +11,70 @@ namespace Skadoosh.Common.ViewModels
 
     public class PresenterVM : ViewModelBase
     {
-        public event EventHandler LoadingCompleted;
-
         private ObservableCollection<Survey> surveyCollection;
         private Survey currentSurvey;
         private Question currentQuestion;
+        private bool isSurveySelected;
+        private bool isQuestionSelected;
+        private bool canSetActive;
+        private bool canStartSurvey;
+        private bool canStopSurvey;
+
+        public bool CanStopSurvey
+        {
+            get { return canStopSurvey; }
+            set { canStopSurvey = value; Notify("CanStopSurvey");}
+        }
+        
+        public bool CanStartSurvey
+        {
+            get { return canStartSurvey; }
+            set { canStartSurvey = value; Notify("CanStartSurvey");}
+        }
+        
+        public bool CanSetActive
+        {
+            get { return canSetActive; }
+            set { canSetActive = value; Notify("CanSetActive");}
+        }
+        
+        public bool IsQuestionSelected
+        {
+            get { return isQuestionSelected; }
+            set { isQuestionSelected = value; Notify("IsQuestionSelected");}
+        }
+        
+        public bool IsSurveySelected
+        {
+            get { return isSurveySelected; }
+            set { isSurveySelected = value; Notify("IsSurveySelected");}
+        }
+        
         public bool IsLoading { get; set; }
+      
         public Question CurrentQuestion
         {
             get { return currentQuestion; }
             set
             {
                 currentQuestion = value;
+                IsQuestionSelected = value != null ? true : false;
+                CanSetActive = (value != null && CurrentSurvey.IsLiveSurvey) ? true : false;
                 Notify("CurrentQuestion");
             }
         }
-        
         public Survey CurrentSurvey
         {
             get { return currentSurvey; }
             set
             {
                 currentSurvey = value;
-                LoadQuestionsForCurrentSurvey();
+                IsSurveySelected = value != null ? true : false;
+                CanStartSurvey = (value != null && CurrentSurvey.IsLiveSurvey && !CurrentSurvey.IsActive);
+                CanStopSurvey = (value != null && CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive);
                 Notify("CurrentSurvey");
             }
-        }
-        
+        }  
         public ObservableCollection<Survey> SurveyCollection
         {
             get { return surveyCollection; }
@@ -66,15 +103,37 @@ namespace Skadoosh.Common.ViewModels
             var table = AzureClient.GetTable<Survey>();
             if (CurrentSurvey.Id == 0)
             {
-                await table.InsertAsync(CurrentSurvey);
-                surveyCollection.Add(CurrentSurvey);
+                await table.InsertAsync(CurrentSurvey).ContinueWith(x=> LoadSurveysForCurrentUser());
             }
             else
             {
-                await table.UpdateAsync(CurrentSurvey);
+                await table.UpdateAsync(CurrentSurvey).ContinueWith(x => LoadSurveysForCurrentUser());
             }
+            
 
-        } 
+        }
+        public async void StartSurvey()
+        {
+            if (CurrentSurvey.IsLiveSurvey)
+            {
+                CurrentSurvey.IsActive = true;
+                var table = AzureClient.GetTable<Survey>();
+                await table.UpdateAsync(CurrentSurvey);
+                CanStartSurvey = (CurrentSurvey.IsLiveSurvey && !CurrentSurvey.IsActive);
+                CanStopSurvey = (CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive);
+            }
+        }
+        public async void StopSurvey()
+        {
+            if (CurrentSurvey.IsLiveSurvey)
+            {
+                CurrentSurvey.IsActive = false;
+                var table = AzureClient.GetTable<Survey>();
+                await table.UpdateAsync(CurrentSurvey);
+                CanStartSurvey = (CurrentSurvey.IsLiveSurvey && !CurrentSurvey.IsActive);
+                CanStopSurvey = (CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive);
+            }
+        }
         #endregion
 
         #region Question Code
@@ -96,8 +155,9 @@ namespace Skadoosh.Common.ViewModels
             currentSurvey.Questions.Remove(CurrentQuestion);
             CurrentQuestion = null;
         }
-        public async void UpdateQuestion()
+        public async Task<int> UpdateQuestion()
         {
+            
             var table = AzureClient.GetTable<Question>();
             var options = AzureClient.GetTable<Option>();
             if (CurrentQuestion.IsNew)
@@ -125,26 +185,26 @@ namespace Skadoosh.Common.ViewModels
                 }
             }
             UpdateOptions();
+            return CurrentQuestion.Options.Count;
         }
         public async void SetQuestionActive()
         {
             if (CurrentQuestion != null)
             {
                 var table = AzureClient.GetTable<Question>();
-                var active = await table.Where(x => x.IsActive == true).ToListAsync();
-                if (active != null && active.Any())
+                var activeQuestion = CurrentSurvey.Questions.FirstOrDefault(x => x.IsActive == true);
+                if (activeQuestion != null && activeQuestion.Id != CurrentQuestion.Id)
                 {
-                    if (active.First().Id == CurrentQuestion.Id)
-                        return;
-
-                    foreach (var q in active)
-                    {
-                        q.IsActive = false;
-                        await table.UpdateAsync(q);
-                    }
+                    activeQuestion.IsActive = false;
+                    CurrentQuestion.IsActive = true;
+                    await table.UpdateAsync(activeQuestion);
+                    await table.UpdateAsync(CurrentQuestion);
                 }
-                CurrentQuestion.IsActive = true;
-                await table.UpdateAsync(CurrentQuestion);
+                else
+                {
+                    CurrentQuestion.IsActive = true;
+                    await table.UpdateAsync(CurrentQuestion);
+                }
             }
         }
         #endregion
@@ -193,57 +253,36 @@ namespace Skadoosh.Common.ViewModels
         } 
         #endregion
 
-        
+
         public async Task<int> LoadSurveysForCurrentUser()
         {
-            IsLoading = true;
-            int collectionCount = 0;
             SurveyCollection.Clear();
-            var list = await AzureClient.GetTable<Survey>().Where(x => x.AccountUserId == User.Id).ToListAsync();
-            if (list != null && list.Any())
+            var results = await AzureClient.GetTable<Survey>().Where(x => x.AccountUserId == User.Id).ToListAsync().ConfigureAwait(true);
+            foreach (var item in results)
             {
-                foreach (var item in list)
-                {
-                    SurveyCollection.Add(item);
-                }
-                collectionCount = SurveyCollection.Count;
+                SurveyCollection.Add(item);
             }
-
-            IsLoading = false;
-            if (LoadingCompleted != null)
-            {
-                LoadingCompleted(null, null);
-            }
-            return collectionCount;
+            return SurveyCollection.Count;
         }
-        public async void LoadQuestionsForCurrentSurvey()
+        public async Task<int> LoadQuestionsForCurrentSurvey()
         {
             if (CurrentSurvey != null)
             {
-                IsLoading = true;
                 currentSurvey.Questions.Clear();
-                var qList = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync();
-                if (qList != null && qList.Any())
+                var results = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync().ConfigureAwait(true);
+
+                foreach (var q in results)
                 {
-                    foreach (var q in qList)
+                    var subResults = await AzureClient.GetTable<Option>().Where(x => x.QuestionId == q.Id).ToListAsync().ConfigureAwait(true);
+                    foreach (var o in subResults)
                     {
-                        var optList = await AzureClient.GetTable<Option>().Where(x => x.QuestionId == q.Id).ToListAsync();
-                        if (optList != null && optList.Any())
-                        {
-                            foreach (var o in optList)
-                            {
-                                q.Options.Add(o);
-                            }
-                        }
-                        currentSurvey.Questions.Add(q);
+                        q.Options.Add(o);
                     }
+                    currentSurvey.Questions.Add(q);
                 }
-                IsLoading = false;
-                if (LoadingCompleted != null)
-                {
-                    LoadingCompleted(null, null);
-                }
+                return CurrentSurvey.Questions.Count;
             }
-        }     
+            return 0;
+        }
     }
 }

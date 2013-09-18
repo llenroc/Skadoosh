@@ -38,6 +38,7 @@ namespace Skadoosh.Store.Views.Presenter
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+          
             this.DataContext = (PresenterVM)navigationParameter; 
         }
 
@@ -53,13 +54,19 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var result = await ((PresenterVM)this.DataContext).CreateProfile();
-            if (result)
+            var vm = (PresenterVM)this.DataContext;
+            if (!string.IsNullOrEmpty(vm.User.Email) && !string.IsNullOrEmpty(vm.User.FirstName) && !string.IsNullOrEmpty(vm.User.LastName))
             {
-                Frame.Navigate(typeof(SurveyLibrary), this.DataContext);
+                var result = await vm.CreateProfile();
+                if (result)
+                {
+                    Frame.Navigate(typeof(SurveyLibrary), vm);
+                }
+
             }
             else
             {
+
 
             }
         }

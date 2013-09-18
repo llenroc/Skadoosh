@@ -19,7 +19,10 @@
         <DefaultTile ShowName="allLogos" ShortName="Skadoosh" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#ffffff" />
         <InitialRotationPreference>
+          <Rotation Preference="portrait" />
           <Rotation Preference="landscape" />
+          <Rotation Preference="portraitFlipped" />
+          <Rotation Preference="landscapeFlipped" />
         </InitialRotationPreference>
       </VisualElements>
     </Application>

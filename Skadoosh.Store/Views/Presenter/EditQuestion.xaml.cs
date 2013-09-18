@@ -57,10 +57,9 @@ namespace Skadoosh.Store.Views.Presenter
         {
         }
 
-        private void SaveQuestion(object sender, RoutedEventArgs e)
+        private async void SaveQuestion(object sender, RoutedEventArgs e)
         {
-            var q = VM.CurrentQuestion;
-            VM.UpdateQuestion();
+            await VM.UpdateQuestion().ConfigureAwait(true);
             Frame.GoBack();
         }
 

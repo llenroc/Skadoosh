@@ -11,17 +11,26 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <common:IsActiveHeaderStyleConverter x:Key="activeHeader"></common:IsActiveHeaderStyleConverter>
         <common:BooleanToVisibilityConverter x:Key="boolToVis" IsReversed="False"></common:BooleanToVisibilityConverter>
         <common:IsMultiQuestionImageConverter x:Key="isMultiConverter"></common:IsMultiQuestionImageConverter>
+        <LinearGradientBrush x:Key="activeStyle" EndPoint="1,0.5" StartPoint="0,0.5">
+            <GradientStop Color="#FF5C00" Offset="0.184"  />
+            <GradientStop Color="#FFBB00" Offset="0.389" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="inActiveStyle" EndPoint="1,0.5" StartPoint="0,0.5">
+            <GradientStop Color="#FFBB00" Offset="0.184"  />
+            <GradientStop Color="White" Offset="0.389" />
+        </LinearGradientBrush>
         <DataTemplate x:Key="Standard500x130ItemQuestions">
             <Grid  Width="480" Margin="10" VerticalAlignment="Stretch">
 
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="480" Height="480"></Border>
  
                 <StackPanel VerticalAlignment="Top" Margin="0,0,0,0">
-                    <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" >
+                    <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Background="{Binding IsActive, Converter={StaticResource activeHeader}}" >
                         <Image Source="{Binding IsMultiSelect, Converter={StaticResource isMultiConverter}}" Margin="10" Stretch="UniformToFill"   />
-
+                        <TextBlock Text="{Binding QuestionTypeState}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="18" Foreground="Black" FontWeight="Bold"></TextBlock>
                     </StackPanel>
                     <TextBlock Text="{Binding QuestionText}" 
                                Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
@@ -162,9 +171,9 @@
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button Style="{StaticResource AddAppBarButtonStyle}"  AutomationProperties.Name="Add Question" Click="CreateQuestion" />
-                    <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Question" Click="EditQuestion" />
-                    <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Question" Click="DeleteQuestion"/>
-                    <Button Style="{StaticResource FavoriteAppBarButtonStyle}"  AutomationProperties.Name="Set Active" Click="SetActive" Visibility="{Binding CurrentSurvey.IsLiveSurvey, Converter={StaticResource boolToVis}}" />
+                    <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Question" Click="EditQuestion" Visibility="{Binding IsQuestionSelected,Converter={StaticResource boolToVis}}"/>
+                    <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Question" Click="DeleteQuestion" Visibility="{Binding IsQuestionSelected,Converter={StaticResource boolToVis}}"/>
+                    <Button Style="{StaticResource FavoriteAppBarButtonStyle}"  AutomationProperties.Name="Set Active" Click="SetActive" Visibility="{Binding CanSetActive, Converter={StaticResource boolToVis}}" />
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

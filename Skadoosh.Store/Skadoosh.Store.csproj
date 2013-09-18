@@ -115,9 +115,6 @@
     <Compile Include="..\Skadoosh.Common\ViewModels\PresenterVM.cs">
       <Link>ViewModel\PresenterVM.cs</Link>
     </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\SkadooshVM.cs">
-      <Link>ViewModel\SkadooshVM.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -281,7 +278,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="WinRTXamlToolkit">
-      <HintPath>..\packages\WinRTXamlToolkit.1.5.2.0\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\winrtxamltoolkit-8d621dbdff4d\WinRTXamlToolkit\obj\Debug\WinRTXamlToolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />

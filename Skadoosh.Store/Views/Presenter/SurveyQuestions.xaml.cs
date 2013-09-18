@@ -45,34 +45,13 @@ namespace Skadoosh.Store.Views.Presenter
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (PresenterVM)navigationParameter;
-            
-            if (VM.IsLoading)
-            {
-                VM.LoadingCompleted += VM_LoadingCompleted;
-            }
-            else
-            {
-                if (VM.CurrentSurvey.Questions == null || !VM.CurrentSurvey.Questions.Any())
-                {
-                    CollectionIsEmptyNotification();
-                }
-            }
-
-        }
-
-        void VM_LoadingCompleted(object sender, EventArgs e)
-        {
-            VM.LoadingCompleted -= VM_LoadingCompleted;
-            if (VM.CurrentSurvey.Questions == null || !VM.CurrentSurvey.Questions.Any())
-            {
+            await VM.LoadQuestionsForCurrentSurvey().ConfigureAwait(true);
+            if (!VM.CurrentSurvey.Questions.Any())
                 CollectionIsEmptyNotification();
-            }
         }
-
-
 
         private async void CollectionIsEmptyNotification()
         {

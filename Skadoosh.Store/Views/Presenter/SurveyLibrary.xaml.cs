@@ -36,6 +36,7 @@ namespace Skadoosh.Store.Views.Presenter
             this.InitializeComponent();
         }
 
+      
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -48,37 +49,17 @@ namespace Skadoosh.Store.Views.Presenter
         protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (PresenterVM)navigationParameter;
-            await VM.LoadSurveysForCurrentUser();
-            if (VM.IsLoading)
-            {
-                VM.LoadingCompleted += VM_LoadingCompleted;
-            }
-            else
-            {
-                if (VM.SurveyCollection == null || !VM.SurveyCollection.Any())
-                {
-                    CollectionIsEmptyNotification();
-                }
-            }
-
-        }
-
-        void VM_LoadingCompleted(object sender, EventArgs e)
-        {
-            VM.LoadingCompleted -= VM_LoadingCompleted;
-            if (VM.SurveyCollection == null || !VM.SurveyCollection.Any())
-            {
+            await VM.LoadSurveysForCurrentUser().ConfigureAwait(true);
+            if(!VM.SurveyCollection.Any())
                 CollectionIsEmptyNotification();
-            }
         }
+
 
         private void CreateSurvey(object sender, RoutedEventArgs e)
         {
             VM.CurrentSurvey = new Survey() { AccountUserId = VM.User.Id };
             Frame.Navigate(typeof(EditSurvery), VM);
         }
-
-
 
 
         private async void CollectionIsEmptyNotification()
@@ -110,24 +91,30 @@ namespace Skadoosh.Store.Views.Presenter
 
         private void SurveySelected(object sender, DoubleTappedRoutedEventArgs e)
         {
-            //VM.CurrentSurvey = ((Grid)sender).DataContext as Survey;
             Frame.Navigate(typeof(SurveyQuestions), VM);
         }
 
         private void EditSurvey(object sender, RoutedEventArgs e)
         {
-            //VM.CurrentSurvey = ((Grid)sender).DataContext as Survey;
             Frame.Navigate(typeof(EditSurvery), VM);
         }
 
         private async void DeleteSurvey(object sender, RoutedEventArgs e)
         {
             VM.DeleteCurrentSurvey();
-            await VM.LoadSurveysForCurrentUser();
-            if (VM.SurveyCollection == null || !VM.SurveyCollection.Any())
-            {
+            await VM.LoadSurveysForCurrentUser().ConfigureAwait(true);
+            if (!VM.SurveyCollection.Any())
                 CollectionIsEmptyNotification();
-            }
+        }
+
+        private void StartSurvey(object sender, RoutedEventArgs e)
+        {
+            VM.StartSurvey();
+        }
+
+        private void StopSurvey(object sender, RoutedEventArgs e)
+        {
+            VM.StopSurvey();
         }
 
     }

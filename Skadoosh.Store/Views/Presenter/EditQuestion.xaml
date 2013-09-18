@@ -84,7 +84,7 @@
                 <TextBox Grid.Row="0" x:Name="txtQuestion" Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" ></TextBox>
 
                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">Is Multiselect</TextBlock>
-                <CheckBox Grid.Row="1" Grid.Column="2"  Margin="10" IsChecked="{Binding CurrentQuestion.IsMultiSelect, ConverterParameter=CurrentQuestion.IsMultiSelect, Converter={StaticResource BooleanNegationConverter}, Mode=TwoWay}" ></CheckBox>
+                <CheckBox Grid.Row="1" Grid.Column="2"  Margin="10" IsChecked="{Binding CurrentQuestion.IsMultiSelect, Mode=TwoWay}" ></CheckBox>
               
                 <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
 
@@ -109,7 +109,7 @@
                                                             IsChecked="{Binding IsDeleted,Mode=TwoWay}"
                                                             Width="40"
                                                             Height="35"
-                                                            Stretch="Fill"
+                                                        
                                                             NormalStateImageSource="/Assets/ToggleState/GreenButton_Idle.png"
                                                             HoverStateImageSource="/Assets/ToggleState/GreenButton_Hover.png"
                                                             PressedStateImageSource="/Assets/ToggleState/GreenButton_Pressed.png"

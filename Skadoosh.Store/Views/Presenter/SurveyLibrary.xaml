@@ -11,7 +11,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        
+        <common:BooleanToVisibilityConverter x:Key="trueVisible" IsReversed="False"></common:BooleanToVisibilityConverter>
         <common:IsLiveSurveyImageConverter x:Key="surveyTypeConverter"></common:IsLiveSurveyImageConverter>
         <DataTemplate x:Key="Survey250x250ItemTemplate">
             <Grid HorizontalAlignment="Left" Width="250" Height="250" DoubleTapped="SurveySelected">
@@ -21,6 +21,21 @@
                 <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
                     <TextBlock Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                     <TextBlock Text="{Binding ChannelName}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="Survey80ItemTemplate">
+            <Grid Margin="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="60" Height="60">
+                    <Image Source="{Binding IsLiveSurvey, Converter={StaticResource surveyTypeConverter}}" Stretch="UniformToFill"/>
+                </Border>
+                <StackPanel Grid.Column="1" Margin="10,0,0,0" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                    <TextBlock  Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
+                    <TextBlock  Text="{Binding ChannelName}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -65,26 +80,41 @@
             Margin="0,-10,0,0"
             Padding="10,0,0,60"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Standard80ItemTemplate}"
+            ItemTemplate="{StaticResource Survey80ItemTemplate}"
             SelectionMode="None" 
             IsSwipeEnabled="false"/>
 
         <!-- Back button and page title -->
-        <Grid >
+        <Grid x:Name="FullHeader">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+               
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoHome" Margin="36,45,36,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+            <Button x:Name="backButton" Click="GoHome" Margin="36,36,30,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="ms-appx:///Assets/Hand.png"></Image>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Image Grid.Column="1" HorizontalAlignment="Left" Margin="0 40 30 30"  Source="ms-appx:///Assets/SkadooshOnly.png"/>
-            <Image Grid.Column="1" Source="ms-appx:///Assets/Fuse.png"  Margin="0,116,30,9" ></Image>
+            <StackPanel x:Name="pageTitle" Grid.Column="1">
+                <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
+                <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>               
+            </StackPanel>
+
+        </Grid>
+        <Grid Visibility="Collapsed" x:Name="SnappedHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Click="GoHome" Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="ms-appx:///Assets/SplashScreen.png" Stretch="UniformToFill" ></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -112,12 +142,7 @@
                 -->
                 <VisualState x:Name="Snapped">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
+
 
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
@@ -125,6 +150,14 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
@@ -136,9 +169,10 @@
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button Style="{StaticResource AddAppBarButtonStyle}" Click="CreateSurvey"  AutomationProperties.Name="Add Survey"/>
-                    <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Survey" Click="EditSurvey"/>
-                    <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Survey" Click="DeleteSurvey" />
-
+                    <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Survey" Click="EditSurvey" Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}"/>
+                    <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Survey" Click="DeleteSurvey" Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}"/>
+                    <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Start Survey"  Visibility="{Binding CanStartSurvey,Converter={StaticResource trueVisible}}" Click="StartSurvey"/>
+                    <Button Style="{StaticResource PauseAppBarButtonStyle}"  AutomationProperties.Name="Stop Survey"  Visibility="{Binding CanStopSurvey,Converter={StaticResource trueVisible}}" Click="StopSurvey"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource RefreshAppBarButtonStyle}" />
