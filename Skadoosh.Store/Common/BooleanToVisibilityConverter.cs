@@ -39,6 +39,8 @@ namespace Skadoosh.Store.Common
         }
     }
 
+
+
     public sealed class IsLiveSurveyImageConverter : IValueConverter
     {
   
@@ -51,7 +53,7 @@ namespace Skadoosh.Store.Common
             }
             else
             {
-                return "ms-appx:///Assets/StaticSurvey.png";
+                return "ms-appx:///Assets/Static.png";
             }
         }
 
@@ -68,11 +70,11 @@ namespace Skadoosh.Store.Common
             var isLive = (bool)value;
             if (isLive)
             {
-                return "ms-appx:///Assets/MultiSelect.png";
+                return "ms-appx:///Assets/Multi.png";
             }
             else
             {
-                return "ms-appx:///Assets/SingleSelect.png";
+                return "ms-appx:///Assets/Single.png";
             }
         }
 

@@ -115,5 +115,10 @@ namespace Skadoosh.Store.Views.Presenter
         {
             VM.DeleteCurrentQuestion();
         }
+
+        private void SetActive(object sender, RoutedEventArgs e)
+        {
+            VM.SetQuestionActive();
+        }
     }
 }

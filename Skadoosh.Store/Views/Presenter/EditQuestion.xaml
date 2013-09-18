@@ -34,9 +34,9 @@
     </Page.Resources>
 
     <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
+         This grid acts as a root panel for the page that defines two rows:
+         * Row 0 contains the back button and page title
+         * Row 1 contains the rest of the page layout
     -->
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
@@ -106,20 +106,20 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBox  Text="{Binding OptionText, Mode=TwoWay}" Grid.Column="0" MinWidth="350"></TextBox>
                                 <controls:ImageToggleButton Grid.Column="1"
-                                        IsChecked="{Binding IsDeleted,Mode=TwoWay}"
-                                            Width="40"
-                                            Height="35"
-                                            Stretch="Fill"
-                                            NormalStateImageSource="/Assets/ToggleState/GreenButton_Idle.png"
-                                            HoverStateImageSource="/Assets/ToggleState/GreenButton_Hover.png"
-                                            PressedStateImageSource="/Assets/ToggleState/GreenButton_Pressed.png"
-                                            DisabledStateImageSource="/Assets/ToggleState/GreenButton_Disabled.png"
-                                            CheckedStateImageSource="/Assets/ToggleState/RedButton_Idle.png"
-                                            CheckedHoverStateImageSource="/Assets/ToggleState/RedButton_Hover.png"
-                                            CheckedPressedStateImageSource="/Assets/ToggleState/RedButton_Pressed.png"
-                                            CheckedDisabledStateImageSource="/Assets/ToggleState/RedButton_Disabled.png">
+                                                            IsChecked="{Binding IsDeleted,Mode=TwoWay}"
+                                                            Width="40"
+                                                            Height="35"
+                                                            Stretch="Fill"
+                                                            NormalStateImageSource="/Assets/ToggleState/GreenButton_Idle.png"
+                                                            HoverStateImageSource="/Assets/ToggleState/GreenButton_Hover.png"
+                                                            PressedStateImageSource="/Assets/ToggleState/GreenButton_Pressed.png"
+                                                            DisabledStateImageSource="/Assets/ToggleState/GreenButton_Disabled.png"
+                                                            CheckedStateImageSource="/Assets/ToggleState/RedButton_Idle.png"
+                                                            CheckedHoverStateImageSource="/Assets/ToggleState/RedButton_Hover.png"
+                                                            CheckedPressedStateImageSource="/Assets/ToggleState/RedButton_Pressed.png"
+                                                            CheckedDisabledStateImageSource="/Assets/ToggleState/RedButton_Disabled.png">
                               
-                                    </controls:ImageToggleButton>
+                                </controls:ImageToggleButton>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

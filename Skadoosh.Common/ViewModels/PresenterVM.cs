@@ -125,7 +125,28 @@ namespace Skadoosh.Common.ViewModels
                 }
             }
             UpdateOptions();
-        } 
+        }
+        public async void SetQuestionActive()
+        {
+            if (CurrentQuestion != null)
+            {
+                var table = AzureClient.GetTable<Question>();
+                var active = await table.Where(x => x.IsActive == true).ToListAsync();
+                if (active != null && active.Any())
+                {
+                    if (active.First().Id == CurrentQuestion.Id)
+                        return;
+
+                    foreach (var q in active)
+                    {
+                        q.IsActive = false;
+                        await table.UpdateAsync(q);
+                    }
+                }
+                CurrentQuestion.IsActive = true;
+                await table.UpdateAsync(CurrentQuestion);
+            }
+        }
         #endregion
 
         #region Option Code

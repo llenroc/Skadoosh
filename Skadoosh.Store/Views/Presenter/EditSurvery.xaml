@@ -30,9 +30,9 @@
     </common:LayoutAwarePage.Resources>
 
     <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
+         This grid acts as a root panel for the page that defines two rows:
+         * Row 0 contains the back button and page title
+         * Row 1 contains the rest of the page layout
     -->
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
