@@ -11,6 +11,7 @@ namespace Skadoosh.Common.ViewModels
 
     public class PresenterVM : ViewModelBase
     {
+        #region private variables
         private ObservableCollection<Survey> surveyCollection;
         private Survey currentSurvey;
         private Question currentQuestion;
@@ -18,40 +19,42 @@ namespace Skadoosh.Common.ViewModels
         private bool isQuestionSelected;
         private bool canSetActive;
         private bool canStartSurvey;
-        private bool canStopSurvey;
+        private bool canStopSurvey; 
+        #endregion
 
+        #region properties
         public bool CanStopSurvey
         {
             get { return canStopSurvey; }
-            set { canStopSurvey = value; Notify("CanStopSurvey");}
+            set { canStopSurvey = value; Notify("CanStopSurvey"); }
         }
-        
+
         public bool CanStartSurvey
         {
             get { return canStartSurvey; }
-            set { canStartSurvey = value; Notify("CanStartSurvey");}
+            set { canStartSurvey = value; Notify("CanStartSurvey"); }
         }
-        
+
         public bool CanSetActive
         {
             get { return canSetActive; }
-            set { canSetActive = value; Notify("CanSetActive");}
+            set { canSetActive = value; Notify("CanSetActive"); }
         }
-        
+
         public bool IsQuestionSelected
         {
             get { return isQuestionSelected; }
-            set { isQuestionSelected = value; Notify("IsQuestionSelected");}
+            set { isQuestionSelected = value; Notify("IsQuestionSelected"); }
         }
-        
+
         public bool IsSurveySelected
         {
             get { return isSurveySelected; }
-            set { isSurveySelected = value; Notify("IsSurveySelected");}
+            set { isSurveySelected = value; Notify("IsSurveySelected"); }
         }
-        
+
         public bool IsLoading { get; set; }
-      
+
         public Question CurrentQuestion
         {
             get { return currentQuestion; }
@@ -63,6 +66,7 @@ namespace Skadoosh.Common.ViewModels
                 Notify("CurrentQuestion");
             }
         }
+
         public Survey CurrentSurvey
         {
             get { return currentSurvey; }
@@ -74,17 +78,21 @@ namespace Skadoosh.Common.ViewModels
                 CanStopSurvey = (value != null && CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive);
                 Notify("CurrentSurvey");
             }
-        }  
+        }
+
         public ObservableCollection<Survey> SurveyCollection
         {
             get { return surveyCollection; }
             set { surveyCollection = value; Notify("SurveyCollection"); }
-        }
+        } 
+        #endregion
 
+        #region Ctor
         public PresenterVM()
         {
             SurveyCollection = new ObservableCollection<Survey>();
-        }
+        } 
+        #endregion
 
         #region Survey Code
         public async Task<int> DeleteCurrentSurvey()
@@ -92,28 +100,28 @@ namespace Skadoosh.Common.ViewModels
             var table = AzureClient.GetTable<Survey>();
             if (CurrentSurvey != null && CurrentSurvey.Id != 0)
             {
-                await DeleteQuestionBySurvey(currentSurvey.Id).ConfigureAwait(true);
-                await table.DeleteAsync(CurrentSurvey).ConfigureAwait(true);
+                await DeleteQuestionBySurvey(currentSurvey.Id);
+                await table.DeleteAsync(CurrentSurvey);
                 SurveyCollection.Remove(CurrentSurvey);
                 CurrentSurvey = null;
                 return SurveyCollection.Count;
             }
             return 0;
         }
-        public async void UpdateSurvey()
+        public async Task<int> UpdateSurvey()
         {
             var table = AzureClient.GetTable<Survey>();
             if (CurrentSurvey.Id == 0)
             {
-                await table.InsertAsync(CurrentSurvey).ConfigureAwait(true);
+                await table.InsertAsync(CurrentSurvey);
    
             }
             else
             {
-                await table.UpdateAsync(CurrentSurvey).ConfigureAwait(true);
+                await table.UpdateAsync(CurrentSurvey);
             }
-            
 
+            return 0;
         }
         public async void StartSurvey()
         {
@@ -136,6 +144,16 @@ namespace Skadoosh.Common.ViewModels
                 CanStartSurvey = (CurrentSurvey.IsLiveSurvey && !CurrentSurvey.IsActive);
                 CanStopSurvey = (CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive);
             }
+        }
+        public async Task<int> LoadSurveysForCurrentUser()
+        {
+            SurveyCollection.Clear();
+            var results = await AzureClient.GetTable<Survey>().Where(x => x.AccountUserId == User.Id).ToListAsync();
+            foreach (var item in results)
+            {
+                SurveyCollection.Add(item);
+            }
+            return SurveyCollection.Count;
         }
         #endregion
 
@@ -211,6 +229,26 @@ namespace Skadoosh.Common.ViewModels
                 }
             }
         }
+        public async Task<int> LoadQuestionsForCurrentSurvey()
+        {
+            if (CurrentSurvey != null)
+            {
+                currentSurvey.Questions.Clear();
+                var results = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync();
+
+                foreach (var q in results)
+                {
+                    var subResults = await AzureClient.GetTable<Option>().Where(x => x.QuestionId == q.Id).ToListAsync();
+                    foreach (var o in subResults)
+                    {
+                        q.Options.Add(o);
+                    }
+                    currentSurvey.Questions.Add(q);
+                }
+                return CurrentSurvey.Questions.Count;
+            }
+            return 0;
+        }
         #endregion
 
         #region Option Code
@@ -220,7 +258,7 @@ namespace Skadoosh.Common.ViewModels
             var opts = await table.Where(x => x.QuestionId == questionId).ToListAsync();
             foreach (var opt in opts)
             {
-                await DeleteReponsesByOptionId(opt.Id).ConfigureAwait(true);
+                await DeleteReponsesByOptionId(opt.Id);
                 await table.DeleteAsync(opt);
             }
             return 0;
@@ -259,7 +297,7 @@ namespace Skadoosh.Common.ViewModels
         public async Task<int> DeleteReponsesByOptionId(int optionId)
         {
             var table = AzureClient.GetTable<Responses>();
-            var responses = await table.Where(x => x.OptionId == optionId).ToListAsync().ConfigureAwait(true);
+            var responses = await table.Where(x => x.OptionId == optionId).ToListAsync();
             foreach (var response in responses)
             {
                 await table.DeleteAsync(response).ConfigureAwait(true);
@@ -268,36 +306,5 @@ namespace Skadoosh.Common.ViewModels
         } 
         #endregion
 
-
-        public async Task<int> LoadSurveysForCurrentUser()
-        {
-            SurveyCollection.Clear();
-            var results = await AzureClient.GetTable<Survey>().Where(x => x.AccountUserId == User.Id).ToListAsync().ConfigureAwait(true);
-            foreach (var item in results)
-            {
-                SurveyCollection.Add(item);
-            }
-            return SurveyCollection.Count;
-        }
-        public async Task<int> LoadQuestionsForCurrentSurvey()
-        {
-            if (CurrentSurvey != null)
-            {
-                currentSurvey.Questions.Clear();
-                var results = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync().ConfigureAwait(true);
-
-                foreach (var q in results)
-                {
-                    var subResults = await AzureClient.GetTable<Option>().Where(x => x.QuestionId == q.Id).ToListAsync().ConfigureAwait(true);
-                    foreach (var o in subResults)
-                    {
-                        q.Options.Add(o);
-                    }
-                    currentSurvey.Questions.Add(q);
-                }
-                return CurrentSurvey.Questions.Count;
-            }
-            return 0;
-        }
     }
 }

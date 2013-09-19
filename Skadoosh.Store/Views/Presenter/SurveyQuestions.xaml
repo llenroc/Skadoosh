@@ -23,7 +23,7 @@
             <GradientStop Color="White" Offset="0.389" />
         </LinearGradientBrush>
         <DataTemplate x:Key="Standard500x130ItemQuestions">
-            <Grid  Width="480" Margin="10" VerticalAlignment="Stretch">
+            <Grid  Width="480" Margin="10" VerticalAlignment="Stretch" RightTapped="ShowAppBar" >
 
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="480" Height="480"></Border>
  
@@ -72,7 +72,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/RisingWhite.png" Opacity="0.95" ></ImageBrush>
+            <ImageBrush ImageSource="ms-appx:///Assets/skadooshBck.png"  ></ImageBrush>
         </Grid.Background>
 
 
@@ -106,21 +106,36 @@
             IsSwipeEnabled="false"/>
 
         <!-- Back button and page title -->
-        <Grid >
+        <Grid x:Name="FullHeader">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" Margin="36,45,36,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+            <Button x:Name="backButton" Click="GoHome" Margin="36,36,30,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="ms-appx:///Assets/Hand.png"></Image>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Image Grid.Column="1" HorizontalAlignment="Left" Margin="0 40 30 30"  Source="ms-appx:///Assets/SkadooshOnly.png"/>
-            <Image Grid.Column="1" Source="ms-appx:///Assets/Fuse.png"  Margin="0,116,30,9" ></Image>
+            <StackPanel x:Name="pageTitle" Grid.Column="1">
+                <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
+                <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
+            </StackPanel>
+
+        </Grid>
+        <Grid Visibility="Collapsed" x:Name="SnappedHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Click="GoHome" Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="ms-appx:///Assets/SplashScreen.png" Stretch="UniformToFill" ></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -148,11 +163,11 @@
                 -->
                 <VisualState x:Name="Snapped">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
 
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">

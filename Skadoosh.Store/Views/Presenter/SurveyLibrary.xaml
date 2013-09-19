@@ -14,7 +14,7 @@
         <common:BooleanToVisibilityConverter x:Key="trueVisible" IsReversed="False"></common:BooleanToVisibilityConverter>
         <common:IsLiveSurveyImageConverter x:Key="surveyTypeConverter"></common:IsLiveSurveyImageConverter>
         <DataTemplate x:Key="Survey250x250ItemTemplate">
-            <Grid HorizontalAlignment="Left" Width="250" Height="250" DoubleTapped="SurveySelected">
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" DoubleTapped="SurveySelected" RightTapped="ShowAppBar" >
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Source="{Binding IsLiveSurvey, Converter={StaticResource surveyTypeConverter}}" Stretch="UniformToFill" Margin="20" Opacity="0.7" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
@@ -52,7 +52,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/RisingWhite.png" Opacity="0.95" ></ImageBrush>
+            <ImageBrush ImageSource="ms-appx:///Assets/skadooshBck.png"  ></ImageBrush>
         </Grid.Background>
 
         <!-- Horizontal scrolling grid used in most view states -->

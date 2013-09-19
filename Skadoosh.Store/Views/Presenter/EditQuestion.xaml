@@ -44,25 +44,44 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/RisingWhite.png" Opacity="0.95" ></ImageBrush>
+            <ImageBrush ImageSource="ms-appx:///Assets/skadooshBck.png" ></ImageBrush>
         </Grid.Background>
+
+
         <!-- Back button and page title -->
-        <Grid >
+        <Grid x:Name="FullHeader">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" Margin="36,45,36,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+            <Button x:Name="backButton" Click="GoHome" Margin="36,36,30,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="ms-appx:///Assets/Hand.png"></Image>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Image Grid.Column="1" HorizontalAlignment="Left" Margin="0 40 30 30"  Source="ms-appx:///Assets/SkadooshOnly.png"/>
-            <Image Grid.Column="1" Source="ms-appx:///Assets/Fuse.png"  Margin="0,116,30,9" ></Image>
+            <StackPanel x:Name="pageTitle" Grid.Column="1">
+                <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
+                <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
+            </StackPanel>
+
         </Grid>
+        <Grid Visibility="Collapsed" x:Name="SnappedHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Click="GoHome" Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="ms-appx:///Assets/SplashScreen.png" Stretch="UniformToFill" ></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+
         <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Opacity="0.9">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -74,7 +93,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+              
                 </Grid.RowDefinitions>
 
 
@@ -125,7 +144,7 @@
                     </ListView.ItemTemplate>
 
                 </ListView>
-                <Button Grid.Row="4" Grid.Column="2" Content="Save Question" Style="{StaticResource ExecuteButton}" Click="SaveQuestion"></Button>
+              
 
 
             </Grid>
@@ -149,11 +168,11 @@
                 <!-- The back button and title have different styles when snapped -->
                 <VisualState x:Name="Snapped">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -165,7 +184,7 @@
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource SaveAppBarButtonStyle}"  AutomationProperties.Name="Save Changes"/>
+                    <Button Style="{StaticResource SaveAppBarButtonStyle}"  AutomationProperties.Name="Save Changes" Click="SaveQuestion"/>
                     <Button Style="{StaticResource DiscardAppBarButtonStyle}" AutomationProperties.Name="Cancel" Click="GoBack"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

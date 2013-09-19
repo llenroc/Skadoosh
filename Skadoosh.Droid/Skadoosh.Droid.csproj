@@ -44,7 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAzure.MobileServices.Android">
-      <HintPath>..\Resources\azure-mobile-services-1.0.4\lib\android\Microsoft.WindowsAzure.MobileServices.Android.dll</HintPath>
+      <HintPath>..\Resources\Droid\Microsoft.WindowsAzure.MobileServices.Android.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />

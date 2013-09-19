@@ -54,9 +54,27 @@ namespace Skadoosh.Common.DomainModels
             set { email = value; Notify("Email"); }
         }
 
+
         public AccountUser()
         {
 
+        }
+
+        [IgnoreDataMember]
+        public bool IsNew
+        {
+            get
+            {
+                return (this.Id == 0);
+            }
+        }
+        [IgnoreDataMember]
+        public bool IsValid
+        {
+            get
+            {
+                return (!string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) && !string.IsNullOrEmpty(Email));
+            }
         }
 
     }
@@ -128,7 +146,14 @@ namespace Skadoosh.Common.DomainModels
             get { return questions; }
             set { questions = value; Notify("Questions"); }
         }
-
+        [IgnoreDataMember]
+        public bool IsValid
+        {
+            get
+            {
+                return (!string.IsNullOrEmpty(ChannelName) && !string.IsNullOrEmpty(SurveyTitle) && !string.IsNullOrEmpty(Description));
+            }
+        }
         public Survey()
         {
             Questions = new ObservableCollection<Question>();
@@ -145,6 +170,7 @@ namespace Skadoosh.Common.DomainModels
         private bool isActive;
         private ObservableCollection<Option> options;
         private string questionTypeState;
+
         public int Id
         {
             get { return id; }
@@ -193,7 +219,14 @@ namespace Skadoosh.Common.DomainModels
             get { return questionTypeState; }
             set { questionTypeState = value; Notify("QuestionTypeState"); }
         }
-
+        [IgnoreDataMember]
+        public bool IsValid
+        {
+            get
+            {
+                return (!string.IsNullOrEmpty(QuestionText));
+            }
+        }
         public Question()
         {
             Options = new ObservableCollection<Option>();
@@ -204,48 +237,6 @@ namespace Skadoosh.Common.DomainModels
             var state = IsActive ? "Active" : "Not Active";
             QuestionTypeState = string.Format("{0} : {1}", type, state);
         }
-    }
-
-    public class Responses : NotifyBase
-    {
-        private int id;
-        private int surveyId;
-        private int questionId;
-        private int optionId;
-        private int? accountId;
-        private string userName;
-    
-        public int Id
-        {
-            get { return id; }
-            set { id = value; Notify("Id"); }
-        }
-        public int SurveyId
-        {
-            get { return surveyId; }
-            set { surveyId = value; Notify("SurveyId"); }
-        }
-        public int QuestionId
-        {
-            get { return questionId; }
-            set { questionId = value; Notify("QuestionId");}
-        }
-        public int OptionId
-        {
-            get { return optionId; }
-            set { optionId = value; Notify("OptionId");}
-        }
-        public int? AccountId
-        {
-            get { return accountId; }
-            set { accountId = value; Notify("AccountId");}
-        }
-        public string UserName
-        {
-            get { return userName; }
-            set { userName = value; Notify("UserName"); }
-        }
-        
     }
 
     public class Option : NotifyBase
@@ -293,9 +284,59 @@ namespace Skadoosh.Common.DomainModels
             get { return isDeleted; }
             set { isDeleted = value; Notify("IsDeleted"); }
         }
+        [IgnoreDataMember]
+        public bool IsValid
+        {
+            get
+            {
+                return (!string.IsNullOrEmpty(OptionText));
+            }
+        }
         
     }
 
+    public class Responses : NotifyBase
+    {
+        private int id;
+        private int surveyId;
+        private int questionId;
+        private int optionId;
+        private int? accountId;
+        private string userName;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; Notify("Id"); }
+        }
+        public int SurveyId
+        {
+            get { return surveyId; }
+            set { surveyId = value; Notify("SurveyId"); }
+        }
+        public int QuestionId
+        {
+            get { return questionId; }
+            set { questionId = value; Notify("QuestionId"); }
+        }
+        public int OptionId
+        {
+            get { return optionId; }
+            set { optionId = value; Notify("OptionId"); }
+        }
+        public int? AccountId
+        {
+            get { return accountId; }
+            set { accountId = value; Notify("AccountId"); }
+        }
+        public string UserName
+        {
+            get { return userName; }
+            set { userName = value; Notify("UserName"); }
+        }
+
+    }
+    
     public class SurveyNotificationChannel : NotifyBase
     {
         private int id;
@@ -315,6 +356,14 @@ namespace Skadoosh.Common.DomainModels
         {
             get { return urlNotification; }
             set { urlNotification = value; Notify("UrlNotification"); }
+        }
+        [IgnoreDataMember]
+        public bool IsValid
+        {
+            get
+            {
+                return (!string.IsNullOrEmpty(ChannelName) && !string.IsNullOrEmpty(UrlNotification));
+            }
         }
         
     }

@@ -48,7 +48,7 @@ namespace Skadoosh.Store.Views.Presenter
         protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (PresenterVM)navigationParameter;
-            await VM.LoadQuestionsForCurrentSurvey().ConfigureAwait(true);
+            await VM.LoadQuestionsForCurrentSurvey();
             if (!VM.CurrentSurvey.Questions.Any())
                 CollectionIsEmptyNotification();
         }
@@ -98,6 +98,11 @@ namespace Skadoosh.Store.Views.Presenter
         private void SetActive(object sender, RoutedEventArgs e)
         {
             VM.SetQuestionActive();
+        }
+
+        private void ShowAppBar(object sender, RightTappedRoutedEventArgs e)
+        {
+            BottomAppBar.IsOpen = true;
         }
     }
 }

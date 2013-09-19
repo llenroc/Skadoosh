@@ -182,6 +182,7 @@
     <Content Include="Assets\RisingSun2.png" />
     <Content Include="Assets\RisingWhite.png" />
     <Content Include="Assets\single.png" />
+    <Content Include="Assets\skadooshBck.png" />
     <Content Include="Assets\skadooshOnly.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
@@ -278,7 +279,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="WinRTXamlToolkit">
-      <HintPath>..\..\..\..\Desktop\winrtxamltoolkit-8d621dbdff4d\WinRTXamlToolkit\obj\Debug\WinRTXamlToolkit.dll</HintPath>
+      <HintPath>..\Resources\winRT\WinRTXamlToolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />

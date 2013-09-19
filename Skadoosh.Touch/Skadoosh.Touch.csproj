@@ -77,7 +77,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAzure.MobileServices.iOS">
-      <HintPath>..\Resources\azure-mobile-services-1.0.4\lib\ios\Microsoft.WindowsAzure.MobileServices.iOS.dll</HintPath>
+      <HintPath>..\Resources\iOS\Microsoft.WindowsAzure.MobileServices.iOS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />

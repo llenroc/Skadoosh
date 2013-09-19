@@ -57,9 +57,9 @@ namespace Skadoosh.Store.Views.Presenter
         {
         }
 
-        private void SaveSurvey(object sender, RoutedEventArgs e)
+        private async void SaveSurvey(object sender, RoutedEventArgs e)
         {
-            VM.UpdateSurvey();
+            await VM.UpdateSurvey();
             Frame.GoBack();
         }
 

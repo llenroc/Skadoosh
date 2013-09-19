@@ -116,5 +116,10 @@ namespace Skadoosh.Store.Views.Presenter
             VM.StopSurvey();
         }
 
+        private void ShowAppBar(object sender, RightTappedRoutedEventArgs e)
+        {
+            bottomAppBar.IsOpen = true;
+        }
+
     }
 }
