@@ -87,27 +87,30 @@ namespace Skadoosh.Common.ViewModels
         }
 
         #region Survey Code
-        public async void DeleteCurrentSurvey()
+        public async Task<int> DeleteCurrentSurvey()
         {
             var table = AzureClient.GetTable<Survey>();
             if (CurrentSurvey != null && CurrentSurvey.Id != 0)
             {
-                DeleteQuestionBySurvey(currentSurvey.Id);
-                await table.DeleteAsync(CurrentSurvey);
+                await DeleteQuestionBySurvey(currentSurvey.Id).ConfigureAwait(true);
+                await table.DeleteAsync(CurrentSurvey).ConfigureAwait(true);
                 SurveyCollection.Remove(CurrentSurvey);
                 CurrentSurvey = null;
+                return SurveyCollection.Count;
             }
+            return 0;
         }
         public async void UpdateSurvey()
         {
             var table = AzureClient.GetTable<Survey>();
             if (CurrentSurvey.Id == 0)
             {
-                await table.InsertAsync(CurrentSurvey).ContinueWith(x=> LoadSurveysForCurrentUser());
+                await table.InsertAsync(CurrentSurvey).ConfigureAwait(true);
+   
             }
             else
             {
-                await table.UpdateAsync(CurrentSurvey).ContinueWith(x => LoadSurveysForCurrentUser());
+                await table.UpdateAsync(CurrentSurvey).ConfigureAwait(true);
             }
             
 
@@ -137,20 +140,21 @@ namespace Skadoosh.Common.ViewModels
         #endregion
 
         #region Question Code
-        public async void DeleteQuestionBySurvey(int surveyId)
+        public async Task<int> DeleteQuestionBySurvey(int surveyId)
         {
             var table = AzureClient.GetTable<Question>();
             var questions = await table.Where(x => x.SurveyId == surveyId).ToListAsync();
             foreach (var q in questions)
             {
-                DeleteOptionByQuestionId(q.Id);
-                await table.DeleteAsync(q);
+                await DeleteOptionByQuestionId(q.Id);
+                await table.DeleteAsync(q).ConfigureAwait(true);
             }
+            return 0;
         }
         public async void DeleteCurrentQuestion()
         {
             var table = AzureClient.GetTable<Question>();
-            DeleteOptionByQuestionId(CurrentQuestion.Id);
+            await DeleteOptionByQuestionId(CurrentQuestion.Id);
             await table.DeleteAsync(CurrentQuestion);
             currentSurvey.Questions.Remove(CurrentQuestion);
             CurrentQuestion = null;
@@ -210,15 +214,16 @@ namespace Skadoosh.Common.ViewModels
         #endregion
 
         #region Option Code
-        public async void DeleteOptionByQuestionId(int questionId)
+        public async Task<int> DeleteOptionByQuestionId(int questionId)
         {
             var table = AzureClient.GetTable<Option>();
             var opts = await table.Where(x => x.QuestionId == questionId).ToListAsync();
             foreach (var opt in opts)
             {
-                DeleteReponsesByOptionId(opt.Id);
+                await DeleteReponsesByOptionId(opt.Id).ConfigureAwait(true);
                 await table.DeleteAsync(opt);
             }
+            return 0;
         }
         public async void UpdateOptions()
         {
@@ -233,7 +238,15 @@ namespace Skadoosh.Common.ViewModels
                     }
                     else
                     {
-                        await table.UpdateAsync(opt);
+                        if (!string.IsNullOrEmpty(opt.OptionText))
+                        {
+                            await table.UpdateAsync(opt);
+                        }
+                        else
+                        {
+                            await table.DeleteAsync(opt);
+                            CurrentQuestion.Options.Remove(opt);
+                        }
                     }
                 }
             }
@@ -242,14 +255,16 @@ namespace Skadoosh.Common.ViewModels
         #endregion
 
         #region Response Code
-        public async void DeleteReponsesByOptionId(int optionId)
+
+        public async Task<int> DeleteReponsesByOptionId(int optionId)
         {
             var table = AzureClient.GetTable<Responses>();
-            var responses = await table.Where(x => x.OptionId == optionId).ToListAsync();
+            var responses = await table.Where(x => x.OptionId == optionId).ToListAsync().ConfigureAwait(true);
             foreach (var response in responses)
             {
-                await table.DeleteAsync(response);
+                await table.DeleteAsync(response).ConfigureAwait(true);
             }
+            return 0;
         } 
         #endregion
 

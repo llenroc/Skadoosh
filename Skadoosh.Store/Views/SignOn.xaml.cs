@@ -92,7 +92,7 @@ namespace Skadoosh.Store.Views
 
                 try
                 {
-                    await baseVM.AzureClient.LoginAsync(provider);
+                    await baseVM.AzureClient.LoginAsync(provider).ConfigureAwait(true);
               
                     if (baseVM.AzureClient.CurrentUser != null)
                     {

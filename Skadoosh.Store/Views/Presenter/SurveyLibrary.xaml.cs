@@ -101,8 +101,7 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void DeleteSurvey(object sender, RoutedEventArgs e)
         {
-            VM.DeleteCurrentSurvey();
-            await VM.LoadSurveysForCurrentUser().ConfigureAwait(true);
+            await VM.DeleteCurrentSurvey().ConfigureAwait(true);
             if (!VM.SurveyCollection.Any())
                 CollectionIsEmptyNotification();
         }

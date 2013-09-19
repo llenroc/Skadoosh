@@ -71,7 +71,7 @@ namespace Skadoosh.Common.DomainModels
         private bool isActive;
         private bool isLiveSurvey;
         private ObservableCollection<Question> questions;
-      
+        private bool requiresUserName;
 
         public int Id
         {
@@ -107,6 +107,11 @@ namespace Skadoosh.Common.DomainModels
         {
             get { return isLiveSurvey; }
             set { isLiveSurvey = value; Notify("IsLiveSurvey"); }
+        }
+        public bool RequiresUserName
+        {
+            get { return requiresUserName; }
+            set { requiresUserName = value; Notify("RequiresUserName"); }
         }
 
         [IgnoreDataMember]
@@ -208,7 +213,8 @@ namespace Skadoosh.Common.DomainModels
         private int questionId;
         private int optionId;
         private int? accountId;
-
+        private string userName;
+    
         public int Id
         {
             get { return id; }
@@ -233,6 +239,11 @@ namespace Skadoosh.Common.DomainModels
         {
             get { return accountId; }
             set { accountId = value; Notify("AccountId");}
+        }
+        public string UserName
+        {
+            get { return userName; }
+            set { userName = value; Notify("UserName"); }
         }
         
     }
