@@ -11,6 +11,8 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        
+       
         <common:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
         <common:OneZeroConverter x:Key="OneZeroConverter"/>
         <common:BooleanToVisibilityConverter x:Key="BoolToVis" IsReversed="true" ></common:BooleanToVisibilityConverter>
@@ -81,8 +83,14 @@
         </Grid>
 
 
-        <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Opacity="0.9">
+        <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource AppBarBorderThemeBrush}" Opacity="0.9" CornerRadius="10">
             <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -93,21 +101,24 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
 
-                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Source="ms-appx:///Assets/SurveryEdit.png" VerticalAlignment="Top" Width="136" Margin="10 10 10 0"/>
-
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource EditFields}">Survey Code</TextBlock>
-                <TextBox Grid.Row="0"  Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" />
-
-                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">First Name</TextBlock>
-                <TextBox Grid.Row="1"  Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" ></TextBox>
+                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="5"  Source="ms-appx:///Assets/YY.png" VerticalAlignment="Top" Width="136" Margin="10 10 10 0"/>
                 
-                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource EditFields}">Last Name</TextBlock>
-                <TextBox Grid.Row="2"  Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" ></TextBox>
+                <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Style="{StaticResource EditFields}" HorizontalAlignment="Left" FontSize="36" FontWeight="Bold">Survey Selection:</TextBlock>
 
-                <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource EditFields}" HorizontalAlignment="Left">Message</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">Survey Code</TextBlock>
+                <TextBox Grid.Row="1"  Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource EditFields}">First Name</TextBlock>
+                <TextBox Grid.Row="2"  Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" ></TextBox>
+                
+                <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource EditFields}">Last Name</TextBlock>
+                <TextBox Grid.Row="3"  Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" ></TextBox>
+
+                <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource EditFields}" HorizontalAlignment="Left">Message</TextBlock>
 
             </Grid>
         </Border>

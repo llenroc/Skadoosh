@@ -82,40 +82,48 @@
         </GridView>
         <GridView  Grid.Row="2" Padding="116,136,116,46" x:Name="gridButtons" SelectionMode="None">
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnFaceBook" >
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10">
                     <Image Source="ms-appx:///Assets/facebook.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <StackPanel >
                     <TextBlock Text="Facebook" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                     
                 </StackPanel>
+                </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnGoogle">
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10">
                     <Image Source="ms-appx:///Assets/google.png" Margin="20"  Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <StackPanel >
                     <TextBlock Text="Google" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
 
                 </StackPanel>
+                </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnTwitter">
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10">
                     <Image Source="ms-appx:///Assets/twitter.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <StackPanel >
                     <TextBlock Text="Twitter" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
             
                 </StackPanel>
+                </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnWindows">
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10">
                     <Image Source="ms-appx:///Assets/live.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <StackPanel >
                     <TextBlock Text="Windows Live" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                
                 </StackPanel>
+                </Border>
             </Grid>
         </GridView>
 

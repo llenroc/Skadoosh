@@ -50,7 +50,7 @@
                 <ColumnDefinition Width="Auto"/>
 
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoHome" Margin="36,36,30,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+            <Button x:Name="backButton" Click="GoBack" Margin="36,36,30,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="ms-appx:///Assets/Hand.png"></Image>
@@ -77,8 +77,14 @@
         </Grid>
 
 
-        <Border Grid.Row="1"  Padding="20" Margin="38"  Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Opacity=".90">
+        <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource AppBarBorderThemeBrush}" Opacity="0.9" CornerRadius="10">
             <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -90,25 +96,28 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                  
                 </Grid.RowDefinitions>
 
-                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Source="ms-appx:///Assets/SurveryEdit.png" VerticalAlignment="Top" Width="136" Margin="10 10 10 0" Opacity="0.9"/>
+                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="5"  Source="ms-appx:///Assets/YY.png" VerticalAlignment="Top" Width="136" Margin="10 10 10 0"/>
 
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource EditFields}">Survey Title</TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="2"  Margin="10" Text="{Binding CurrentSurvey.SurveyTitle, Mode=TwoWay}" ></TextBox>
+                <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Style="{StaticResource EditFields}" HorizontalAlignment="Left" FontSize="36" FontWeight="Bold">Survey Editor:</TextBlock>
 
-                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">Description</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="2"  Margin="10" Text="{Binding CurrentSurvey.Description, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">Survey Title</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="2"  Margin="10" Text="{Binding CurrentSurvey.SurveyTitle, Mode=TwoWay}" ></TextBox>
 
-                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource EditFields}">Unique Indentifier</TextBlock>
-                <TextBox Grid.Row="2" Grid.Column="2"  Margin="10" Text="{Binding CurrentSurvey.ChannelName, Mode=TwoWay}"></TextBox>
+                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource EditFields}">Description</TextBlock>
+                <TextBox Grid.Row="2" Grid.Column="2"  Margin="10" Text="{Binding CurrentSurvey.Description, Mode=TwoWay}"></TextBox>
 
-                <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource EditFields}">Live Survey</TextBlock>
-                <CheckBox Grid.Row="3" Grid.Column="2"  Margin="10" IsChecked="{Binding CurrentSurvey.IsLiveSurvey, Mode=TwoWay}" ></CheckBox>
+                <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource EditFields}">Unique Indentifier</TextBlock>
+                <TextBox Grid.Row="3" Grid.Column="2"  Margin="10" Text="{Binding CurrentSurvey.ChannelName, Mode=TwoWay}"></TextBox>
 
-                <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource EditFields}">Requires Name</TextBlock>
-                <CheckBox Grid.Row="4" Grid.Column="2"  Margin="10" IsChecked="{Binding CurrentSurvey.RequiresUserName, Mode=TwoWay}" ></CheckBox>
+                <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource EditFields}">Live Survey</TextBlock>
+                <CheckBox Grid.Row="4" Grid.Column="2"  Margin="10" IsChecked="{Binding CurrentSurvey.IsLiveSurvey, Mode=TwoWay}" ></CheckBox>
+
+                <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource EditFields}">Requires Name</TextBlock>
+                <CheckBox Grid.Row="5" Grid.Column="2"  Margin="10" IsChecked="{Binding CurrentSurvey.RequiresUserName, Mode=TwoWay}" ></CheckBox>
 
 
             </Grid>

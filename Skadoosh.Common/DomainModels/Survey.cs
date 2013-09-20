@@ -227,6 +227,7 @@ namespace Skadoosh.Common.DomainModels
                 return (!string.IsNullOrEmpty(QuestionText));
             }
         }
+      
         public Question()
         {
             Options = new ObservableCollection<Option>();

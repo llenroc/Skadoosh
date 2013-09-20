@@ -189,7 +189,7 @@
                     <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Question" Click="EditQuestion" Visibility="{Binding IsQuestionSelected,Converter={StaticResource boolToVis}}"/>
                     <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Question" Click="DeleteQuestion" Visibility="{Binding IsQuestionSelected,Converter={StaticResource boolToVis}}"/>
                     <Button Style="{StaticResource FavoriteAppBarButtonStyle}"  AutomationProperties.Name="Set Active" Click="SetActive" Visibility="{Binding CanSetActive, Converter={StaticResource boolToVis}}" />
-
+                    <Button Style="{StaticResource PreviewLinkAppBarButtonStyle}"  AutomationProperties.Name="View Result"  Visibility="{Binding IsQuestionSelected, Converter={StaticResource boolToVis}}" Click="ViewResults" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource RefreshAppBarButtonStyle}" />

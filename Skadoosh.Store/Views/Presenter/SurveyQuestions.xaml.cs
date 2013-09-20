@@ -110,5 +110,10 @@ namespace Skadoosh.Store.Views.Presenter
             VM.Logout();
             Frame.Navigate(typeof(Home), VM);
         }
+
+        private void ViewResults(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
