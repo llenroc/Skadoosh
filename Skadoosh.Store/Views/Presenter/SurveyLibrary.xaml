@@ -91,7 +91,7 @@
                 <ColumnDefinition Width="Auto"/>
                
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoHome" Margin="36,36,30,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+            <Button x:Name="backButton" Click="GoToHome" Margin="36,36,30,36" Height="55" Width="55" >
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="ms-appx:///Assets/Hand.png"></Image>
@@ -177,7 +177,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource RefreshAppBarButtonStyle}" />
                     <Button Style="{StaticResource HelpAppBarButtonStyle}" />
-                    <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout"/>
+                    <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout" />
                  
                 </StackPanel>
             </Grid>

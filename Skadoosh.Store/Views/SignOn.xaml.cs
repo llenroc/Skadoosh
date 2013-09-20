@@ -32,15 +32,6 @@ namespace Skadoosh.Store.Views
         {
             this.InitializeComponent();
 
-            this.pop.PopupClosing += (e, a) =>
-            {
-                FadeInButtons.Begin();
-                var vm = pop.DataContext as ParticipateLiveVM;
-                if (!pop.IsCancel && !string.IsNullOrEmpty(vm.ChannelSelected))
-                {
-                    Frame.Navigate(typeof(ParticipateLive), vm);
-                }
-            };
 
         }
 
@@ -55,7 +46,8 @@ namespace Skadoosh.Store.Views
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            baseVM = (ViewModelBase)navigationParameter; 
+            baseVM = (ViewModelBase)navigationParameter;
+
         }
 
         /// <summary>
@@ -92,7 +84,7 @@ namespace Skadoosh.Store.Views
 
                 try
                 {
-                    await baseVM.AzureClient.LoginAsync(provider).ConfigureAwait(true);
+                    await baseVM.AzureClient.LoginAsync(provider);
               
                     if (baseVM.AzureClient.CurrentUser != null)
                     {

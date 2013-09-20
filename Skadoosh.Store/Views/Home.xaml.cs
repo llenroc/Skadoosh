@@ -1,5 +1,7 @@
-﻿using Skadoosh.Common.ViewModels;
+﻿using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.ViewModels;
 using Skadoosh.Store.Views.Participate;
+using Skadoosh.Store.Views.Presenter;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,21 +26,11 @@ namespace Skadoosh.Store.Views
     /// </summary>
     public sealed partial class Home : Skadoosh.Store.Common.LayoutAwarePage
     {
+        private ViewModelBase baseVM;
+
         public Home()
         {
             this.InitializeComponent();
-
-            //new SkadooshVM().UnitTestTableInitialize();
-
-            this.pop.PopupClosing += (e, a) =>
-            {
-                FadeInButtons.Begin();
-                var vm = pop.DataContext as ParticipateLiveVM;
-                if (!pop.IsCancel && !string.IsNullOrEmpty(vm.ChannelSelected))
-                {
-                    Frame.Navigate(typeof(ParticipateLive), vm);
-                }
-            };
         }
 
 
@@ -54,6 +46,8 @@ namespace Skadoosh.Store.Views
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            if(navigationParameter!=null && navigationParameter!="")
+                baseVM = (ViewModelBase)navigationParameter;   
         }
 
         /// <summary>
@@ -71,14 +65,20 @@ namespace Skadoosh.Store.Views
             switch (((Grid)sender).Name)
             {
                 case "btnPresenter":
-                    Frame.Navigate(typeof(SignOn), new PresenterVM());
+                    if (baseVM != null && baseVM.IsLoggedOn)
+                    {
+                        Frame.Navigate(typeof(SurveyLibrary), baseVM);
+                    }
+                    else
+                    {
+                        Frame.Navigate(typeof(SignOn), new PresenterVM());
+                    }
                     break;
                 case "btnParticipate":
-                    FadeOutButtons.Begin();
-                    this.pop.ShowLogin(new ParticipateLiveVM());
+                    Frame.Navigate(typeof(SelectSurvey), new ParticipateLiveVM());
                     break;
                 case "btnGroupInvite":
-                    Frame.Navigate(typeof(SignOn), new ParticipateStaticVM());
+                    Frame.Navigate(typeof(SelectSurvey), new ParticipateStaticVM());
                     break;
             }
         }

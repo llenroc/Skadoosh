@@ -49,7 +49,7 @@ namespace Skadoosh.Store.Views.Presenter
         protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (PresenterVM)navigationParameter;
-            await VM.LoadSurveysForCurrentUser().ConfigureAwait(true);
+            await VM.LoadSurveysForCurrentUser();
             if(!VM.SurveyCollection.Any())
                 CollectionIsEmptyNotification();
         }
@@ -119,6 +119,17 @@ namespace Skadoosh.Store.Views.Presenter
         private void ShowAppBar(object sender, RightTappedRoutedEventArgs e)
         {
             bottomAppBar.IsOpen = true;
+        }
+
+        private void GoToHome(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Home), VM);
+        }
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            VM.Logout();
+            Frame.Navigate(typeof(Home), VM);
         }
 
     }

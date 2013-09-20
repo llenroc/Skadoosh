@@ -104,5 +104,11 @@ namespace Skadoosh.Store.Views.Presenter
         {
             BottomAppBar.IsOpen = true;
         }
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            VM.Logout();
+            Frame.Navigate(typeof(Home), VM);
+        }
     }
 }

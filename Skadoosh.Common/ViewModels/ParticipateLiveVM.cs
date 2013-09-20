@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Skadoosh.Common.ViewModels
 {
-    public class ParticipateLiveVM : ParticipateBase
+    public class ParticipateLiveVM : ViewModelBase
     {
 
     }

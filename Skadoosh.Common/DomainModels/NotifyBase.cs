@@ -32,55 +32,55 @@ namespace Skadoosh.Common.DomainModels
         }
     }
 
-    public class ParticipateBase : ViewModelBase
-    {
-        private string channelSelected;
-        private Survey selectedSurvey;
-        private bool isLoggedIn;
+    //public class ParticipateBase : ViewModelBase
+    //{
+    //    private string channelSelected;
+    //    private Survey selectedSurvey;
+    //    private bool isLoggedIn;
 
-        public bool IsLoggedIn
-        {
-            get { return isLoggedIn; }
-            set { isLoggedIn = value; Notify("IsLoggedIn");}
-        }
+    //    public bool IsLoggedIn
+    //    {
+    //        get { return isLoggedIn; }
+    //        set { isLoggedIn = value; Notify("IsLoggedIn");}
+    //    }
         
-        public Survey SelectedSurvey
-        {
-            get { return selectedSurvey; }
-            set { selectedSurvey = value; Notify("SelectedSurvey"); }
-        }
+    //    public Survey SelectedSurvey
+    //    {
+    //        get { return selectedSurvey; }
+    //        set { selectedSurvey = value; Notify("SelectedSurvey"); }
+    //    }
 
-        public string ChannelSelected
-        {
-            get
-            {
-                return channelSelected;
-            }
-            set
-            {
-                channelSelected = value; Notify("ChannelSelected");
-            }
-        }
+    //    public string ChannelSelected
+    //    {
+    //        get
+    //        {
+    //            return channelSelected;
+    //        }
+    //        set
+    //        {
+    //            channelSelected = value; Notify("ChannelSelected");
+    //        }
+    //    }
 
-        public async Task<bool> FindSurvey()
-        {
-            var list = AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelSelected).ToListAsync();
-            var collection = await list;
-            var survey = collection.FirstOrDefault();
-            if (survey != null)
-            {
-                SelectedSurvey = survey;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
+    //    public async Task<bool> FindSurvey()
+    //    {
+    //        var list = AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelSelected).ToListAsync();
+    //        var collection = await list;
+    //        var survey = collection.FirstOrDefault();
+    //        if (survey != null)
+    //        {
+    //            SelectedSurvey = survey;
+    //            return true;
+    //        }
+    //        else
+    //        {
+    //            return false;
+    //        }
+    //    }
+    //}
 
 
-    public abstract class ViewModelBase : NotifyBase
+    public class ViewModelBase : NotifyBase
     {
 
         private AccountUser user;
@@ -91,6 +91,14 @@ namespace Skadoosh.Common.DomainModels
             set { user = value; Notify("User"); }
         }
 
+
+        public bool IsLoggedOn
+        {
+            get
+            {
+                return (User!=null && User.Id != 0 && !string.IsNullOrEmpty(this.User.UserId));
+            }
+        }
         public MobileServiceClient AzureClient
         {
             get
@@ -108,7 +116,11 @@ namespace Skadoosh.Common.DomainModels
             User = new AccountUser();
         }
 
-
+        public void Logout()
+        {
+            AzureClient.Logout();
+            this.User = null;
+        }
         public async Task<bool> CreateProfile()
         {
             var list = await AzureClient.GetTable<AccountUser>().Where(x => x.UserId == User.UserId).ToListAsync();

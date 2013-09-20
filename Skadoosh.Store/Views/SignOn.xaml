@@ -1,7 +1,7 @@
 ﻿<common:LayoutAwarePage
     x:Name="pageRoot"
     x:Class="Skadoosh.Store.Views.SignOn"
-    xmlns:participate="using:Skadoosh.Store.Views.Participate"
+
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -119,7 +119,7 @@
             </Grid>
         </GridView>
 
-        <participate:SelectSurvey x:Name="pop" ></participate:SelectSurvey>
+       
         
         <VisualStateManager.VisualStateGroups>
 

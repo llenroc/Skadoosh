@@ -147,13 +147,17 @@ namespace Skadoosh.Common.ViewModels
         }
         public async Task<int> LoadSurveysForCurrentUser()
         {
-            SurveyCollection.Clear();
-            var results = await AzureClient.GetTable<Survey>().Where(x => x.AccountUserId == User.Id).ToListAsync();
-            foreach (var item in results)
+            if (User != null)
             {
-                SurveyCollection.Add(item);
+                SurveyCollection.Clear();
+                var results = await AzureClient.GetTable<Survey>().Where(x => x.AccountUserId == User.Id).ToListAsync();
+                foreach (var item in results)
+                {
+                    SurveyCollection.Add(item);
+                }
+                return SurveyCollection.Count;
             }
-            return SurveyCollection.Count;
+            return 0;
         }
         #endregion
 

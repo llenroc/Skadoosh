@@ -1,5 +1,4 @@
-﻿using Skadoosh.Common.DomainModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,66 +12,41 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace Skadoosh.Store.Views.Participate
 {
-    public sealed partial class SelectSurvey : UserControl
+    /// <summary>
+    /// A basic page that provides characteristics common to most applications.
+    /// </summary>
+    public sealed partial class SelectSurvey : Skadoosh.Store.Common.LayoutAwarePage
     {
-        public event EventHandler PopupClosing;
-
-        public bool IsCancel { get; set; }
         public SelectSurvey()
         {
             this.InitializeComponent();
         }
 
-        public void ShowLogin(ParticipateBase vm)
+        /// <summary>
+        /// Populates the page with content passed during navigation.  Any saved state is also
+        /// provided when recreating a page from a prior session.
+        /// </summary>
+        /// <param name="navigationParameter">The parameter value passed to
+        /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested.
+        /// </param>
+        /// <param name="pageState">A dictionary of state preserved by this page during an earlier
+        /// session.  This will be null the first time a page is visited.</param>
+        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            this.message.Visibility = Visibility.Collapsed;
-            this.DataContext = vm;
-            this.logincontrol1.IsOpen = true;
         }
 
-        private void tapCancel(object sender, TappedRoutedEventArgs e)
+        /// <summary>
+        /// Preserves state associated with this page in case the application is suspended or the
+        /// page is discarded from the navigation cache.  Values must conform to the serialization
+        /// requirements of <see cref="SuspensionManager.SessionState"/>.
+        /// </summary>
+        /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
+        protected override void SaveState(Dictionary<String, Object> pageState)
         {
-            if (PopupClosing != null)
-            {
-                this.logincontrol1.IsOpen = false;
-                IsCancel = true;
-                PopupClosing(null, null);
-            }
-        }
-
-        private async void tapSelected(object sender, TappedRoutedEventArgs e)
-        {
-
-            var vm = (ParticipateBase)this.DataContext;
-            if (!string.IsNullOrEmpty(vm.ChannelSelected))
-            {
-                var result = await vm.FindSurvey();
-                if (result && PopupClosing != null)
-                {
-                    IsCancel = false;
-                    this.logincontrol1.IsOpen = false;
-                    PopupClosing(null, null);
-                }
-                else
-                {
-                    this.message.Visibility = Visibility.Visible;
-                }
-
-            }
-            else
-            {
-                if (PopupClosing != null)
-                {
-                    this.logincontrol1.IsOpen = false;
-                    IsCancel = true;
-                    PopupClosing(null, null);
-                }
-            }
-
         }
     }
 }
