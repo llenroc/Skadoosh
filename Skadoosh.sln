@@ -13,6 +13,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skadoosh.Phone", "Skadoosh.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skadoosh.Touch", "Skadoosh.Touch\Skadoosh.Touch.csproj", "{14FA1E70-70AC-4578-AE2F-860CCC009B69}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{968AF82E-8D4E-4C3A-87C4-2896F96A3BB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "winRT", "winRT", "{05C98875-8DF8-43BA-BF42-B6FE03AA6B04}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\winRT\Newtonsoft.Json.dll = Resources\winRT\Newtonsoft.Json.dll
+		Resources\winRT\WinRTXamlToolkit.dll = Resources\winRT\WinRTXamlToolkit.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iOS", "iOS", "{E62F9C6E-DD00-4C22-A55F-B03CD0BFB8DC}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\iOS\Microsoft.WindowsAzure.MobileServices.iOS.dll = Resources\iOS\Microsoft.WindowsAzure.MobileServices.iOS.dll
+		Resources\iOS\Newtonsoft.Json.dll = Resources\iOS\Newtonsoft.Json.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Droid", "Droid", "{A269C9A4-44D4-4902-A9BB-9782F76806F7}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\Droid\Microsoft.WindowsAzure.MobileServices.Android.dll = Resources\Droid\Microsoft.WindowsAzure.MobileServices.Android.dll
+		Resources\Droid\Newtonsoft.Json.dll = Resources\Droid\Newtonsoft.Json.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -372,6 +392,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{05C98875-8DF8-43BA-BF42-B6FE03AA6B04} = {968AF82E-8D4E-4C3A-87C4-2896F96A3BB3}
+		{E62F9C6E-DD00-4C22-A55F-B03CD0BFB8DC} = {968AF82E-8D4E-4C3A-87C4-2896F96A3BB3}
+		{A269C9A4-44D4-4902-A9BB-9782F76806F7} = {968AF82E-8D4E-4C3A-87C4-2896F96A3BB3}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Skadoosh.Store\Skadoosh.Store.csproj
