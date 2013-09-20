@@ -83,7 +83,7 @@
         </Grid>
 
 
-        <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource AppBarBorderThemeBrush}" Opacity="0.9" CornerRadius="10">
+        <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="10">
             <Grid>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -110,15 +110,15 @@
                 <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Style="{StaticResource EditFields}" HorizontalAlignment="Left" FontSize="36" FontWeight="Bold">Survey Selection:</TextBlock>
 
                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">Survey Code</TextBlock>
-                <TextBox Grid.Row="1"  Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" />
+                <TextBox Grid.Row="1"  Grid.Column="2"  Margin="10" Text="{Binding ChannelName, Mode=TwoWay}" />
 
                 <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource EditFields}">First Name</TextBlock>
-                <TextBox Grid.Row="2"  Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" ></TextBox>
+                <TextBox Grid.Row="2"  Grid.Column="2"  Margin="10" Text="{Binding User.FirstName, Mode=TwoWay}" ></TextBox>
                 
                 <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource EditFields}">Last Name</TextBlock>
-                <TextBox Grid.Row="3"  Grid.Column="2"  Margin="10" Text="{Binding CurrentQuestion.QuestionText, Mode=TwoWay}" ></TextBox>
+                <TextBox Grid.Row="3"  Grid.Column="2"  Margin="10" Text="{Binding User.LastName, Mode=TwoWay}" ></TextBox>
 
-                <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource EditFields}" HorizontalAlignment="Left">Message</TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource EditFields}" HorizontalAlignment="Left" Text="{Binding ErrorMessage, Mode=TwoWay}" Foreground="#FFE80707" FontWeight="Bold"></TextBlock>
 
             </Grid>
         </Border>
@@ -157,7 +157,7 @@
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource SaveAppBarButtonStyle}"  AutomationProperties.Name="Save Changes" />
+                    <Button Style="{StaticResource GoAppBarButtonStyle}"  AutomationProperties.Name="Select" Click="FindSuvey"  />
                     <Button Style="{StaticResource DiscardAppBarButtonStyle}" AutomationProperties.Name="Cancel" Click="GoBack"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

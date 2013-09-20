@@ -19,10 +19,19 @@ namespace Skadoosh.Common.ViewModels
         private bool isQuestionSelected;
         private bool canSetActive;
         private bool canStartSurvey;
-        private bool canStopSurvey; 
+        private bool canStopSurvey;
+        private string errorMessage;
+
+
+        
         #endregion
 
         #region properties
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set { errorMessage = value; Notify("ErrorMessage"); }
+        }
         public bool CanStopSurvey
         {
             get { return canStopSurvey; }

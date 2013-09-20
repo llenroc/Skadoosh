@@ -77,7 +77,7 @@
         </Grid>
 
 
-        <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource AppBarBorderThemeBrush}" Opacity="0.9" CornerRadius="10">
+        <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="10">
             <Grid>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

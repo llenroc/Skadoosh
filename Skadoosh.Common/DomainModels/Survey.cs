@@ -245,8 +245,11 @@ namespace Skadoosh.Common.DomainModels
         private int id;
         private int questionId;
         private string optionText;
-        private bool isDeleted;  
-   
+        private bool isDeleted;
+        private bool isSelected;
+
+
+        
         public int Id
         {
             get { return id; }
@@ -278,6 +281,12 @@ namespace Skadoosh.Common.DomainModels
             {
                 return (this.Id == 0);
             }
+        }
+         [IgnoreDataMember]
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set { isSelected = value; Notify("IsSelected"); }
         }
         [IgnoreDataMember]
         public bool IsDeleted

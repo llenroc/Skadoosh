@@ -127,9 +127,6 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="Views\Participate\ParticipateLive.xaml.cs">
-      <DependentUpon>ParticipateLive.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Participate\ParticipateStatic.xaml.cs">
       <DependentUpon>ParticipateStatic.xaml</DependentUpon>
     </Compile>
@@ -221,10 +218,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Participate\ParticipateLive.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Participate\ParticipateStatic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -281,7 +274,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="WinRTXamlToolkit">
-      <HintPath>..\Resources\winRT\WinRTXamlToolkit.dll</HintPath>
+      <HintPath>..\..\..\..\Dropbox\Mobile Common\Resources\winRT\WinRTXamlToolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />

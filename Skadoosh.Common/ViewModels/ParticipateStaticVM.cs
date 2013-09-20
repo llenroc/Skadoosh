@@ -12,7 +12,21 @@ namespace Skadoosh.Common.ViewModels
         private Survey currentSurvey;
         private Question currentQuestion;
         private string channelName;
+        private string errorMessage;
+        private bool isLastQuestion;
 
+        public bool IsLastQuestion
+        {
+            get { return isLastQuestion; }
+            set { isLastQuestion = value; Notify("IsLastQuestion"); }
+        }
+
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set { errorMessage = value; Notify("ErrorMessage"); }
+        }
+        
         public string ChannelName
         {
             get { return channelName; }
@@ -25,6 +39,7 @@ namespace Skadoosh.Common.ViewModels
             set
             {
                 currentQuestion = value;
+                IsLastQuestion = (CurrentSurvey.Questions.Last().Id == value.Id);
                 Notify("CurrentQuestion");
             }
         }
@@ -39,6 +54,26 @@ namespace Skadoosh.Common.ViewModels
             }
         }
 
+        public ParticipateStaticVM()
+        {
+          
+        }
+
+        public async Task<int> SaveSurveyResponses()
+        {
+            var table = AzureClient.GetTable<Responses>();
+            foreach (var q in CurrentSurvey.Questions)
+            {
+                foreach (var op in q.Options.Where(x => x.IsSelected))
+                {
+                    var r = new Responses() { OptionId = op.Id, QuestionId = q.Id, SurveyId = CurrentSurvey.Id };
+                    if (CurrentSurvey.RequiresUserName)
+                        r.UserName = User.LastName + ", " + User.FirstName;
+                    await table.InsertAsync(r);
+                }
+            }
+            return 0;
+        }
         public async Task<int> LoadSurveysForCurrentChannel()
         {
             if (!string.IsNullOrEmpty(this.ChannelName))
@@ -70,6 +105,46 @@ namespace Skadoosh.Common.ViewModels
                     currentSurvey.Questions.Add(q);
                 }
                 return CurrentSurvey.Questions.Count;
+            }
+            return 0;
+        }
+
+        public async Task<int> FindSurveyCurrentChannel()
+        {
+            if (!string.IsNullOrEmpty(ChannelName))
+            {
+                var results = await AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelName).ToListAsync();
+                if (results != null && results.Any())
+                {
+                    var survey = results.First();
+                    if (!survey.IsLiveSurvey)
+                    {
+                        if (survey.RequiresUserName && !string.IsNullOrEmpty(User.FirstName) && !string.IsNullOrEmpty(User.LastName))
+                        {
+                            ErrorMessage = string.Empty;
+                            CurrentSurvey = survey;
+                            await LoadQuestionsForCurrentSurvey();
+                            return 1;
+                        }
+                        else
+                        {
+                            ErrorMessage = "This Survey Requires Your First And Last Name";
+                        }
+                    }
+                    else
+                    {
+                        ErrorMessage = "Please Enter A Survey Code Associated To A Static Survey";
+                    }
+                }
+                else
+                {
+                    ErrorMessage = "Could Not Find Survey. Is The Code Correct?";
+                }
+            }
+            else
+            {
+                ErrorMessage = "A Survey Code Must Be Entered!";
+
             }
             return 0;
         }

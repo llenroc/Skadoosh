@@ -22,6 +22,12 @@ namespace Skadoosh.Store.Views.Participate
     /// </summary>
     public sealed partial class ParticipateStatic : Skadoosh.Store.Common.LayoutAwarePage
     {
+        private ParticipateStaticVM VM
+        {
+            get { return (ParticipateStaticVM)this.DataContext; }
+            set { this.DataContext = value; }
+        }
+
         public ParticipateStatic()
         {
             this.InitializeComponent();
@@ -38,7 +44,7 @@ namespace Skadoosh.Store.Views.Participate
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            this.DataContext = (ParticipateStaticVM)navigationParameter;
+            VM = (ParticipateStaticVM)navigationParameter;
         }
 
         /// <summary>

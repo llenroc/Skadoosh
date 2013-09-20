@@ -474,7 +474,11 @@
         <Setter Property="AutomationProperties.Name" Value="Preview Link"/>
         <Setter Property="Content" Value="&#xE12A;"/>
     </Style>
-
+    <Style x:Key="GoAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="GoAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Go"/>
+        <Setter Property="Content" Value="&#xE143;"/>
+    </Style>
 
     <!-- 
         Standard AppBarButton Styles for use with Button and ToggleButton

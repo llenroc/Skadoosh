@@ -60,13 +60,15 @@ namespace Skadoosh.Store.Views.Presenter
                 var result = await vm.CreateProfile();
                 if (result)
                 {
+                    vm.ErrorMessage = string.Empty;
                     Frame.Navigate(typeof(SurveyLibrary), vm);
                 }
+                vm.ErrorMessage = "There Was A Problem Creating Your Profile";
 
             }
             else
             {
-
+                vm.ErrorMessage = "Not All The Required Fields Have Values";
 
             }
         }

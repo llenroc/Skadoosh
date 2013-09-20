@@ -11,30 +11,119 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <common:BoolToSelectionModeConverter x:Key="boolToSelectionMode"></common:BoolToSelectionModeConverter>
+        <common:BooleanToVisibilityConverter x:Key="trueVisible" IsReversed="False"></common:BooleanToVisibilityConverter>
+        <common:IsLiveSurveyImageConverter x:Key="surveyTypeConverter"></common:IsLiveSurveyImageConverter>
+        <DataTemplate x:Key="flipViewQuestionTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding QuestionText}" Foreground="Black" FontSize="32"></TextBlock>
+                <ListView Grid.Row="1" 
+                              Grid.Column="1"
+                              DisplayMemberPath="OptionText" Foreground="Black" Width="300"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                              ItemsSource="{Binding Options, Mode=TwoWay}" 
+                              Margin="10" 
+                              SelectionMode="{Binding IsMultiSelect, Converter={StaticResource boolToSelectionMode}}"></ListView>
+            </Grid>
+        </DataTemplate>
 
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
+        <DataTemplate x:Key="Survey80ItemTemplate">
+            <!--<Grid Margin="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="60" Height="60">
+                    <Image Source="{Binding IsLiveSurvey, Converter={StaticResource surveyTypeConverter}}" Stretch="UniformToFill"/>
+                </Border>
+                <StackPanel Grid.Column="1" Margin="10,0,0,0" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                    <TextBlock  Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
+                    <TextBlock  Text="{Binding ChannelName}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
+                </StackPanel>
+            </Grid>-->
+        </DataTemplate>
+        <!-- Collection of items displayed by this page -->
+        <CollectionViewSource x:Name="itemsViewSource" Source="{Binding CurrentSurvey.Questions}"/>
+
+        <x:String x:Key="AppName">Survey Administration</x:String>
     </Page.Resources>
 
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
+
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/skadooshBck.png"  ></ImageBrush>
+        </Grid.Background>
+
+        <!-- FlipView for question-->
+        <FlipView x:Name="itemFlipView"
+                  Padding="116,136,116,46"
+                    AutomationProperties.AutomationId="ItemsFlipView"
+                    AutomationProperties.Name="items"
+                    Grid.RowSpan="2"
+                    ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+                    ItemTemplate="{StaticResource flipViewQuestionTemplate}"
+                  SelectedItem="{Binding CurrentQuestion}"
+                  TabIndex="1"
+            >
+
+        </FlipView>
+        <!-- Vertical scrolling list only used when snapped -->
+        <ListView
+            x:Name="itemListView"
+            AutomationProperties.AutomationId="ItemsListView"
+            AutomationProperties.Name="items"
+            TabIndex="1"
+            Grid.Row="1"
+            Visibility="Collapsed"
+            Margin="0,-10,0,0"
+            Padding="10,0,0,60"
+            ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+            ItemTemplate="{StaticResource Survey80ItemTemplate}"
+            SelectionMode="None" 
+            IsSwipeEnabled="false"/>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid x:Name="FullHeader">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
+            <Button x:Name="backButton" Click="GoHome" Margin="36,36,30,36" Height="55" Width="55" >
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="ms-appx:///Assets/Hand.png"></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <StackPanel x:Name="pageTitle" Grid.Column="1">
+                <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
+                <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
+            </StackPanel>
+
+        </Grid>
+        <Grid Visibility="Collapsed" x:Name="SnappedHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Click="GoHome" Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="ms-appx:///Assets/SplashScreen.png" Stretch="UniformToFill" ></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -50,21 +139,50 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemFlipView" Storyboard.TargetProperty="Padding">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="96,136,86,56"/>
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
 
-                <!-- The back button and title have different styles when snapped -->
+                <!--
+                     The back button and title have different styles when snapped, and the list representation is substituted
+                     for the grid displayed in all other view states
+                -->
                 <VisualState x:Name="Snapped">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemFlipView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>
+
+    <Page.BottomAppBar>
+        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Next Question"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource HelpAppBarButtonStyle}" />
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
 </common:LayoutAwarePage>

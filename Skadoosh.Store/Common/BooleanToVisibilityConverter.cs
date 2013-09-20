@@ -85,6 +85,30 @@ namespace Skadoosh.Store.Common
             return null;
         }
     }
+
+
+    public sealed class BoolToSelectionModeConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var isMulti = (bool)value;
+            if (isMulti)
+            {
+                return SelectionMode.Multiple;
+            }
+            else
+            {
+                return SelectionMode.Single;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return null;
+        }
+    }
+
     public sealed class IsActiveHeaderStyleConverter : IValueConverter
     {
 

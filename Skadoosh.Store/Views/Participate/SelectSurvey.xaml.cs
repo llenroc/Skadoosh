@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,6 +23,8 @@ namespace Skadoosh.Store.Views.Participate
     /// </summary>
     public sealed partial class SelectSurvey : Skadoosh.Store.Common.LayoutAwarePage
     {
+        private ViewModelBase baseVM;
+
         public SelectSurvey()
         {
             this.InitializeComponent();
@@ -37,6 +41,8 @@ namespace Skadoosh.Store.Views.Participate
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            baseVM = (ViewModelBase)navigationParameter;
+            this.DataContext = baseVM;
         }
 
         /// <summary>
@@ -48,5 +54,23 @@ namespace Skadoosh.Store.Views.Participate
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
+
+        private async void FindSuvey(object sender, RoutedEventArgs e)
+        {
+            if (baseVM is ParticipateStaticVM)
+            {
+                var result = await ((ParticipateStaticVM)baseVM).FindSurveyCurrentChannel();
+                if (result == 1)
+                {
+                    Frame.Navigate(typeof(ParticipateStatic), baseVM);
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+
     }
 }

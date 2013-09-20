@@ -9,40 +9,19 @@
     xmlns:common="using:Skadoosh.Store.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Extensions="using:WinRTXamlToolkit.Controls.Extensions"
-    xmlns:xc="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d">
 
     <Page.Resources>
-
-        <Style x:Key="ProfileFields" TargetType="TextBlock">
+        <Style x:Key="EditFields" TargetType="TextBlock">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="FontSize" Value="26"/>
-            
+
             <Setter Property="HorizontalAlignment" Value="Right"/>
         </Style>
-
-
-        <Style x:Key="ExecuteButton" TargetType="Button">
-            <Setter Property="Background" Value="White"></Setter>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
-            <Setter Property="FontSize" Value="26"/>
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">Skadoosh Home</x:String>
 
-        <Storyboard x:Name="FadeOutButtons">
-            <FadeOutThemeAnimation Storyboard.TargetName="gridButtons" />
-            <FadeOutThemeAnimation Storyboard.TargetName="selectionTitle" />
-        </Storyboard>
-        <Storyboard x:Name="FadeInButtons">
-            <FadeInThemeAnimation  Storyboard.TargetName="gridButtons" />
-            <FadeInThemeAnimation  Storyboard.TargetName="selectionTitle" />
-        </Storyboard>
     </Page.Resources>
 
     <!--
@@ -93,8 +72,14 @@
             </Button>
         </Grid>
 
-        <Border Grid.Row="1"  Padding="20" Margin="38"  Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Opacity="0.9">
+        <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="10">
             <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -105,21 +90,24 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-          
-      
-                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Source="ms-appx:///Assets/Profile1.png" VerticalAlignment="Top" Margin="10 10 10 0"/>
 
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource ProfileFields}">First Name</TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="2"  Margin="10" Text="{Binding User.FirstName, Mode=TwoWay}" Extensions:TextBoxValidationExtensions.Format="NonEmpty"></TextBox>
 
-                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ProfileFields}">Last Name</TextBlock>
-                    <TextBox Grid.Row="1" Grid.Column="2"  Margin="10" Text="{Binding User.LastName, Mode=TwoWay}" Extensions:TextBoxValidationExtensions.Format="NonEmpty"></TextBox>
+                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="5"  Source="ms-appx:///Assets/YY.png" VerticalAlignment="Top" Width="136" Margin="10 10 10 0"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Style="{StaticResource EditFields}" HorizontalAlignment="Left" FontSize="36" FontWeight="Bold">Profile Editor:</TextBlock>
 
-                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource ProfileFields}">Email Address</TextBlock>
-                        <TextBox Grid.Row="2" Grid.Column="2"  Margin="10" Text="{Binding User.Email, Mode=TwoWay}" Extensions:TextBoxValidationExtensions.Format="NonEmpty"></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">First Name</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="2"  Margin="10" Text="{Binding User.FirstName, Mode=TwoWay}" ></TextBox>
 
-                <Button Grid.Row="3" Grid.Column="2" Content="Save Profile" Style="{StaticResource ExecuteButton}" Click="Button_Click"></Button>
+                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource EditFields}">Last Name</TextBlock>
+                <TextBox Grid.Row="2" Grid.Column="2"  Margin="10" Text="{Binding User.LastName, Mode=TwoWay}" ></TextBox>
+
+                <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource EditFields}">Email Address</TextBlock>
+                <TextBox Grid.Row="3" Grid.Column="2"  Margin="10" Text="{Binding User.Email, Mode=TwoWay}" ></TextBox>
+
+                <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource EditFields}" HorizontalAlignment="Left" Text="{Binding ErrorMessage, Mode=TwoWay}" Foreground="#FFE80707" FontWeight="Bold"></TextBlock>
+       
          
             
             </Grid>
@@ -155,4 +143,17 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>
+    <Page.BottomAppBar>
+        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button Style="{StaticResource SaveAppBarButtonStyle}"  AutomationProperties.Name="Save Profile" Click="Button_Click"/>
+                    <Button Style="{StaticResource DiscardAppBarButtonStyle}" AutomationProperties.Name="Cancel" Click="GoBack"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource HelpAppBarButtonStyle}" />
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
 </common:LayoutAwarePage>
