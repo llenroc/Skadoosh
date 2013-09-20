@@ -95,11 +95,11 @@ namespace Skadoosh.Store.Common
             var isMulti = (bool)value;
             if (isMulti)
             {
-                return SelectionMode.Multiple;
+                return ListViewSelectionMode.Multiple;
             }
             else
             {
-                return SelectionMode.Single;
+                return ListViewSelectionMode.Single;
             }
         }
 

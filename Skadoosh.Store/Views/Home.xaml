@@ -104,7 +104,7 @@
                 </Border>
                 <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
                 <StackPanel >
-                    <TextBlock Text="Live Questionaire" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
+                    <TextBlock Text="Live Questionnaire" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                     <TextBlock Text="Participate in a real-time survey" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                 </StackPanel>
                 </Border>
@@ -116,7 +116,7 @@
                 <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
                 <StackPanel >
                     <TextBlock Text="Survey" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
-                        <TextBlock Text="Take a traditional questionaire" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                        <TextBlock Text="Take a traditional questionnaire" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                 </StackPanel>
                 </Border>
             </Grid>
