@@ -311,7 +311,6 @@ namespace Skadoosh.Common.DomainModels
         private int surveyId;
         private int questionId;
         private int optionId;
-        private int? accountId;
         private string userName;
 
         public int Id
@@ -334,11 +333,7 @@ namespace Skadoosh.Common.DomainModels
             get { return optionId; }
             set { optionId = value; Notify("OptionId"); }
         }
-        public int? AccountId
-        {
-            get { return accountId; }
-            set { accountId = value; Notify("AccountId"); }
-        }
+
         public string UserName
         {
             get { return userName; }

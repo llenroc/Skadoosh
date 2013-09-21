@@ -1,10 +1,12 @@
-﻿using Skadoosh.Common.ViewModels;
+﻿using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -55,6 +57,35 @@ namespace Skadoosh.Store.Views.Participate
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private async void GoToHome(object sender, RoutedEventArgs e)
+        {
+            MessageDialog msg = new MessageDialog("You are exiting the survey. Do you want to save the results, cancel or return to the survey?", "Exit Survey Notification");
+            msg.Commands.Add(new UICommand("Save", async(a) => {
+                await VM.SaveSurveyResponses();
+                Frame.Navigate(typeof(Home), VM);
+            }));
+            msg.Commands.Add(new UICommand("Cancel", (a) => {
+                Frame.Navigate(typeof(Home), VM);
+            }));
+            msg.Commands.Add(new UICommand("Return to Survey", (a) => { 
+              
+            }));
+            await msg.ShowAsync();
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = ((ListView)sender).SelectedItems;
+            foreach (var opt in VM.CurrentQuestion.Options)
+            {
+                opt.IsSelected = false;
+            }
+            foreach(var item in items){
+                var opt = (Option)item;
+                VM.CurrentQuestion.Options.First(x=>x.Id==opt.Id).IsSelected=true;
+            } 
         }
     }
 }
