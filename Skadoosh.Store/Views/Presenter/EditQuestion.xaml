@@ -9,7 +9,6 @@
     xmlns:common="using:Skadoosh.Store.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d">
     <Page.Resources>
         <common:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
@@ -132,21 +131,7 @@
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <TextBox  Text="{Binding OptionText, Mode=TwoWay}" Grid.Column="0" MinWidth="350"></TextBox>
-                                <!--<controls:ImageToggleButton Grid.Column="1"
-                                     IsChecked="{Binding IsDeleted,Mode=TwoWay}"
-                                     Width="40"
-                                     Height="35"
-                                     
-                                     NormalStateImageSource="/Assets/ToggleState/GreenButton_Idle.png"
-                                     HoverStateImageSource="/Assets/ToggleState/GreenButton_Hover.png"
-                                     PressedStateImageSource="/Assets/ToggleState/GreenButton_Pressed.png"
-                                     DisabledStateImageSource="/Assets/ToggleState/GreenButton_Disabled.png"
-                                     CheckedStateImageSource="/Assets/ToggleState/RedButton_Idle.png"
-                                     CheckedHoverStateImageSource="/Assets/ToggleState/RedButton_Hover.png"
-                                     CheckedPressedStateImageSource="/Assets/ToggleState/RedButton_Pressed.png"
-                                     CheckedDisabledStateImageSource="/Assets/ToggleState/RedButton_Disabled.png">
-                                     
-                                     </controls:ImageToggleButton>-->
+
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -113,7 +113,7 @@ namespace Skadoosh.Store.Views.Presenter
 
         private void ViewResults(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(QuestionResults), VM);
         }
     }
 }
