@@ -14,7 +14,14 @@ namespace Skadoosh.Common.ViewModels
         private string channelName;
         private string errorMessage;
         private bool isLastQuestion;
+        private string currentPosition;
 
+        public string CurrentPostition
+        {
+            get { return currentPosition; }
+            set { currentPosition = value; Notify("CurrentPostition"); }
+        }
+        
         public bool IsLastQuestion
         {
             get { return isLastQuestion; }
@@ -40,6 +47,7 @@ namespace Skadoosh.Common.ViewModels
             {
                 currentQuestion = value;
                 IsLastQuestion = (CurrentSurvey.Questions.Last().Id == value.Id);
+                CurrentPostition = (CurrentSurvey.Questions.IndexOf(value) + 1) + " of " + CurrentSurvey.Questions.Count;
                 Notify("CurrentQuestion");
             }
         }
@@ -83,6 +91,7 @@ namespace Skadoosh.Common.ViewModels
                 {
                     CurrentSurvey = results.First();
                     await LoadQuestionsForCurrentSurvey();
+                    
                 }
             }
             return 0;
@@ -104,6 +113,7 @@ namespace Skadoosh.Common.ViewModels
                     }
                     currentSurvey.Questions.Add(q);
                 }
+                CurrentQuestion = CurrentSurvey.Questions.First();
                 return CurrentSurvey.Questions.Count;
             }
             return 0;

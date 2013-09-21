@@ -5,7 +5,15 @@
     xmlns:local="using:Skadoosh.Store">
 
     <Application.Resources>
+
         <ResourceDictionary>
+         
+                <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="Black"></SolidColorBrush>
+                <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush" Color="#FF4F00"></SolidColorBrush>
+                <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="#FF9100"></SolidColorBrush>
+                <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush" Color="LightGray"></SolidColorBrush>
+                <SolidColorBrush x:Key="ListBoxItemSelectedForegroundThemeBrush" Color="white" />
+            
             <ResourceDictionary.MergedDictionaries>
 
                 <!-- 
