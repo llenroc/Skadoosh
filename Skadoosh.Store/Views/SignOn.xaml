@@ -86,10 +86,10 @@
                     <Image Source="ms-appx:///Assets/facebook.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
-                <StackPanel >
-                    <TextBlock Text="Facebook" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
+                    <StackPanel >
+                        <TextBlock Text="Facebook" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                     
-                </StackPanel>
+                    </StackPanel>
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnGoogle">
@@ -97,10 +97,10 @@
                     <Image Source="ms-appx:///Assets/google.png" Margin="20"  Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
-                <StackPanel >
-                    <TextBlock Text="Google" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
+                    <StackPanel >
+                        <TextBlock Text="Google" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
 
-                </StackPanel>
+                    </StackPanel>
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnTwitter">
@@ -108,10 +108,10 @@
                     <Image Source="ms-appx:///Assets/twitter.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
-                <StackPanel >
-                    <TextBlock Text="Twitter" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
+                    <StackPanel >
+                        <TextBlock Text="Twitter" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
             
-                </StackPanel>
+                    </StackPanel>
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnWindows">
@@ -119,10 +119,10 @@
                     <Image Source="ms-appx:///Assets/live.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
-                <StackPanel >
-                    <TextBlock Text="Windows Live" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
+                    <StackPanel >
+                        <TextBlock Text="Windows Live" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                
-                </StackPanel>
+                    </StackPanel>
                 </Border>
             </Grid>
         </GridView>

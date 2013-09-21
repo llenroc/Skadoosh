@@ -21,21 +21,9 @@
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">Skadoosh Home</x:String>
 
-        <!--<Storyboard x:Name="FadeOutButtons">
-            <FadeOutThemeAnimation Storyboard.TargetName="gridButtons" />
-            <FadeOutThemeAnimation Storyboard.TargetName="selectionTitle" />
-        </Storyboard>
-        <Storyboard x:Name="FadeInButtons">
-            <FadeInThemeAnimation  Storyboard.TargetName="gridButtons" />
-            <FadeInThemeAnimation  Storyboard.TargetName="selectionTitle" />
-        </Storyboard>-->
     </Page.Resources>
 
-    <!--
-         This grid acts as a root panel for the page that defines two rows:
-         * Row 0 contains the back button and page title
-         * Row 1 contains the rest of the page layout
-    -->
+
     <Grid Style="{StaticResource LayoutRootStyle}" x:Name="parentGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
@@ -103,10 +91,10 @@
                     <Image Source="ms-appx:///Assets/Participate.png" Margin="20"  Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
-                <StackPanel >
-                    <TextBlock Text="Live Questionnaire" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
-                    <TextBlock Text="Participate in a real-time survey" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
-                </StackPanel>
+                    <StackPanel >
+                        <TextBlock Text="Live Questionnaire" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
+                        <TextBlock Text="Participate in a real-time survey" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    </StackPanel>
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnGroupInvite">
@@ -114,10 +102,10 @@
                     <Image Source="ms-appx:///Assets/Group.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
-                <StackPanel >
-                    <TextBlock Text="Survey" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
+                    <StackPanel >
+                        <TextBlock Text="Survey" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                         <TextBlock Text="Take a traditional questionnaire" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
-                </StackPanel>
+                    </StackPanel>
                 </Border>
             </Grid>
         </GridView>
@@ -160,8 +148,8 @@
                 </VisualState>
 
                 <!--
-                    The back button and title have different styles when snapped, and the list representation is substituted
-                    for the grid displayed in all other view states
+                     The back button and title have different styles when snapped, and the list representation is substituted
+                     for the grid displayed in all other view states
                 -->
                 <VisualState x:Name="Snapped">
                     <Storyboard>

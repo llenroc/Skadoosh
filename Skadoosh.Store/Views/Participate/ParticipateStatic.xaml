@@ -17,37 +17,39 @@
         <DataTemplate x:Key="flipViewQuestionTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+              
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding QuestionText}" Foreground="Black" FontSize="32"></TextBlock>
+                <TextBlock Grid.Row="0"  Text="{Binding QuestionText}" Foreground="Black" Margin="10"  FontSize="32"></TextBlock>
                 <ListView Grid.Row="1" 
-                              Grid.Column="1"
-                              DisplayMemberPath="OptionText" Foreground="Black" Width="300"
-                              ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                              ItemsSource="{Binding Options, Mode=TwoWay}" 
-                              Margin="10" 
-                              SelectionMode="{Binding IsMultiSelect, Converter={StaticResource boolToSelectionMode}}"></ListView>
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Left"
+                          DisplayMemberPath="OptionText" Foreground="Black" Width="300"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                          ItemsSource="{Binding Options, Mode=TwoWay}" 
+                          Margin="10" 
+                          SelectionMode="{Binding IsMultiSelect, Converter={StaticResource boolToSelectionMode}}"></ListView>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="Survey80ItemTemplate">
             <!--<Grid Margin="6">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="60" Height="60">
-                    <Image Source="{Binding IsLiveSurvey, Converter={StaticResource surveyTypeConverter}}" Stretch="UniformToFill"/>
-                </Border>
-                <StackPanel Grid.Column="1" Margin="10,0,0,0" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock  Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
-                    <TextBlock  Text="{Binding ChannelName}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
-                </StackPanel>
-            </Grid>-->
+                 <Grid.ColumnDefinitions>
+                 <ColumnDefinition Width="Auto"/>
+                 <ColumnDefinition Width="*"/>
+                 </Grid.ColumnDefinitions>
+                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="60" Height="60">
+                 <Image Source="{Binding IsLiveSurvey, Converter={StaticResource surveyTypeConverter}}" Stretch="UniformToFill"/>
+                 </Border>
+                 <StackPanel Grid.Column="1" Margin="10,0,0,0" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                 <TextBlock  Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
+                 <TextBlock  Text="{Binding ChannelName}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
+                 </StackPanel>
+                 </Grid>-->
         </DataTemplate>
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource x:Name="itemsViewSource" Source="{Binding CurrentSurvey.Questions}"/>
@@ -68,14 +70,14 @@
         <!-- FlipView for question-->
         <FlipView x:Name="itemFlipView"
                   Padding="116,136,116,46"
-                    AutomationProperties.AutomationId="ItemsFlipView"
-                    AutomationProperties.Name="items"
-                    Grid.RowSpan="2"
-                    ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-                    ItemTemplate="{StaticResource flipViewQuestionTemplate}"
+                  AutomationProperties.AutomationId="ItemsFlipView"
+                  AutomationProperties.Name="items"
+                  Grid.RowSpan="2"
+                  ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+                  ItemTemplate="{StaticResource flipViewQuestionTemplate}"
                   SelectedItem="{Binding CurrentQuestion}"
                   TabIndex="1"
-            >
+                  >
 
         </FlipView>
         <!-- Vertical scrolling list only used when snapped -->
