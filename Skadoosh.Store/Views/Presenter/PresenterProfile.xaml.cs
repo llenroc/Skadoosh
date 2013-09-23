@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -12,7 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Skadoosh.Store.Common;
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace Skadoosh.Store.Views.Presenter
@@ -57,13 +58,20 @@ namespace Skadoosh.Store.Views.Presenter
             var vm = (PresenterVM)this.DataContext;
             if (!string.IsNullOrEmpty(vm.User.Email) && !string.IsNullOrEmpty(vm.User.FirstName) && !string.IsNullOrEmpty(vm.User.LastName))
             {
-                var result = await vm.CreateProfile();
-                if (result)
+                if (vm.User.Email.IsValidEmail())
                 {
-                    vm.ErrorMessage = string.Empty;
-                    Frame.Navigate(typeof(SurveyLibrary), vm);
+                    var result = await vm.CreateProfile();
+                    if (result)
+                    {
+                        vm.ErrorMessage = string.Empty;
+                        Frame.Navigate(typeof(SurveyLibrary), vm);
+                    }
+                    vm.ErrorMessage = "There Was A Problem Creating Your Profile";
                 }
-                vm.ErrorMessage = "There Was A Problem Creating Your Profile";
+                else
+                {
+                    vm.ErrorMessage = "Not A Valid Email Address";
+                }
 
             }
             else

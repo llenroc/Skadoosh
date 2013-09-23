@@ -97,7 +97,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
-                 
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="5"  Source="ms-appx:///Assets/YY.png" VerticalAlignment="Top" Width="136" Margin="10 10 10 0"/>
@@ -110,7 +110,7 @@
                 <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource EditFields}">Description</TextBlock>
                 <TextBox Grid.Row="2" Grid.Column="2"  Margin="10" Text="{Binding CurrentSurvey.Description, Mode=TwoWay}"></TextBox>
 
-                <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource EditFields}">Unique Indentifier</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource EditFields}">Survey Code</TextBlock>
                 <TextBox Grid.Row="3" Grid.Column="2"  Margin="10" Text="{Binding CurrentSurvey.ChannelName, Mode=TwoWay}"></TextBox>
 
                 <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource EditFields}">Live Survey</TextBlock>
@@ -118,6 +118,8 @@
 
                 <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource EditFields}">Requires Name</TextBlock>
                 <CheckBox Grid.Row="5" Grid.Column="2"  Margin="10" IsChecked="{Binding CurrentSurvey.RequiresUserName, Mode=TwoWay}" ></CheckBox>
+                
+                <TextBlock Grid.Row="6" Grid.Column="2" Style="{StaticResource EditFields}" HorizontalAlignment="Left" Text="{Binding ErrorMessage, Mode=TwoWay}" Foreground="#FFE80707" FontWeight="Bold"></TextBlock>
 
 
             </Grid>

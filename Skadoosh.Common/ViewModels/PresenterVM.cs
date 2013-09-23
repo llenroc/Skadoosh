@@ -21,12 +21,11 @@ namespace Skadoosh.Common.ViewModels
         private bool canStartSurvey;
         private bool canStopSurvey;
         private string errorMessage;
-
-
-        
+         
         #endregion
 
         #region properties
+
         public string ErrorMessage
         {
             get { return errorMessage; }
@@ -116,6 +115,25 @@ namespace Skadoosh.Common.ViewModels
                 return SurveyCollection.Count;
             }
             return 0;
+        }
+        public async Task<bool> ChannelIsAvailable()
+        {
+            if (CurrentSurvey != null && !string.IsNullOrEmpty(CurrentSurvey.ChannelName))
+            {
+                var list = await AzureClient.GetTable<Survey>().Where(x => x.ChannelName.ToUpper() == CurrentSurvey.ChannelName.ToUpper()).ToListAsync();
+                if (list.Any())
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
         public async Task<int> UpdateSurvey()
         {

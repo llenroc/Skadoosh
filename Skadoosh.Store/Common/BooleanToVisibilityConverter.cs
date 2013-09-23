@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -148,6 +149,15 @@ namespace Skadoosh.Store.Common
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             return null;
+        }
+    }
+
+    public static class StringExtenstions
+    {
+        public static bool IsValidEmail(this string str)
+        {
+            var exp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;";
+            return Regex.IsMatch(str, exp);
         }
     }
 

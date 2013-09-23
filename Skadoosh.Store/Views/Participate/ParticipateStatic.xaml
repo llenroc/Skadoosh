@@ -47,11 +47,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Foreground="Black" Margin="0 10 0 10"  FontSize="32">Q:</TextBlock>
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding QuestionText}" Foreground="Black" Margin="10"  FontSize="32"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="1" 
-                               HorizontalAlignment="left" 
-                               Foreground="Black" 
-                               Visibility="{Binding IsMultiSelect,Converter={StaticResource trueVisible}}"
-                               Margin="10">Select all that apply</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding QuestionHintText}" HorizontalAlignment="left" Foreground="Black" Margin="10" FontSize="18"></TextBlock>
                 </Grid>
    
                 

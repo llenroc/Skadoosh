@@ -59,8 +59,28 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void SaveSurvey(object sender, RoutedEventArgs e)
         {
-            await VM.UpdateSurvey();
-            Frame.GoBack();
+
+            if (!string.IsNullOrEmpty(VM.CurrentSurvey.SurveyTitle)
+                && !string.IsNullOrEmpty(VM.CurrentSurvey.ChannelName)
+                && !string.IsNullOrEmpty(VM.CurrentSurvey.Description))
+            {
+                if (await VM.ChannelIsAvailable())
+                {
+                    await VM.UpdateSurvey();
+                    VM.ErrorMessage = string.Empty;
+                    Frame.GoBack();
+                }
+                else
+                {
+                    VM.ErrorMessage = "The Survey Code Is Already In Use. Please Try Another.";
+                }
+            }
+            else
+            {
+                VM.ErrorMessage = "Not All The Required Fields Have Values";
+            }
+
+
         }
 
 

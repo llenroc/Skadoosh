@@ -227,6 +227,11 @@ namespace Skadoosh.Common.DomainModels
                 return (!string.IsNullOrEmpty(QuestionText));
             }
         }
+        [IgnoreDataMember]
+        public string QuestionHintText
+        {
+            get { return IsMultiSelect ? "Select all that apply" : "Single Selection"; }
+        }
       
         public Question()
         {
