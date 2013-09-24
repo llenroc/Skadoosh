@@ -61,7 +61,7 @@ namespace Skadoosh.Store.Views.Participate
 
         private async void GoToHome(object sender, RoutedEventArgs e)
         {
-            MessageDialog msg = new MessageDialog("You are exiting the survey. Do you want to save the results, cancel or return to the survey?", "Exit Survey Notification");
+            var msg = new MessageDialog("You are exiting the survey. Do you want to save the results, cancel or return to the survey?", "Exit Survey Notification");
             msg.Commands.Add(new UICommand("Save", async(a) => {
                 await VM.SaveSurveyResponses();
                 Frame.Navigate(typeof(Home), VM);

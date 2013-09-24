@@ -14,6 +14,7 @@
 
         <common:BoolToSelectionModeConverter x:Key="boolToSelectionMode"></common:BoolToSelectionModeConverter>
         <common:BooleanToVisibilityConverter x:Key="trueVisible" IsReversed="False"></common:BooleanToVisibilityConverter>
+        <common:BooleanToVisibilityConverter x:Key="falseVisible" IsReversed="True"></common:BooleanToVisibilityConverter>
         <common:IsLiveSurveyImageConverter x:Key="surveyTypeConverter"></common:IsLiveSurveyImageConverter>
 
         <DataTemplate x:Key="OptionSelectTemplate">
@@ -56,7 +57,7 @@
                           ItemsSource="{Binding Options, Mode=TwoWay}"
                           Margin="10" 
                           ItemTemplate="{StaticResource OptionSelectTemplate}" 
-                          SelectionMode="{Binding IsMultiSelect, Converter={StaticResource boolToSelectionMode}}"  ></ListView>
+                          SelectionMode="{Binding IsMultiSelect, Converter={StaticResource boolToSelectionMode}}" SelectionChanged="ListView_SelectionChanged"  ></ListView>
             </Grid>
         </DataTemplate>
 
@@ -100,10 +101,16 @@
                   ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
                   ItemTemplate="{StaticResource flipViewQuestionTemplate}"
                   SelectedItem="{Binding CurrentQuestion, Mode=TwoWay}" 
+                  Visibility="{Binding IsClosed, Converter={StaticResource falseVisible}}" 
                   TabIndex="1"
                   >
 
         </FlipView>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            Grid.Row="1"
+            Visibility="{Binding IsClosed, Converter={StaticResource trueVisible}}" >
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="36" Margin="0 60 0 0">THE SURVEY HAS CLOSED</TextBlock>
+        </StackPanel>
         <!-- Vertical scrolling list only used when snapped -->
         <ListView
             x:Name="itemListView"
@@ -126,7 +133,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton"  Margin="36,36,30,36" Height="55" Width="55" Click="GoBack" >
+            <Button x:Name="backButton"  Margin="36,36,30,36" Height="55" Width="55" Click="ExitSurvey" >
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="ms-appx:///Assets/Hand.png"></Image>
@@ -137,7 +144,7 @@
                 <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
                 <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
             </StackPanel>
-            <StackPanel Grid.Column="2">
+            <StackPanel Grid.Column="2" >
                 <TextBlock Text="{Binding CurrentSurvey.SurveyTitle}" Foreground="Black" FontSize="32" HorizontalAlignment="Right" Margin="0 36 36 0"></TextBlock>
                 <TextBlock Text="{Binding CurrentPostition}" Foreground="Black" FontSize="18" HorizontalAlignment="Right" Margin="0 5 40 0"></TextBlock>
             </StackPanel>
@@ -207,7 +214,7 @@
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Next Question"/>
+                    <Button Style="{StaticResource PauseAppBarButtonStyle}"  AutomationProperties.Name="Exit Survey" Click="ExitSurvey" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource HelpAppBarButtonStyle}" />

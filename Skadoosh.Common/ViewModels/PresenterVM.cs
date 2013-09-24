@@ -168,6 +168,16 @@ namespace Skadoosh.Common.ViewModels
                 CurrentSurvey.IsActive = false;
                 var table = AzureClient.GetTable<Survey>();
                 await table.UpdateAsync(CurrentSurvey);
+
+                var qTable = AzureClient.GetTable<Question>();
+                var actives = await qTable.Where(x => x.SurveyId == CurrentSurvey.Id && x.IsActive == true).ToListAsync();
+                foreach (var q in actives)
+                {
+                    q.IsActive = false;
+                    await qTable.UpdateAsync(q);
+                }
+                
+                
                 CanStartSurvey = (CurrentSurvey.IsLiveSurvey && !CurrentSurvey.IsActive);
                 CanStopSurvey = (CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive);
             }

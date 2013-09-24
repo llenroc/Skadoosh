@@ -102,6 +102,18 @@ namespace Skadoosh.Common.DomainModels
             }
         }
 
+        public async Task<int> UnRegisterForNotification(string deviceUri)
+        {
+            var table = AzureClient.GetTable<SurveyNotificationChannel>();
+            var existing = await table.Where(x => x.UrlNotification == deviceUri).ToListAsync();
+            if (existing.Any())
+            {
+                var item = existing.First();
+                await table.DeleteAsync(item);
+            }
+            return 0;
+
+        }
         public async Task<int> RegisterForNotification(string deviceUri, string deviceType, string channelName)
         {
             var item = new SurveyNotificationChannel

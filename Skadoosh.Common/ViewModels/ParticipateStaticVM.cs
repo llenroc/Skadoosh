@@ -15,7 +15,13 @@ namespace Skadoosh.Common.ViewModels
         private string _errorMessage;
         private bool _isLastQuestion;
         private string _currentPosition;
+        private bool _isBusy;
 
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { _isBusy = value; Notify("IsBusy"); }
+        }
         public string CurrentPostition
         {
             get { return _currentPosition; }
@@ -69,6 +75,7 @@ namespace Skadoosh.Common.ViewModels
 
         public async Task<int> SaveSurveyResponses()
         {
+            IsBusy = true;
             var table = AzureClient.GetTable<Responses>();
             foreach (var q in CurrentSurvey.Questions)
             {
@@ -80,6 +87,7 @@ namespace Skadoosh.Common.ViewModels
                     await table.InsertAsync(r);
                 }
             }
+            IsBusy = false;
             return 0;
         }
         //public async Task<int> LoadSurveysForCurrentChannel()
@@ -121,6 +129,7 @@ namespace Skadoosh.Common.ViewModels
 
         public async Task<int> FindSurveyCurrentChannel()
         {
+            IsBusy = true;
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 var results = await AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelName).ToListAsync();
@@ -156,6 +165,7 @@ namespace Skadoosh.Common.ViewModels
                 ErrorMessage = "A Survey Code Must Be Entered!";
 
             }
+            IsBusy = false;
             return 0;
         }
     }

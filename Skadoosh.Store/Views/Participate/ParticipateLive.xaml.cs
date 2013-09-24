@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
+using Skadoosh.Common.DomainModels;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -25,8 +27,8 @@ namespace Skadoosh.Store.Views.Participate
     /// </summary>
     public sealed partial class ParticipateLive : Skadoosh.Store.Common.LayoutAwarePage
     {
-        private PushNotificationChannel notificationChannel;
-        private DispatcherTimer timer;
+        private PushNotificationChannel _notificationChannel;
+        private DispatcherTimer _timer;
 
         private ParticipateLiveVM VM
         {
@@ -50,27 +52,26 @@ namespace Skadoosh.Store.Views.Participate
         protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (ParticipateLiveVM)navigationParameter;
-            notificationChannel = await Win8Notification.GetNotificationChannel();
-            notificationChannel.PushNotificationReceived += notificationChannel_PushNotificationReceived;
-          
-            await VM.RegisterForNotification(notificationChannel.Uri, "Win8", VM.CurrentSurvey.ChannelName);
+            _notificationChannel = await Win8Notification.GetNotificationChannel();
+            _notificationChannel.PushNotificationReceived += notificationChannel_PushNotificationReceived; 
+            await VM.RegisterForNotification(_notificationChannel.Uri, "Win8", VM.CurrentSurvey.ChannelName);
         }
 
         private async void notificationChannel_PushNotificationReceived(PushNotificationChannel sender, PushNotificationReceivedEventArgs args)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 5) };
-                timer.Tick += timer_Tick;
-                timer.Start();
+                _timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 5) };
+                _timer.Tick += timer_Tick;
+                _timer.Start();
             });
         }
 
         private async void timer_Tick(object sender, object e)
         {
-            timer.Tick -= timer_Tick;
-            timer.Stop();
-            timer = null;
+            _timer.Tick -= timer_Tick;
+            _timer.Stop();
+            _timer = null;
             await VM.SaveCurrentQuestionResponses();
             await VM.FindSurveyCurrentChannel();
         }
@@ -83,6 +84,49 @@ namespace Skadoosh.Store.Views.Participate
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+
+
+        private async void ExitSurvey(object sender, RoutedEventArgs e)
+        {
+            if (VM.CurrentSurvey.IsActive)
+            {
+                var msg =
+                    new MessageDialog(
+                        "You are exiting the survey. Results are automatically saved, exit or return to the survey?",
+                        "Exit Survey Notification");
+                msg.Commands.Add(new UICommand("Exit", async (a) =>
+                {
+                    await VM.SaveCurrentQuestionResponses();
+                    _notificationChannel.PushNotificationReceived -= notificationChannel_PushNotificationReceived;
+                    await VM.UnRegisterForNotification(_notificationChannel.Uri);
+                    Frame.Navigate(typeof (Home), VM);
+                }));
+                msg.Commands.Add(new UICommand("Return to Survey", (a) =>
+                {
+
+                }));
+                await msg.ShowAsync();
+            }
+            else
+            {
+                Frame.Navigate(typeof(Home), VM);
+            }
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var items = ((ListView)sender).SelectedItems;
+            foreach (var opt in VM.CurrentQuestion.Options)
+            {
+                opt.IsSelected = false;
+            }
+            foreach (var item in items)
+            {
+                var opt = (Option)item;
+                VM.CurrentQuestion.Options.First(x => x.Id == opt.Id).IsSelected = true;
+            } 
         }
     }
 }

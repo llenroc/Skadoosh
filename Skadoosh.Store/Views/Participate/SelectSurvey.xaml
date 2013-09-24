@@ -16,7 +16,7 @@
         <common:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
         <common:OneZeroConverter x:Key="OneZeroConverter"/>
         <common:BooleanToVisibilityConverter x:Key="BoolToVis" IsReversed="true" ></common:BooleanToVisibilityConverter>
-
+        <common:BooleanToVisibilityConverter x:Key="TrueIsVisible" IsReversed="false" ></common:BooleanToVisibilityConverter>
         <Style x:Key="EditFields" TargetType="TextBlock">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="FontSize" Value="26"/>
@@ -54,7 +54,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoHome" Margin="36,36,30,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
                 <Button.Template>
@@ -67,7 +67,10 @@
                 <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
                 <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
             </StackPanel>
-
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding IsBusy, Converter={StaticResource TrueIsVisible}}">
+                <ProgressRing IsActive="True" IsEnabled="True"  Height="45" Width="45"  Margin="0 0 15 10" Foreground="#FF4F00"/>
+                <TextBlock Foreground="#FF4F00" FontSize="36" Margin="5 45 20 0">Searching...</TextBlock>
+            </StackPanel>
         </Grid>
         <Grid Visibility="Collapsed" x:Name="SnappedHeader">
             <Grid.ColumnDefinitions>
@@ -83,7 +86,7 @@
         </Grid>
 
 
-        <Border Grid.Row="1"  Padding="20" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="10">
+        <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="10">
             <Grid>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -103,8 +106,9 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
+                
 
-
+               
                 <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="5"  Source="ms-appx:///Assets/YY.png" VerticalAlignment="Top" Width="136" Margin="10 10 10 0"/>
                 
                 <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Style="{StaticResource EditFields}" HorizontalAlignment="Left" FontSize="36" FontWeight="Bold">Survey Selection:</TextBlock>
@@ -121,6 +125,8 @@
                 <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource EditFields}" HorizontalAlignment="Left" Text="{Binding ErrorMessage, Mode=TwoWay}" Foreground="#FFE80707" FontWeight="Bold"></TextBlock>
 
             </Grid>
+            
+
         </Border>
         <VisualStateManager.VisualStateGroups>
 
@@ -152,7 +158,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>
-
+ 
     <Page.BottomAppBar>
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>

@@ -14,8 +14,21 @@ namespace Skadoosh.Common.ViewModels
         private Question _currentQuestion;
         private string _channelName;
         private string _errorMessage;
+        private bool _isBusy;
+        private bool _isClosed;
 
-        
+        public bool IsClosed
+        {
+            get { return _isClosed; }
+            set { _isClosed = value; Notify("IsClosed"); }
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { _isBusy = value; Notify("IsBusy"); }
+        }
+
         public string ErrorMessage
         {
             get { return _errorMessage; }
@@ -51,6 +64,7 @@ namespace Skadoosh.Common.ViewModels
 
         public async Task<int> SaveCurrentQuestionResponses()
         {
+            IsBusy = true;
             var table = AzureClient.GetTable<Responses>();
             foreach (var q in CurrentSurvey.Questions)
             {
@@ -62,6 +76,7 @@ namespace Skadoosh.Common.ViewModels
                     await table.InsertAsync(r);
                 }
             }
+            IsBusy = false;
             return 0;
         }
 
@@ -74,12 +89,19 @@ namespace Skadoosh.Common.ViewModels
                 if (results.Any())
                 {
                     CurrentQuestion = results.First();
-                    var subResults = await AzureClient.GetTable<Option>().Where(x => x.QuestionId == CurrentQuestion.Id).ToListAsync();
+                    var subResults =
+                        await
+                            AzureClient.GetTable<Option>().Where(x => x.QuestionId == CurrentQuestion.Id).ToListAsync();
                     foreach (var o in subResults)
                     {
                         CurrentQuestion.Options.Add(o);
                     }
                     CurrentSurvey.Questions.Add(CurrentQuestion);
+                }
+                else
+                {
+                    CurrentSurvey.IsActive = false;
+                    IsClosed = true;
                 }
             }
             return 0;
@@ -87,6 +109,7 @@ namespace Skadoosh.Common.ViewModels
 
         public async Task<int> FindSurveyCurrentChannel()
         {
+            IsBusy = true;
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 var results = await AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelName).ToListAsync();
@@ -122,6 +145,7 @@ namespace Skadoosh.Common.ViewModels
                 ErrorMessage = "A Survey Code Must Be Entered!";
 
             }
+            IsBusy = false;
             return 0;
         }
     }
