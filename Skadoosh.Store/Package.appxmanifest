@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Skadoosh.Store.App">
-      <VisualElements DisplayName="Skadoosh" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Skadoosh.Store" ForegroundText="light" BackgroundColor="#ffffff">
+      <VisualElements DisplayName="Skadoosh" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Skadoosh.Store" ForegroundText="dark" BackgroundColor="#ffffff" ToastCapable="true">
         <DefaultTile ShowName="allLogos" ShortName="Skadoosh" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#ffffff" />
         <InitialRotationPreference>

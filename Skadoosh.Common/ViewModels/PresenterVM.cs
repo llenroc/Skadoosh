@@ -12,15 +12,15 @@ namespace Skadoosh.Common.ViewModels
     public class PresenterVM : ViewModelBase
     {
         #region private variables
-        private ObservableCollection<Survey> surveyCollection;
-        private Survey currentSurvey;
-        private Question currentQuestion;
-        private bool isSurveySelected;
-        private bool isQuestionSelected;
-        private bool canSetActive;
-        private bool canStartSurvey;
-        private bool canStopSurvey;
-        private string errorMessage;
+        private ObservableCollection<Survey> _surveyCollection;
+        private Survey _currentSurvey;
+        private Question _currentQuestion;
+        private bool _isSurveySelected;
+        private bool _isQuestionSelected;
+        private bool _canSetActive;
+        private bool _canStartSurvey;
+        private bool _canStopSurvey;
+        private string _errorMessage;
          
         #endregion
 
@@ -28,47 +28,47 @@ namespace Skadoosh.Common.ViewModels
 
         public string ErrorMessage
         {
-            get { return errorMessage; }
-            set { errorMessage = value; Notify("ErrorMessage"); }
+            get { return _errorMessage; }
+            set { _errorMessage = value; Notify("ErrorMessage"); }
         }
         public bool CanStopSurvey
         {
-            get { return canStopSurvey; }
-            set { canStopSurvey = value; Notify("CanStopSurvey"); }
+            get { return _canStopSurvey; }
+            set { _canStopSurvey = value; Notify("CanStopSurvey"); }
         }
 
         public bool CanStartSurvey
         {
-            get { return canStartSurvey; }
-            set { canStartSurvey = value; Notify("CanStartSurvey"); }
+            get { return _canStartSurvey; }
+            set { _canStartSurvey = value; Notify("CanStartSurvey"); }
         }
 
         public bool CanSetActive
         {
-            get { return canSetActive; }
-            set { canSetActive = value; Notify("CanSetActive"); }
+            get { return _canSetActive; }
+            set { _canSetActive = value; Notify("CanSetActive"); }
         }
 
         public bool IsQuestionSelected
         {
-            get { return isQuestionSelected; }
-            set { isQuestionSelected = value; Notify("IsQuestionSelected"); }
+            get { return _isQuestionSelected; }
+            set { _isQuestionSelected = value; Notify("IsQuestionSelected"); }
         }
 
         public bool IsSurveySelected
         {
-            get { return isSurveySelected; }
-            set { isSurveySelected = value; Notify("IsSurveySelected"); }
+            get { return _isSurveySelected; }
+            set { _isSurveySelected = value; Notify("IsSurveySelected"); }
         }
 
         public bool IsLoading { get; set; }
 
         public Question CurrentQuestion
         {
-            get { return currentQuestion; }
+            get { return _currentQuestion; }
             set
             {
-                currentQuestion = value;
+                _currentQuestion = value;
                 IsQuestionSelected = value != null ? true : false;
                 CanSetActive = (value != null && CurrentSurvey.IsLiveSurvey) ? true : false;
                 Notify("CurrentQuestion");
@@ -77,10 +77,10 @@ namespace Skadoosh.Common.ViewModels
 
         public Survey CurrentSurvey
         {
-            get { return currentSurvey; }
+            get { return _currentSurvey; }
             set
             {
-                currentSurvey = value;
+                _currentSurvey = value;
                 IsSurveySelected = value != null ? true : false;
                 CanStartSurvey = (value != null && CurrentSurvey.IsLiveSurvey && !CurrentSurvey.IsActive);
                 CanStopSurvey = (value != null && CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive);
@@ -90,8 +90,8 @@ namespace Skadoosh.Common.ViewModels
 
         public ObservableCollection<Survey> SurveyCollection
         {
-            get { return surveyCollection; }
-            set { surveyCollection = value; Notify("SurveyCollection"); }
+            get { return _surveyCollection; }
+            set { _surveyCollection = value; Notify("SurveyCollection"); }
         } 
         #endregion
 
@@ -108,7 +108,7 @@ namespace Skadoosh.Common.ViewModels
             var table = AzureClient.GetTable<Survey>();
             if (CurrentSurvey != null && CurrentSurvey.Id != 0)
             {
-                await DeleteQuestionBySurvey(currentSurvey.Id);
+                await DeleteQuestionBySurvey(_currentSurvey.Id);
                 await table.DeleteAsync(CurrentSurvey);
                 SurveyCollection.Remove(CurrentSurvey);
                 CurrentSurvey = null;
@@ -205,7 +205,7 @@ namespace Skadoosh.Common.ViewModels
             var table = AzureClient.GetTable<Question>();
             await DeleteOptionByQuestionId(CurrentQuestion.Id);
             await table.DeleteAsync(CurrentQuestion);
-            currentSurvey.Questions.Remove(CurrentQuestion);
+            _currentSurvey.Questions.Remove(CurrentQuestion);
             CurrentQuestion = null;
         }
         public async Task<int> UpdateQuestion()
@@ -227,7 +227,7 @@ namespace Skadoosh.Common.ViewModels
 
                 await table.UpdateAsync(CurrentQuestion);
                 var optTable = AzureClient.GetTable<Option>();
-                for (int x = currentQuestion.Options.Count - 1; x > -1; x--)
+                for (int x = _currentQuestion.Options.Count - 1; x > -1; x--)
                 {
                     var opt = CurrentQuestion.Options[x];
                     if (opt.IsDeleted)
@@ -264,7 +264,7 @@ namespace Skadoosh.Common.ViewModels
         {
             if (CurrentSurvey != null)
             {
-                currentSurvey.Questions.Clear();
+                _currentSurvey.Questions.Clear();
                 var results = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync();
 
                 foreach (var q in results)
@@ -274,7 +274,7 @@ namespace Skadoosh.Common.ViewModels
                     {
                         q.Options.Add(o);
                     }
-                    currentSurvey.Questions.Add(q);
+                    _currentSurvey.Questions.Add(q);
                 }
                 return CurrentSurvey.Questions.Count;
             }

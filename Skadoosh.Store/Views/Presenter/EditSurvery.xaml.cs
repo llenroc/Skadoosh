@@ -64,16 +64,26 @@ namespace Skadoosh.Store.Views.Presenter
                 && !string.IsNullOrEmpty(VM.CurrentSurvey.ChannelName)
                 && !string.IsNullOrEmpty(VM.CurrentSurvey.Description))
             {
-                if (await VM.ChannelIsAvailable())
+                if (VM.CurrentSurvey.IsNew)
+                {
+                    if (await VM.ChannelIsAvailable())
+                    {
+                        await VM.UpdateSurvey();
+                        VM.ErrorMessage = string.Empty;
+                        Frame.GoBack();
+                    }
+                    else
+                    {
+                        VM.ErrorMessage = "The Survey Code Is Already In Use. Please Try Another.";
+                    }
+                }
+                else
                 {
                     await VM.UpdateSurvey();
                     VM.ErrorMessage = string.Empty;
                     Frame.GoBack();
                 }
-                else
-                {
-                    VM.ErrorMessage = "The Survey Code Is Already In Use. Please Try Another.";
-                }
+
             }
             else
             {

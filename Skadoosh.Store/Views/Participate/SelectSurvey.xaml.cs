@@ -67,7 +67,11 @@ namespace Skadoosh.Store.Views.Participate
             }
             else
             {
-
+                var result = await ((ParticipateLiveVM)baseVM).FindSurveyCurrentChannel();
+                if (result == 1)
+                {
+                    Frame.Navigate(typeof(ParticipateLive), baseVM);
+                }
             }
         }
 

@@ -44,7 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAzure.MobileServices.Android">
-      <HintPath>..\Resources\Droid\Microsoft.WindowsAzure.MobileServices.Android.dll</HintPath>
+      <HintPath>..\..\..\..\Dropbox\Mobile Common\Resources\Droid\Microsoft.WindowsAzure.MobileServices.Android.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
@@ -55,11 +55,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Skadoosh.Common\DomainModels\AccountUser.cs">
+      <Link>DomainModels\AccountUser.cs</Link>
+    </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\NotifyBase.cs">
       <Link>DomainModels\NotifyBase.cs</Link>
     </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\Option.cs">
+      <Link>DomainModels\Option.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\Question.cs">
+      <Link>DomainModels\Question.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\Responses.cs">
+      <Link>DomainModels\Responses.cs</Link>
+    </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\Survey.cs">
       <Link>DomainModels\Survey.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\SurveyNotificationChannel.cs">
+      <Link>DomainModels\SurveyNotificationChannel.cs</Link>
     </Compile>
     <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
       <Link>ViewModel\ParticipateLiveVM.cs</Link>

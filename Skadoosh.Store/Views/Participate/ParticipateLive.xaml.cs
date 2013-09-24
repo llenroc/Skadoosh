@@ -1,10 +1,13 @@
-﻿using Skadoosh.Common.ViewModels;
+﻿using Windows.UI.Core;
+using Skadoosh.Common.ViewModels;
+using Skadoosh.Store.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.PushNotifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,6 +25,14 @@ namespace Skadoosh.Store.Views.Participate
     /// </summary>
     public sealed partial class ParticipateLive : Skadoosh.Store.Common.LayoutAwarePage
     {
+        private PushNotificationChannel notificationChannel;
+        private DispatcherTimer timer;
+
+        private ParticipateLiveVM VM
+        {
+            get { return (ParticipateLiveVM)this.DataContext; }
+            set { this.DataContext = value; }
+        }
         public ParticipateLive()
         {
             this.InitializeComponent();
@@ -36,9 +47,32 @@ namespace Skadoosh.Store.Views.Participate
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            this.DataContext = (ParticipateLiveVM)navigationParameter;
+            VM = (ParticipateLiveVM)navigationParameter;
+            notificationChannel = await Win8Notification.GetNotificationChannel();
+            notificationChannel.PushNotificationReceived += notificationChannel_PushNotificationReceived;
+          
+            await VM.RegisterForNotification(notificationChannel.Uri, "Win8", VM.CurrentSurvey.ChannelName);
+        }
+
+        private async void notificationChannel_PushNotificationReceived(PushNotificationChannel sender, PushNotificationReceivedEventArgs args)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 5) };
+                timer.Tick += timer_Tick;
+                timer.Start();
+            });
+        }
+
+        private async void timer_Tick(object sender, object e)
+        {
+            timer.Tick -= timer_Tick;
+            timer.Stop();
+            timer = null;
+            await VM.SaveCurrentQuestionResponses();
+            await VM.FindSurveyCurrentChannel();
         }
 
         /// <summary>

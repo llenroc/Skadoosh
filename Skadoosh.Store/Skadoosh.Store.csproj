@@ -100,11 +100,26 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Skadoosh.Common\DomainModels\AccountUser.cs">
+      <Link>Models\AccountUser.cs</Link>
+    </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\NotifyBase.cs">
       <Link>Models\NotifyBase.cs</Link>
     </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\Option.cs">
+      <Link>Models\Option.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\Question.cs">
+      <Link>Models\Question.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\Responses.cs">
+      <Link>Models\Responses.cs</Link>
+    </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\Survey.cs">
       <Link>Models\Survey.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\SurveyNotificationChannel.cs">
+      <Link>Models\SurveyNotificationChannel.cs</Link>
     </Compile>
     <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
       <Link>ViewModel\ParticipateLiveVM.cs</Link>
@@ -119,6 +134,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BindableBase.cs" />
+    <Compile Include="Common\BoolToSelectionModeConverter.cs" />
+    <Compile Include="Common\IsActiveHeaderStyleConverter.cs" />
+    <Compile Include="Common\IsLiveSurveyImageConverter.cs" />
+    <Compile Include="Common\IsMultiQuestionImageConverter.cs" />
+    <Compile Include="Common\Win8Notification.cs" />
+    <Compile Include="Common\StringExtenstions.cs" />
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -127,6 +148,9 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Views\Participate\ParticipateLive.xaml.cs">
+      <DependentUpon>ParticipateLive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Participate\ParticipateStatic.xaml.cs">
       <DependentUpon>ParticipateStatic.xaml</DependentUpon>
     </Compile>
@@ -218,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Participate\ParticipateLive.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -32,54 +32,6 @@ namespace Skadoosh.Common.DomainModels
         }
     }
 
-    //public class ParticipateBase : ViewModelBase
-    //{
-    //    private string channelSelected;
-    //    private Survey selectedSurvey;
-    //    private bool isLoggedIn;
-
-    //    public bool IsLoggedIn
-    //    {
-    //        get { return isLoggedIn; }
-    //        set { isLoggedIn = value; Notify("IsLoggedIn");}
-    //    }
-        
-    //    public Survey SelectedSurvey
-    //    {
-    //        get { return selectedSurvey; }
-    //        set { selectedSurvey = value; Notify("SelectedSurvey"); }
-    //    }
-
-    //    public string ChannelSelected
-    //    {
-    //        get
-    //        {
-    //            return channelSelected;
-    //        }
-    //        set
-    //        {
-    //            channelSelected = value; Notify("ChannelSelected");
-    //        }
-    //    }
-
-    //    public async Task<bool> FindSurvey()
-    //    {
-    //        var list = AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelSelected).ToListAsync();
-    //        var collection = await list;
-    //        var survey = collection.FirstOrDefault();
-    //        if (survey != null)
-    //        {
-    //            SelectedSurvey = survey;
-    //            return true;
-    //        }
-    //        else
-    //        {
-    //            return false;
-    //        }
-    //    }
-    //}
-
-
     public class ViewModelBase : NotifyBase
     {
 
@@ -148,6 +100,26 @@ namespace Skadoosh.Common.DomainModels
                 User.UserId = AzureClient.CurrentUser.UserId;
                 return false;
             }
+        }
+
+        public async Task<int> RegisterForNotification(string deviceUri, string deviceType, string channelName)
+        {
+            var item = new SurveyNotificationChannel
+            {
+                UrlNotification = deviceUri,
+                ChannelName = channelName,
+                ChannelExpirationDate = DateTime.Now.AddDays(30),
+                ClientType = deviceType
+            };
+            var table = AzureClient.GetTable<SurveyNotificationChannel>();
+            var existing = await table.Where(x => x.UrlNotification == deviceUri).ToListAsync();
+            if (existing.Any())
+            {
+                item = existing.First();
+                await table.DeleteAsync(item);
+            }
+            await table.InsertAsync(item);
+            return item.Id;
         }
 
     }

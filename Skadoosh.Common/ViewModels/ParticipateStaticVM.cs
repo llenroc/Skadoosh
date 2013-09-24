@@ -9,43 +9,43 @@ namespace Skadoosh.Common.ViewModels
 {
     public class ParticipateStaticVM : ViewModelBase
     {
-        private Survey currentSurvey;
-        private Question currentQuestion;
-        private string channelName;
-        private string errorMessage;
-        private bool isLastQuestion;
-        private string currentPosition;
+        private Survey _currentSurvey;
+        private Question _currentQuestion;
+        private string _channelName;
+        private string _errorMessage;
+        private bool _isLastQuestion;
+        private string _currentPosition;
 
         public string CurrentPostition
         {
-            get { return currentPosition; }
-            set { currentPosition = value; Notify("CurrentPostition"); }
+            get { return _currentPosition; }
+            set { _currentPosition = value; Notify("CurrentPostition"); }
         }
         
         public bool IsLastQuestion
         {
-            get { return isLastQuestion; }
-            set { isLastQuestion = value; Notify("IsLastQuestion"); }
+            get { return _isLastQuestion; }
+            set { _isLastQuestion = value; Notify("IsLastQuestion"); }
         }
 
         public string ErrorMessage
         {
-            get { return errorMessage; }
-            set { errorMessage = value; Notify("ErrorMessage"); }
+            get { return _errorMessage; }
+            set { _errorMessage = value; Notify("ErrorMessage"); }
         }
         
         public string ChannelName
         {
-            get { return channelName; }
-            set { channelName = value; Notify("ChannelName"); }
+            get { return _channelName; }
+            set { _channelName = value; Notify("ChannelName"); }
         }
         
         public Question CurrentQuestion
         {
-            get { return currentQuestion; }
+            get { return _currentQuestion; }
             set
             {
-                currentQuestion = value;
+                _currentQuestion = value;
                 IsLastQuestion = (CurrentSurvey.Questions.Last().Id == value.Id);
                 CurrentPostition = (CurrentSurvey.Questions.IndexOf(value) + 1) + " of " + CurrentSurvey.Questions.Count;
                 Notify("CurrentQuestion");
@@ -54,10 +54,10 @@ namespace Skadoosh.Common.ViewModels
 
         public Survey CurrentSurvey
         {
-            get { return currentSurvey; }
+            get { return _currentSurvey; }
             set
             {
-                currentSurvey = value;
+                _currentSurvey = value;
                 Notify("CurrentSurvey");
             }
         }
@@ -82,26 +82,26 @@ namespace Skadoosh.Common.ViewModels
             }
             return 0;
         }
-        public async Task<int> LoadSurveysForCurrentChannel()
-        {
-            if (!string.IsNullOrEmpty(this.ChannelName))
-            {
-                var results = await AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelName).ToListAsync();
-                if (results != null && results.Any())
-                {
-                    CurrentSurvey = results.First();
-                    await LoadQuestionsForCurrentSurvey();
+        //public async Task<int> LoadSurveysForCurrentChannel()
+        //{
+        //    if (!string.IsNullOrEmpty(this.ChannelName))
+        //    {
+        //        var results = await AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelName).ToListAsync();
+        //        if (results != null && results.Any())
+        //        {
+        //            CurrentSurvey = results.First();
+        //            await LoadQuestionsForCurrentSurvey();
                     
-                }
-            }
-            return 0;
-        }
+        //        }
+        //    }
+        //    return 0;
+        //}
 
         public async Task<int> LoadQuestionsForCurrentSurvey()
         {
             if (CurrentSurvey != null)
             {
-                currentSurvey.Questions.Clear();
+                CurrentSurvey.Questions.Clear();
                 var results = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync();
 
                 foreach (var q in results)
@@ -111,7 +111,7 @@ namespace Skadoosh.Common.ViewModels
                     {
                         q.Options.Add(o);
                     }
-                    currentSurvey.Questions.Add(q);
+                    CurrentSurvey.Questions.Add(q);
                 }
                 CurrentQuestion = CurrentSurvey.Questions.First();
                 return CurrentSurvey.Questions.Count;

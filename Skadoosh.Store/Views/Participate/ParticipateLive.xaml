@@ -11,36 +11,72 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+
+        <common:BoolToSelectionModeConverter x:Key="boolToSelectionMode"></common:BoolToSelectionModeConverter>
         <common:BooleanToVisibilityConverter x:Key="trueVisible" IsReversed="False"></common:BooleanToVisibilityConverter>
         <common:IsLiveSurveyImageConverter x:Key="surveyTypeConverter"></common:IsLiveSurveyImageConverter>
-        <DataTemplate x:Key="Survey250x250ItemTemplate">
-            <Grid HorizontalAlignment="Left" Width="250" Height="250" DoubleTapped="SurveySelected" RightTapped="ShowAppBar" >
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                    <Image Source="{Binding IsLiveSurvey, Converter={StaticResource surveyTypeConverter}}" Stretch="UniformToFill" Margin="20" Opacity="0.7" AutomationProperties.Name="{Binding Title}"/>
-                </Border>
-                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
-                    <TextBlock Text="{Binding ChannelName}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10" HorizontalAlignment="Right"/>
-                </StackPanel>
+
+        <DataTemplate x:Key="OptionSelectTemplate">
+            <StackPanel Orientation="Horizontal" MinWidth="300" >
+
+                <TextBlock  Margin="5 10 0 10">&#x2610;</TextBlock>
+                <TextBlock Text="{Binding OptionText}" Margin="10"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="flipViewQuestionTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Foreground="Black" Margin="0 10 0 10"  FontSize="32">Q:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding QuestionText}" Foreground="Black" Margin="10"  FontSize="32"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding QuestionHintText}" HorizontalAlignment="left" Foreground="Black" Margin="10" FontSize="18"></TextBlock>
+                </Grid>
+
+
+                <ListView Grid.Row="1" Foreground="Black"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Center"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                          ItemsSource="{Binding Options, Mode=TwoWay}"
+                          Margin="10" 
+                          ItemTemplate="{StaticResource OptionSelectTemplate}" 
+                          SelectionMode="{Binding IsMultiSelect, Converter={StaticResource boolToSelectionMode}}"  ></ListView>
             </Grid>
         </DataTemplate>
+
         <DataTemplate x:Key="Survey80ItemTemplate">
-            <Grid Margin="6">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="60" Height="60">
-                    <Image Source="{Binding IsLiveSurvey, Converter={StaticResource surveyTypeConverter}}" Stretch="UniformToFill"/>
-                </Border>
-                <StackPanel Grid.Column="1" Margin="10,0,0,0" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock  Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
-                    <TextBlock  Text="{Binding ChannelName}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
-                </StackPanel>
-            </Grid>
+            <!--<Grid Margin="6">
+                 <Grid.ColumnDefinitions>
+                 <ColumnDefinition Width="Auto"/>
+                 <ColumnDefinition Width="*"/>
+                 </Grid.ColumnDefinitions>
+                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="60" Height="60">
+                 <Image Source="{Binding IsLiveSurvey, Converter={StaticResource surveyTypeConverter}}" Stretch="UniformToFill"/>
+                 </Border>
+                 <StackPanel Grid.Column="1" Margin="10,0,0,0" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                 <TextBlock  Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
+                 <TextBlock  Text="{Binding ChannelName}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
+                 </StackPanel>
+                 </Grid>-->
         </DataTemplate>
         <!-- Collection of items displayed by this page -->
-        <CollectionViewSource x:Name="itemsViewSource" Source="{Binding SurveyCollection}"/>
+        <CollectionViewSource x:Name="itemsViewSource" Source="{Binding CurrentSurvey.Questions}"/>
 
         <x:String x:Key="AppName">Survey Administration</x:String>
     </Page.Resources>
@@ -55,22 +91,19 @@
             <ImageBrush ImageSource="ms-appx:///Assets/skadooshBck.png"  ></ImageBrush>
         </Grid.Background>
 
+        <!-- FlipView for question-->
+        <FlipView x:Name="itemFlipView"
+                  Padding="116,136,116,46"
+                  AutomationProperties.AutomationId="ItemsFlipView"
+                  AutomationProperties.Name="items"
+                  Grid.RowSpan="2"
+                  ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+                  ItemTemplate="{StaticResource flipViewQuestionTemplate}"
+                  SelectedItem="{Binding CurrentQuestion, Mode=TwoWay}" 
+                  TabIndex="1"
+                  >
 
-        
-        <!-- Horizontal scrolling grid used in most view states -->
-        <GridView
-            x:Name="itemGridView"
-            AutomationProperties.AutomationId="ItemsGridView"
-            AutomationProperties.Name="items"
-            TabIndex="1"
-            Grid.RowSpan="2"
-            Padding="116,136,116,46"
-            ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Survey250x250ItemTemplate}" 
-            SelectedItem="{Binding CurrentSurvey,Mode=TwoWay}"
-            SelectionMode="Single" 
-            IsSwipeEnabled="false"/>
-
+        </FlipView>
         <!-- Vertical scrolling list only used when snapped -->
         <ListView
             x:Name="itemListView"
@@ -82,7 +115,7 @@
             Margin="0,-10,0,0"
             Padding="10,0,0,60"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Survey80ItemTemplate}"
+            ItemTemplate="{StaticResource Survey80ItemTemplate}" 
             SelectionMode="None" 
             IsSwipeEnabled="false"/>
 
@@ -91,9 +124,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoToHome" Margin="36,36,30,36" Height="55" Width="55" >
+            <Button x:Name="backButton"  Margin="36,36,30,36" Height="55" Width="55" Click="GoBack" >
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="ms-appx:///Assets/Hand.png"></Image>
@@ -104,13 +137,17 @@
                 <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
                 <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
             </StackPanel>
+            <StackPanel Grid.Column="2">
+                <TextBlock Text="{Binding CurrentSurvey.SurveyTitle}" Foreground="Black" FontSize="32" HorizontalAlignment="Right" Margin="0 36 36 0"></TextBlock>
+                <TextBlock Text="{Binding CurrentPostition}" Foreground="Black" FontSize="18" HorizontalAlignment="Right" Margin="0 5 40 0"></TextBlock>
+            </StackPanel>
 
         </Grid>
         <Grid Visibility="Collapsed" x:Name="SnappedHeader">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Click="GoHome" Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+            <Button Click="GoBack" Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="ms-appx:///Assets/SplashScreen.png" Stretch="UniformToFill" ></Image>
@@ -132,7 +169,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Padding">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemFlipView" Storyboard.TargetProperty="Padding">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="96,136,86,56"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
@@ -149,7 +186,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Visibility">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemFlipView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
 
@@ -170,7 +207,7 @@
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Start Survey"  Visibility="{Binding CanStartSurvey,Converter={StaticResource trueVisible}}" Click="StartSurvey"/>
+                    <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Next Question"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource HelpAppBarButtonStyle}" />

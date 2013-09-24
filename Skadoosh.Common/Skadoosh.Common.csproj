@@ -33,7 +33,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DomainModels\AccountUser.cs" />
     <Compile Include="DomainModels\NotifyBase.cs" />
+    <Compile Include="DomainModels\Option.cs" />
+    <Compile Include="DomainModels\Question.cs" />
+    <Compile Include="DomainModels\Responses.cs" />
+    <Compile Include="DomainModels\SurveyNotificationChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DomainModels\Survey.cs" />
     <Compile Include="ViewModels\ParticipateLiveVM.cs" />
