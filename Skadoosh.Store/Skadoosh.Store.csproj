@@ -203,8 +203,6 @@
     <Content Include="Assets\presenter.png" />
     <Content Include="Assets\Profile.png" />
     <Content Include="Assets\Profile1.png" />
-    <Content Include="Assets\RisingSun2.png" />
-    <Content Include="Assets\RisingWhite.png" />
     <Content Include="Assets\single.png" />
     <Content Include="Assets\skadooshBck.png" />
     <Content Include="Assets\skadooshOnly.png" />
@@ -215,18 +213,6 @@
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\strip.png" />
     <Content Include="Assets\SurveryEdit.png" />
-    <Content Include="Assets\ToggleState\GreenButton_Hover.png" />
-    <Content Include="Assets\ToggleState\GreenButton_Idle.png" />
-    <Content Include="Assets\ToggleState\GreenButton_Pressed.png" />
-    <Content Include="Assets\ToggleState\RedButton_Disabled.png" />
-    <Content Include="Assets\ToggleState\RedButton_Hover.png" />
-    <Content Include="Assets\ToggleState\RedButton_Idle.png" />
-    <Content Include="Assets\ToggleState\RedButton_Pressed.png" />
-    <Content Include="Assets\ToggleState\RedButtonMultiScale.scale-100.png" />
-    <Content Include="Assets\ToggleState\RedButtonMultiScale.scale-140.png" />
-    <Content Include="Assets\ToggleState\RedButtonMultiScale.scale-180.png" />
-    <Content Include="Assets\ToggleState\GrayButton.png" />
-    <Content Include="Assets\ToggleState\GreenButton_Disabled.png" />
     <Content Include="Assets\twitter.png" />
     <Content Include="Assets\YY.png" />
     <Content Include="Common\ReadMe.txt" />

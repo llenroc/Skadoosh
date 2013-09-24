@@ -52,7 +52,6 @@
     <Compile Include="Services\SqlLiteService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

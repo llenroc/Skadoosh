@@ -12,11 +12,13 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Skadoosh.Common.DomainModels;
 
 namespace Skadoosh.Phone
 {
     public partial class App : Application
     {
+        public static ViewModelBase ApplicationVM { get; set; }
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>

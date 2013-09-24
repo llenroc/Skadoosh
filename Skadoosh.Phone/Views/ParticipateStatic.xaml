@@ -1,0 +1,90 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Skadoosh.Phone.Views.ParticipateStatic"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush  ImageSource="/Assets/ViewBackground.png" />
+        </Grid.Background>
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <Image Source="/Assets/PhoneHeader.png" Margin="40 5 40 0" DoubleTap="GoBack"></Image>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+
+        <Border x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Background="LightGray" Opacity="0.9" CornerRadius="10" Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Foreground="Black" Margin="0 10 0 10"  FontSize="32">Q:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentQuestion.QuestionText}" Foreground="Black" Margin="10"  FontSize="32"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentQuestion.QuestionHintText}" HorizontalAlignment="left" Foreground="Black" Margin="10" FontSize="18"></TextBlock>
+                </Grid>
+
+
+                <ListBox Grid.Row="1" Foreground="Black"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Center"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                          ItemsSource="{Binding CurrentQuestion.Options, Mode=TwoWay}"
+                          Margin="10" 
+                          SelectionMode="{Binding CurrentQuestion.IsMultiSelect, Converter={StaticResource boolToSelectionMode}}"  
+                         >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" MinWidth="300" >
+
+                                    <TextBlock  Margin="5 10 0 10">&#x2610;</TextBlock>
+                                    <TextBlock Text="{Binding OptionText}" Margin="10"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                </ListBox>
+
+            </Grid>
+
+
+        </Border>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Assets/Previous.png" Text="Back" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/Next.png" Text="Next" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/Help.png" Text="Help"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

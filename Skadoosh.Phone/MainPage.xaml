@@ -11,23 +11,54 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" >
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        <Grid.Background>
+            <ImageBrush  ImageSource="Assets/ViewBackground.png" />
+        </Grid.Background>
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <Image Source="Assets/PhoneHeader.png" Margin="40 5 40 0"></Image>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"></Grid>
+        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="40">
+                <Grid HorizontalAlignment="Center" Width="150" Height="150" x:Name="btnParticipate" Margin="10" Opacity="0.9" DoubleTap="NavigateToSelectSurvey">
+                <Border Background="#3d3d3d" CornerRadius="10" >
+                    <Image Source="Assets/Participate.png" Margin="20"  Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                </Border>
+                <Border Background="#151515" CornerRadius="10" VerticalAlignment="Bottom" Opacity="0.95">
+                    <StackPanel >
+                        <TextBlock Text="Live" Foreground="white"  Height="30" Margin="15,0,15,0" FontSize="22"/>
+                        <TextBlock Text="Real-time survey" Foreground="white" FontSize="14"  TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+                <Grid HorizontalAlignment="Center" Width="150" Height="150"  x:Name="btnGroupInvite" Margin="10" Opacity="0.9" DoubleTap="NavigateToSelectSurvey">
+                <Border Background="#3d3d3d" CornerRadius="10" >
+                        <Image Source="Assets/Group.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                </Border>
+                <Border Background="#151515" CornerRadius="10" VerticalAlignment="Bottom" Opacity="0.95">
+                    <StackPanel >
+                        <TextBlock Text="Survey" Foreground="white"  Height="30" Margin="15,0,15,0" FontSize="22"/>
+                        <TextBlock Text="Archived" Foreground="white" FontSize="14"  TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            </StackPanel>
+        </StackPanel>
     </Grid>
- 
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Assets/Help.png" Text="Help"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
 </phone:PhoneApplicationPage>

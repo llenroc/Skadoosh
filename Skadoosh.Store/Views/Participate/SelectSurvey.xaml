@@ -163,7 +163,7 @@
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource GoAppBarButtonStyle}"  AutomationProperties.Name="Select" Click="FindSuvey"  />
+                    <Button Style="{StaticResource GoAppBarButtonStyle}"  AutomationProperties.Name="Find" Click="FindSuvey"  />
                     <Button Style="{StaticResource DiscardAppBarButtonStyle}" AutomationProperties.Name="Cancel" Click="GoBack"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
