@@ -23,8 +23,8 @@
             <ImageBrush  ImageSource="/Assets/ViewBackground.png" />
         </Grid.Background>
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <Image Source="/Assets/PhoneHeader.png" Margin="40 5 40 0" DoubleTap="GoBack"></Image>
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28" DoubleTap="GoToHome">
+            <Image Source="/Assets/PhoneHeader.png" Margin="40 5 40 0" ></Image>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -38,7 +38,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Margin="5">
                     <Grid.ColumnDefinitions>
@@ -50,8 +51,12 @@
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Foreground="Black" Margin="0 10 0 10"  FontSize="32">Q:</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentQuestion.QuestionText}" Foreground="Black" Margin="10"  FontSize="32"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentQuestion.QuestionHintText}" HorizontalAlignment="left" Foreground="Black" Margin="10" FontSize="18"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentQuestion.QuestionText}" Foreground="Black" Margin="10"  FontSize="32" TextWrapping="Wrap"></TextBlock>
+                  
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentQuestion.QuestionHintText}" HorizontalAlignment="left" Foreground="Black" Margin="10" FontSize="18"></TextBlock>
+                        
+                 
+                    
                 </Grid>
 
 
@@ -61,19 +66,29 @@
                           ScrollViewer.VerticalScrollBarVisibility="Auto" 
                           ItemsSource="{Binding CurrentQuestion.Options, Mode=TwoWay}"
                           Margin="10" 
-                          SelectionMode="{Binding CurrentQuestion.IsMultiSelect, Converter={StaticResource boolToSelectionMode}}"  
+                          SelectionMode="{Binding CurrentQuestion.IsMultiSelect, Converter={StaticResource boolToSelectionMode}}" 
                          >
-                        <ListBox.ItemTemplate>
+                    <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" MinWidth="300" >
+                            <StackPanel 
+                                Orientation="Horizontal" 
+                                MinWidth="300" 
+                                
+                                Background="{Binding IsSelected, Converter={StaticResource boolListItemBackGround}, Mode=TwoWay}" Tap="ItemTapped" >
 
-                                    <TextBlock  Margin="5 10 0 10">&#x2610;</TextBlock>
-                                    <TextBlock Text="{Binding OptionText}" Margin="10"></TextBlock>
+                                    <TextBlock  Margin="5 10 0 10"
+                                                Foreground="{Binding IsSelected,Converter={StaticResource boolListItemOptionBackGround}, Mode=TwoWay}"
+                                                >&#x2610;</TextBlock>
+                                    <TextBlock 
+                                        Foreground="{Binding IsSelected,Converter={StaticResource boolListItemOptionBackGround}, Mode=TwoWay}"
+                                        Text="{Binding OptionText}" 
+                                        Margin="10"></TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                 </ListBox>
 
+                <TextBlock Grid.Row="2" Text="{Binding CurrentPostition}" HorizontalAlignment="Right" Margin="10" FontSize="18" Foreground="Black"></TextBlock>
             </Grid>
 
 
@@ -81,8 +96,9 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Assets/Previous.png" Text="Back" />
-            <shell:ApplicationBarIconButton IconUri="/Assets/Next.png" Text="Next" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/Previous.png" Text="Back" Click="BackQuestion" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/Next.png" Text="Next" Click="NextQuestion" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/Logout.png" Text="Quit" Click="QuitSurvey" />
             <shell:ApplicationBarIconButton IconUri="/Assets/Help.png" Text="Help"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

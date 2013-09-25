@@ -90,21 +90,27 @@ namespace Skadoosh.Common.ViewModels
             IsBusy = false;
             return 0;
         }
-        //public async Task<int> LoadSurveysForCurrentChannel()
-        //{
-        //    if (!string.IsNullOrEmpty(this.ChannelName))
-        //    {
-        //        var results = await AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelName).ToListAsync();
-        //        if (results != null && results.Any())
-        //        {
-        //            CurrentSurvey = results.First();
-        //            await LoadQuestionsForCurrentSurvey();
-                    
-        //        }
-        //    }
-        //    return 0;
-        //}
 
+        public void NextQuestion()
+        {
+            var index = CurrentSurvey.Questions.IndexOf(CurrentQuestion);
+            index++;
+            if (index < CurrentSurvey.Questions.Count)
+            {
+                CurrentQuestion = CurrentSurvey.Questions[index];
+
+            }
+        }
+        public void BackQuestion()
+        {
+            var index = CurrentSurvey.Questions.IndexOf(CurrentQuestion);
+            index--;
+            if (index >-1)
+            {
+                CurrentQuestion = CurrentSurvey.Questions[index];
+
+            }
+        }
         public async Task<int> LoadQuestionsForCurrentSurvey()
         {
             if (CurrentSurvey != null)

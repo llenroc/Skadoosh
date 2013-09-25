@@ -181,11 +181,13 @@
     <Content Include="Assets\Find.png" />
     <Content Include="Assets\Group.png" />
     <Content Include="Assets\Help.png" />
+    <Content Include="Assets\Logout.png" />
     <Content Include="Assets\Next.png" />
     <Content Include="Assets\Participate.png" />
     <Content Include="Assets\PhoneHeader.png" />
     <Content Include="Assets\Previous.png" />
     <Content Include="Assets\SplashScreenImage.jpg" />
+    <Content Include="Assets\Stop.png" />
     <Content Include="Assets\ViewBackground.png" />
     <Content Include="Assets\YY.png" />
     <Content Include="SplashScreenImage.jpg" />

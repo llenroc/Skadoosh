@@ -209,7 +209,7 @@
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Next Question"/>
+                    <Button Style="{StaticResource StopAppBarButtonStyle}"  AutomationProperties.Name="Quit" Click="GoToHome" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource HelpAppBarButtonStyle}" />

@@ -87,5 +87,7 @@ namespace Skadoosh.Store.Views.Participate
                 VM.CurrentQuestion.Options.First(x=>x.Id==opt.Id).IsSelected=true;
             } 
         }
+
+
     }
 }
