@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
 
 namespace Skadoosh.Phone.Views
@@ -24,25 +16,6 @@ namespace Skadoosh.Phone.Views
             };
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            //if (NavigationContext.QueryString.ContainsKey("obj"))
-            //{
-            //    if (NavigationContext.QueryString["obj"] == "1")
-            //    {
-            //        var vm = new ParticipateLiveVM();
-            //        this.DataContext = vm;
-            //        App.ApplicationVM = vm;
-            //    }
-            //    else
-            //    {
-            //        var vm = new ParticipateStaticVM();
-            //        this.DataContext = vm;
-            //        App.ApplicationVM = vm;
-            //    }
-            //}
-        }
 
         private void GoBack(object sender, System.Windows.Input.GestureEventArgs e)
         {

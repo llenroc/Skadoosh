@@ -17,10 +17,9 @@ namespace Skadoosh.Phone.Common
             if (currentChannel == null)
             {
                 currentChannel = new HttpNotificationChannel(channelName);
-                currentChannel.Open();
-                
-                currentChannel.BindToShellTile();
-                currentChannel.BindToShellToast();
+                currentChannel.Open();     
+                //currentChannel.BindToShellTile();
+                //currentChannel.BindToShellToast();
             }
             return currentChannel;
         }
