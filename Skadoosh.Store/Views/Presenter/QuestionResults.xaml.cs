@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
+﻿using Windows.UI;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Windows.UI.Xaml.Controls;
+
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
@@ -30,17 +26,33 @@ namespace Skadoosh.Store.Views.Presenter
     {
         private Random _random = new Random();
 
+        private PresenterVM VM
+        {
+            get { return (PresenterVM)this.DataContext; }
+            set { this.DataContext = value; }
+        }
+
         public QuestionResults()
         {
             this.InitializeComponent();
+            this.Loaded += async (e, a) =>
+            {
+                if (VM.CurrentQuestion != null)
+                {
+                    var list = await VM.GetResponsesForCurrentQuestion();
+                    if (VM.CurrentQuestion.IsMultiSelect)
+                    {
+                        CalculateBarChart(list);
+                    }
+                    else
+                    {
+                        CalculatePieChart(list);
+                    }
+                }
 
-            List<NameValueItem> items = new List<NameValueItem>();
-            items.Add(new NameValueItem { Name = "Test1", Value = _random.Next(10, 100) });
-            items.Add(new NameValueItem { Name = "Test2", Value = _random.Next(10, 100) });
-            items.Add(new NameValueItem { Name = "Test3", Value = _random.Next(10, 100) });
-            items.Add(new NameValueItem { Name = "Test4", Value = _random.Next(10, 100) });
-            items.Add(new NameValueItem { Name = "Test5", Value = _random.Next(10, 100) });
-            ((PieSeries)this.PieChart.Series[0]).ItemsSource = items;
+
+            };
+
         }
 
         /// <summary>
@@ -54,6 +66,7 @@ namespace Skadoosh.Store.Views.Presenter
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            VM = (PresenterVM)navigationParameter;
         }
 
         /// <summary>
@@ -64,6 +77,23 @@ namespace Skadoosh.Store.Views.Presenter
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void CalculatePieChart(List<Responses> list )
+        {
+            var items = new List<NameValueItem>();
+            foreach (var opt in VM.CurrentQuestion.Options)
+            {
+                var cnt = list.Count(x => x.OptionId == opt.Id);
+               // var percent = ((double)cnt / (double)list.Count) * (double)100;
+                items.Add(new NameValueItem { Name = opt.OptionText, Value = cnt });
+            }
+
+            ((PieSeries)this.PieChart.Series[0]).ItemsSource = items;
+        }
+        private void CalculateBarChart(List<Responses> list)
+        {
+            
         }
     }
 }

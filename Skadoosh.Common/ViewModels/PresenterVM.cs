@@ -344,7 +344,18 @@ namespace Skadoosh.Common.ViewModels
                 await table.DeleteAsync(response).ConfigureAwait(true);
             }
             return 0;
-        } 
+        }
+
+        public async Task<List<Responses>>  GetResponsesForCurrentQuestion()
+        {
+            if (CurrentQuestion != null)
+            {
+                var table = AzureClient.GetTable<Responses>();
+                var responses = await table.Where(x => x.QuestionId == CurrentQuestion.Id).ToListAsync();
+                return responses;
+            }
+            return new List<Responses>();
+        }
         #endregion
 
     }

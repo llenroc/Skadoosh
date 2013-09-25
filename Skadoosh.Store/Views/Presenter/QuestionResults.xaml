@@ -33,23 +33,41 @@
         </Grid.Background>
 
         <!-- Horizontal scrolling grid used in most view states -->
-
+        <Border Grid.Row="1"  Padding="20" Margin="38" Background="WhiteSmoke" Opacity="0.7" CornerRadius="10">
             <charting:Chart 
-                    x:Name="PieChart"
-                    Title="Pie Chart"
-                    Padding="116,136,116,46"
-                    TabIndex="1"
-                    Grid.RowSpan="2"
-                    Margin="70,0">
+                x:Name="PieChart"
+                Title="{Binding CurrentQuestion.QuestionText}" 
+                Foreground="Black" 
+                FontSize="24"
+                TabIndex="1" 
+                HorizontalAlignment="Left" MinWidth="700"
+                >
                 <charting:Chart.Series>
                     <Series:PieSeries
-                            Title="Population"
-                            ItemsSource="{Binding Items}"
-                            IndependentValueBinding="{Binding Name}"
-                            DependentValueBinding="{Binding Value}"
-                            IsSelectionEnabled="True" />
+                        Title="{Binding CurrentQuestion.QuestionText}"
+                        IndependentValueBinding="{Binding Name}"
+                        DependentValueBinding="{Binding Value}"
+                        IsSelectionEnabled="True" />
                 </charting:Chart.Series>
             </charting:Chart>
+        </Border>
+        <!--<charting:Chart  
+             x:Name="PieChart"
+             Title="{Binding CurrentQuestion.QuestionText}" 
+             Foreground="Black" FontSize="24"
+             Padding="116,136,116,46"
+             TabIndex="1"
+             Grid.RowSpan="2"
+             Margin="70,0">
+             <charting:Chart.Series>
+             <Series:PieSeries
+             Title="Population"
+             Foreground="Black"
+             IndependentValueBinding="{Binding Name}"
+             DependentValueBinding="{Binding Value}"
+             IsSelectionEnabled="True" />
+             </charting:Chart.Series>
+             </charting:Chart>-->
  
 
 

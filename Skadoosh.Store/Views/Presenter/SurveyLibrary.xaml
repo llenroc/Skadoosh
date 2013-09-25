@@ -168,11 +168,11 @@
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource AddAppBarButtonStyle}" Click="CreateSurvey"  AutomationProperties.Name="Add Survey"/>
+                    <!--<Button Style="{StaticResource AddAppBarButtonStyle}" Click="CreateSurvey"  AutomationProperties.Name="Add Survey"/>
                     <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Survey" Click="EditSurvey" Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}"/>
                     <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Survey" Click="DeleteSurvey" Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}"/>
                     <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Start Survey"  Visibility="{Binding CanStartSurvey,Converter={StaticResource trueVisible}}" Click="StartSurvey"/>
-                    <Button Style="{StaticResource PauseAppBarButtonStyle}"  AutomationProperties.Name="Stop Survey"  Visibility="{Binding CanStopSurvey,Converter={StaticResource trueVisible}}" Click="StopSurvey"/>
+                    <Button Style="{StaticResource PauseAppBarButtonStyle}"  AutomationProperties.Name="Stop Survey"  Visibility="{Binding CanStopSurvey,Converter={StaticResource trueVisible}}" Click="StopSurvey"/>-->
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource RefreshAppBarButtonStyle}" />

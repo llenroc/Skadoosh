@@ -27,7 +27,6 @@
       - WinRTXamlToolkit.Controls.Calendar for a calendar control
       - WinRTXamlToolkit.Controls.DataVisualization for data visualization controls/charts
       - WinRTXamlToolkit.Debugging for debugging helpers</releaseNotes>
-    <copyright />
     <language>en-US</language>
     <tags>winrt xaml toolkit winrtxamltoolkit xyzzer</tags>
   </metadata>

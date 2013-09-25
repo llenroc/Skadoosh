@@ -294,10 +294,12 @@
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="WinRTXamlToolkit">
+    <Reference Include="WinRTXamlToolkit, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WinRTXamlToolkit.1.5.2.0\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="WinRTXamlToolkit.Controls.DataVisualization">
+    <Reference Include="WinRTXamlToolkit.Controls.DataVisualization, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WinRTXamlToolkit.Controls.DataVisualization.1.5.2.0\lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization.dll</HintPath>
     </Reference>
   </ItemGroup>

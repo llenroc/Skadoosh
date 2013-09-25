@@ -67,5 +67,11 @@ namespace Skadoosh.Store.Views.Presenter
         {
             VM.CurrentQuestion.Options.Add(new Skadoosh.Common.DomainModels.Option() { QuestionId = VM.CurrentQuestion.Id });
         }
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            VM.Logout();
+            Frame.Navigate(typeof(Home), VM);
+        }
     }
 }
