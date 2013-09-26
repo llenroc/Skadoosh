@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
+﻿using System.Collections.Specialized;
+using Microsoft.WindowsAzure.MobileServices;
 using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
 using Skadoosh.Store.Views.Participate;
@@ -16,6 +17,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.ComponentModel;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -24,14 +26,25 @@ namespace Skadoosh.Store.Views
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class SignOn : Skadoosh.Store.Common.LayoutAwarePage
+    public sealed partial class SignOn : Skadoosh.Store.Common.LayoutAwarePage, INotifyPropertyChanged
     {
         private ViewModelBase baseVM;
+        private bool _isBusy;
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { _isBusy = value; Notify("IsBusy"); }
+        }
 
         public SignOn()
         {
             this.InitializeComponent();
+            this.Loaded += (e, a) =>
+            {
 
+                this.DataContext = this;
+            };
 
         }
 
@@ -82,41 +95,42 @@ namespace Skadoosh.Store.Views
         private async void Login(MobileServiceAuthenticationProvider provider)
         {
 
-                try
+            try
+            {
+                
+                await baseVM.AzureClient.LoginAsync(provider);
+                IsBusy = true;
+                if (baseVM.AzureClient.CurrentUser != null)
                 {
-                    await baseVM.AzureClient.LoginAsync(provider);
-              
-                    if (baseVM.AzureClient.CurrentUser != null)
+                    var profile = await baseVM.ProfileExists();
+                    IsBusy = false;
+                    if (profile)
                     {
-                        var vmName = baseVM.GetType().Name;
-                        if (vmName == "ParticipateStaticVM")
-                        {
-
-                            //Frame.Navigate(typeof(SurveySelect), baseVM);
-                        }
-                        else
-                        {
-                            var profile = await baseVM.ProfileExists();
-                            if (profile)
-                            {
-                                Frame.Navigate(typeof(SurveyLibrary), baseVM);
-                            }
-                            else
-                            {
-                                Frame.Navigate(typeof(PresenterProfile), baseVM);
-                            }
-                        }
-                        
+                        Frame.Navigate(typeof (SurveyLibrary), baseVM);
                     }
-
+                    else
+                    {
+                        Frame.Navigate(typeof (PresenterProfile), baseVM);
+                    }
                 }
-                catch (InvalidOperationException e)
-                {
-                    //message = e + "You must log in. Login Required";
-                }
+                IsBusy = false;
+            }
+            catch (InvalidOperationException e)
+            {
+                IsBusy = false;
+                //message = e + "You must log in. Login Required";
+            }
 
-            
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void Notify(string propName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
     }
 }
