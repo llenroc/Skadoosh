@@ -1,4 +1,5 @@
-﻿using Windows.UI.Core;
+﻿using System.Reflection;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Printing;
 using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
@@ -22,6 +23,7 @@ namespace Skadoosh.Store.Views.Presenter
     public sealed partial class QuestionPieChart : Skadoosh.Store.Common.LayoutAwarePage
     {
         private PrintManager _printManager;
+        private PrintDocument _doc;
         private PresenterVM VM
         {
             get { return (PresenterVM)this.DataContext; }
@@ -35,49 +37,57 @@ namespace Skadoosh.Store.Views.Presenter
                 if (VM.CurrentQuestion != null)
                 {
                     var list = await VM.GetResponsesForCurrentQuestion();
-                    CalculatePieChart(list);
-                    RegisterPrinter();
+                    CalculatePieChart(list);        
                 }
             };
         }
 
         public void RegisterPrinter()
         {
-            var pd = new PrintDocument();
-            pd.Paginate += (sender, args) =>
+            _doc = new PrintDocument();
+            _doc.Paginate += (sender, args) =>
             {
                 // Set the number of pages to preview
-                pd.SetPreviewPageCount(1, PreviewPageCountType.Final);
+                _doc.SetPreviewPageCount(1, PreviewPageCountType.Final);
             };
-            pd.AddPages += (sender, args) =>
+            _doc.AddPages += (sender, args) =>
             {
                 // Add a page/document to the print list
-                pd.AddPage(this);
-                pd.AddPagesComplete();
+                _doc.AddPage(this);
+                _doc.AddPagesComplete();
             };
-            pd.GetPreviewPage += (sender, args) =>
+            _doc.GetPreviewPage += (sender, args) =>
             {
                 // Indicate the page number to display in the preview window
-                pd.SetPreviewPage(args.PageNumber, this);
+                _doc.SetPreviewPage(args.PageNumber, this);
             };
 
             _printManager = PrintManager.GetForCurrentView();
-            _printManager.PrintTaskRequested += (sender, args) =>
-            {
-                var printTask = args.Request.CreatePrintTask("My First WinRT Impression ",
-                    async (requestedArgs) =>
-                    {
-                        Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        {
-                            requestedArgs.SetSource(pd.DocumentSource);
-                        });
 
+            try
+            {
+                _printManager.PrintTaskRequested += _printManager_PrintTaskRequested;
+            }
+            catch
+            {
+            }
+        }
+
+        private void _printManager_PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
+        {
+            var printTask = args.Request.CreatePrintTask("My First WinRT Impression ",
+                async (requestedArgs) =>
+                {
+                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        requestedArgs.SetSource(_doc.DocumentSource);
                     });
 
-                printTask.Options.Orientation = PrintOrientation.Landscape;
+                });
 
-            };
+            printTask.Options.Orientation = PrintOrientation.Landscape;
         }
+
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -125,6 +135,8 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void PrintChart(object s, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            if(_printManager==null)
+                RegisterPrinter();
             await PrintManager.ShowPrintUIAsync();
         }
 

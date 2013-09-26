@@ -133,6 +133,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\AppPrinterPool.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\BoolToSelectionModeConverter.cs" />
     <Compile Include="Common\NameValueItem.cs" />

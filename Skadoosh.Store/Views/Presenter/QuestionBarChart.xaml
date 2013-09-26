@@ -152,7 +152,7 @@
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <!--<Button Style="{StaticResource AddAppBarButtonStyle}"   AutomationProperties.Name="Add Survey"/>-->
+                    <Button Style="{StaticResource AddAppBarButtonStyle}"   AutomationProperties.Name="Print" Click="PrintChart" />
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

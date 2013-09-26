@@ -1,4 +1,6 @@
-﻿using SharpDX.Direct2D1;
+﻿using Windows.UI.Core;
+using Windows.UI.Xaml.Printing;
+using SharpDX.Direct2D1;
 using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
 using Skadoosh.Store.Common;
@@ -21,6 +23,8 @@ namespace Skadoosh.Store.Views.Presenter
     /// </summary>
     public sealed partial class QuestionBarChart : Skadoosh.Store.Common.LayoutAwarePage
     {
+        private PrintManager _printManager;
+     
         private PresenterVM VM
         {
             get { return (PresenterVM)this.DataContext; }
@@ -35,10 +39,48 @@ namespace Skadoosh.Store.Views.Presenter
                 {
                     var list = await VM.GetResponsesForCurrentQuestion();
                     CalculateBarChart(list);
+                    RegisterPrinter();
                 }
             };
         }
+        public void RegisterPrinter()
+        {
+            var pd = new PrintDocument();
+            pd.Paginate += (sender, args) =>
+            {
+                // Set the number of pages to preview
+                pd.SetPreviewPageCount(1, PreviewPageCountType.Final);
+            };
+            pd.AddPages += (sender, args) =>
+            {
+                // Add a page/document to the print list
+                pd.AddPage(this);
+                pd.AddPagesComplete();
+            };
+            pd.GetPreviewPage += (sender, args) =>
+            {
+                // Indicate the page number to display in the preview window
+                pd.SetPreviewPage(args.PageNumber, this);
+            };
 
+            _printManager = PrintManager.GetForCurrentView();
+
+            _printManager.PrintTaskRequested += (sender, args) =>
+            {
+                var printTask = args.Request.CreatePrintTask("My First WinRT Impression ",
+                    async (requestedArgs) =>
+                    {
+                        Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            requestedArgs.SetSource(pd.DocumentSource);
+                        });
+
+                    });
+
+                printTask.Options.Orientation = PrintOrientation.Landscape;
+
+            };
+        }
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -85,12 +127,9 @@ namespace Skadoosh.Store.Views.Presenter
             }
         }
 
-        private async void PrintChart()
+        private async void PrintChart(object s, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            var bitmap = await WriteableBitmapRenderExtensions.Render(this.BarChart);
-          
-
-
+            await PrintManager.ShowPrintUIAsync();
         }
 
 
