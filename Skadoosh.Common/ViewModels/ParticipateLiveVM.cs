@@ -1,4 +1,4 @@
-﻿using System.IO.Compression;
+﻿
 using Skadoosh.Common.DomainModels;
 using System;
 using System.Collections.Generic;

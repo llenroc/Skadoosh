@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Core;
 using Windows.UI.Xaml.Printing;
-using SharpDX.Direct2D1;
+
 using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
 using Skadoosh.Store.Common;
@@ -9,22 +9,21 @@ using System.Linq;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
-using WinRTXamlToolkit.Composition;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.Graphics.Printing;
+using Windows.UI.Xaml;
 
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace Skadoosh.Store.Views.Presenter
 {
-    /// <summary>
-    /// A basic page that provides characteristics common to most applications.
-    /// </summary>
+
     public sealed partial class QuestionBarChart : Skadoosh.Store.Common.LayoutAwarePage
     {
         private PrintManager _printManager;
-     
+        private PrintDocument _doc;
+
         private PresenterVM VM
         {
             get { return (PresenterVM)this.DataContext; }
@@ -39,68 +38,56 @@ namespace Skadoosh.Store.Views.Presenter
                 {
                     var list = await VM.GetResponsesForCurrentQuestion();
                     CalculateBarChart(list);
-                    RegisterPrinter();
+                    _printManager = PrintManager.GetForCurrentView();
+                    _printManager.PrintTaskRequested += _printManager_PrintTaskRequested;
+                    InitDocument();
                 }
             };
+            this.Unloaded += (e, a) =>
+            {
+                _printManager = PrintManager.GetForCurrentView();
+                _printManager.PrintTaskRequested -= _printManager_PrintTaskRequested;
+                _doc = null;
+
+            };
         }
-        public void RegisterPrinter()
+        private void InitDocument()
         {
-            var pd = new PrintDocument();
-            pd.Paginate += (sender, args) =>
+            _doc = new PrintDocument();
+            _doc.Paginate += (sender, args) =>
             {
-                // Set the number of pages to preview
-                pd.SetPreviewPageCount(1, PreviewPageCountType.Final);
+                _doc.SetPreviewPageCount(1, PreviewPageCountType.Final);
             };
-            pd.AddPages += (sender, args) =>
+            _doc.AddPages += (sender, args) =>
             {
-                // Add a page/document to the print list
-                pd.AddPage(this);
-                pd.AddPagesComplete();
+                _doc.AddPage(this);
+                _doc.AddPagesComplete();
             };
-            pd.GetPreviewPage += (sender, args) =>
+            _doc.GetPreviewPage += (sender, args) =>
             {
-                // Indicate the page number to display in the preview window
-                pd.SetPreviewPage(args.PageNumber, this);
+                _doc.SetPreviewPage(args.PageNumber, this);
             };
-
-            _printManager = PrintManager.GetForCurrentView();
-
-            _printManager.PrintTaskRequested += (sender, args) =>
-            {
-                var printTask = args.Request.CreatePrintTask("My First WinRT Impression ",
-                    async (requestedArgs) =>
+        }
+        private void _printManager_PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
+        {
+            var printTask = args.Request.CreatePrintTask("Bar Chart Survey Results ",
+                async (requestedArgs) =>
+                {
+                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        {
-                            requestedArgs.SetSource(pd.DocumentSource);
-                        });
-
+                        requestedArgs.SetSource(_doc.DocumentSource);
                     });
 
-                printTask.Options.Orientation = PrintOrientation.Landscape;
+                });
 
-            };
+            printTask.Options.Orientation = PrintOrientation.Landscape;
         }
-        /// <summary>
-        /// Populates the page with content passed during navigation.  Any saved state is also
-        /// provided when recreating a page from a prior session.
-        /// </summary>
-        /// <param name="navigationParameter">The parameter value passed to
-        /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested.
-        /// </param>
-        /// <param name="pageState">A dictionary of state preserved by this page during an earlier
-        /// session.  This will be null the first time a page is visited.</param>
+
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (PresenterVM)navigationParameter;
         }
 
-        /// <summary>
-        /// Preserves state associated with this page in case the application is suspended or the
-        /// page is discarded from the navigation cache.  Values must conform to the serialization
-        /// requirements of <see cref="SuspensionManager.SessionState"/>.
-        /// </summary>
-        /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
@@ -131,7 +118,5 @@ namespace Skadoosh.Store.Views.Presenter
         {
             await PrintManager.ShowPrintUIAsync();
         }
-
-
     }
 }

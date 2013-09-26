@@ -489,6 +489,11 @@
         <Setter Property="AutomationProperties.Name" Value="Stop"/>
         <Setter Property="Content" Value="&#xE15B;"/>
     </Style>
+    <Style x:Key="PrintAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PrintAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Print"/>
+        <Setter Property="Content" Value="&#x2399;"/>
+    </Style>
     <!-- 
         Standard AppBarButton Styles for use with Button and ToggleButton
     

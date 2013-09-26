@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+﻿
 using Microsoft.Phone.Notification;
 using Microsoft.WindowsAzure.MobileServices;
 using Skadoosh.Common.DomainModels;
