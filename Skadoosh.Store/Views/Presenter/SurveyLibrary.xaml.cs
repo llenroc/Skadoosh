@@ -1,5 +1,6 @@
 ﻿using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
+using Skadoosh.Store.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -130,6 +131,13 @@ namespace Skadoosh.Store.Views.Presenter
         {
             VM.Logout();
             Frame.Navigate(typeof(Home), VM);
+        }
+
+        private async void ExportData(object sender, RoutedEventArgs e)
+        {
+            var list = await VM.GetAllResponsesForCurrentSurvey();
+            var csv = new CsvExport<Responses>(list);
+            csv.ExportToFile("Results.csv"); 
         }
 
     }

@@ -25,9 +25,21 @@
           <Rotation Preference="landscapeFlipped" />
         </InitialRotationPreference>
       </VisualElements>
+      <Extensions>
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name="txtfile">
+            <DisplayName>CSV Export</DisplayName>
+            <InfoTip>CSV Export</InfoTip>
+            <SupportedFileTypes>
+              <FileType>.csv</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
+    <Capability Name="documentsLibrary" />
     <Capability Name="internetClient" />
   </Capabilities>
 </Package>

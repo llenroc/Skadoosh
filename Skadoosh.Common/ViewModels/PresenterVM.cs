@@ -346,6 +346,17 @@ namespace Skadoosh.Common.ViewModels
             return 0;
         }
 
+        public async Task<List<Responses>> GetAllResponsesForCurrentSurvey()
+        {
+            if (CurrentSurvey != null)
+            {
+                var table = AzureClient.GetTable<Responses>();
+                var responses = await table.Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync();
+                return responses;
+            }
+            return new List<Responses>();
+        }
+
         public async Task<List<Responses>>  GetResponsesForCurrentQuestion()
         {
             if (CurrentQuestion != null)

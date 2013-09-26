@@ -136,6 +136,7 @@
     <Compile Include="Common\AppPrinterPool.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\BoolToSelectionModeConverter.cs" />
+    <Compile Include="Common\CsvExport.cs" />
     <Compile Include="Common\NameValueItem.cs" />
     <Compile Include="Common\IsActiveHeaderStyleConverter.cs" />
     <Compile Include="Common\IsLiveSurveyImageConverter.cs" />
