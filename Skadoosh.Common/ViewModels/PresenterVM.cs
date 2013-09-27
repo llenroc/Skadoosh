@@ -21,11 +21,16 @@ namespace Skadoosh.Common.ViewModels
         private bool _canStartSurvey;
         private bool _canStopSurvey;
         private string _errorMessage;
-         
+        private bool _isBusy;
+
         #endregion
 
         #region properties
-
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { _isBusy = value; Notify("IsBusy"); }
+        }
         public string ErrorMessage
         {
             get { return _errorMessage; }
@@ -61,7 +66,7 @@ namespace Skadoosh.Common.ViewModels
             set { _isSurveySelected = value; Notify("IsSurveySelected"); }
         }
 
-        public bool IsLoading { get; set; }
+        //public bool IsLoading { get; set; }
 
         public Question CurrentQuestion
         {
@@ -186,12 +191,14 @@ namespace Skadoosh.Common.ViewModels
         {
             if (User != null)
             {
+                IsBusy = true;
                 SurveyCollection.Clear();
                 var results = await AzureClient.GetTable<Survey>().Where(x => x.AccountUserId == User.Id).ToListAsync();
                 foreach (var item in results)
                 {
                     SurveyCollection.Add(item);
                 }
+                IsBusy = false;
                 return SurveyCollection.Count;
             }
             return 0;
@@ -274,7 +281,8 @@ namespace Skadoosh.Common.ViewModels
         {
             if (CurrentSurvey != null)
             {
-                _currentSurvey.Questions.Clear();
+                IsBusy = true;
+                CurrentSurvey.Questions.Clear();
                 var results = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync();
 
                 foreach (var q in results)
@@ -284,8 +292,9 @@ namespace Skadoosh.Common.ViewModels
                     {
                         q.Options.Add(o);
                     }
-                    _currentSurvey.Questions.Add(q);
+                    CurrentSurvey.Questions.Add(q);
                 }
+                IsBusy = false;
                 return CurrentSurvey.Questions.Count;
             }
             return 0;
