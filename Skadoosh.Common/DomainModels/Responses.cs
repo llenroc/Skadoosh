@@ -1,4 +1,6 @@
-﻿namespace Skadoosh.Common.DomainModels
+﻿using System;
+
+namespace Skadoosh.Common.DomainModels
 {
     public class Responses : NotifyBase
     {
@@ -34,6 +36,8 @@
             get { return _userName; }
             set { _userName = value; Notify("UserName"); }
         }
+
+        public DateTime DateEntered { get; set; }
 
     }
 }

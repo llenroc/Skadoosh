@@ -70,7 +70,13 @@ namespace Skadoosh.Common.ViewModels
             {
                 foreach (var op in q.Options.Where(x => x.IsSelected))
                 {
-                    var r = new Responses() { OptionId = op.Id, QuestionId = q.Id, SurveyId = CurrentSurvey.Id };
+                    var r = new Responses()
+                    {
+                        OptionId = op.Id,
+                        QuestionId = q.Id,
+                        SurveyId = CurrentSurvey.Id,
+                        DateEntered = DateTime.Now
+                    };
                     if (CurrentSurvey.RequiresUserName)
                         r.UserName = User.LastName + ", " + User.FirstName;
                     await table.InsertAsync(r);
