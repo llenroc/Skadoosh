@@ -75,14 +75,23 @@ namespace Skadoosh.Common.DomainModels
         }
         public async Task<bool> CreateProfile()
         {
-            var list = await AzureClient.GetTable<AccountUser>().Where(x => x.UserId == User.UserId).ToListAsync();
-            if (list == null || list.FirstOrDefault() == null)
+            try
             {
-                var table = AzureClient.GetTable<AccountUser>();
-                await table.InsertAsync(User);
-                return true;
+                var list = await AzureClient.GetTable<AccountUser>().Where(x => x.UserId == User.UserId).ToListAsync();
+                if (list == null || list.FirstOrDefault() == null)
+                {
+                    var table = AzureClient.GetTable<AccountUser>();
+                    await table.InsertAsync(User);
+                    return true;
+                }
+                else
+                {
+                    var table = AzureClient.GetTable<AccountUser>();
+                    await table.UpdateAsync(User);
+                    return true;
+                }
             }
-            else
+            catch (Exception ex)
             {
                 return false;
             }

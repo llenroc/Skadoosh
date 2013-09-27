@@ -413,12 +413,13 @@ namespace Skadoosh.Common.ViewModels
 
         #region Express Login
 
-        public async void CreateExpressLogin()
+        public async Task<bool> CreateExpressLogin()
         {
             if (ExpLogin != null && !string.IsNullOrEmpty(ExpLogin.Password))
             {
                 var list = await GetExpressLogins();
-                if(list==null)
+
+                if (list == null)
                     list = new List<ExpressLogin>();
 
                 var el = new ExpressLogin()
@@ -429,24 +430,34 @@ namespace Skadoosh.Common.ViewModels
                     Password = ExpLogin.Password
 
                 };
+
                 if (list.Any(x => x.Password == el.Password))
+                    return false;
+
+                if (list.Any(x => x.Id == el.Id))
                 {
-                    var existingItem = list.First(x => x.Password == el.Password);
+                    var existingItem = list.First(x => x.Id == el.Id);
                     var index = list.IndexOf(existingItem);
                     list[index] = el;
                 }
-                else{
-                   list.Add(el);
+                else
+                {
+                    list.Add(el);
                 }
                 var lss = new LocalStorageService();
-                lss.SaveIsolatedStorage<List<ExpressLogin>>("ExpressList", list);
+                lss.SaveIsolatedStorage<List<ExpressLogin>>("SkadooshLogin", list);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
         private async Task<List<ExpressLogin>> GetExpressLogins()
         {
             var lss = new LocalStorageService();
-            var eps = await lss.GetIsolatedStorage<List<ExpressLogin>>("ExpressList");
+            var eps = await lss.GetIsolatedStorage<List<ExpressLogin>>("SkadooshLogin");
             return eps;
         }
 

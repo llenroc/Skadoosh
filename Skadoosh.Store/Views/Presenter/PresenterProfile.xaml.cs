@@ -68,7 +68,7 @@ namespace Skadoosh.Store.Views.Presenter
                 if (true)
                 {
                     var result = await vm.CreateProfile();
-                    vm.CreateExpressLogin();
+                    var result1 = await vm.CreateExpressLogin();
 
                     if (result)
                     {

@@ -164,5 +164,10 @@ namespace Skadoosh.Store.Views.Presenter
             Frame.Navigate(typeof(Help), new ParticipateStaticVM());
         }
 
+        private void UpdateProfile(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(PresenterProfile), VM);
+        }
+
     }
 }

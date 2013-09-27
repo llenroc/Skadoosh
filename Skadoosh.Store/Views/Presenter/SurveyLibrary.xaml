@@ -177,10 +177,11 @@
                     <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Start Survey"  Visibility="{Binding CanStartSurvey,Converter={StaticResource trueVisible}}" Click="StartSurvey"/>
                     <Button Style="{StaticResource PauseAppBarButtonStyle}"  AutomationProperties.Name="Stop Survey"  Visibility="{Binding CanStopSurvey,Converter={StaticResource trueVisible}}" Click="StopSurvey"/>
                     <Button Style="{StaticResource MoveToFolderAppBarButtonStyle}"  AutomationProperties.Name="Export Results"  Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}" Click="ExportData" />
+                    <Button Style="{StaticResource GoAppBarButtonStyle}"  AutomationProperties.Name="Update Profile" Click="UpdateProfile"  />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
-                    <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout" />
+                    <Button Style="{StaticResource GoAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout" />
                  
                 </StackPanel>
             </Grid>
