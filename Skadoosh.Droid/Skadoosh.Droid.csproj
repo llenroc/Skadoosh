@@ -48,6 +48,9 @@
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Dropbox\Mobile Common\Resources\Droid\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -55,8 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Common.Library\Services\LocalStorageService.cs">
+      <Link>Services\LocalStorageService.cs</Link>
+    </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\AccountUser.cs">
       <Link>DomainModels\AccountUser.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\ExpressLogin.cs">
+      <Link>DomainModels\ExpressLogin.cs</Link>
     </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\NotifyBase.cs">
       <Link>DomainModels\NotifyBase.cs</Link>
@@ -87,9 +96,6 @@
     </Compile>
     <Compile Include="..\Skadoosh.Common\ViewModels\PresenterVM.cs">
       <Link>ViewModel\PresenterVM.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\SkadooshVM.cs">
-      <Link>ViewModel\SkadooshVM.cs</Link>
     </Compile>
     <Compile Include="Activity1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

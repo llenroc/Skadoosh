@@ -51,6 +51,7 @@ namespace Skadoosh.Store.Views.Presenter
         protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (PresenterVM)navigationParameter;
+            VM.ErrorMessage = string.Empty;
             await VM.LoadSurveysForCurrentUser();
             if(!VM.SurveyCollection.Any())
                 CollectionIsEmptyNotification();
@@ -144,13 +145,18 @@ namespace Skadoosh.Store.Views.Presenter
             var file = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, content);
 
-            var messageDialog = new MessageDialog("The document was saved to your document library.", "Document Saved");
-            messageDialog.Commands.Add(new UICommand(
-                "I Understand",
-                new UICommandInvokedHandler(this.CommandInvokedHandler)));
-            messageDialog.DefaultCommandIndex = 0;
-            messageDialog.CancelCommandIndex = 1;
-            await messageDialog.ShowAsync();
+
+            var msg = new MessageDialog("The document was saved to your document library. Do you want to view it?", "Document Saved");
+            msg.Commands.Add(new UICommand("Preview File", async (a) =>
+            {
+                var newFile = await storageFolder.GetFileAsync(fileName);
+                Windows.System.Launcher.LaunchFileAsync(newFile);
+            }));
+            msg.Commands.Add(new UICommand("No", (a) =>
+            {
+
+            }));
+            await msg.ShowAsync();
 
         }
         private void ShowHelp(object sender, RoutedEventArgs e)

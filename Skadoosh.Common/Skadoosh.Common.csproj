@@ -33,7 +33,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Common.Library\Services\LocalStorageService.cs">
+      <Link>Services\LocalStorageService.cs</Link>
+    </Compile>
     <Compile Include="DomainModels\AccountUser.cs" />
+    <Compile Include="DomainModels\ExpressLogin.cs" />
     <Compile Include="DomainModels\NotifyBase.cs" />
     <Compile Include="DomainModels\Option.cs" />
     <Compile Include="DomainModels\Question.cs" />
@@ -45,7 +49,6 @@
     <Compile Include="ViewModels\ParticipateLiveVM.cs" />
     <Compile Include="ViewModels\ParticipateStaticVM.cs" />
     <Compile Include="ViewModels\PresenterVM.cs" />
-    <Compile Include="ViewModels\SkadooshVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Threading.Tasks">

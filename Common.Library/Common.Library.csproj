@@ -42,9 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interfaces\ILocalStorageService.cs" />
-    <Compile Include="Interfaces\IRESTService.cs" />
-    <Compile Include="Interfaces\ISQLiteConnection.cs" />
     <Compile Include="Services\LocalStorageService.cs" />
     <Compile Include="Services\RESTService.cs" />
     <Compile Include="Services\SqlLiteService.cs" />

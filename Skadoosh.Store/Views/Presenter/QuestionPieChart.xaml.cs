@@ -85,6 +85,7 @@ namespace Skadoosh.Store.Views.Presenter
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (PresenterVM)navigationParameter;
+            VM.ErrorMessage = string.Empty;
         }
 
 

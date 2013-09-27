@@ -95,8 +95,14 @@
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Common.Library\Services\LocalStorageService.cs">
+      <Link>Services\LocalStorageService.cs</Link>
+    </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\AccountUser.cs">
       <Link>DomainModels\AccountUser.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\ExpressLogin.cs">
+      <Link>DomainModels\ExpressLogin.cs</Link>
     </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\Option.cs">
       <Link>DomainModels\Option.cs</Link>
@@ -133,9 +139,6 @@
     </Compile>
     <Compile Include="..\Skadoosh.Common\ViewModels\PresenterVM.cs">
       <Link>ViewModels\PresenterVM.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\SkadooshVM.cs">
-      <Link>ViewModels\SkadooshVM.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

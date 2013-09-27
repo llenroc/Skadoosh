@@ -1,4 +1,5 @@
-﻿using Skadoosh.Common.ViewModels;
+﻿using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Skadoosh.Store.Common;
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using Statera.Xamarin.Common;
 
 namespace Skadoosh.Store.Views.Presenter
 {
@@ -23,6 +25,8 @@ namespace Skadoosh.Store.Views.Presenter
     /// </summary>
     public sealed partial class PresenterProfile : Skadoosh.Store.Common.LayoutAwarePage
     {
+        private PresenterVM VM;
+
         public PresenterProfile()
         {
             this.InitializeComponent();
@@ -40,7 +44,9 @@ namespace Skadoosh.Store.Views.Presenter
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
           
-            this.DataContext = (PresenterVM)navigationParameter; 
+            VM = (PresenterVM)navigationParameter;
+            VM.ErrorMessage = string.Empty;
+            this.DataContext = VM;
         }
 
         /// <summary>
@@ -58,15 +64,21 @@ namespace Skadoosh.Store.Views.Presenter
             var vm = (PresenterVM)this.DataContext;
             if (!string.IsNullOrEmpty(vm.User.Email) && !string.IsNullOrEmpty(vm.User.FirstName) && !string.IsNullOrEmpty(vm.User.LastName))
             {
-                if (vm.User.Email.IsValidEmail())
+                //vm.User.Email.IsValidEmail()
+                if (true)
                 {
                     var result = await vm.CreateProfile();
+                    vm.CreateExpressLogin();
+
                     if (result)
                     {
                         vm.ErrorMessage = string.Empty;
-                        Frame.Navigate(typeof(SurveyLibrary), vm);
+                        Frame.Navigate(typeof (SurveyLibrary), vm);
                     }
-                    vm.ErrorMessage = "There Was A Problem Creating Your Profile";
+                    else
+                    {
+                        vm.ErrorMessage = "There Was A Problem Creating Your Profile";
+                    }
                 }
                 else
                 {

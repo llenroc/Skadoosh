@@ -1,11 +1,14 @@
-﻿using Skadoosh.Common.DomainModels;
-using System;
+﻿
+using System.IO.Compression;
+using System.Xml.Linq;
+using Microsoft.WindowsAzure.MobileServices;
+using Skadoosh.Common.DomainModels;
+using Statera.Xamarin.Common;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Runtime;
+
 namespace Skadoosh.Common.ViewModels
 {
 
@@ -22,10 +25,18 @@ namespace Skadoosh.Common.ViewModels
         private bool _canStopSurvey;
         private string _errorMessage;
         private bool _isBusy;
+        private ExpressLogin _expLogin;
 
         #endregion
 
         #region properties
+
+        public ExpressLogin ExpLogin
+        {
+            get { return _expLogin; }
+            set { _expLogin = value; Notify("ExpLogin"); }
+        }
+
         public bool IsBusy
         {
             get { return _isBusy; }
@@ -104,12 +115,14 @@ namespace Skadoosh.Common.ViewModels
         public PresenterVM()
         {
             SurveyCollection = new ObservableCollection<Survey>();
+            ExpLogin = new ExpressLogin();
         } 
         #endregion
 
         #region Survey Code
         public async Task<int> DeleteCurrentSurvey()
         {
+            IsBusy = true;
             var table = AzureClient.GetTable<Survey>();
             if (CurrentSurvey != null && CurrentSurvey.Id != 0)
             {
@@ -119,6 +132,7 @@ namespace Skadoosh.Common.ViewModels
                 CurrentSurvey = null;
                 return SurveyCollection.Count;
             }
+            IsBusy = false;
             return 0;
         }
         public async Task<bool> ChannelIsAvailable()
@@ -162,6 +176,18 @@ namespace Skadoosh.Common.ViewModels
                 CurrentSurvey.IsActive = true;
                 var table = AzureClient.GetTable<Survey>();
                 await table.UpdateAsync(CurrentSurvey);
+
+
+                var qTable = AzureClient.GetTable<Question>();
+                var activeQuestions = await qTable.Where(x => x.IsActive).ToListAsync();
+                if (!activeQuestions.Any())
+                {
+                    var list = await qTable.Take(1).ToListAsync();
+                    var q = list.First();
+                    q.IsActive = true;
+                    await qTable.UpdateAsync(q);
+                }
+
                 CanStartSurvey = (CurrentSurvey.IsLiveSurvey && !CurrentSurvey.IsActive);
                 CanStopSurvey = (CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive);
             }
@@ -208,6 +234,7 @@ namespace Skadoosh.Common.ViewModels
         #region Question Code
         public async Task<int> DeleteQuestionBySurvey(int surveyId)
         {
+            IsBusy = true;
             var table = AzureClient.GetTable<Question>();
             var questions = await table.Where(x => x.SurveyId == surveyId).ToListAsync();
             foreach (var q in questions)
@@ -215,6 +242,7 @@ namespace Skadoosh.Common.ViewModels
                 await DeleteOptionByQuestionId(q.Id);
                 await table.DeleteAsync(q).ConfigureAwait(true);
             }
+            IsBusy = false;
             return 0;
         }
         public async void DeleteCurrentQuestion()
@@ -382,5 +410,76 @@ namespace Skadoosh.Common.ViewModels
         }
         #endregion
 
+
+        #region Express Login
+
+        public async void CreateExpressLogin()
+        {
+            if (ExpLogin != null && !string.IsNullOrEmpty(ExpLogin.Password))
+            {
+                var list = await GetExpressLogins();
+                if(list==null)
+                    list = new List<ExpressLogin>();
+
+                var el = new ExpressLogin()
+                {
+                    Id = this.User.Id,
+                    UserId = this.AzureClient.CurrentUser.UserId,
+                    MobileServiceAuthenticationToken = this.AzureClient.CurrentUser.MobileServiceAuthenticationToken,
+                    Password = ExpLogin.Password
+
+                };
+                if (list.Any(x => x.Password == el.Password))
+                {
+                    var existingItem = list.First(x => x.Password == el.Password);
+                    var index = list.IndexOf(existingItem);
+                    list[index] = el;
+                }
+                else{
+                   list.Add(el);
+                }
+                var lss = new LocalStorageService();
+                lss.SaveIsolatedStorage<List<ExpressLogin>>("ExpressList", list);
+            }
+        }
+
+        private async Task<List<ExpressLogin>> GetExpressLogins()
+        {
+            var lss = new LocalStorageService();
+            var eps = await lss.GetIsolatedStorage<List<ExpressLogin>>("ExpressList");
+            return eps;
+        }
+
+        public async Task<MobileServiceUser> GetExpressLoginClient()
+        {
+            if (ExpLogin != null && !string.IsNullOrEmpty(ExpLogin.Password))
+            {
+                var list = await GetExpressLogins();
+                if (list != null && list.Any())
+                {
+                    var ep = list.FirstOrDefault(x => x.Password == ExpLogin.Password);
+                    if (ep != null)
+                    {
+                        var msu = new MobileServiceUser(ep.UserId);
+                        msu.MobileServiceAuthenticationToken = ep.MobileServiceAuthenticationToken;
+                        return msu;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        } 
+
+        #endregion
     }
 }

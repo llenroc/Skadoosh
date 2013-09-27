@@ -1,4 +1,5 @@
-﻿using Skadoosh.Store.Common;
+﻿using MyToolkit.Multimedia;
+using Skadoosh.Store.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,7 +31,7 @@ namespace Skadoosh.Store.Views
             {
                 try
                 {
-                    var ht = this.itemGridView.ActualHeight-20;
+                    var ht = this.itemGridView.ActualHeight - 20;
                     var ratio = (double)480 / (double)800;
                     var wd = Math.Round(ht / ratio);
 
@@ -45,6 +46,8 @@ namespace Skadoosh.Store.Views
                 }
             };
         }
+
+
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also

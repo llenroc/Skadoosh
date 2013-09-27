@@ -42,6 +42,7 @@ namespace Skadoosh.Store.Views.Presenter
         protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             VM = (PresenterVM)navigationParameter;
+            VM.ErrorMessage = string.Empty;
             await VM.LoadQuestionsForCurrentSurvey();
             if (!VM.CurrentSurvey.Questions.Any())
                 CollectionIsEmptyNotification();

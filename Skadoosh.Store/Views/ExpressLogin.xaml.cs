@@ -1,34 +1,22 @@
-﻿using Skadoosh.Common.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using Skadoosh.Common.ViewModels;
+using Skadoosh.Store.Views.Presenter;
 
-namespace Skadoosh.Store.Views.Presenter
+namespace Skadoosh.Store.Views
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class EditQuestion : Skadoosh.Store.Common.LayoutAwarePage
+    public sealed partial class ExpressLogin : Skadoosh.Store.Common.LayoutAwarePage
     {
-        private PresenterVM VM
-        {
-            get { return (PresenterVM)this.DataContext; }
-            set { this.DataContext = value; }
-        }
+        private PresenterVM vm;
 
-        public EditQuestion()
+        public ExpressLogin()
         {
             this.InitializeComponent();
         }
@@ -44,8 +32,9 @@ namespace Skadoosh.Store.Views.Presenter
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            VM = (PresenterVM)navigationParameter;
-            VM.ErrorMessage = string.Empty;
+            vm = (PresenterVM)navigationParameter;
+            vm.ErrorMessage = string.Empty;
+            this.DataContext = vm;
         }
 
         /// <summary>
@@ -58,25 +47,26 @@ namespace Skadoosh.Store.Views.Presenter
         {
         }
 
-        private async void SaveQuestion(object sender, RoutedEventArgs e)
+        private async void Login(object sender, RoutedEventArgs e)
         {
-            await VM.UpdateQuestion().ConfigureAwait(true);
-            Frame.GoBack();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            VM.CurrentQuestion.Options.Add(new Skadoosh.Common.DomainModels.Option() { QuestionId = VM.CurrentQuestion.Id });
-        }
-
-        private void Logout(object sender, RoutedEventArgs e)
-        {
-            VM.Logout();
-            Frame.Navigate(typeof(Home), VM);
-        }
-        private void ShowHelp(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(Help), new ParticipateStaticVM());
+            var msu = await vm.GetExpressLoginClient();
+            if (msu != null)
+            {
+                vm.AzureClient.CurrentUser = msu;
+                var profile = await vm.ProfileExists();
+                if (profile)
+                {
+                    Frame.Navigate(typeof (SurveyLibrary), vm);
+                }
+                else
+                {
+                    Frame.Navigate(typeof (PresenterProfile), vm);
+                }
+            }
+            else
+            {
+                vm.ErrorMessage = "Express login does not exist";
+            }
         }
     }
 }

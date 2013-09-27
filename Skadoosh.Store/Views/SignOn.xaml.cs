@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.ComponentModel;
+using Statera.Xamarin.Common;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -28,7 +29,7 @@ namespace Skadoosh.Store.Views
     /// </summary>
     public sealed partial class SignOn : Skadoosh.Store.Common.LayoutAwarePage, INotifyPropertyChanged
     {
-        private ViewModelBase baseVM;
+        private PresenterVM vm;
         private bool _isBusy;
 
         public bool IsBusy
@@ -59,8 +60,8 @@ namespace Skadoosh.Store.Views
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            baseVM = (ViewModelBase)navigationParameter;
-
+            vm = (PresenterVM)navigationParameter;
+            vm.ErrorMessage = string.Empty;
         }
 
         /// <summary>
@@ -78,15 +79,19 @@ namespace Skadoosh.Store.Views
             switch (((Grid)sender).Name)
             {
                 case "btnFaceBook":
+                    vm.ExpLogin.AccountFileName = "SkadooshFaceBook";
                     Login(MobileServiceAuthenticationProvider.Facebook);
                     break;
                 case "btnGoogle":
+                    vm.ExpLogin.AccountFileName = "SkadooshFaceBook";
                     Login(MobileServiceAuthenticationProvider.Google);
                     break;
                 case "btnTwitter":
+                    vm.ExpLogin.AccountFileName = "SkadooshFaceBook";
                     Login(MobileServiceAuthenticationProvider.Twitter);
                     break;
                 case "btnWindows":
+                    vm.ExpLogin.AccountFileName = "SkadooshFaceBook";
                     Login(MobileServiceAuthenticationProvider.MicrosoftAccount);
                     break;
             }
@@ -97,20 +102,22 @@ namespace Skadoosh.Store.Views
 
             try
             {
-                
-                await baseVM.AzureClient.LoginAsync(provider);
+
+                await vm.AzureClient.LoginAsync(provider);
+            
                 IsBusy = true;
-                if (baseVM.AzureClient.CurrentUser != null)
+
+                if (vm.AzureClient.CurrentUser != null)
                 {
-                    var profile = await baseVM.ProfileExists();
+                    var profile = await vm.ProfileExists();
                     IsBusy = false;
                     if (profile)
                     {
-                        Frame.Navigate(typeof (SurveyLibrary), baseVM);
+                        Frame.Navigate(typeof(SurveyLibrary), vm);
                     }
                     else
                     {
-                        Frame.Navigate(typeof (PresenterProfile), baseVM);
+                        Frame.Navigate(typeof(PresenterProfile), vm);
                     }
                 }
                 IsBusy = false;
@@ -131,6 +138,11 @@ namespace Skadoosh.Store.Views
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
+        }
+
+        private void ExpressLogin(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(ExpressLogin), vm);
         }
     }
 }
