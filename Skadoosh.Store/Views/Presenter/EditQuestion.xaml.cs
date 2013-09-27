@@ -73,5 +73,9 @@ namespace Skadoosh.Store.Views.Presenter
             VM.Logout();
             Frame.Navigate(typeof(Home), VM);
         }
+        private void ShowHelp(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Help), new ParticipateStaticVM());
+        }
     }
 }

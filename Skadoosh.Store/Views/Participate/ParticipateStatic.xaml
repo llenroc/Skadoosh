@@ -212,7 +212,7 @@
                     <Button Style="{StaticResource StopAppBarButtonStyle}"  AutomationProperties.Name="Quit" Click="GoToHome" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource HelpAppBarButtonStyle}" />
+                    <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
                 </StackPanel>
             </Grid>
         </AppBar>

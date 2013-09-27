@@ -372,8 +372,10 @@ namespace Skadoosh.Common.ViewModels
         {
             if (CurrentQuestion != null)
             {
+                IsBusy = true;
                 var table = AzureClient.GetTable<Responses>();
                 var responses = await table.Where(x => x.QuestionId == CurrentQuestion.Id).ToListAsync();
+                IsBusy = false;
                 return responses;
             }
             return new List<Responses>();

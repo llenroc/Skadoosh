@@ -88,6 +88,9 @@ namespace Skadoosh.Store.Views.Participate
             } 
         }
 
-
+        private void ShowHelp(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Help), new ParticipateStaticVM());
+        }
     }
 }

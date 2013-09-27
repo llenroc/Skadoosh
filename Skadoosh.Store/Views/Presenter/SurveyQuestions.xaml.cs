@@ -72,9 +72,19 @@ namespace Skadoosh.Store.Views.Presenter
             Frame.Navigate(typeof(EditQuestion), VM);
         }
 
-        private void DeleteQuestion(object sender, RoutedEventArgs e)
+        private async void DeleteQuestion(object sender, RoutedEventArgs e)
         {
-            VM.DeleteCurrentQuestion();
+            var msg = new MessageDialog("Are you sure you want to delete this question?", "Delete Verification");
+            msg.Commands.Add(new UICommand("Proceed", async (a) =>
+            {
+                VM.DeleteCurrentQuestion();
+            }));
+            msg.Commands.Add(new UICommand("Cancel", (a) =>
+            {
+
+            }));
+
+            await msg.ShowAsync();
         }
 
         private void SetActive(object sender, RoutedEventArgs e)
@@ -107,6 +117,10 @@ namespace Skadoosh.Store.Views.Presenter
                 }
             }
             
+        }
+        private void ShowHelp(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Help), new ParticipateStaticVM());
         }
     }
 }

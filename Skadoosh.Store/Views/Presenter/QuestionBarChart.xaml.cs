@@ -118,5 +118,14 @@ namespace Skadoosh.Store.Views.Presenter
         {
             await PrintManager.ShowPrintUIAsync();
         }
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            VM.Logout();
+            Frame.Navigate(typeof(Home), VM);
+        }
+        private void ShowHelp(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Help), new ParticipateStaticVM());
+        }
     }
 }

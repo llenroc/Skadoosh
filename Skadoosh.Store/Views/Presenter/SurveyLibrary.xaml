@@ -179,8 +179,7 @@
                     <Button Style="{StaticResource MoveToFolderAppBarButtonStyle}"  AutomationProperties.Name="Export Results"  Visibility="{Binding CanStopSurvey,Converter={StaticResource trueVisible}}" Click="ExportData" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource RefreshAppBarButtonStyle}" />
-                    <Button Style="{StaticResource HelpAppBarButtonStyle}" />
+                    <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
                     <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout" />
                  
                 </StackPanel>

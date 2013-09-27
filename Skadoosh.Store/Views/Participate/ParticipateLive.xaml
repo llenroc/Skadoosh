@@ -217,7 +217,7 @@
                     <Button Style="{StaticResource PauseAppBarButtonStyle}"  AutomationProperties.Name="Exit Survey" Click="ExitSurvey" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource HelpAppBarButtonStyle}" />
+                    <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
                 </StackPanel>
             </Grid>
         </AppBar>

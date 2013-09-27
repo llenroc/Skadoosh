@@ -163,7 +163,7 @@
                     <Button Style="{StaticResource DiscardAppBarButtonStyle}" AutomationProperties.Name="Cancel" Click="GoBack"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource HelpAppBarButtonStyle}" />
+                    <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
                     <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout"/>
                 </StackPanel>
             </Grid>

@@ -14,7 +14,7 @@
 
     <Page.Resources>
 
-
+        <common:BooleanToVisibilityConverter x:Key="trueVisible" IsReversed="False"></common:BooleanToVisibilityConverter>
         <x:String x:Key="AppName">Survey Administration</x:String>
     </Page.Resources>
 
@@ -73,7 +73,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" Margin="36,36,30,36" Height="55" Width="55" >
                 <Button.Template>
@@ -86,7 +86,10 @@
                 <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
                 <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
             </StackPanel>
-
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding IsBusy, Converter={StaticResource trueVisible}}">
+                <ProgressRing IsActive="True" IsEnabled="True"  Height="45" Width="45"  Margin="0 0 15 10" Foreground="#FF4F00"/>
+                <TextBlock Foreground="#FF4F00" FontSize="36" Margin="5 45 20 0">Loading...</TextBlock>
+            </StackPanel>
         </Grid>
         <Grid Visibility="Collapsed" x:Name="SnappedHeader">
             <Grid.ColumnDefinitions>
@@ -157,8 +160,8 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource RefreshAppBarButtonStyle}" Click="RefreshData"  />
-                    <Button Style="{StaticResource HelpAppBarButtonStyle}" />
-                    <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout"  />
+                    <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
+                    <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout"  />
 
                 </StackPanel>
             </Grid>

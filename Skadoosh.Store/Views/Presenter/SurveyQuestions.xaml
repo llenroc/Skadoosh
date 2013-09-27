@@ -203,8 +203,7 @@
                     <Button Style="{StaticResource PreviewLinkAppBarButtonStyle}"  AutomationProperties.Name="View Result"  Visibility="{Binding IsQuestionSelected, Converter={StaticResource boolToVis}}" Click="ViewResults" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource RefreshAppBarButtonStyle}" />
-                    <Button Style="{StaticResource HelpAppBarButtonStyle}" />
+                    <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
                     <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout"/>
                 </StackPanel>
             </Grid>

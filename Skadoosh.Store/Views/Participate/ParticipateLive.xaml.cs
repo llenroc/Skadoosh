@@ -120,5 +120,9 @@ namespace Skadoosh.Store.Views.Participate
                 VM.CurrentQuestion.Options.First(x => x.Id == opt.Id).IsSelected = true;
             } 
         }
+        private void ShowHelp(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Help), new ParticipateStaticVM());
+        }
     }
 }

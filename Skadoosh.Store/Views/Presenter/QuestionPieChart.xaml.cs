@@ -107,7 +107,7 @@ namespace Skadoosh.Store.Views.Presenter
         {
             if (VM.CurrentQuestion != null)
             {
-                ((ColumnSeries)this.PieChart.Series[0]).ItemsSource = null;
+                ((PieSeries)this.PieChart.Series[0]).ItemsSource = null;
                 var list = await VM.GetResponsesForCurrentQuestion();
                 CalculatePieChart(list);
             }
@@ -116,6 +116,16 @@ namespace Skadoosh.Store.Views.Presenter
         private async void PrintChart(object s, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await PrintManager.ShowPrintUIAsync();
+        }
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            VM.Logout();
+            Frame.Navigate(typeof(Home), VM);
+        }
+        private void ShowHelp(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Help), new ParticipateStaticVM());
         }
     }
 }

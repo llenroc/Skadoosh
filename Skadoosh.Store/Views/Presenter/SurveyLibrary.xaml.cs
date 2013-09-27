@@ -66,22 +66,12 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void CollectionIsEmptyNotification()
         {
-            // Create the message dialog and set its content
             var messageDialog = new MessageDialog("There are no surveys created in this library. Open the application bar up to create a survey","Empty Library");
-          
-
-            // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
             messageDialog.Commands.Add(new UICommand(
                 "I Understand",
                 new UICommandInvokedHandler(this.CommandInvokedHandler)));
-
-            // Set the command that will be invoked by default
             messageDialog.DefaultCommandIndex = 0;
-
-            // Set the command to be invoked when escape is pressed
             messageDialog.CancelCommandIndex = 1;
-
-            // Show the message dialog
             await messageDialog.ShowAsync();
         }
 
@@ -103,9 +93,19 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void DeleteSurvey(object sender, RoutedEventArgs e)
         {
-            await VM.DeleteCurrentSurvey().ConfigureAwait(true);
-            if (!VM.SurveyCollection.Any())
-                CollectionIsEmptyNotification();
+            var msg = new MessageDialog("Are you sure you want to delete this survey?", "Delete Verification");
+            msg.Commands.Add(new UICommand("Proceed", async (a) =>
+            {
+                await VM.DeleteCurrentSurvey().ConfigureAwait(true);
+                if (!VM.SurveyCollection.Any())
+                    CollectionIsEmptyNotification();
+            }));
+            msg.Commands.Add(new UICommand("Cancel", (a) =>
+            {
+
+            }));
+
+            await msg.ShowAsync();
         }
 
         private void StartSurvey(object sender, RoutedEventArgs e)
@@ -144,6 +144,18 @@ namespace Skadoosh.Store.Views.Presenter
             var file = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, content);
 
+            var messageDialog = new MessageDialog("The document was saved to your document library.", "Document Saved");
+            messageDialog.Commands.Add(new UICommand(
+                "I Understand",
+                new UICommandInvokedHandler(this.CommandInvokedHandler)));
+            messageDialog.DefaultCommandIndex = 0;
+            messageDialog.CancelCommandIndex = 1;
+            await messageDialog.ShowAsync();
+
+        }
+        private void ShowHelp(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Help), new ParticipateStaticVM());
         }
 
     }
