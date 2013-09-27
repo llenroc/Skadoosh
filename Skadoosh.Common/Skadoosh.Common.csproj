@@ -41,6 +41,7 @@
     <Compile Include="DomainModels\SurveyNotificationChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DomainModels\Survey.cs" />
+    <Compile Include="Util\CsvExport.cs" />
     <Compile Include="ViewModels\ParticipateLiveVM.cs" />
     <Compile Include="ViewModels\ParticipateStaticVM.cs" />
     <Compile Include="ViewModels\PresenterVM.cs" />

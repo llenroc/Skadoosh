@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Storage;
+using System.Runtime;
+using System.IO;
+#if NETFX_CORE
 using System.Reflection;
-
-namespace Skadoosh.Store.Common
+#endif
+namespace Skadoosh.Common.Util
 {
     public class CsvExport<T> where T : class
     {
@@ -24,13 +26,14 @@ namespace Skadoosh.Store.Common
             return Export(true);
         }
 
+#if NETFX_CORE
         public string Export(bool includeHeaderLine)
         {
 
             var sb = new StringBuilder();
 
             //Get properties using reflection. 
-            
+
             var propertyInfos = typeof(T).GetTypeInfo();
 
             if (includeHeaderLine)
@@ -56,13 +59,51 @@ namespace Skadoosh.Store.Common
 
             return sb.ToString();
         }
-
-        //export to a file. 
-        public async void ExportToFile(string path)
+#else
+        public string Export(bool includeHeaderLine)
         {
-            var storageFolder = KnownFolders.DocumentsLibrary;
-            var file = await storageFolder.CreateFileAsync(path, CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, Export());
+
+            var sb = new StringBuilder();
+
+            //Get properties using reflection.
+
+            var properties = typeof(T).GetProperties();
+
+            if (includeHeaderLine)
+            {
+                //add header line. 
+                foreach (var prop in properties)
+                {
+                    sb.Append(prop.Name).Append(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ListSeparator);
+                }
+                sb.Remove(sb.Length - 1, 1).AppendLine();
+            }
+
+            //add value for each property. 
+            foreach (T obj in Objects)
+            {
+                foreach (var prop in properties)
+                {
+                    sb.Append(MakeValueCsvFriendly(prop.GetValue(obj, null))).Append(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ListSeparator);
+                }
+
+                sb.Remove(sb.Length - 1, 1).AppendLine();
+            }
+
+            return sb.ToString();
+        }
+#endif
+
+        
+
+        public string ExportToString()
+        {
+            return Export();
+        }
+
+        public MemoryStream ExportToMemoryStream()
+        {
+            return new MemoryStream(ExportToBytes());
         }
 
         //export as binary data. 
@@ -91,5 +132,4 @@ namespace Skadoosh.Store.Common
 
         }
     } 
-
 }

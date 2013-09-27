@@ -15,7 +15,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Skadoosh.Common.Util;
+using Windows.Storage;
 // The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
 namespace Skadoosh.Store.Views.Presenter
@@ -136,8 +137,13 @@ namespace Skadoosh.Store.Views.Presenter
         private async void ExportData(object sender, RoutedEventArgs e)
         {
             var list = await VM.GetAllResponsesForCurrentSurvey();
-            var csv = new CsvExport<Responses>(list);
-            csv.ExportToFile("Results.csv"); 
+            var exporter = new CsvExport<Responses>(list);
+            var content = exporter.ExportToString();
+            var storageFolder = KnownFolders.DocumentsLibrary;
+            var fileName = VM.CurrentSurvey.SurveyTitle.Replace(" ", string.Empty) + ".csv";
+            var file = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, content);
+
         }
 
     }

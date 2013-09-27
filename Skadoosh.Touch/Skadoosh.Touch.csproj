@@ -110,6 +110,9 @@
     <Compile Include="..\Skadoosh.Common\DomainModels\SurveyNotificationChannel.cs">
       <Link>DomainModels\SurveyNotificationChannel.cs</Link>
     </Compile>
+    <Compile Include="..\Skadoosh.Common\Util\CsvExport.cs">
+      <Link>Util\CsvExport.cs</Link>
+    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Skadoosh.TouchViewController.cs" />

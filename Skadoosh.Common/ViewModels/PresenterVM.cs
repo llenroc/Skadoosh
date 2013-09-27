@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Runtime;
 namespace Skadoosh.Common.ViewModels
 {
 
@@ -337,6 +337,8 @@ namespace Skadoosh.Common.ViewModels
 
         public async Task<int> DeleteReponsesByOptionId(int optionId)
         {
+            
+
             var table = AzureClient.GetTable<Responses>();
             var responses = await table.Where(x => x.OptionId == optionId).ToListAsync();
             foreach (var response in responses)

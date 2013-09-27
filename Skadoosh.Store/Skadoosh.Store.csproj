@@ -121,6 +121,9 @@
     <Compile Include="..\Skadoosh.Common\DomainModels\SurveyNotificationChannel.cs">
       <Link>Models\SurveyNotificationChannel.cs</Link>
     </Compile>
+    <Compile Include="..\Skadoosh.Common\Util\CSVExport.cs">
+      <Link>Util\CSVExport.cs</Link>
+    </Compile>
     <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
       <Link>ViewModel\ParticipateLiveVM.cs</Link>
     </Compile>
@@ -136,7 +139,7 @@
     <Compile Include="Common\AppPrinterPool.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\BoolToSelectionModeConverter.cs" />
-    <Compile Include="Common\CsvExport.cs" />
+    <Compile Include="Common\Win8ExportFile.cs" />
     <Compile Include="Common\NameValueItem.cs" />
     <Compile Include="Common\IsActiveHeaderStyleConverter.cs" />
     <Compile Include="Common\IsLiveSurveyImageConverter.cs" />

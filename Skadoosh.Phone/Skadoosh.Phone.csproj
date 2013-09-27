@@ -122,6 +122,9 @@
     <Compile Include="..\Skadoosh.Common\DomainModels\SurveyNotificationChannel.cs">
       <Link>Models\SurveyNotificationChannel.cs</Link>
     </Compile>
+    <Compile Include="..\Skadoosh.Common\Util\CsvExport.cs">
+      <Link>Util\CsvExport.cs</Link>
+    </Compile>
     <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
       <Link>ViewModel\ParticipateLiveVM.cs</Link>
     </Compile>
