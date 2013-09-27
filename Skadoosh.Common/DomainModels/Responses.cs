@@ -2,6 +2,15 @@
 
 namespace Skadoosh.Common.DomainModels
 {
+    public class ResponseCSV
+    {
+        public int Id { get; set; }
+        public string Survey { get; set; }
+        public string Question { get; set; }
+        public string Option { get; set; }
+        public string DateEntered { get; set; }
+        public string UserName { get; set; }
+    }
     public class Responses : NotifyBase
     {
         private int _id;
@@ -37,7 +46,7 @@ namespace Skadoosh.Common.DomainModels
             set { _userName = value; Notify("UserName"); }
         }
 
-        public DateTime DateEntered { get; set; }
+        public string DateEntered { get; set; }
 
     }
 }

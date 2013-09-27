@@ -137,8 +137,8 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void ExportData(object sender, RoutedEventArgs e)
         {
-            var list = await VM.GetAllResponsesForCurrentSurvey();
-            var exporter = new CsvExport<Responses>(list);
+            var list = await VM.GetResponseCSVForCurrentSurvey();
+            var exporter = new CsvExport<ResponseCSV>(list);
             var content = exporter.ExportToString();
             var storageFolder = KnownFolders.DocumentsLibrary;
             var fileName = VM.CurrentSurvey.SurveyTitle.Replace(" ", string.Empty) + ".csv";

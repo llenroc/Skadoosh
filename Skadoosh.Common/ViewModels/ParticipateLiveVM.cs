@@ -75,7 +75,7 @@ namespace Skadoosh.Common.ViewModels
                         OptionId = op.Id,
                         QuestionId = q.Id,
                         SurveyId = CurrentSurvey.Id,
-                        DateEntered = DateTime.Now
+                        DateEntered = DateTime.Now.ToString()
                     };
                     if (CurrentSurvey.RequiresUserName)
                         r.UserName = User.LastName + ", " + User.FirstName;

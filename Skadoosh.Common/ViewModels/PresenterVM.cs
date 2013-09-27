@@ -1,6 +1,5 @@
 ﻿
-using System.IO.Compression;
-using System.Xml.Linq;
+
 using Microsoft.WindowsAzure.MobileServices;
 using Skadoosh.Common.DomainModels;
 using Statera.Xamarin.Common;
@@ -408,6 +407,32 @@ namespace Skadoosh.Common.ViewModels
             }
             return new List<Responses>();
         }
+
+        public async Task<List<ResponseCSV>> GetResponseCSVForCurrentSurvey()
+        {
+            
+            var list = new List<ResponseCSV>();
+            var response = await GetAllResponsesForCurrentSurvey();
+            if (response != null && response.Any())
+            {
+                await LoadQuestionsForCurrentSurvey();
+                foreach (var r in response)
+                {
+                    var csv = new ResponseCSV()
+                    {
+                        DateEntered = r.DateEntered,
+                        Id = r.Id,
+                        Survey = CurrentSurvey.SurveyTitle,
+                        Question = CurrentSurvey.Questions.First(x => x.Id == r.QuestionId).QuestionText,
+                        Option = CurrentSurvey.Questions.First(x => x.Id == r.QuestionId).Options.First(x => x.Id == r.OptionId).OptionText,
+                        UserName=r.UserName
+                    };
+                    list.Add(csv);
+                }
+            }
+
+            return list;
+        } 
         #endregion
 
 
