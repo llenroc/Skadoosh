@@ -124,17 +124,21 @@ namespace Skadoosh.Common.ViewModels
                     var survey = results.First();
                     if (survey.IsLiveSurvey)
                     {
-                        if (survey.RequiresUserName && !string.IsNullOrEmpty(User.FirstName) && !string.IsNullOrEmpty(User.LastName))
+                        if (survey.RequiresUserName)
                         {
-                            ErrorMessage = string.Empty;
-                            CurrentSurvey = survey;
-                            await LoadCurrentQuestionForSurvey();
-                            return 1;
+
+                            if (string.IsNullOrEmpty(User.FirstName) || string.IsNullOrEmpty(User.LastName))
+                            {
+                                ErrorMessage = "This Survey Requires Your First And Last Name";
+                                return 0;
+                            }
+
                         }
-                        else
-                        {
-                            ErrorMessage = "This Survey Requires Your First And Last Name";
-                        }
+
+                        ErrorMessage = string.Empty;
+                        CurrentSurvey = survey;
+                        await LoadCurrentQuestionForSurvey();
+                        return 1;
                     }
                     else
                     {
@@ -143,6 +147,7 @@ namespace Skadoosh.Common.ViewModels
                 }
                 else
                 {
+                   
                     ErrorMessage = "Could Not Find Survey. Is The Code Correct?";
                 }
             }

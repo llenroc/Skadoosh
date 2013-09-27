@@ -101,9 +101,6 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common.Library\Services\LocalStorageService.cs">
-      <Link>Services\LocalStorageService.cs</Link>
-    </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\AccountUser.cs">
       <Link>Models\AccountUser.cs</Link>
     </Compile>
@@ -128,9 +125,6 @@
     <Compile Include="..\Skadoosh.Common\DomainModels\SurveyNotificationChannel.cs">
       <Link>Models\SurveyNotificationChannel.cs</Link>
     </Compile>
-    <Compile Include="..\Skadoosh.Common\Util\CsvExport.cs">
-      <Link>Util\CsvExport.cs</Link>
-    </Compile>
     <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
       <Link>ViewModel\ParticipateLiveVM.cs</Link>
     </Compile>
@@ -141,6 +135,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BoolToSelectionModeConverter.cs" />
+    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\WinPhoneNotification.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

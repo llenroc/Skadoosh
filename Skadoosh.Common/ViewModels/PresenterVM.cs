@@ -172,6 +172,15 @@ namespace Skadoosh.Common.ViewModels
         {
             if (CurrentSurvey.IsLiveSurvey)
             {
+
+                var channelTable = AzureClient.GetTable<SurveyNotificationChannel>();
+                var channelList = await channelTable.Where(x => x.ChannelName == CurrentSurvey.ChannelName).ToListAsync();
+                foreach (var item in channelList)
+                {
+                    await channelTable.DeleteAsync(item);
+                }
+
+
                 CurrentSurvey.IsActive = true;
                 var table = AzureClient.GetTable<Survey>();
                 await table.UpdateAsync(CurrentSurvey);
