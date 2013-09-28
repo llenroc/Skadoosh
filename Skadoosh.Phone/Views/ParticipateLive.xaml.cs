@@ -91,7 +91,12 @@ namespace Skadoosh.Phone.Views
             _timer.Stop();
             _timer = null;
             await VM.SaveCurrentQuestionResponses();
-            await VM.FindSurveyCurrentChannel();
+            var result = await VM.LoadCurrentQuestionForSurvey();
+            if (result == 0)
+            {
+                //Navigate away
+                var x = 10;
+            }
         }
         private void ItemTapped(object sender, System.Windows.Input.GestureEventArgs e)
         {

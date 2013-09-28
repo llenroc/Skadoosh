@@ -103,11 +103,13 @@ namespace Skadoosh.Common.ViewModels
                         CurrentQuestion.Options.Add(o);
                     }
                     CurrentSurvey.Questions.Add(CurrentQuestion);
+                    return 1;
                 }
                 else
                 {
                     CurrentSurvey.IsActive = false;
                     IsClosed = true;
+                    return 0;
                 }
             }
             return 0;

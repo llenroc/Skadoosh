@@ -96,9 +96,10 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <TextBlock Grid.Row="2" Text="{Binding CurrentPostition}" HorizontalAlignment="Right" Margin="10" FontSize="18" Foreground="Black"></TextBlock>
+
                 </Grid>
-                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                <StackPanel HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch"
                             Visibility="{Binding IsClosed, Converter={StaticResource trueVisible}}" >
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="32" Margin="0 60 0 0">THE SURVEY HAS CLOSED</TextBlock>
                 </StackPanel>
