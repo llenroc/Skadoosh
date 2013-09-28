@@ -115,6 +115,7 @@ namespace Skadoosh.Common.ViewModels
         {
             if (CurrentSurvey != null)
             {
+                IsBusy = true;
                 CurrentSurvey.Questions.Clear();
                 var results = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id).ToListAsync();
 
@@ -130,6 +131,7 @@ namespace Skadoosh.Common.ViewModels
                 CurrentQuestion = CurrentSurvey.Questions.First();
                 return CurrentSurvey.Questions.Count;
             }
+            IsBusy = false;
             return 0;
         }
 
@@ -158,6 +160,7 @@ namespace Skadoosh.Common.ViewModels
                         ErrorMessage = string.Empty;
                         CurrentSurvey = survey;
                         await LoadQuestionsForCurrentSurvey();
+                        IsBusy = false;
                         return 1;
                     }
                     else

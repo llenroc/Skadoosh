@@ -55,6 +55,7 @@
             </StackPanel>
         </StackPanel>
     </Grid>
+
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Assets/Help.png" Text="Help"/>

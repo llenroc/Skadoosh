@@ -6,13 +6,18 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="clr-namespace:Skadoosh.Phone.Common"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-
+    
+    <phone:PhoneApplicationPage.Resources>
+        <common:BooleanToVisibilityConverter x:Key="trueVisible" IsReversed="False"></common:BooleanToVisibilityConverter>
+        <common:BooleanToVisibilityConverter x:Key="falseVisible" IsReversed="True"></common:BooleanToVisibilityConverter>
+    </phone:PhoneApplicationPage.Resources>
     <Grid x:Name="LayoutRoot" >
 
         <Grid.RowDefinitions>
@@ -94,6 +99,9 @@
 
         </Border>
     </Grid>
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator  IsIndeterminate="true" IsVisible="{Binding IsBusy}" Text="Loading..." />
+    </shell:SystemTray.ProgressIndicator>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Assets/Previous.png" Text="Back" Click="BackQuestion" />

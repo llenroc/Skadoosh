@@ -141,6 +141,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Closed.xaml.cs">
+      <DependentUpon>Closed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ParticipateLive.xaml.cs">
       <DependentUpon>ParticipateLive.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Closed.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +195,7 @@
     <Content Include="Assets\Find.png" />
     <Content Include="Assets\Group.png" />
     <Content Include="Assets\Help.png" />
+    <Content Include="Assets\Home.png" />
     <Content Include="Assets\Logout.png" />
     <Content Include="Assets\Next.png" />
     <Content Include="Assets\Participate.png" />

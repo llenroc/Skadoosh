@@ -94,8 +94,8 @@ namespace Skadoosh.Phone.Views
             var result = await VM.LoadCurrentQuestionForSurvey();
             if (result == 0)
             {
-                //Navigate away
-                var x = 10;
+                NavigationService.Navigate(new Uri("/Views/Closed.xaml", UriKind.Relative));
+                
             }
         }
         private void ItemTapped(object sender, System.Windows.Input.GestureEventArgs e)

@@ -37,7 +37,7 @@
 
         <Border x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Background="LightGray" Opacity="0.9" CornerRadius="10" Padding="10">
             <StackPanel>
-                <Grid Visibility="{Binding IsClosed, Converter={StaticResource falseVisible}}" >
+                <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
 
@@ -98,18 +98,17 @@
 
 
                 </Grid>
-                <StackPanel HorizontalAlignment="Stretch" 
-                            VerticalAlignment="Stretch"
-                            Visibility="{Binding IsClosed, Converter={StaticResource trueVisible}}" >
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="32" Margin="0 60 0 0">THE SURVEY HAS CLOSED</TextBlock>
-                </StackPanel>
+
             </StackPanel>
         </Border>
     </Grid>
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator  IsIndeterminate="true" IsVisible="{Binding IsBusy}" Text="Loading..." />
+    </shell:SystemTray.ProgressIndicator>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
 
-            <shell:ApplicationBarIconButton IconUri="/Assets/Logout.png" Text="Quit" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/Logout.png" Text="Quit" Click="QuitSurvey" />
             <shell:ApplicationBarIconButton IconUri="/Assets/Help.png" Text="Help"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

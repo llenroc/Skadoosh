@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="clr-namespace:Skadoosh.Phone.Common"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -13,7 +14,10 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
- 
+    <phone:PhoneApplicationPage.Resources>
+        <common:BooleanToVisibilityConverter x:Key="trueVisible" IsReversed="False"></common:BooleanToVisibilityConverter>
+        <common:BooleanToVisibilityConverter x:Key="falseVisible" IsReversed="True"></common:BooleanToVisibilityConverter>
+    </phone:PhoneApplicationPage.Resources>
     <Grid x:Name="LayoutRoot" >
 
         <Grid.RowDefinitions>
@@ -65,13 +69,13 @@
                 
 
                 <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Right">Survey Code</TextBlock>
-                <TextBox Grid.Row="1"  Grid.Column="1"  Margin="10" Text="{Binding ChannelName, Mode=TwoWay}" />
+                <TextBox Grid.Row="1"  Grid.Column="1"  Margin="5" Text="{Binding ChannelName, Mode=TwoWay}" />
 
                 <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Right">First Name</TextBlock>
-                <TextBox Grid.Row="2"  Grid.Column="1"  Margin="10" Text="{Binding User.FirstName, Mode=TwoWay}" ></TextBox>
+                <TextBox Grid.Row="2"  Grid.Column="1"  Margin="5" Text="{Binding User.FirstName, Mode=TwoWay}" ></TextBox>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Right">Last Name</TextBlock>
-                <TextBox Grid.Row="3"  Grid.Column="1"  Margin="10" Text="{Binding User.LastName, Mode=TwoWay}" ></TextBox>
+                <TextBox Grid.Row="3"  Grid.Column="1"  Margin="5" Text="{Binding User.LastName, Mode=TwoWay}" ></TextBox>
 
                 <TextBlock Grid.Row="4" Grid.Column="1" 
                            HorizontalAlignment="Left" 
@@ -86,6 +90,9 @@
 
         </Border>
     </Grid>
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator  IsIndeterminate="true" IsVisible="{Binding IsBusy}" Text="Searching..." />
+    </shell:SystemTray.ProgressIndicator>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Assets/Find.png" Text="Find" Click="FindSurvey"/>

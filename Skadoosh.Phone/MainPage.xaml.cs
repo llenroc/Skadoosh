@@ -21,6 +21,8 @@ namespace Skadoosh.Phone
         public MainPage()
         {
             InitializeComponent();
+
+           
         }
 
         private void NavigateToSelectSurvey(object sender, GestureEventArgs e)
