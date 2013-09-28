@@ -85,7 +85,7 @@ namespace Skadoosh.Common.ViewModels
             {
                 _currentQuestion = value;
                 IsQuestionSelected = value != null ? true : false;
-                CanSetActive = (value != null && CurrentSurvey.IsLiveSurvey) ? true : false;
+                CanSetActive = (value != null && CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive) ? true : false;
                 Notify("CurrentQuestion");
             }
         }
@@ -172,7 +172,7 @@ namespace Skadoosh.Common.ViewModels
         {
             if (CurrentSurvey.IsLiveSurvey)
             {
-
+                IsBusy = true;
                 var channelTable = AzureClient.GetTable<SurveyNotificationChannel>();
                 var channelList = await channelTable.Where(x => x.ChannelName == CurrentSurvey.ChannelName).ToListAsync();
                 foreach (var item in channelList)
@@ -187,10 +187,10 @@ namespace Skadoosh.Common.ViewModels
 
 
                 var qTable = AzureClient.GetTable<Question>();
-                var activeQuestions = await qTable.Where(x => x.IsActive).ToListAsync();
+                var activeQuestions = await qTable.Where(x => x.SurveyId == CurrentSurvey.Id && x.IsActive==true).ToListAsync();
                 if (!activeQuestions.Any())
                 {
-                    var list = await qTable.Take(1).ToListAsync();
+                    var list = await qTable.Where(x => x.SurveyId == CurrentSurvey.Id).Take(1).ToListAsync();
                     var q = list.First();
                     q.IsActive = true;
                     await qTable.UpdateAsync(q);
@@ -198,12 +198,14 @@ namespace Skadoosh.Common.ViewModels
 
                 CanStartSurvey = (CurrentSurvey.IsLiveSurvey && !CurrentSurvey.IsActive);
                 CanStopSurvey = (CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive);
+                IsBusy = false;
             }
         }
         public async void StopSurvey()
         {
             if (CurrentSurvey.IsLiveSurvey)
             {
+                IsBusy = true;
                 CurrentSurvey.IsActive = false;
                 var table = AzureClient.GetTable<Survey>();
                 await table.UpdateAsync(CurrentSurvey);
@@ -219,6 +221,7 @@ namespace Skadoosh.Common.ViewModels
                 
                 CanStartSurvey = (CurrentSurvey.IsLiveSurvey && !CurrentSurvey.IsActive);
                 CanStopSurvey = (CurrentSurvey.IsLiveSurvey && CurrentSurvey.IsActive);
+                IsBusy = false;
             }
         }
         public async Task<int> LoadSurveysForCurrentUser()
