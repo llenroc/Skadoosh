@@ -41,5 +41,10 @@ namespace Skadoosh.Phone.Views
                 }
             }
         }
+
+        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/Help.xaml", UriKind.Relative));
+        }
     }
 }

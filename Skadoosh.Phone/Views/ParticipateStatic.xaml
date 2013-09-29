@@ -107,7 +107,7 @@
             <shell:ApplicationBarIconButton IconUri="/Assets/Previous.png" Text="Back" Click="BackQuestion" />
             <shell:ApplicationBarIconButton IconUri="/Assets/Next.png" Text="Next" Click="NextQuestion" />
             <shell:ApplicationBarIconButton IconUri="/Assets/Logout.png" Text="Quit" Click="QuitSurvey" />
-            <shell:ApplicationBarIconButton IconUri="/Assets/Help.png" Text="Help"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/Help.png" Text="Help" Click="ApplicationBarIconButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

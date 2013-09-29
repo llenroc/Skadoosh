@@ -29,21 +29,21 @@ namespace Skadoosh.Store.Views
             this.InitializeComponent();
             this.Loaded += (e, a) =>
             {
-                try
-                {
-                    var ht = this.itemGridView.ActualHeight - 20;
-                    var ratio = (double)480 / (double)800;
-                    var wd = Math.Round(ht / ratio);
+                //try
+                //{
+                //    var ht = this.itemGridView.ActualHeight - 20;
+                //    var ratio = (double)480 / (double)800;
+                //    var wd = Math.Round(ht / ratio);
 
-                    string html = string.Format(@"<iframe width=""{0}"" height=""{1}"" src=""http://www.youtube.com/embed/{2}?rel=0"" frameborder=""0"" allowfullscreen></iframe>", wd, ht, videoID);
-                    this.youTube.Width = wd + 20;
-                    this.youTube.Height = ht + 20;
-                    this.youTube.NavigateToString(html);         
-                }
-                catch (Exception ex)
-                {
-                    var msg = ex.Message;
-                }
+                //    string html = string.Format(@"<iframe width=""{0}"" height=""{1}"" src=""http://www.youtube.com/embed/{2}?rel=0"" frameborder=""0"" allowfullscreen></iframe>", wd, ht, videoID);
+                //    this.youTube.Width = wd + 20;
+                //    this.youTube.Height = ht + 20;
+                //    this.youTube.NavigateToString(html);         
+                //}
+                //catch (Exception ex)
+                //{
+                //    var msg = ex.Message;
+                //}
             };
         }
 

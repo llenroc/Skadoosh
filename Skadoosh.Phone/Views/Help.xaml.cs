@@ -10,28 +10,24 @@ using Microsoft.Phone.Shell;
 
 namespace Skadoosh.Phone.Views
 {
-    public partial class Closed : PhoneApplicationPage
+    public partial class Help : PhoneApplicationPage
     {
-        public Closed()
+        public Help()
         {
             InitializeComponent();
         }
-        private void GoHome(object sender, EventArgs e)
-        {
-            Home();
-        }
         private async void GoToHome(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            Home();
+            GoHome();
         }
-        private void Home()
-        {
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-        }
-
         private void ApplicationBarIconButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Views/Help.xaml", UriKind.Relative));
+            GoHome();
+        }
+        private void GoHome()
+        {
+
+            NavigationService.GoBack();
         }
     }
 }

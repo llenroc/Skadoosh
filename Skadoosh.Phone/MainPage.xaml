@@ -58,7 +58,7 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Assets/Help.png" Text="Help"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/Help.png" Text="Help" Click="ApplicationBarIconButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

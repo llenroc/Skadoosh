@@ -67,8 +67,58 @@
         </Grid>
 
         <Border Grid.Row="1"  Padding="5" Margin="10" Background="WhiteSmoke" Opacity="0.7" CornerRadius="10" x:Name="itemGridView" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <RichTextBlock Grid.Column="0" Foreground="Black" FontSize="28" >
+                    <Paragraph Margin="10" TextIndent="20">                     
+                            Welcome to Skadoosh. We had two goals in mind when creating this application.  First, create an avenue for presenters to offer static and live surveys to a group of people using every type of mobile device possible.  Second, provide developers an example of an application created using a common language and development environment.
+                        <LineBreak></LineBreak>
+                    </Paragraph>
 
-                <WebView   HorizontalAlignment="Center"  x:Name="youTube" ></WebView>
+                    <Paragraph Margin="10" TextIndent="20">
+                        For the user of the application, we took the theme from Disney’s wonderful Kung Fu Panda where the Dragon Warrior finally defeats the snow leopard Tai Lung.  With a single use of his finger, ‘Skadoosh’ he accomplishes his goal.  We hope that you find the touch experience in creating, delivering and taking surveys a truly empowering activity.
+                    </Paragraph>
+                </RichTextBlock>
+                <RichTextBlock Grid.Column="1" Foreground="Black" FontSize="28" >
+                    <Paragraph Margin="10" TextIndent="20">
+                        Please select from the following list, video tutorials that will help you get the most out of 'Skadoosh'.
+                    </Paragraph>
+
+                    <Paragraph Margin="25,0,0,16" TextIndent="20" >
+                        <InlineUIContainer>
+                            <HyperlinkButton Content="&#x27A4; Administration Basics" Foreground="Black" FontSize="24" ></HyperlinkButton>
+                        </InlineUIContainer>
+                    </Paragraph>
+                    <Paragraph Margin="25,0,0,16" TextIndent="20" >
+                        <InlineUIContainer>
+                            <HyperlinkButton Content="&#x27A4; Taking a live survey" Foreground="Black" FontSize="24" ></HyperlinkButton>
+                        </InlineUIContainer>
+                    </Paragraph>
+                    <Paragraph Margin="25,0,0,16" TextIndent="20" >
+                        <InlineUIContainer>
+                            <HyperlinkButton Content="&#x27A4; Taking a static survey" Foreground="Black" FontSize="24" ></HyperlinkButton>
+                        </InlineUIContainer>
+                    </Paragraph>
+                    <Paragraph Margin="10" TextIndent="20">
+                        The following links are for developers.
+                    </Paragraph>
+                    <Paragraph Margin="25,0,0,16" TextIndent="20" >
+                        <InlineUIContainer>
+                            <HyperlinkButton Content="&#x27A4; GitHub Solution" Foreground="Black" FontSize="24" NavigateUri="https://github.com/quicksilver65/Skadoosh/" ></HyperlinkButton>
+                        </InlineUIContainer>
+                    </Paragraph>
+                    <Paragraph Margin="25,0,0,16" TextIndent="20" >
+                        <InlineUIContainer>
+                            <HyperlinkButton Content="&#x27A4; Developer's Blog" Foreground="Black" FontSize="24" NavigateUri="http://azdevelop.azurewebsites.net" ></HyperlinkButton>
+                        </InlineUIContainer>
+                    </Paragraph>
+
+                </RichTextBlock>
+            </Grid>
+                <!--<WebView   HorizontalAlignment="Center"  x:Name="youTube" ></WebView>-->
         
         </Border>
 
@@ -103,7 +153,7 @@
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
                         </ObjectAnimationUsingKeyFrames>
 
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="gridButtons" Storyboard.TargetProperty="Padding">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Padding">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="96,137,10,56"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
@@ -125,7 +175,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="gridButtons" Storyboard.TargetProperty="Visibility">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
