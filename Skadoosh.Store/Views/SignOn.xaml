@@ -85,10 +85,10 @@
         </GridView>
         <GridView  Grid.Row="2" Padding="116,136,116,46" x:Name="gridButtons" SelectionMode="None">
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnFaceBook" >
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="0">
                     <Image Source="ms-appx:///Assets/facebook.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="0" VerticalAlignment="Bottom">
                     <StackPanel >
                         <TextBlock Text="Facebook" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                     
@@ -96,10 +96,10 @@
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnGoogle">
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="0">
                     <Image Source="ms-appx:///Assets/google.png" Margin="20"  Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="0" VerticalAlignment="Bottom">
                     <StackPanel >
                         <TextBlock Text="Google" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
 
@@ -107,10 +107,10 @@
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnTwitter">
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="0">
                     <Image Source="ms-appx:///Assets/twitter.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="0" VerticalAlignment="Bottom">
                     <StackPanel >
                         <TextBlock Text="Twitter" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
             
@@ -118,10 +118,10 @@
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnWindows">
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="0">
                     <Image Source="ms-appx:///Assets/live.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="0" VerticalAlignment="Bottom">
                     <StackPanel >
                         <TextBlock Text="Windows Live" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                
@@ -130,8 +130,24 @@
             </Grid>
         </GridView>
 
-       
-        
+
+        <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="itemListView" Visibility="Collapsed">
+            <Grid             
+                AutomationProperties.AutomationId="ItemsListView"
+                AutomationProperties.Name="items"         
+                Margin="5"
+                >
+                <StackPanel>
+                    <TextBlock  Foreground="Black" FontSize="22" TextWrapping="Wrap" Margin="10">
+                    Snapped mode is availble once you have selected a survey to administer or particiapte in.
+                    </TextBlock>
+                    <TextBlock Foreground="Black" FontSize="22" TextWrapping="Wrap" Margin="10">
+                    Please drag to full mode to continue.
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+
         <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->
@@ -157,13 +173,27 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="selectionTitle" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="gridButtons" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="bottomAppBar" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>
     <Page.BottomAppBar>
-        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
+        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0" >
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button Style="{StaticResource GoAppBarButtonStyle}"  AutomationProperties.Name="Express Login" Click="ExpressLogin"  />

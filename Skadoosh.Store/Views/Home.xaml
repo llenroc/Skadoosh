@@ -73,13 +73,13 @@
             </TextBlock>
         </GridView>
         <GridView  Grid.Row="1" Padding="116,136,116,46" x:Name="gridButtons" Margin="-10,0,10,0">
-
+           
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnPresenter" >
 
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10" >
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="0" >
                     <Image Source="ms-appx:///Assets/presenter.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="0" VerticalAlignment="Bottom">
                     <StackPanel>
                         <TextBlock Text="Presenter" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0" FontSize="22"/>
                         <TextBlock Text="Manage live and static surveys" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
@@ -87,10 +87,10 @@
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnParticipate" >
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10" >
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="0" >
                     <Image Source="ms-appx:///Assets/Participate.png" Margin="20"  Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="0" VerticalAlignment="Bottom">
                     <StackPanel >
                         <TextBlock Text="Live Questionnaire" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                         <TextBlock Text="Participate in a real-time survey" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
@@ -98,10 +98,10 @@
                 </Border>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Tapped="itemTapped" x:Name="btnGroupInvite">
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="10" >
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="0" >
                     <Image Source="ms-appx:///Assets/Group.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
-                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="10" VerticalAlignment="Bottom">
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="0" VerticalAlignment="Bottom">
                     <StackPanel >
                         <TextBlock Text="Survey" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
                         <TextBlock Text="Take a traditional questionnaire" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
@@ -111,19 +111,22 @@
         </GridView>
 
         <!-- Vertical scrolling list only used when snapped -->
-        <ListView
-            x:Name="itemListView"
-            AutomationProperties.AutomationId="ItemsListView"
-            AutomationProperties.Name="items"
-            TabIndex="1"
-            Grid.Row="1"
-            Visibility="Collapsed"
-            Margin="0,-10,0,0"
-            Padding="10,0,0,60"
-     
-            ItemTemplate="{StaticResource Standard80ItemTemplate}"
-            SelectionMode="None" 
-            IsSwipeEnabled="false"/>
+        <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="itemListView" Visibility="Collapsed">
+            <Grid             
+                AutomationProperties.AutomationId="ItemsListView"
+                AutomationProperties.Name="items"         
+                Margin="5"
+                >
+                <StackPanel>
+                <TextBlock  Foreground="Black" FontSize="22" TextWrapping="Wrap" Margin="10">
+                    Snapped mode is availble once you have selected a survey to administer or particiapte in.
+                </TextBlock>
+                <TextBlock Foreground="Black" FontSize="22" TextWrapping="Wrap" Margin="10">
+                    Please drag to full mode to continue.
+                </TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
 
        
 
@@ -157,6 +160,9 @@
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="selectionTitle" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
 

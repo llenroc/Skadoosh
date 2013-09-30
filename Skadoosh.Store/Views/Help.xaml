@@ -66,7 +66,7 @@
             </Button>
         </Grid>
 
-        <Border Grid.Row="1"  Padding="5" Margin="10" Background="WhiteSmoke" Opacity="0.7" CornerRadius="10" x:Name="itemGridView" >
+        <Border Grid.Row="1"  Padding="5" Margin="10" Background="WhiteSmoke" Opacity="0.7" CornerRadius="0" x:Name="itemGridView" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>

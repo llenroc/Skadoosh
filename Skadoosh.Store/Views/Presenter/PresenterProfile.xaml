@@ -72,7 +72,7 @@
             </Button>
         </Grid>
 
-        <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="10">
+        <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="itemListView">
             <Grid>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -120,7 +120,22 @@
             
             </Grid>
         </Border>
-       
+        <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="snappedGrid" Visibility="Collapsed">
+            <Grid             
+                AutomationProperties.AutomationId="ItemsListView"
+                AutomationProperties.Name="items"         
+                Margin="5"
+                >
+                <StackPanel>
+                    <TextBlock  Foreground="Black" FontSize="22" TextWrapping="Wrap" Margin="10">
+                    Snapped mode is availble once you have selected a survey to administer or particiapte in.
+                    </TextBlock>
+                    <TextBlock Foreground="Black" FontSize="22" TextWrapping="Wrap" Margin="10">
+                    Please drag to full mode to continue.
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
         <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->
@@ -144,6 +159,17 @@
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="snappedGrid" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="bottomAppBar" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
