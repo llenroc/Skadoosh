@@ -4,7 +4,7 @@ using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace Skadoosh.Touch
+namespace Skadoosh.IPhone
 {
 	public class Application
 	{

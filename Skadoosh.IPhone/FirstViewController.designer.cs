@@ -5,13 +5,14 @@
 //
 using MonoTouch.Foundation;
 
-namespace Skadoosh.Touch
+namespace Skadoosh.IPhone
 {
-	[Register ("Skadoosh_TouchViewController")]
-	partial class Skadoosh_TouchViewController
+	[Register ("FirstViewController")]
+	partial class FirstViewController
 	{
 		void ReleaseDesignerOutlets ()
 		{
 		}
 	}
 }
+

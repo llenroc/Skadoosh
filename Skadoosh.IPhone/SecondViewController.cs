@@ -3,16 +3,14 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace Skadoosh.Touch
+namespace Skadoosh.IPhone
 {
-	public partial class Skadoosh_TouchViewController : UIViewController
+	public partial class SecondViewController : UIViewController
 	{
-		static bool UserInterfaceIdiomIsPhone {
-			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-		}
-
-		public Skadoosh_TouchViewController (IntPtr handle) : base (handle)
+		public SecondViewController (IntPtr handle) : base (handle)
 		{
+			Title = NSBundle.MainBundle.LocalizedString ("Second", "Second");
+			TabBarItem.Image = UIImage.FromBundle ("second");
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -53,11 +51,7 @@ namespace Skadoosh.Touch
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations
-			if (UserInterfaceIdiomIsPhone) {
-				return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
-			} else {
-				return true;
-			}
+			return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
 		}
 	}
 }
