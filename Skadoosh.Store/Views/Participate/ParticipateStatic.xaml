@@ -62,21 +62,44 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="Survey80ItemTemplate">
-            <!--<Grid Margin="6">
-                 <Grid.ColumnDefinitions>
-                 <ColumnDefinition Width="Auto"/>
-                 <ColumnDefinition Width="*"/>
-                 </Grid.ColumnDefinitions>
-                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="60" Height="60">
-                 <Image Source="{Binding IsLiveSurvey, Converter={StaticResource surveyTypeConverter}}" Stretch="UniformToFill"/>
-                 </Border>
-                 <StackPanel Grid.Column="1" Margin="10,0,0,0" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                 <TextBlock  Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
-                 <TextBlock  Text="{Binding ChannelName}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
-                 </StackPanel>
-                 </Grid>-->
+
+        <DataTemplate x:Key="flipViewQuestionTemplateSnapped">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Foreground="Black" Margin="0 5 0 5"  FontSize="22">Q:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding QuestionText}" Foreground="Black" Margin="5"  FontSize="22"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding QuestionHintText}" HorizontalAlignment="left" Foreground="Black" Margin="5" FontSize="16"></TextBlock>
+                </Grid>
+
+
+                <ListView Grid.Row="1" Foreground="Black"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Center"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                          ItemsSource="{Binding Options, Mode=TwoWay}"
+                          Margin="10" 
+                          ItemTemplate="{StaticResource OptionSelectTemplate}" 
+                          SelectionMode="{Binding IsMultiSelect, Converter={StaticResource boolToSelectionMode}}"  SelectionChanged="ListView_SelectionChanged"></ListView>
+            </Grid>
         </DataTemplate>
+
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource x:Name="itemsViewSource" Source="{Binding CurrentSurvey.Questions}"/>
 
@@ -106,21 +129,20 @@
                   >
 
         </FlipView>
-        <!-- Vertical scrolling list only used when snapped -->
-        <ListView
-            x:Name="itemListView"
-            AutomationProperties.AutomationId="ItemsListView"
-            AutomationProperties.Name="items"
-            TabIndex="1"
-            Grid.Row="1"
-            Visibility="Collapsed"
-            Margin="0,-10,0,0"
-            Padding="10,0,0,60"
-            ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Survey80ItemTemplate}" 
-            SelectionMode="None" 
-            IsSwipeEnabled="false"/>
 
+        <FlipView x:Name="itemFlipViewSnapped"
+                  Padding="5,136,5,46"
+                  AutomationProperties.AutomationId="ItemsFlipView"
+                  AutomationProperties.Name="items"
+                  Grid.RowSpan="2"
+                  ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+                  ItemTemplate="{StaticResource flipViewQuestionTemplateSnapped}"
+                  SelectedItem="{Binding CurrentQuestion, Mode=TwoWay}" 
+                  TabIndex="1"
+                  Visibility="Collapsed"
+                  >
+
+        </FlipView>
         <!-- Back button and page title -->
         <Grid x:Name="FullHeader">
             <Grid.ColumnDefinitions>
@@ -149,7 +171,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Click="GoHome" Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+            <Button Click="GoToHome" Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="ms-appx:///Assets/SplashScreen.png" Stretch="UniformToFill" ></Image>
@@ -185,7 +207,7 @@
                     <Storyboard>
 
 
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemFlipViewSnapped" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemFlipView" Storyboard.TargetProperty="Visibility">
@@ -199,6 +221,13 @@
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
 
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="appBarSnapped" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="appBarNotSnapped" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
@@ -207,14 +236,23 @@
 
     <Page.BottomAppBar>
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
-            <Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource StopAppBarButtonStyle}"  AutomationProperties.Name="Quit" Click="GoToHome" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
-                </StackPanel>
-            </Grid>
+            <StackPanel>
+                <Grid x:Name="appBarNotSnapped" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource StopAppBarButtonStyle}"  AutomationProperties.Name="Quit" Click="GoToHome" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
+                    </StackPanel>
+                </Grid>
+                <Grid x:Name="appBarSnapped" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource StopAppBarButtonStyle}"  AutomationProperties.Name="Quit" Click="GoToHome" />
+                        <Button Style="{StaticResource BackAppsAppBarButtonStyle}"  AutomationProperties.Name="Back" Click="BackQuestion"  />
+                        <Button Style="{StaticResource ForwardAppsAppBarButtonStyle}"  AutomationProperties.Name="Next" Click="ForwardQuestion"  />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
         </AppBar>
     </Page.BottomAppBar>
 </common:LayoutAwarePage>

@@ -28,7 +28,7 @@
         </Grid.Background>
 
         <!-- Horizontal scrolling grid used in most view states -->
-        <Border Grid.Row="1"  Padding="20" Margin="38" Background="WhiteSmoke" Opacity="0.7" CornerRadius="10" x:Name="itemGridView">
+        <Border Grid.Row="1"  Padding="20" Margin="38" Background="WhiteSmoke" Opacity="0.7" CornerRadius="0" x:Name="itemListView">
             <charting:Chart 
                 x:Name="PieChart"
                 Title="{Binding CurrentQuestion.QuestionText}"
@@ -47,20 +47,22 @@
             </charting:Chart>
 
         </Border>
-
-
-        <!-- Vertical scrolling list only used when snapped -->
-        <ListView
-            x:Name="itemListView"
-            AutomationProperties.AutomationId="ItemsListView"
-            AutomationProperties.Name="items"
-            TabIndex="1"
-            Grid.Row="1"
-            Visibility="Collapsed"
-            Margin="0,-10,0,0"
-            Padding="10,0,0,60"
-            SelectionMode="None" 
-            IsSwipeEnabled="false"/>
+        <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="snappedGrid" Visibility="Collapsed">
+            <Grid             
+                AutomationProperties.AutomationId="ItemsListView"
+                AutomationProperties.Name="items"         
+                Margin="5"
+                >
+                <StackPanel>
+                    <TextBlock  Foreground="Black" FontSize="22" TextWrapping="Wrap" Margin="10">
+                    Snapped mode is availble once you have selected a survey to administer or particiapte in.
+                    </TextBlock>
+                    <TextBlock Foreground="Black" FontSize="22" TextWrapping="Wrap" Margin="10">
+                    Please drag to full mode to continue.
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
 
         <!-- Back button and page title -->
         <Grid x:Name="FullHeader">
@@ -125,18 +127,21 @@
                 <VisualState x:Name="Snapped">
                     <Storyboard>
 
-
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
-                        </ObjectAnimationUsingKeyFrames>
-
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedHeader" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="snappedGrid" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="bottomAppBar" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
 

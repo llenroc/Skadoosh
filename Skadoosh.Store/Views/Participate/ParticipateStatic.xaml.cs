@@ -92,5 +92,15 @@ namespace Skadoosh.Store.Views.Participate
         {
             Frame.Navigate(typeof(Help), new ParticipateStaticVM());
         }
+
+        private void BackQuestion(object sender, RoutedEventArgs e)
+        {
+            VM.BackQuestion();
+        }
+
+        private void ForwardQuestion(object sender, RoutedEventArgs e)
+        {
+            VM.NextQuestion();
+        }
     }
 }

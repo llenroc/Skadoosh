@@ -181,11 +181,12 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
-                    <Button Style="{StaticResource GoAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout" />
+                    <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout" />
                  
                 </StackPanel>
             </Grid>
         </AppBar>
+
     </Page.BottomAppBar>
 
 
