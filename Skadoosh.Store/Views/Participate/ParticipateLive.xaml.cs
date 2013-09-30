@@ -80,31 +80,9 @@ namespace Skadoosh.Store.Views.Participate
 
 
 
-        private async void ExitSurvey(object sender, RoutedEventArgs e)
+        private  void ExitSurvey(object sender, RoutedEventArgs e)
         {
-            if (VM.CurrentSurvey.IsActive)
-            {
-                var msg =
-                    new MessageDialog(
-                        "You are exiting the survey. Results are automatically saved, exit or return to the survey?",
-                        "Exit Survey Notification");
-                msg.Commands.Add(new UICommand("Exit", async (a) =>
-                {
-                    await VM.SaveCurrentQuestionResponses();
-                    _notificationChannel.PushNotificationReceived -= notificationChannel_PushNotificationReceived;
-                    await VM.UnRegisterForNotification(_notificationChannel.Uri);
-                    Frame.Navigate(typeof (Home), VM);
-                }));
-                msg.Commands.Add(new UICommand("Return to Survey", (a) =>
-                {
-
-                }));
-                await msg.ShowAsync();
-            }
-            else
-            {
-                Frame.Navigate(typeof(Home), VM);
-            }
+            ExitSurveyNow();
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -123,6 +101,39 @@ namespace Skadoosh.Store.Views.Participate
         private void ShowHelp(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Help), new ParticipateStaticVM());
+        }
+
+        private  void GoToHome(object sender, RoutedEventArgs e)
+        {
+            ExitSurveyNow();
+        }
+
+
+        private async void ExitSurveyNow()
+        {
+            if (VM.CurrentSurvey.IsActive)
+            {
+                var msg =
+                    new MessageDialog(
+                        "You are exiting the survey. Results are automatically saved, exit or return to the survey?",
+                        "Exit Survey Notification");
+                msg.Commands.Add(new UICommand("Exit", async (a) =>
+                {
+                    await VM.SaveCurrentQuestionResponses();
+                    _notificationChannel.PushNotificationReceived -= notificationChannel_PushNotificationReceived;
+                    await VM.UnRegisterForNotification(_notificationChannel.Uri);
+                    Frame.Navigate(typeof(Home), VM);
+                }));
+                msg.Commands.Add(new UICommand("Return to Survey", (a) =>
+                {
+
+                }));
+                await msg.ShowAsync();
+            }
+            else
+            {
+                Frame.Navigate(typeof(Home), VM);
+            }
         }
     }
 }

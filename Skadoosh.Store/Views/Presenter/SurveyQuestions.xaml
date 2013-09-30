@@ -194,19 +194,27 @@
     </Grid>
     <Page.BottomAppBar>
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
-            <Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource AddAppBarButtonStyle}"  AutomationProperties.Name="Add Question" Click="CreateQuestion" />
-                    <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Question" Click="EditQuestion" Visibility="{Binding IsQuestionSelected,Converter={StaticResource boolToVis}}"/>
-                    <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Question" Click="DeleteQuestion" Visibility="{Binding IsQuestionSelected,Converter={StaticResource boolToVis}}"/>
-                    <Button Style="{StaticResource FavoriteAppBarButtonStyle}"  AutomationProperties.Name="Set Active" Click="SetActive" Visibility="{Binding CanSetActive, Converter={StaticResource boolToVis}}" />
-                    <Button Style="{StaticResource PreviewLinkAppBarButtonStyle}"  AutomationProperties.Name="View Result"  Visibility="{Binding IsQuestionSelected, Converter={StaticResource boolToVis}}" Click="ViewResults" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
-                    <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout"/>
-                </StackPanel>
-            </Grid>
+            <StackPanel>
+                <Grid x:Name="appBarNotSnapped">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource AddAppBarButtonStyle}"  AutomationProperties.Name="Add Question" Click="CreateQuestion" />
+                        <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Question" Click="EditQuestion" Visibility="{Binding IsQuestionSelected,Converter={StaticResource boolToVis}}"/>
+                        <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Question" Click="DeleteQuestion" Visibility="{Binding IsQuestionSelected,Converter={StaticResource boolToVis}}"/>
+                        <Button Style="{StaticResource FavoriteAppBarButtonStyle}"  AutomationProperties.Name="Set Active" Click="SetActive" Visibility="{Binding CanSetActive, Converter={StaticResource boolToVis}}" />
+                        <Button Style="{StaticResource PreviewLinkAppBarButtonStyle}"  AutomationProperties.Name="View Result"  Visibility="{Binding IsQuestionSelected, Converter={StaticResource boolToVis}}" Click="ViewResults" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
+                        <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout"/>
+                    </StackPanel>
+                </Grid>
+                <Grid x:Name="appBarSnapped" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource StopAppBarButtonStyle}"  AutomationProperties.Name="Quit" />
+
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
         </AppBar>
     </Page.BottomAppBar>
 </common:LayoutAwarePage>
