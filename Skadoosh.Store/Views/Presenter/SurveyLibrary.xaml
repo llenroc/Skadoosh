@@ -25,18 +25,19 @@
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="Survey80ItemTemplate">
-            <Grid Margin="6">
+            <Grid Margin="6" Background="Gray"  HorizontalAlignment="Stretch">
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="60" Height="60">
                     <Image Source="{Binding IsLiveSurvey, Converter={StaticResource surveyTypeConverter}}" Stretch="UniformToFill"/>
                 </Border>
-                <StackPanel Grid.Column="1" Margin="10,0,0,0" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock  Text="{Binding SurveyTitle}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
-                    <TextBlock  Text="{Binding ChannelName}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
-                </StackPanel>
+                <Grid Grid.Column="1"  Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Margin="0">
+                    <TextBlock  Text="{Binding SurveyTitle}" Foreground="White" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
+                    <!--<TextBlock  Text="{Binding ChannelName}" Foreground="White" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>-->
+                </Grid>
             </Grid>
         </DataTemplate>
         <!-- Collection of items displayed by this page -->
@@ -52,7 +53,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/skadooshBck.png"  ></ImageBrush>
+            <ImageBrush x:Name="bckPanda" ImageSource="ms-appx:///Assets/skadooshBck.png"  ></ImageBrush>
         </Grid.Background>
 
         <!-- Horizontal scrolling grid used in most view states -->
@@ -76,12 +77,13 @@
             AutomationProperties.Name="items"
             TabIndex="1"
             Grid.Row="1"
+            HorizontalAlignment="Stretch"
             Visibility="Collapsed"
             Margin="0,-10,0,0"
             Padding="10,0,0,60"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
             ItemTemplate="{StaticResource Survey80ItemTemplate}"
-            SelectionMode="None" 
+            SelectionMode="Single" 
             IsSwipeEnabled="false"/>
 
         <!-- Back button and page title -->
@@ -94,7 +96,7 @@
             <Button x:Name="backButton" Click="GoToHome" Margin="36,36,30,36" Height="55" Width="55" >
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="ms-appx:///Assets/Hand.png"></Image>
+                        <Image Source="ms-appx:///Assets/Hand.png" Stretch="UniformToFill"></Image>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
@@ -111,7 +113,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Click="GoHome" Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+            <Button Click="GoToHome" Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="ms-appx:///Assets/SplashScreen.png" Stretch="UniformToFill" ></Image>
@@ -160,7 +162,18 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
-                        
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="appBarSnapped" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="appBarNotSnapped" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="bckPanda" Storyboard.TargetProperty="Stretch">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="UniformToFill"/>
+                        </ObjectAnimationUsingKeyFrames>
+
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
@@ -169,22 +182,31 @@
 
     <Page.BottomAppBar>
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
-            <Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource AddAppBarButtonStyle}" Click="CreateSurvey"  AutomationProperties.Name="Add Survey"/>
-                    <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Survey" Click="EditSurvey" Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}"/>
-                    <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Survey" Click="DeleteSurvey" Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}"/>
-                    <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Start Survey"  Visibility="{Binding CanStartSurvey,Converter={StaticResource trueVisible}}" Click="StartSurvey"/>
-                    <Button Style="{StaticResource PauseAppBarButtonStyle}"  AutomationProperties.Name="Stop Survey"  Visibility="{Binding CanStopSurvey,Converter={StaticResource trueVisible}}" Click="StopSurvey"/>
-                    <Button Style="{StaticResource MoveToFolderAppBarButtonStyle}"  AutomationProperties.Name="Export Results"  Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}" Click="ExportData" />
-                    <Button Style="{StaticResource GoAppBarButtonStyle}"  AutomationProperties.Name="Update Profile" Click="UpdateProfile"  />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
-                    <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout" />
+            <StackPanel>
+                <Grid x:Name="appBarNotSnapped">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource AddAppBarButtonStyle}" Click="CreateSurvey"  AutomationProperties.Name="Add Survey"/>
+                        <Button Style="{StaticResource EditAppBarButtonStyle}" AutomationProperties.Name="Edit Survey" Click="EditSurvey" Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}"/>
+                        <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Survey" Click="DeleteSurvey" Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}"/>
+                        <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Start Survey"  Visibility="{Binding CanStartSurvey,Converter={StaticResource trueVisible}}" Click="StartSurvey"/>
+                        <Button Style="{StaticResource PauseAppBarButtonStyle}"  AutomationProperties.Name="Stop Survey"  Visibility="{Binding CanStopSurvey,Converter={StaticResource trueVisible}}" Click="StopSurvey"/>
+                        <Button Style="{StaticResource MoveToFolderAppBarButtonStyle}"  AutomationProperties.Name="Export Results"  Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}" Click="ExportData" />
+                        <Button Style="{StaticResource GoAppBarButtonStyle}"  AutomationProperties.Name="Update Profile" Click="UpdateProfile"  />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource HelpAppBarButtonStyle}" Click="ShowHelp"/>
+                        <Button Style="{StaticResource PermissionsAppBarButtonStyle}" AutomationProperties.Name="Logout" Click="Logout" />
                  
-                </StackPanel>
-            </Grid>
+                    </StackPanel>
+                </Grid>
+                <Grid x:Name="appBarSnapped" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource RemoveAppBarButtonStyle}"  AutomationProperties.Name="Delete Survey" Click="DeleteSurvey" Visibility="{Binding IsSurveySelected,Converter={StaticResource trueVisible}}"/>
+                        <Button Style="{StaticResource PlayAppBarButtonStyle}"  AutomationProperties.Name="Start Survey"  Visibility="{Binding CanStartSurvey,Converter={StaticResource trueVisible}}" Click="StartSurvey"/>
+                        <Button Style="{StaticResource PauseAppBarButtonStyle}"  AutomationProperties.Name="Stop Survey"  Visibility="{Binding CanStopSurvey,Converter={StaticResource trueVisible}}" Click="StopSurvey"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
         </AppBar>
 
     </Page.BottomAppBar>
