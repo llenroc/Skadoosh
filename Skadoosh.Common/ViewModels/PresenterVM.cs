@@ -502,6 +502,7 @@ namespace Skadoosh.Common.ViewModels
         {
             if (ExpLogin != null && !string.IsNullOrEmpty(ExpLogin.Password))
             {
+                IsBusy = true;
                 var list = await GetExpressLogins();
                 if (list != null && list.Any())
                 {
@@ -510,20 +511,24 @@ namespace Skadoosh.Common.ViewModels
                     {
                         var msu = new MobileServiceUser(ep.UserId);
                         msu.MobileServiceAuthenticationToken = ep.MobileServiceAuthenticationToken;
+                        IsBusy = false;
                         return msu;
                     }
                     else
                     {
+                        IsBusy = false;
                         return null;
                     }
                 }
                 else
                 {
+                    IsBusy = false;
                     return null;
                 }
             }
             else
             {
+                IsBusy = false;
                 return null;
             }
         } 

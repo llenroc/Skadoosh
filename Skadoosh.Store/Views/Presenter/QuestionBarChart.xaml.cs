@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Core;
 using Windows.UI.Xaml.Printing;
 
+
 using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
 using Skadoosh.Store.Common;
@@ -14,15 +15,20 @@ using Windows.Graphics.Printing;
 using Windows.UI.Xaml;
 
 
+
+
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+
 
 namespace Skadoosh.Store.Views.Presenter
 {
+
 
     public sealed partial class QuestionBarChart : Skadoosh.Store.Common.LayoutAwarePage
     {
         private PrintManager _printManager;
         private PrintDocument _doc;
+
 
         private PresenterVM VM
         {
@@ -49,6 +55,7 @@ namespace Skadoosh.Store.Views.Presenter
                 _printManager.PrintTaskRequested -= _printManager_PrintTaskRequested;
                 _doc = null;
 
+
             };
         }
         private void InitDocument()
@@ -60,12 +67,12 @@ namespace Skadoosh.Store.Views.Presenter
             };
             _doc.AddPages += (sender, args) =>
             {
-                _doc.AddPage(this);
+                _doc.AddPage(this.BarChart);
                 _doc.AddPagesComplete();
             };
             _doc.GetPreviewPage += (sender, args) =>
             {
-                _doc.SetPreviewPage(args.PageNumber, this);
+                _doc.SetPreviewPage(args.PageNumber, this.BarChart);
             };
         }
         private void _printManager_PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
@@ -78,10 +85,13 @@ namespace Skadoosh.Store.Views.Presenter
                         requestedArgs.SetSource(_doc.DocumentSource);
                     });
 
+
                 });
+
 
             printTask.Options.Orientation = PrintOrientation.Landscape;
         }
+
 
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
@@ -89,11 +99,13 @@ namespace Skadoosh.Store.Views.Presenter
             VM.ErrorMessage = string.Empty;
         }
 
+
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
         private void CalculateBarChart(List<Responses> list)
         {
+
 
             var items = new List<NameValueItem>();
             foreach (var opt in VM.CurrentQuestion.Options)
@@ -101,19 +113,21 @@ namespace Skadoosh.Store.Views.Presenter
                 var cnt = list.Count(x => x.OptionId == opt.Id);
                 items.Add(new NameValueItem { Name = opt.OptionText, Value = cnt });
             }
-   
+
             ((ColumnSeries)this.BarChart.Series[0]).ItemsSource = items;
         }
+
 
         private async void RefreshData(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             if (VM.CurrentQuestion != null)
             {
-                ((ColumnSeries) this.BarChart.Series[0]).ItemsSource = null;
+                ((ColumnSeries)this.BarChart.Series[0]).ItemsSource = null;
                 var list = await VM.GetResponsesForCurrentQuestion();
                 CalculateBarChart(list);
             }
         }
+
 
         private async void PrintChart(object s, Windows.UI.Xaml.RoutedEventArgs e)
         {
@@ -130,3 +144,4 @@ namespace Skadoosh.Store.Views.Presenter
         }
     }
 }
+

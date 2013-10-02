@@ -30,6 +30,7 @@
 
         <!-- Horizontal scrolling grid used in most view states -->
         <Border Grid.Row="1"  Padding="20" Margin="38" Background="WhiteSmoke" Opacity="0.7" CornerRadius="0" x:Name="itemListView">
+            
             <charting:Chart
                 x:Name="BarChart"
                 Title="{Binding CurrentQuestion.QuestionText}"
@@ -53,7 +54,6 @@
             </charting:Chart>
 
         </Border>
-
 
         <!-- Vertical scrolling list only used when snapped -->
         <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="snappedGrid" Visibility="Collapsed">

@@ -58,12 +58,12 @@ namespace Skadoosh.Store.Views.Presenter
             };
             _doc.AddPages += (sender, args) =>
             {
-                _doc.AddPage(this);
+                _doc.AddPage(this.PieChart);
                 _doc.AddPagesComplete();
             };
             _doc.GetPreviewPage += (sender, args) =>
             {
-                _doc.SetPreviewPage(args.PageNumber, this);
+                _doc.SetPreviewPage(args.PageNumber, this.PieChart);
             };
         }
         private void _printManager_PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
@@ -121,6 +121,7 @@ namespace Skadoosh.Store.Views.Presenter
 
         private void Logout(object sender, RoutedEventArgs e)
         {
+            
             VM.Logout();
             Frame.Navigate(typeof(Home), VM);
         }

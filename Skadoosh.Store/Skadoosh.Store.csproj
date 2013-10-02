@@ -152,6 +152,7 @@
     <Compile Include="Common\IsMultiQuestionImageConverter.cs" />
     <Compile Include="Common\Win8Notification.cs" />
     <Compile Include="Common\StringExtenstions.cs" />
+    <Compile Include="Models\PrintImage.cs" />
     <Compile Include="Views\ExpressLogin.xaml.cs">
       <DependentUpon>ExpressLogin.xaml</DependentUpon>
     </Compile>
@@ -324,6 +325,21 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\netcore45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SharpDX">
+      <HintPath>..\packages\SharpDX.2.4.2\lib\win8\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.D3DCompiler">
+      <HintPath>..\packages\SharpDX.D3DCompiler.2.4.2\lib\win8\SharpDX.D3DCompiler.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1">
+      <HintPath>..\packages\SharpDX.Direct2D1.2.4.2\lib\win8\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11">
+      <HintPath>..\packages\SharpDX.Direct3D11.2.4.2\lib\win8\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI">
+      <HintPath>..\packages\SharpDX.DXGI.2.4.2\lib\win8\SharpDX.DXGI.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\win8\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
@@ -333,6 +349,9 @@
     <Reference Include="WinRTXamlToolkit, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WinRTXamlToolkit.1.5.2.0\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit.Composition">
+      <HintPath>..\packages\WinRTXamlToolkit.Composition.1.5.2.0\lib\netcore45\WinRTXamlToolkit.Composition.dll</HintPath>
     </Reference>
     <Reference Include="WinRTXamlToolkit.Controls.DataVisualization">
       <HintPath>..\packages\WinRTXamlToolkit.Controls.DataVisualization.1.5.2.0\lib\netcore45\WinRTXamlToolkit.Controls.DataVisualization.dll</HintPath>

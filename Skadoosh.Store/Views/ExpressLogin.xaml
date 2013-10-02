@@ -11,6 +11,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <common:BooleanToVisibilityConverter x:Key="TrueIsVisible" IsReversed="false" ></common:BooleanToVisibilityConverter>
         <Style x:Key="EditFields" TargetType="TextBlock">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="FontSize" Value="26"/>
@@ -52,10 +53,10 @@
                 <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
                 <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
             </StackPanel>
-            <!--<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding IsBusy, Converter={StaticResource TrueIsVisible}}">
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="{Binding IsBusy, Converter={StaticResource TrueIsVisible}}">
                 <ProgressRing IsActive="True" IsEnabled="True"  Height="45" Width="45"  Margin="0 0 15 10" Foreground="#FF4F00"/>
-                <TextBlock Foreground="#FF4F00" FontSize="36" Margin="5 45 20 0">Searching...</TextBlock>
-            </StackPanel>-->
+                <TextBlock Foreground="#FF4F00" FontSize="36" Margin="5 45 20 0">Loading...</TextBlock>
+            </StackPanel>
         </Grid>
         <Grid Visibility="Collapsed" x:Name="SnappedHeader">
             <Grid.ColumnDefinitions>
@@ -96,7 +97,7 @@
                 <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Style="{StaticResource EditFields}" HorizontalAlignment="Left" FontSize="36" FontWeight="Bold">Express Login:</TextBlock>
 
                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">Password</TextBlock>
-                <PasswordBox Grid.Row="1" Grid.Column="2"  Margin="10" Password="{Binding ExpLogin.Password, Mode=TwoWay}" ></PasswordBox>
+                <PasswordBox Grid.Row="1" Grid.Column="2"  Margin="10" Password="{Binding ExpLogin.Password, Mode=TwoWay}" KeyDown="enterKeyed" ></PasswordBox>
 
              
 

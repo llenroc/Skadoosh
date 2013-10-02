@@ -49,6 +49,19 @@ namespace Skadoosh.Store.Views
 
         private async void Login(object sender, RoutedEventArgs e)
         {
+            DoExpLogin();
+        }
+
+        private void enterKeyed(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter  && vm.IsBusy==false)
+            {
+                DoExpLogin();
+            }
+        }
+
+        private async void DoExpLogin()
+        {
             var msu = await vm.GetExpressLoginClient();
             if (msu != null)
             {
@@ -56,11 +69,11 @@ namespace Skadoosh.Store.Views
                 var profile = await vm.ProfileExists();
                 if (profile)
                 {
-                    Frame.Navigate(typeof (SurveyLibrary), vm);
+                    Frame.Navigate(typeof(SurveyLibrary), vm);
                 }
                 else
                 {
-                    Frame.Navigate(typeof (PresenterProfile), vm);
+                    Frame.Navigate(typeof(PresenterProfile), vm);
                 }
             }
             else
