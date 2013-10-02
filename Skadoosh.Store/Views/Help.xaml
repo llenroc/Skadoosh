@@ -89,19 +89,15 @@
 
                     <Paragraph Margin="25,0,0,16" TextIndent="20" >
                         <InlineUIContainer>
-                            <HyperlinkButton Content="&#x27A4; Administration Basics" Foreground="Black" FontSize="24" ></HyperlinkButton>
+                            <HyperlinkButton Content="&#x27A4; Administration Basics" Foreground="Black" FontSize="24" NavigateUri="http://youtu.be/Uu-hCGVYYHM"></HyperlinkButton>
                         </InlineUIContainer>
                     </Paragraph>
                     <Paragraph Margin="25,0,0,16" TextIndent="20" >
                         <InlineUIContainer>
-                            <HyperlinkButton Content="&#x27A4; Taking a live survey" Foreground="Black" FontSize="24" ></HyperlinkButton>
+                            <HyperlinkButton Content="&#x27A4; Taking a survey" Foreground="Black" FontSize="24" ></HyperlinkButton>
                         </InlineUIContainer>
                     </Paragraph>
-                    <Paragraph Margin="25,0,0,16" TextIndent="20" >
-                        <InlineUIContainer>
-                            <HyperlinkButton Content="&#x27A4; Taking a static survey" Foreground="Black" FontSize="24" ></HyperlinkButton>
-                        </InlineUIContainer>
-                    </Paragraph>
+
                     <Paragraph Margin="10" TextIndent="20">
                         The following links are for developers.
                     </Paragraph>
