@@ -43,7 +43,7 @@ namespace Skadoosh.Store.Views.Presenter
         {
             VM = (PresenterVM)navigationParameter;
             VM.ErrorMessage = string.Empty;
-            await VM.LoadQuestionsForCurrentSurvey();
+            //await VM.LoadQuestionsForCurrentSurvey();
             if (!VM.CurrentSurvey.Questions.Any())
                 CollectionIsEmptyNotification();
         }

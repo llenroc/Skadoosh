@@ -38,6 +38,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
 
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoHome" Margin="36,36,30,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
@@ -50,6 +51,9 @@
             <StackPanel x:Name="pageTitle" Grid.Column="1">
                 <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
                 <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" x:Name="errorMsg" Visibility="Collapsed">
+                <TextBlock Foreground="#FF4F00" FontSize="36" Margin="5 45 20 0">You do not have an internet connection</TextBlock>
             </StackPanel>
 
         </Grid>

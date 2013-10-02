@@ -9,6 +9,7 @@ using System.Linq;
 using System.ServiceModel.Channels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.Connectivity;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -47,7 +48,18 @@ namespace Skadoosh.Store.Views
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             if(navigationParameter!=null && navigationParameter!="")
-                baseVM = (ViewModelBase)navigationParameter;   
+                baseVM = (ViewModelBase)navigationParameter;
+
+            if (!InternetConnected)
+            {
+                errorMsg.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                gridButtons.IsEnabled = false;
+            }
+            else
+            {
+                errorMsg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                gridButtons.IsEnabled = true;
+            }
         }
 
         /// <summary>
@@ -86,6 +98,22 @@ namespace Skadoosh.Store.Views
         private void ShowHelp(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Help), new ParticipateStaticVM());
+        }
+
+
+        private bool InternetConnected
+        {
+            get
+            {            
+                var profile = NetworkInformation.GetInternetConnectionProfile();
+                if (profile == null)
+                    return false;
+                if (profile.GetNetworkConnectivityLevel() != NetworkConnectivityLevel.InternetAccess)
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
 

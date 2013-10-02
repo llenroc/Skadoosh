@@ -82,8 +82,9 @@ namespace Skadoosh.Store.Views.Presenter
 
         }
 
-        private void SurveySelected(object sender, DoubleTappedRoutedEventArgs e)
+        private async void SurveySelected(object sender, DoubleTappedRoutedEventArgs e)
         {
+            await VM.LoadQuestionsForCurrentSurvey();
             Frame.Navigate(typeof(SurveyQuestions), VM);
         }
 

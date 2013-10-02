@@ -96,7 +96,7 @@
             <Button x:Name="backButton" Click="GoToHome" Margin="36,36,30,36" Height="55" Width="55" >
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="ms-appx:///Assets/Hand.png" Stretch="UniformToFill"></Image>
+                        <Image Source="ms-appx:///Assets/Hand.png" ></Image>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
