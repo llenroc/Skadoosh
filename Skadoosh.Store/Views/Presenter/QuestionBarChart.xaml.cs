@@ -114,7 +114,7 @@ namespace Skadoosh.Store.Views.Presenter
                 items.Add(new NameValueItem { Name = opt.OptionText, Value = cnt });
             }
 
-            ((ColumnSeries)this.BarChart.Series[0]).ItemsSource = items;
+            //((ColumnSeries)this.BarChart.Series[0]).ItemsSource = items;
         }
 
 
@@ -122,9 +122,9 @@ namespace Skadoosh.Store.Views.Presenter
         {
             if (VM.CurrentQuestion != null)
             {
-                ((ColumnSeries)this.BarChart.Series[0]).ItemsSource = null;
-                var list = await VM.GetResponsesForCurrentQuestion();
-                CalculateBarChart(list);
+                //((ColumnSeries)this.BarChart.Series[0]).ItemsSource = null;
+                //var list = await VM.GetResponsesForCurrentQuestion();
+                //CalculateBarChart(list);
             }
         }
 
