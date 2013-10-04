@@ -240,6 +240,19 @@ namespace Skadoosh.Common.ViewModels
             }
             return 0;
         }
+        public async Task<int> LoadSurveyById(int surveyId)
+        {
+            var result = await AzureClient.GetTable<Survey>().Where(x => x.Id == surveyId).ToListAsync();
+            if (result != null && result.Any())
+            {
+                CurrentSurvey = result.First();
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         #endregion
 
         #region Question Code
@@ -338,6 +351,31 @@ namespace Skadoosh.Common.ViewModels
             }
             return 0;
         }
+        public async Task<int> LoadQuestionsByQuestionId(int questionId)
+        {
+
+            IsBusy = true;
+            CurrentSurvey.Questions.Clear();
+            var results = await AzureClient.GetTable<Question>().Where(x => x.Id == questionId).ToListAsync();
+            if (results != null && results.Any())
+            {
+                var temp = results.First();
+                var subResults = await AzureClient.GetTable<Option>().Where(x => x.QuestionId == temp.Id).ToListAsync();
+                foreach (var o in subResults)
+                {
+                    temp.Options.Add(o);
+                }
+                CurrentQuestion = temp;
+                IsBusy = false;
+                return 1;
+            }
+            else
+            {
+                IsBusy = false;
+                return 0;
+            }
+
+        }
         #endregion
 
         #region Option Code
@@ -407,6 +445,22 @@ namespace Skadoosh.Common.ViewModels
             return new List<Responses>();
         }
 
+        public async Task<List<Responses>> GetResponsesAndLoadDataByQuestionId(int questionId)
+        {
+
+            IsBusy = true;
+            var table = AzureClient.GetTable<Responses>();
+            var responses = await table.Where(x => x.QuestionId == questionId).ToListAsync();
+            if (responses != null && responses.Any())
+            {
+                var temp = responses.First();
+                await LoadSurveyById(temp.SurveyId);
+                await LoadQuestionsByQuestionId(temp.QuestionId);
+            }
+            IsBusy = false;
+            return responses;
+
+        }
         public async Task<List<Responses>>  GetResponsesForCurrentQuestion()
         {
             if (CurrentQuestion != null)

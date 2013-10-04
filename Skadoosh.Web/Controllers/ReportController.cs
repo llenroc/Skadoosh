@@ -28,7 +28,7 @@ namespace Skadoosh.Web.Controllers
 
         public FileContentResult ImageReport()
         {
-            System.Web.UI.DataVisualization.Charting.pi
+            
             Chart c = new Chart();
             c.AntiAliasing = AntiAliasingStyles.All;
             c.TextAntiAliasingQuality = TextAntiAliasingQuality.High;
