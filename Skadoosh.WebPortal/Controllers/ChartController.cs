@@ -1,4 +1,4 @@
-﻿using Skadoosh.Common.DomainModels;
+﻿
 using Skadoosh.Common.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -156,7 +156,7 @@ namespace Skadoosh.WebPortal.Controllers
 
             c.Legends.Add(l);
             var cnt = 0;
-            foreach (var r in responses.ToLookup(x=>x.OptionId))
+            foreach (var r in responses.ToLookup(x => x.OptionId))
             {
                 var count = r.Count();
                 DataPoint p = new DataPoint();
@@ -165,10 +165,10 @@ namespace Skadoosh.WebPortal.Controllers
                 p.BackGradientStyle = GradientStyle.LeftRight;
                 p.XValue = cnt;
                 p.Label = count.ToString();
-             
-              
+
+
                 p.LegendText = vm.CurrentQuestion.Options.First(x => x.Id == r.Key).OptionText;
-                p.YValues = new double[] {count};
+                p.YValues = new double[] { count };
 
                 cnt++;
                 s.Points.Add(p);

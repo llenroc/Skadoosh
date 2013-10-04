@@ -20,6 +20,7 @@ namespace Skadoosh.Store.Views.Presenter
 
     public sealed partial class QuestionPieChart : Skadoosh.Store.Common.LayoutAwarePage
     {
+        private string url = "http://www.azdevelop.net/skadoosh/Chart/pieChart/19?w=800&h=600";
         private PrintManager _printManager;
         private PrintDocument _doc;
         private PresenterVM VM
@@ -34,11 +35,12 @@ namespace Skadoosh.Store.Views.Presenter
             {
                 if (VM.CurrentQuestion != null)
                 {
-                    var list = await VM.GetResponsesForCurrentQuestion();
-                    CalculatePieChart(list);
-                    _printManager = PrintManager.GetForCurrentView();
-                    _printManager.PrintTaskRequested += _printManager_PrintTaskRequested;
-                    InitDocument();
+                    PieChart.Source = new BitmapImage(new Uri(url));
+                    //var list = await VM.GetResponsesForCurrentQuestion();
+                    //CalculatePieChart(list);
+                    //_printManager = PrintManager.GetForCurrentView();
+                    //_printManager.PrintTaskRequested += _printManager_PrintTaskRequested;
+                    //InitDocument();
                 }
             };
             this.Unloaded += (e, a) =>
@@ -101,16 +103,16 @@ namespace Skadoosh.Store.Views.Presenter
                 items.Add(new NameValueItem { Name = opt.OptionText, Value = cnt });
             }
 
-            ((PieSeries)this.PieChart.Series[0]).ItemsSource = items;
+            //((PieSeries)this.PieChart.Series[0]).ItemsSource = items;
         }
 
         private async void RefreshData(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             if (VM.CurrentQuestion != null)
             {
-                ((PieSeries)this.PieChart.Series[0]).ItemsSource = null;
-                var list = await VM.GetResponsesForCurrentQuestion();
-                CalculatePieChart(list);
+                //((PieSeries)this.PieChart.Series[0]).ItemsSource = null;
+                //var list = await VM.GetResponsesForCurrentQuestion();
+                //CalculatePieChart(list);
             }
         }
 

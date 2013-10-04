@@ -28,8 +28,9 @@
         </Grid.Background>
 
         <!-- Horizontal scrolling grid used in most view states -->
-        <Border Grid.Row="1"  Padding="20" Margin="38" Background="WhiteSmoke" Opacity="0.7" CornerRadius="0" x:Name="itemListView">
-            <charting:Chart 
+        <Border Grid.Row="1"  Padding="20" Margin="38" Background="WhiteSmoke" Opacity="0.9" CornerRadius="0" x:Name="itemListView">
+            <Image x:Name="PieChart" Margin="5"></Image>
+            <!--<charting:Chart 
                 x:Name="PieChart"
                 Title="{Binding CurrentQuestion.QuestionText}"
                 Foreground="Black" 
@@ -44,7 +45,7 @@
                         DependentValueBinding="{Binding Value}"
                         IsSelectionEnabled="True" />
                 </charting:Chart.Series>
-            </charting:Chart>
+            </charting:Chart>-->
 
         </Border>
         <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="snappedGrid" Visibility="Collapsed">

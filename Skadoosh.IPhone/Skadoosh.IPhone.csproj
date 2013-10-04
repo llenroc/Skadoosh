@@ -81,10 +81,10 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="Microsoft.WindowsAzure.MobileServices.iOS">
-      <HintPath>..\..\Dropbox\Mobile Common\Resources\iOS\Microsoft.WindowsAzure.MobileServices.iOS.dll</HintPath>
+      <HintPath>..\..\..\..\Dropbox\Mobile Common\Resources\iOS\Microsoft.WindowsAzure.MobileServices.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\Dropbox\Mobile Common\Resources\iOS\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\Dropbox\Mobile Common\Resources\iOS\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
@@ -143,8 +143,5 @@
     <BundleResource Include="Resources\second%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="DomainModels\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
