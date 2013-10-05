@@ -1,4 +1,4 @@
-﻿<common:LayoutAwarePage
+﻿<common:BasePrintPage
     x:Name="pageRoot"
     x:Class="Skadoosh.Store.Views.Presenter.QuestionBarChart"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
@@ -28,32 +28,15 @@
             <ImageBrush x:Name="bckPanda" ImageSource="ms-appx:///Assets/skadooshBck.png"  ></ImageBrush>
         </Grid.Background>
 
-        <!-- Horizontal scrolling grid used in most view states -->
-        <Border Grid.Row="1"  Padding="20" Margin="38" Background="WhiteSmoke" Opacity="0.7" CornerRadius="0" x:Name="itemListView">
-            <WebView Source="http://localhost:1704/report" Margin="5" x:Name="BarChart" Height="{Binding Height, ElementName=itemListView}"></WebView>
-           
-            <!--<charting:Chart
-                x:Name="BarChart"
-                Title="{Binding CurrentQuestion.QuestionText}"
-                Foreground="Black" 
-                FontSize="24"
-                TabIndex="1" 
-                HorizontalAlignment="Stretch" >
-                <charting:Chart.Series>
-                    <charting:ColumnSeries
-                        Title="Results" 
-                        ItemsSource="{Binding Items}"
-                        IndependentValueBinding="{Binding Name}"
-                        DependentValueBinding="{Binding Value}"
-                        IsSelectionEnabled="True" />
-                </charting:Chart.Series>
-                <charting:Chart.LegendStyle>
-                    <Style TargetType="FrameworkElement">
-                        <Setter Property="Width" Value="0" />
-                    </Style>
-                </charting:Chart.LegendStyle>
-            </charting:Chart>-->
+        
 
+        <!-- Horizontal scrolling grid used in most view states -->
+        <Border Grid.Row="1"  Padding="5" Margin="38" Background="WhiteSmoke" Opacity="0.7" CornerRadius="0" x:Name="itemListView">
+          
+            <Grid>
+                <Canvas x:Name="printingRoot" Grid.Row="0" Margin="100" Opacity="0" Height="10" Width="10" />
+                <Image x:Name="BarChart" Grid.Row="0" Margin="1"></Image>
+            </Grid>
         </Border>
 
         <!-- Vertical scrolling list only used when snapped -->
@@ -179,4 +162,4 @@
             </Grid>
         </AppBar>
     </Page.BottomAppBar>
-</common:LayoutAwarePage>
+</common:BasePrintPage>

@@ -17,6 +17,7 @@ using Windows.UI.Xaml;
 
 
 
+
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 
@@ -24,119 +25,67 @@ namespace Skadoosh.Store.Views.Presenter
 {
 
 
-    public sealed partial class QuestionBarChart : Skadoosh.Store.Common.LayoutAwarePage
+    public sealed partial class QuestionBarChart : BasePrintPage
     {
-        private PrintManager _printManager;
-        private PrintDocument _doc;
+        private string url = "http://www.azdevelop.net/skadoosh/Chart/BarChart/{0}?w={1}&h={2}";
 
+        private PresenterVM vm;
 
-        private PresenterVM VM
-        {
-            get { return (PresenterVM)this.DataContext; }
-            set { this.DataContext = value; }
-        }
         public QuestionBarChart()
         {
             this.InitializeComponent();
-            this.Loaded += async (e, a) =>
+            this.Loaded += (e, a) =>
             {
-                if (VM.CurrentQuestion != null)
+                var vm = (PresenterVM)VM;
+                if (vm.CurrentQuestion != null)
                 {
-                    var list = await VM.GetResponsesForCurrentQuestion();
-                    CalculateBarChart(list);
-                    _printManager = PrintManager.GetForCurrentView();
-                    _printManager.PrintTaskRequested += _printManager_PrintTaskRequested;
-                    InitDocument();
+                    var ht = itemListView.ActualHeight;
+                    var wd = itemListView.ActualWidth;
+                    var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);
+                    BarChart.Source = new BitmapImage(new Uri(imgUrl));
+
                 }
             };
-            this.Unloaded += (e, a) =>
-            {
-                _printManager = PrintManager.GetForCurrentView();
-                _printManager.PrintTaskRequested -= _printManager_PrintTaskRequested;
-                _doc = null;
 
-
-            };
-        }
-        private void InitDocument()
-        {
-            _doc = new PrintDocument();
-            _doc.Paginate += (sender, args) =>
-            {
-                _doc.SetPreviewPageCount(1, PreviewPageCountType.Final);
-            };
-            _doc.AddPages += (sender, args) =>
-            {
-                _doc.AddPage(this.BarChart);
-                _doc.AddPagesComplete();
-            };
-            _doc.GetPreviewPage += (sender, args) =>
-            {
-                _doc.SetPreviewPage(args.PageNumber, this.BarChart);
-            };
-        }
-        private void _printManager_PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
-        {
-            var printTask = args.Request.CreatePrintTask("Bar Chart Survey Results ",
-                async (requestedArgs) =>
-                {
-                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        requestedArgs.SetSource(_doc.DocumentSource);
-                    });
-
-
-                });
-
-
-            printTask.Options.Orientation = PrintOrientation.Landscape;
-        }
-
-
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
-        {
-            VM = (PresenterVM)navigationParameter;
-            VM.ErrorMessage = string.Empty;
         }
 
 
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
-        private void CalculateBarChart(List<Responses> list)
+
+        private void RefreshData(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
-
-            var items = new List<NameValueItem>();
-            foreach (var opt in VM.CurrentQuestion.Options)
+            if (vm.CurrentQuestion != null)
             {
-                var cnt = list.Count(x => x.OptionId == opt.Id);
-                items.Add(new NameValueItem { Name = opt.OptionText, Value = cnt });
-            }
-
-            //((ColumnSeries)this.BarChart.Series[0]).ItemsSource = items;
-        }
-
-
-        private async void RefreshData(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            if (VM.CurrentQuestion != null)
-            {
-                //((ColumnSeries)this.BarChart.Series[0]).ItemsSource = null;
-                //var list = await VM.GetResponsesForCurrentQuestion();
-                //CalculateBarChart(list);
+                var ht = itemListView.ActualHeight;
+                var wd = itemListView.ActualWidth;
+                var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);
+                BarChart.Source = new BitmapImage(new Uri(imgUrl));
             }
         }
-
-
+        protected override void PreparetPrintContent()
+        {
+            if (firstPage == null)
+            {
+                vm = (PresenterVM)VM;
+                var ht = 400; // itemListView.ActualHeight;
+                var wd = 300; // itemListView.ActualWidth;
+                var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);
+                firstPage = new ReportPrint() { ImageUrl = imgUrl };
+            }
+            PrintingRoot.Children.Add(firstPage);
+            PrintingRoot.InvalidateMeasure();
+            PrintingRoot.UpdateLayout();
+        }
         private async void PrintChart(object s, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await PrintManager.ShowPrintUIAsync();
         }
         private void Logout(object sender, RoutedEventArgs e)
         {
-            VM.Logout();
-            Frame.Navigate(typeof(Home), VM);
+            vm.Logout();
+            Frame.Navigate(typeof(Home), vm);
         }
         private void ShowHelp(object sender, RoutedEventArgs e)
         {

@@ -1,4 +1,4 @@
-﻿<common:LayoutAwarePage
+﻿<common:BasePrintPage
     x:Name="pageRoot"
     x:Class="Skadoosh.Store.Views.Presenter.QuestionPieChart"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
@@ -27,26 +27,14 @@
             <ImageBrush x:Name="bckPanda" ImageSource="ms-appx:///Assets/skadooshBck.png"  ></ImageBrush>
         </Grid.Background>
 
+        
+        
         <!-- Horizontal scrolling grid used in most view states -->
-        <Border Grid.Row="1"  Padding="20" Margin="38" Background="WhiteSmoke" Opacity="0.9" CornerRadius="0" x:Name="itemListView">
-            <Image x:Name="PieChart" Margin="5"></Image>
-            <!--<charting:Chart 
-                x:Name="PieChart"
-                Title="{Binding CurrentQuestion.QuestionText}"
-                Foreground="Black" 
-                FontSize="24"
-                TabIndex="1" 
-                HorizontalAlignment="Left" MinWidth="700"
-                >
-                <charting:Chart.Series>
-                    <Series:PieSeries
-                        Title="{Binding CurrentQuestion.QuestionText}"
-                        IndependentValueBinding="{Binding Name}"
-                        DependentValueBinding="{Binding Value}"
-                        IsSelectionEnabled="True" />
-                </charting:Chart.Series>
-            </charting:Chart>-->
-
+        <Border Grid.Row="1"  Padding="5" Margin="38" Background="WhiteSmoke" Opacity="0.9" CornerRadius="0" x:Name="itemListView">
+            <Grid>
+                <Canvas x:Name="printingRoot" Grid.Row="0" Margin="100" Opacity="0" Height="10" Width="10" />
+                <Image x:Name="PieChart" Grid.Row="0" Margin="1"></Image>
+            </Grid>
         </Border>
         <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="snappedGrid" Visibility="Collapsed">
             <Grid             
@@ -171,4 +159,4 @@
         </AppBar>
     </Page.BottomAppBar>
     
-</common:LayoutAwarePage>
+</common:BasePrintPage>

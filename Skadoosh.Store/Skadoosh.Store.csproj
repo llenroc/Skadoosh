@@ -143,6 +143,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\AppPrinterPool.cs" />
+    <Compile Include="Common\BasePrintPage.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\BoolToSelectionModeConverter.cs" />
     <Compile Include="Common\Win8ExportFile.cs" />
@@ -191,6 +192,9 @@
     </Compile>
     <Compile Include="Views\Presenter\QuestionPieChart.xaml.cs">
       <DependentUpon>QuestionPieChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Presenter\ReportPrint.xaml.cs">
+      <DependentUpon>ReportPrint.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Presenter\SurveyQuestions.xaml.cs">
       <DependentUpon>SurveyQuestions.xaml</DependentUpon>
@@ -290,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Presenter\QuestionPieChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Presenter\ReportPrint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
