@@ -42,8 +42,12 @@ namespace Skadoosh.Store.Views.Presenter
                     var ht = itemListView.ActualHeight;
                     var wd = itemListView.ActualWidth;
                     var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);
+                    BarChart.Loaded += (be, ba) =>
+                    {
+                        vm.IsBusy = false;
+                    };
                     BarChart.Source = new BitmapImage(new Uri(imgUrl));
-
+                    vm.IsBusy = true;
                 }
             };
 
@@ -69,6 +73,7 @@ namespace Skadoosh.Store.Views.Presenter
             if (firstPage == null)
             {
                 vm = (PresenterVM)VM;
+                vm.IsBusy = true;
                 var ht = 400; // itemListView.ActualHeight;
                 var wd = 300; // itemListView.ActualWidth;
                 var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);

@@ -97,7 +97,7 @@
                 <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  Style="{StaticResource EditFields}" HorizontalAlignment="Left" FontSize="36" FontWeight="Bold">Express Login:</TextBlock>
 
                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource EditFields}">Password</TextBlock>
-                <PasswordBox Grid.Row="1" Grid.Column="2"  Margin="10" Password="{Binding ExpLogin.Password, Mode=TwoWay}" KeyDown="enterKeyed" ></PasswordBox>
+                <PasswordBox Grid.Row="1" Grid.Column="2"  Margin="10" Password="{Binding ExpLogin.Password, Mode=TwoWay}" KeyDown="enterKeyed" TabIndex="1"  ></PasswordBox>
 
              
 
