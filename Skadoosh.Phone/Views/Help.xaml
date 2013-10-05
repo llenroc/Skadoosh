@@ -33,7 +33,7 @@
             <Grid>
 
                 
-                <RichTextBox Grid.Column="0" Foreground="Black" FontSize="18" IsReadOnly="True" Margin="10" >
+                <RichTextBox Grid.Column="0" Foreground="Black" FontSize="18" IsReadOnly="True" Margin="10" VerticalAlignment="Top" >
                   
                     <Paragraph >
                         <Span></Span>
@@ -43,12 +43,16 @@
                
                     <Paragraph >
                         <Span></Span>
-                        Please select from the following list, video tutorials that will help you get the most out of 'Skadoosh'.
+                        In order to take a survey, the presenter needs to give you a survey code.  If the survey requires your name, you will need to enter that as well.
                         <LineBreak></LineBreak>
                     </Paragraph>
 
-
-                    <Paragraph  >
+                    <Paragraph >
+                        <Span></Span>
+                        Live surveys display questions based on the presenter.  So you will only see the current question being asked. The question will change when the presenter selects a new question.
+                        <LineBreak></LineBreak>
+                    </Paragraph>
+                    <!--<Paragraph  >
                         <InlineUIContainer>
                             <HyperlinkButton Content="&#x27A4; Taking a live survey" Foreground="Black" FontSize="18" ></HyperlinkButton>
                         </InlineUIContainer>
@@ -58,7 +62,7 @@
                         <InlineUIContainer>
                             <HyperlinkButton Content="&#x27A4; Taking a static survey" Foreground="Black" FontSize="18" ></HyperlinkButton>
                         </InlineUIContainer>
-                    </Paragraph>
+                    </Paragraph>-->
 
 
                 </RichTextBox>
