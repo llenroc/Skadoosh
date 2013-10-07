@@ -1,17 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Skadoosh.Common/DomainModels/Survey.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Skadoosh.MonoTouch/Info.plist">
     <Files>
       <File FileName="Skadoosh.Common/DomainModels/Survey.cs" Line="1" Column="1" />
-      <File FileName="Skadoosh.Common/ViewModels/SkadooshVM.cs" Line="1" Column="1" />
       <File FileName="Common.Library/Services/SqlLiteService.cs" Line="1" Column="1" />
       <File FileName="Common.Library/Services/RESTService.cs" Line="1" Column="1" />
       <File FileName="Common.Library/Services/LocalStorageService.cs" Line="1" Column="1" />
+      <File FileName="Skadoosh.Common/DomainModels/NotifyBase.cs" Line="1" Column="1" />
+      <File FileName="Skadoosh.MonoTouch/Skadoosh.MonoTouchViewController.cs" Line="1" Column="1" />
+      <File FileName="Skadoosh.MonoTouch/Info.plist" />
+      <File FileName="Skadoosh.Common/DomainModels/AccountUser.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Skadoosh.Touch" selected="True" />
+          <Node name="Skadoosh.MonoTouch" expanded="True" selected="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">

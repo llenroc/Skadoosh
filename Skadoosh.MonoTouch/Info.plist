@@ -7,15 +7,14 @@
 		<integer>1</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
+	<array/>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>Skadoosh</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>
-

@@ -1,16 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>12.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{058D3238-EB37-4C14-AF18-BA849E18C13F}</ProjectGuid>
+    <ProjectGuid>{CDD9E935-3F86-4C6B-8846-736D201E0227}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Skadoosh.IPad</RootNamespace>
+    <RootNamespace>Skadoosh.MonoTouch</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>SkadooshIPad</AssemblyName>
+    <AssemblyName>SkadooshMonoTouch</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -81,15 +81,17 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="Microsoft.WindowsAzure.MobileServices.iOS">
-      <HintPath>..\..\..\..\Dropbox\Mobile Common\Resources\iOS\Microsoft.WindowsAzure.MobileServices.iOS.dll</HintPath>
+      <HintPath>..\..\Dropbox\Mobile Common\Resources\iOS\Microsoft.WindowsAzure.MobileServices.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\Dropbox\Mobile Common\Resources\iOS\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Dropbox\Mobile Common\Resources\iOS\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="DomainModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -97,15 +99,18 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Skadoosh.IPadViewController.cs" />
-    <Compile Include="Skadoosh.IPadViewController.designer.cs">
-      <DependentUpon>Skadoosh.IPadViewController.cs</DependentUpon>
+    <Compile Include="Skadoosh.MonoTouchViewController.cs" />
+    <Compile Include="Skadoosh.MonoTouchViewController.designer.cs">
+      <DependentUpon>Skadoosh.MonoTouchViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
+      <Link>ViewModels\ParticipateLiveVM.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateStaticVM.cs">
+      <Link>ViewModels\ParticipateStaticVM.cs</Link>
     </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\AccountUser.cs">
       <Link>DomainModels\AccountUser.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\DomainModels\ExpressLogin.cs">
-      <Link>DomainModels\ExpressLogin.cs</Link>
     </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\NotifyBase.cs">
       <Link>DomainModels\NotifyBase.cs</Link>
@@ -125,24 +130,17 @@
     <Compile Include="..\Skadoosh.Common\DomainModels\SurveyNotificationChannel.cs">
       <Link>DomainModels\SurveyNotificationChannel.cs</Link>
     </Compile>
-    <Compile Include="..\Skadoosh.Common\Util\CsvExport.cs">
-      <Link>Util\CsvExport.cs</Link>
+    <Compile Include="LiveSurveySelect.cs" />
+    <Compile Include="LiveSurveySelect.designer.cs">
+      <DependentUpon>LiveSurveySelect.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
-      <Link>ViewModels\ParticipateLiveVM.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateStaticVM.cs">
-      <Link>ViewModels\ParticipateStaticVM.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\PresenterVM.cs">
-      <Link>ViewModels\PresenterVM.cs</Link>
-    </Compile>
-    <Compile Include="..\Common.Library\Services\LocalStorageService.cs">
-      <Link>Services\LocalStorageService.cs</Link>
+    <Compile Include="StaticSurveySelect.cs" />
+    <Compile Include="StaticSurveySelect.designer.cs">
+      <DependentUpon>StaticSurveySelect.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

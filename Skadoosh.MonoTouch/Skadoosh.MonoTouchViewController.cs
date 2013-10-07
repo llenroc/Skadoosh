@@ -3,14 +3,12 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace Skadoosh.IPhone
+namespace Skadoosh.MonoTouch
 {
-	public partial class SecondViewController : UIViewController
+	public partial class Skadoosh_MonoTouchViewController : UIViewController
 	{
-		public SecondViewController (IntPtr handle) : base (handle)
+		public Skadoosh_MonoTouchViewController (IntPtr handle) : base (handle)
 		{
-			Title = NSBundle.MainBundle.LocalizedString ("Second", "Second");
-			TabBarItem.Image = UIImage.FromBundle ("second");
 		}
 
 		public override void DidReceiveMemoryWarning ()
