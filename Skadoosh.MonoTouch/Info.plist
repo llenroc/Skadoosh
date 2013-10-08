@@ -18,12 +18,12 @@
 	<string>1</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Icon</string>
-		<string>Icon@2x</string>
-		<string>Icon-72</string>
 		<string>Icon-Small</string>
 		<string>Icon-Small@2x</string>
 		<string>Icon-Small-50</string>
+		<string>Icon-72</string>
+		<string>Icon@2x</string>
+		<string>Icon</string>
 	</array>
 </dict>
 </plist>

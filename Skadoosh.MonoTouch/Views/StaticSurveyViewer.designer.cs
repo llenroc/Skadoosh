@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace Skadoosh.MonoTouch
 {
-	[Register ("StaticSurveySelect")]
-	partial class StaticSurveySelect
+	[Register ("StaticSurveyViewer")]
+	partial class StaticSurveyViewer
 	{
 		
 		void ReleaseDesignerOutlets ()

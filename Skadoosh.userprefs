@@ -10,9 +10,7 @@
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Skadoosh.Droid" expanded="True" />
-          <Node name="Skadoosh.MonoTouch" expanded="True" selected="True">
-            <Node name="References" expanded="True" />
-          </Node>
+          <Node name="Skadoosh.MonoTouch" expanded="True" selected="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">

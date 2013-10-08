@@ -7,9 +7,9 @@ using MonoTouch.UIKit;
 
 namespace Skadoosh.MonoTouch
 {
-	public partial class StaticSurveySelect : UIView
+	public partial class LiveSurveyViewer : UIViewController
 	{
-		public StaticSurveySelect (IntPtr handle) : base (handle)
+		public LiveSurveyViewer (IntPtr handle) : base (handle)
 		{
 		}
 	}

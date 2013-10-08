@@ -93,6 +93,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="DomainModels\" />
     <Folder Include="Assets\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -131,13 +132,21 @@
     <Compile Include="..\Skadoosh.Common\DomainModels\SurveyNotificationChannel.cs">
       <Link>DomainModels\SurveyNotificationChannel.cs</Link>
     </Compile>
-    <Compile Include="LiveSurveySelect.cs" />
-    <Compile Include="LiveSurveySelect.designer.cs">
-      <DependentUpon>LiveSurveySelect.cs</DependentUpon>
+    <Compile Include="Views\Help.cs" />
+    <Compile Include="Views\Help.designer.cs">
+      <DependentUpon>Help.cs</DependentUpon>
     </Compile>
-    <Compile Include="StaticSurveySelect.cs" />
-    <Compile Include="StaticSurveySelect.designer.cs">
-      <DependentUpon>StaticSurveySelect.cs</DependentUpon>
+    <Compile Include="Views\LiveSurveyViewer.cs" />
+    <Compile Include="Views\LiveSurveyViewer.designer.cs">
+      <DependentUpon>LiveSurveyViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StaticSurveyViewer.cs" />
+    <Compile Include="Views\StaticSurveyViewer.designer.cs">
+      <DependentUpon>StaticSurveyViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SurveySelect.cs" />
+    <Compile Include="Views\SurveySelect.designer.cs">
+      <DependentUpon>SurveySelect.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -154,17 +163,13 @@
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="..\..\Dropbox\Microsoft_Showcase\Resources\Logos\IOSAssests\static.png">
-      <Link>static.png</Link>
-    </BundleResource>
-    <BundleResource Include="..\..\Dropbox\Microsoft_Showcase\Resources\Logos\IOSAssests\live.png">
-      <Link>live.png</Link>
-    </BundleResource>
     <BundleResource Include="..\..\Dropbox\Microsoft_Showcase\Resources\Logos\storeKadoosh.png">
       <Link>storeKadoosh.png</Link>
     </BundleResource>
     <BundleResource Include="..\..\Dropbox\Microsoft_Showcase\Resources\Logos\IOSAssests\PandaBack.png">
       <Link>PandaBack.png</Link>
     </BundleResource>
+    <BundleResource Include="static.png" />
+    <BundleResource Include="live70.png" />
   </ItemGroup>
 </Project>
