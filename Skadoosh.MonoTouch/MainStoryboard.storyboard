@@ -66,6 +66,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="btnLive" destination="Id9-lt-X8i" id="05q-mb-xGn"/>
+                        <outlet property="btnStatic" destination="uvC-Tx-JhX" id="v6t-K3-Q4H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
