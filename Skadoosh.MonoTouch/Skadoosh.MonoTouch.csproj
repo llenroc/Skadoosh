@@ -92,6 +92,7 @@
     <Folder Include="Resources\" />
     <Folder Include="ViewModels\" />
     <Folder Include="DomainModels\" />
+    <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -143,4 +144,27 @@
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-50.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="..\..\Dropbox\Microsoft_Showcase\Resources\Logos\IOSAssests\static.png">
+      <Link>static.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\Dropbox\Microsoft_Showcase\Resources\Logos\IOSAssests\live.png">
+      <Link>live.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\Dropbox\Microsoft_Showcase\Resources\Logos\storeKadoosh.png">
+      <Link>storeKadoosh.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\Dropbox\Microsoft_Showcase\Resources\Logos\IOSAssests\PandaBack.png">
+      <Link>PandaBack.png</Link>
+    </BundleResource>
+  </ItemGroup>
 </Project>
