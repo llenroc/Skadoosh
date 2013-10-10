@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace Skadoosh.IPhone
 {
-	[Register ("Home")]
-	partial class Home
+	[Register ("HomeController")]
+	partial class HomeController
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIButton btnLive { get; set; }

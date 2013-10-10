@@ -93,6 +93,7 @@
     <Folder Include="Views\" />
     <Folder Include="DomainModels\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="CustomUI\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -100,14 +101,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Views\Home.cs" />
-    <Compile Include="Views\Home.designer.cs">
-      <DependentUpon>Home.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SelectSurvey.cs" />
-    <Compile Include="Views\SelectSurvey.designer.cs">
-      <DependentUpon>SelectSurvey.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\IAppView.cs" />
     <Compile Include="..\Skadoosh.Common\DomainModels\AccountUser.cs">
       <Link>DomainModels\AccountUser.cs</Link>
@@ -139,6 +132,27 @@
     <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateStaticVM.cs">
       <Link>ViewModels\ParticipateStaticVM.cs</Link>
     </Compile>
+    <Compile Include="Views\HomeController.cs" />
+    <Compile Include="Views\HomeController.designer.cs">
+      <DependentUpon>HomeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectSurveyController.cs" />
+    <Compile Include="Views\SelectSurveyController.designer.cs">
+      <DependentUpon>SelectSurveyController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HelpController.cs" />
+    <Compile Include="Views\HelpController.designer.cs">
+      <DependentUpon>HelpController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveSurveyController.cs" />
+    <Compile Include="Views\LiveSurveyController.designer.cs">
+      <DependentUpon>LiveSurveyController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StaticSurveyController.cs" />
+    <Compile Include="Views\StaticSurveyController.designer.cs">
+      <DependentUpon>StaticSurveyController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUI\LoadingOverlay.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />

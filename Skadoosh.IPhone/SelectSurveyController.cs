@@ -8,15 +8,15 @@ using Skadoosh.Common.DomainModels;
 
 namespace Skadoosh.IPhone
 {
-	public partial class Home : UIViewController,IAppView
+	public partial class SelectSurveyController : UIViewController,IAppView
 	{
+
 		#region IAppView implementation
 
 		public ViewModelBase VM { get; set;}
 
 		#endregion
-
-		public Home (IntPtr handle) : base (handle)
+		public SelectSurveyController (IntPtr handle) : base (handle)
 		{
 		}
 	}

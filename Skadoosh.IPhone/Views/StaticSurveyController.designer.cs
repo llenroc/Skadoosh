@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace Skadoosh.IPhone
 {
-	[Register ("SelectSurvey")]
-	partial class SelectSurvey
+	[Register ("StaticSurveyController")]
+	partial class StaticSurveyController
 	{
 		
 		void ReleaseDesignerOutlets ()
