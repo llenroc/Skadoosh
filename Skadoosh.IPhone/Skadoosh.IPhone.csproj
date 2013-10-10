@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>12.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CDD9E935-3F86-4C6B-8846-736D201E0227}</ProjectGuid>
+    <ProjectGuid>{DD94C3F7-5985-4D56-B559-87B417EDFB2C}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Skadoosh.MonoTouch</RootNamespace>
+    <RootNamespace>Skadoosh.IPhone</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>SkadooshMonoTouch</AssemblyName>
+    <AssemblyName>SkadooshIPhone</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,8 +23,6 @@
     <MtouchLink>None</MtouchLink>
     <ConsolePause>false</ConsolePause>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchI18n />
-    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -46,10 +44,6 @@
     <MtouchDebug>true</MtouchDebug>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchSdkVersion>6.1</MtouchSdkVersion>
-    <IpaPackageName />
-    <MtouchI18n />
-    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -96,10 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="DomainModels\" />
-    <Folder Include="Assets\" />
     <Folder Include="Views\" />
+    <Folder Include="DomainModels\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -107,18 +100,20 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Skadoosh.MonoTouchViewController.cs" />
-    <Compile Include="Skadoosh.MonoTouchViewController.designer.cs">
-      <DependentUpon>Skadoosh.MonoTouchViewController.cs</DependentUpon>
+    <Compile Include="Views\Home.cs" />
+    <Compile Include="Views\Home.designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
-      <Link>ViewModels\ParticipateLiveVM.cs</Link>
+    <Compile Include="Views\SelectSurvey.cs" />
+    <Compile Include="Views\SelectSurvey.designer.cs">
+      <DependentUpon>SelectSurvey.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateStaticVM.cs">
-      <Link>ViewModels\ParticipateStaticVM.cs</Link>
-    </Compile>
+    <Compile Include="Views\IAppView.cs" />
     <Compile Include="..\Skadoosh.Common\DomainModels\AccountUser.cs">
       <Link>DomainModels\AccountUser.cs</Link>
+    </Compile>
+    <Compile Include="..\Skadoosh.Common\DomainModels\ExpressLogin.cs">
+      <Link>DomainModels\ExpressLogin.cs</Link>
     </Compile>
     <Compile Include="..\Skadoosh.Common\DomainModels\NotifyBase.cs">
       <Link>DomainModels\NotifyBase.cs</Link>
@@ -138,21 +133,11 @@
     <Compile Include="..\Skadoosh.Common\DomainModels\SurveyNotificationChannel.cs">
       <Link>DomainModels\SurveyNotificationChannel.cs</Link>
     </Compile>
-    <Compile Include="Views\Help.cs" />
-    <Compile Include="Views\Help.designer.cs">
-      <DependentUpon>Help.cs</DependentUpon>
+    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
+      <Link>ViewModels\ParticipateLiveVM.cs</Link>
     </Compile>
-    <Compile Include="Views\LiveSurveyViewer.cs" />
-    <Compile Include="Views\LiveSurveyViewer.designer.cs">
-      <DependentUpon>LiveSurveyViewer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\StaticSurveyViewer.cs" />
-    <Compile Include="Views\StaticSurveyViewer.designer.cs">
-      <DependentUpon>StaticSurveyViewer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SurveySelect.cs" />
-    <Compile Include="Views\SurveySelect.designer.cs">
-      <DependentUpon>SurveySelect.cs</DependentUpon>
+    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateStaticVM.cs">
+      <Link>ViewModels\ParticipateStaticVM.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -169,13 +154,11 @@
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="..\..\Dropbox\Microsoft_Showcase\Resources\Logos\storeKadoosh.png">
-      <Link>storeKadoosh.png</Link>
-    </BundleResource>
     <BundleResource Include="..\..\Dropbox\Microsoft_Showcase\Resources\Logos\IOSAssests\PandaBack.png">
       <Link>PandaBack.png</Link>
     </BundleResource>
-    <BundleResource Include="static.png" />
-    <BundleResource Include="live70.png" />
+    <BundleResource Include="storeKadoosh.png" />
+    <BundleResource Include="liveSurvey.png" />
+    <BundleResource Include="staticSurvey.png" />
   </ItemGroup>
 </Project>

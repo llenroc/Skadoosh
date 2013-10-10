@@ -7,14 +7,28 @@
 using MonoTouch.Foundation;
 using System.CodeDom.Compiler;
 
-namespace Skadoosh.MonoTouch
+namespace Skadoosh.IPhone
 {
-	[Register ("SurveySelect")]
-	partial class SurveySelect
+	[Register ("Home")]
+	partial class Home
 	{
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnLive { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton btnStatic { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (btnLive != null) {
+				btnLive.Dispose ();
+				btnLive = null;
+			}
+
+			if (btnStatic != null) {
+				btnStatic.Dispose ();
+				btnStatic = null;
+			}
 		}
 	}
 }

@@ -7,10 +7,10 @@
 using MonoTouch.Foundation;
 using System.CodeDom.Compiler;
 
-namespace Skadoosh.MonoTouch
+namespace Skadoosh.IPhone
 {
-	[Register ("StaticSurveyViewer")]
-	partial class StaticSurveyViewer
+	[Register ("SelectSurvey")]
+	partial class SelectSurvey
 	{
 		
 		void ReleaseDesignerOutlets ()
