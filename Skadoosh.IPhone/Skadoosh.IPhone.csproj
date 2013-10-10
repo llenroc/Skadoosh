@@ -153,9 +153,15 @@
       <DependentUpon>StaticSurveyController.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomUI\LoadingOverlay.cs" />
+    <Compile Include="CustomUI\OptionsCellProvider.cs" />
+    <Compile Include="CustomUI\OptionsCellProvider.designer.cs">
+      <DependentUpon>OptionsCellProvider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUI\QuestionTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
+    <InterfaceDefinition Include="CustomUI\OptionsCellProvider.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

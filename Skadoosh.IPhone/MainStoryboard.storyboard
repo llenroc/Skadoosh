@@ -183,11 +183,17 @@
                                 <rect key="frame" x="-6" y="-6" width="257" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XHZ-sO-RMT">
+                                <rect key="frame" x="74" y="93" width="160" height="240"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="headImg" destination="thc-Bj-aju" id="og4-db-8R3"/>
+                        <outlet property="testTable" destination="XHZ-sO-RMT" id="KPO-GX-GFB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tdg-Xt-90o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -221,16 +227,8 @@
     </scenes>
     <resources>
         <image name="PandaBack.png" width="404" height="576"/>
-        <image name="PandaBack.png" width="404" height="576"/>
-        <image name="PandaBack.png" width="404" height="576"/>
-        <image name="PandaBack.png" width="404" height="576"/>
-        <image name="PandaBack.png" width="404" height="576"/>
         <image name="liveSurvey.png" width="100" height="100"/>
         <image name="staticSurvey.png" width="100" height="100"/>
-        <image name="storeKadoosh.png" width="620" height="300"/>
-        <image name="storeKadoosh.png" width="620" height="300"/>
-        <image name="storeKadoosh.png" width="620" height="300"/>
-        <image name="storeKadoosh.png" width="620" height="300"/>
         <image name="storeKadoosh.png" width="620" height="300"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

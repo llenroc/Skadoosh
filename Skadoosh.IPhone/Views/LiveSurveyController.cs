@@ -4,11 +4,18 @@ using System;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using Skadoosh.Common.DomainModels;
 
 namespace Skadoosh.IPhone
 {
-	public partial class LiveSurveyController : UIViewController
+	public partial class LiveSurveyController : UIViewController,IAppView
 	{
+		#region IAppView implementation
+
+		public ViewModelBase VM { get; set;}
+
+		#endregion
+
 		public LiveSurveyController (IntPtr handle) : base (handle)
 		{
 		}

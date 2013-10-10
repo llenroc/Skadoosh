@@ -22,34 +22,59 @@ namespace Skadoosh.IPhone
 		{
 		}
 
+
+
 		public override void ViewDidLoad (){
 
 			btnStart.TouchUpInside+= async(s,a)=>{
+				loadingOverlay = new LoadingOverlay (UIScreen.MainScreen.Bounds);
+				View.Add (loadingOverlay);
 				if(VM is ParticipateLiveVM){
-					loadingOverlay = new LoadingOverlay (UIScreen.MainScreen.Bounds);
-					View.Add (loadingOverlay);
-					//var result = await ((ParticipateLiveVM)VM).FindSurveyCurrentChannel();
-					//loadingOverlay.Hide();
-					/*
-					if(result!=1){
-
+					var vm= ((ParticipateLiveVM)VM);
+					vm.ChannelName=txtSurveyCode.Text;
+					vm.User.FirstName=txtFirstName.Text;
+					vm.User.LastName=txtLastName.Text;
+					var result = await vm.FindSurveyCurrentChannel();
+					loadingOverlay.Hide();
+					if(result==1){
+						var controller = (LiveSurveyController)this.Storyboard.InstantiateViewController("LiveSurvey");
+						controller.VM=vm;
+						this.PresentViewController(controller,true,null);
 					}
 					else{
-
-					}*/
+						var alert = new UIAlertView(){
+							Title = "Error",
+							Message = vm.ErrorMessage
+						};
+						alert.AddButton("Ok");
+						alert.Show();
+					}
 				}
 				else{
-					var result =  await ((ParticipateStaticVM)VM).FindSurveyCurrentChannel();
-					if(result!=1){
-
+					var vm= ((ParticipateStaticVM)VM);
+					vm.ChannelName=txtSurveyCode.Text;
+					vm.User.FirstName=txtFirstName.Text;
+					vm.User.LastName=txtLastName.Text;
+					var result =  await vm.FindSurveyCurrentChannel();
+					loadingOverlay.Hide();
+					if(result==1){
+						var controller = (StaticSurveyController)this.Storyboard.InstantiateViewController("StaticSurvey");
+						controller.VM=vm;
+						this.PresentViewController(controller,true,null);
 					}
 					else{
-
+						var alert = new UIAlertView(){
+							Title = "Error",
+							Message = vm.ErrorMessage
+						};
+						alert.AddButton("Ok");
+						alert.Show();
 					}
 				}
 			};
 
 		}
+
 
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{

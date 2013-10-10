@@ -16,6 +16,7 @@ namespace Skadoosh.IPhone
 
 		public override void ViewDidLoad (){
 		
+			testTable.AllowsMultipleSelection = true;
 		}
 	}
 }

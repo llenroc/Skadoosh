@@ -14,12 +14,20 @@ namespace Skadoosh.IPhone
 	{
 		[Outlet]
 		MonoTouch.UIKit.UIImageView headImg { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UITableView testTable { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (headImg != null) {
 				headImg.Dispose ();
 				headImg = null;
+			}
+
+			if (testTable != null) {
+				testTable.Dispose ();
+				testTable = null;
 			}
 		}
 	}
