@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{73EA7523-1813-444F-AC92-73439BC2E4AD}</ProjectGuid>
+    <ProjectGuid>{4D785767-867B-40AF-A454-9BDB648BAC66}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -15,13 +15,8 @@
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
-    <AndroidStoreUncompressedFileExtensions />
-    <MandroidI18n />
-    <JavaMaximumHeapSize />
-    <JavaOptions />
-    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -41,62 +37,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.WindowsAzure.MobileServices.Android">
-      <HintPath>..\..\..\..\Dropbox\Mobile Common\Resources\Droid\Microsoft.WindowsAzure.MobileServices.Android.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\Dropbox\Mobile Common\Resources\Droid\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common.Library\Services\LocalStorageService.cs">
-      <Link>Services\LocalStorageService.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\DomainModels\AccountUser.cs">
-      <Link>DomainModels\AccountUser.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\DomainModels\ExpressLogin.cs">
-      <Link>DomainModels\ExpressLogin.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\DomainModels\NotifyBase.cs">
-      <Link>DomainModels\NotifyBase.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\DomainModels\Option.cs">
-      <Link>DomainModels\Option.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\DomainModels\Question.cs">
-      <Link>DomainModels\Question.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\DomainModels\Responses.cs">
-      <Link>DomainModels\Responses.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\DomainModels\Survey.cs">
-      <Link>DomainModels\Survey.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\DomainModels\SurveyNotificationChannel.cs">
-      <Link>DomainModels\SurveyNotificationChannel.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\Util\CsvExport.cs">
-      <Link>Util\CsvExport.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateLiveVM.cs">
-      <Link>ViewModel\ParticipateLiveVM.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\ParticipateStaticVM.cs">
-      <Link>ViewModel\ParticipateStaticVM.cs</Link>
-    </Compile>
-    <Compile Include="..\Skadoosh.Common\ViewModels\PresenterVM.cs">
-      <Link>ViewModel\PresenterVM.cs</Link>
-    </Compile>
     <Compile Include="Activity1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,11 +63,96 @@
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\Drawable\ic_launcher.png" />
+    <AndroidResource Include="Resources\Drawable\PandaBack.png" />
+    <AndroidResource Include="Resources\Drawable\splash640_960.png" />
+    <AndroidResource Include="Resources\Drawable\ab_background_textured_skadoosh.xml" />
+    <AndroidResource Include="Resources\Drawable\btn_cab_done_skadoosh.xml" />
+    <AndroidResource Include="Resources\Drawable\pressed_background_skadoosh.xml" />
+    <AndroidResource Include="Resources\Drawable\progress_horizontal_skadoosh.xml" />
+    <AndroidResource Include="Resources\Drawable\selectable_background_skadoosh.xml" />
+    <AndroidResource Include="Resources\Drawable\spinner_background_ab_skadoosh.xml" />
+    <AndroidResource Include="Resources\Drawable\tab_indicator_ab_skadoosh.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ab_bottom_solid_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ab_solid_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ab_stacked_solid_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ab_texture_tile_skadoosh.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ab_transparent_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_cab_done_default_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_cab_done_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_cab_done_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\cab_background_bottom_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\cab_background_top_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\list_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\menu_dropdown_panel_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\progress_bg_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\progress_primary_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\progress_secondary_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spinner_ab_default_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spinner_ab_disabled_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spinner_ab_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\spinner_ab_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_selected_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_selected_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_selected_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_unselected_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_unselected_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\tab_unselected_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ab_bottom_solid_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ab_solid_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ab_stacked_solid_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ab_texture_tile_skadoosh.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ab_transparent_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\btn_cab_done_default_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\btn_cab_done_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\btn_cab_done_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\cab_background_bottom_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\cab_background_top_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\list_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\menu_dropdown_panel_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\progress_bg_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\progress_primary_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\progress_secondary_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\spinner_ab_default_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\spinner_ab_disabled_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\spinner_ab_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\spinner_ab_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_selected_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_selected_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_selected_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_unselected_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_unselected_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\tab_unselected_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ab_bottom_solid_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ab_solid_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ab_stacked_solid_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ab_texture_tile_skadoosh.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ab_transparent_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\btn_cab_done_default_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\btn_cab_done_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\btn_cab_done_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\cab_background_bottom_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\cab_background_top_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\list_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\menu_dropdown_panel_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\progress_bg_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\progress_primary_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\progress_secondary_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spinner_ab_default_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spinner_ab_disabled_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spinner_ab_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\spinner_ab_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_selected_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_selected_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_selected_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_unselected_focused_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_unselected_pressed_skadoosh.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\tab_unselected_skadoosh.9.png" />
+    <AndroidResource Include="Resources\Values\colors_skadoosh.xml" />
+    <AndroidResource Include="Resources\Values\styles_skadoosh.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.

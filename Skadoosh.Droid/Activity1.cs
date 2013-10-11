@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace Skadoosh.Droid
 {
-    [Activity(Label = "Skadoosh.Droid", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Skadoosh", MainLauncher = true, Icon = "@drawable/ic_launcher")]
     public class Activity1 : Activity
     {
         int count = 1;
