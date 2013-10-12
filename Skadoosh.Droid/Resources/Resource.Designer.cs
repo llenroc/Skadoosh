@@ -103,67 +103,73 @@ namespace Skadoosh.Droid
 			public const int list_focused_skadoosh = 2130837517;
 			
 			// aapt resource value: 0x7f02000e
-			public const int menu_dropdown_panel_skadoosh = 2130837518;
+			public const int liveSurvey = 2130837518;
 			
 			// aapt resource value: 0x7f02000f
-			public const int PandaBack = 2130837519;
+			public const int menu_dropdown_panel_skadoosh = 2130837519;
 			
 			// aapt resource value: 0x7f020010
-			public const int pressed_background_skadoosh = 2130837520;
+			public const int PandaBack = 2130837520;
 			
 			// aapt resource value: 0x7f020011
-			public const int progress_bg_skadoosh = 2130837521;
+			public const int pressed_background_skadoosh = 2130837521;
 			
 			// aapt resource value: 0x7f020012
-			public const int progress_horizontal_skadoosh = 2130837522;
+			public const int progress_bg_skadoosh = 2130837522;
 			
 			// aapt resource value: 0x7f020013
-			public const int progress_primary_skadoosh = 2130837523;
+			public const int progress_horizontal_skadoosh = 2130837523;
 			
 			// aapt resource value: 0x7f020014
-			public const int progress_secondary_skadoosh = 2130837524;
+			public const int progress_primary_skadoosh = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int selectable_background_skadoosh = 2130837525;
+			public const int progress_secondary_skadoosh = 2130837525;
 			
 			// aapt resource value: 0x7f020016
-			public const int spinner_ab_default_skadoosh = 2130837526;
+			public const int selectable_background_skadoosh = 2130837526;
 			
 			// aapt resource value: 0x7f020017
-			public const int spinner_ab_disabled_skadoosh = 2130837527;
+			public const int spinner_ab_default_skadoosh = 2130837527;
 			
 			// aapt resource value: 0x7f020018
-			public const int spinner_ab_focused_skadoosh = 2130837528;
+			public const int spinner_ab_disabled_skadoosh = 2130837528;
 			
 			// aapt resource value: 0x7f020019
-			public const int spinner_ab_pressed_skadoosh = 2130837529;
+			public const int spinner_ab_focused_skadoosh = 2130837529;
 			
 			// aapt resource value: 0x7f02001a
-			public const int spinner_background_ab_skadoosh = 2130837530;
+			public const int spinner_ab_pressed_skadoosh = 2130837530;
 			
 			// aapt resource value: 0x7f02001b
-			public const int splash640_960 = 2130837531;
+			public const int spinner_background_ab_skadoosh = 2130837531;
 			
 			// aapt resource value: 0x7f02001c
-			public const int tab_indicator_ab_skadoosh = 2130837532;
+			public const int splash640_960 = 2130837532;
 			
 			// aapt resource value: 0x7f02001d
-			public const int tab_selected_focused_skadoosh = 2130837533;
+			public const int staticSurvey = 2130837533;
 			
 			// aapt resource value: 0x7f02001e
-			public const int tab_selected_pressed_skadoosh = 2130837534;
+			public const int tab_indicator_ab_skadoosh = 2130837534;
 			
 			// aapt resource value: 0x7f02001f
-			public const int tab_selected_skadoosh = 2130837535;
+			public const int tab_selected_focused_skadoosh = 2130837535;
 			
 			// aapt resource value: 0x7f020020
-			public const int tab_unselected_focused_skadoosh = 2130837536;
+			public const int tab_selected_pressed_skadoosh = 2130837536;
 			
 			// aapt resource value: 0x7f020021
-			public const int tab_unselected_pressed_skadoosh = 2130837537;
+			public const int tab_selected_skadoosh = 2130837537;
 			
 			// aapt resource value: 0x7f020022
-			public const int tab_unselected_skadoosh = 2130837538;
+			public const int tab_unselected_focused_skadoosh = 2130837538;
+			
+			// aapt resource value: 0x7f020023
+			public const int tab_unselected_pressed_skadoosh = 2130837539;
+			
+			// aapt resource value: 0x7f020024
+			public const int tab_unselected_skadoosh = 2130837540;
 			
 			static Drawable()
 			{
@@ -175,27 +181,14 @@ namespace Skadoosh.Droid
 			}
 		}
 		
-		public partial class Id
-		{
-			
-			// aapt resource value: 0x7f070000
-			public const int MyButton = 2131165184;
-			
-			static Id()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Id()
-			{
-			}
-		}
-		
 		public partial class Layout
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int Home = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int SelectSurvey = 2130903041;
 			
 			static Layout()
 			{
@@ -210,11 +203,11 @@ namespace Skadoosh.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f050001
-			public const int ApplicationName = 2131034113;
+			// aapt resource value: 0x7f060001
+			public const int ApplicationName = 2131099649;
 			
-			// aapt resource value: 0x7f050000
-			public const int Hello = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int Hello = 2131099648;
 			
 			static String()
 			{
@@ -229,35 +222,38 @@ namespace Skadoosh.Droid
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f060001
-			public const int ActionBar_Solid_Skadoosh = 2131099649;
+			// aapt resource value: 0x7f050002
+			public const int ActionBar_Solid_Skadoosh = 2131034114;
 			
-			// aapt resource value: 0x7f060002
-			public const int ActionBar_Transparent_Skadoosh = 2131099650;
+			// aapt resource value: 0x7f050003
+			public const int ActionBar_Transparent_Skadoosh = 2131034115;
 			
-			// aapt resource value: 0x7f060005
-			public const int ActionBarTabStyle_Skadoosh = 2131099653;
+			// aapt resource value: 0x7f050006
+			public const int ActionBarTabStyle_Skadoosh = 2131034118;
 			
-			// aapt resource value: 0x7f060008
-			public const int ActionButton_CloseMode_Skadoosh = 2131099656;
+			// aapt resource value: 0x7f050009
+			public const int ActionButton_CloseMode_Skadoosh = 2131034121;
 			
-			// aapt resource value: 0x7f060004
-			public const int DropDownListView_Skadoosh = 2131099652;
+			// aapt resource value: 0x7f050005
+			public const int DropDownListView_Skadoosh = 2131034117;
 			
-			// aapt resource value: 0x7f060006
-			public const int DropDownNav_Skadoosh = 2131099654;
+			// aapt resource value: 0x7f050007
+			public const int DropDownNav_Skadoosh = 2131034119;
 			
-			// aapt resource value: 0x7f060003
-			public const int PopupMenu_Skadoosh = 2131099651;
+			// aapt resource value: 0x7f050004
+			public const int PopupMenu_Skadoosh = 2131034116;
 			
-			// aapt resource value: 0x7f060007
-			public const int ProgressBar_Skadoosh = 2131099655;
+			// aapt resource value: 0x7f050008
+			public const int ProgressBar_Skadoosh = 2131034120;
 			
-			// aapt resource value: 0x7f060000
-			public const int Theme_Skadoosh = 2131099648;
+			// aapt resource value: 0x7f050001
+			public const int Theme_Skadoosh = 2131034113;
 			
-			// aapt resource value: 0x7f060009
-			public const int Theme_Skadoosh_Widget = 2131099657;
+			// aapt resource value: 0x7f05000a
+			public const int Theme_Skadoosh_Widget = 2131034122;
+			
+			// aapt resource value: 0x7f050000
+			public const int Theme_Splash = 2131034112;
 			
 			static Style()
 			{

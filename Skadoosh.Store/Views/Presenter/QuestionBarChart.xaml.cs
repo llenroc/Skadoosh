@@ -1,7 +1,5 @@
 ﻿using Windows.UI.Core;
 using Windows.UI.Xaml.Printing;
-
-
 using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
 using Skadoosh.Store.Common;
@@ -9,7 +7,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
-using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.Graphics.Printing;
 using Windows.UI.Xaml;
