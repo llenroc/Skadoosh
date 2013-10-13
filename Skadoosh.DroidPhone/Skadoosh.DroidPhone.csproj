@@ -91,7 +91,6 @@
     </Compile>
     <Compile Include="ActivityBase.cs" />
     <Compile Include="Home.cs" />
-    <Compile Include="QustomDialogBuilder.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectSurveyActivity.cs" />
@@ -102,9 +101,6 @@
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\Layout\SelectSurvey.axml" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Thumbs.db" />
-    <AndroidResource Include="Resources\Layout\Alert.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Layout\Home.axml" />

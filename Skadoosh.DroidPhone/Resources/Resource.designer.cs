@@ -584,71 +584,44 @@ namespace Skadoosh.DroidPhone
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f080009
-			public const int HomeFrame = 2131230729;
-			
-			// aapt resource value: 0x7f080010
-			public const int SelectFrame = 2131230736;
-			
-			// aapt resource value: 0x7f08000a
-			public const int absoluteLayout1 = 2131230730;
-			
-			// aapt resource value: 0x7f08000d
-			public const int absoluteLayout2 = 2131230733;
-			
-			// aapt resource value: 0x7f080004
-			public const int alertTitle = 2131230724;
-			
-			// aapt resource value: 0x7f08000b
-			public const int btnLive = 2131230731;
-			
-			// aapt resource value: 0x7f080015
-			public const int btnStart = 2131230741;
-			
-			// aapt resource value: 0x7f08000e
-			public const int btnStatic = 2131230734;
-			
-			// aapt resource value: 0x7f080006
-			public const int contentPanel = 2131230726;
-			
-			// aapt resource value: 0x7f080008
-			public const int customPanel = 2131230728;
-			
-			// aapt resource value: 0x7f080003
-			public const int icon = 2131230723;
+			// aapt resource value: 0x7f080000
+			public const int HomeFrame = 2131230720;
 			
 			// aapt resource value: 0x7f080007
-			public const int message = 2131230727;
-			
-			// aapt resource value: 0x7f080000
-			public const int parentPanel = 2131230720;
-			
-			// aapt resource value: 0x7f08000c
-			public const int textView1 = 2131230732;
-			
-			// aapt resource value: 0x7f08000f
-			public const int textView2 = 2131230735;
-			
-			// aapt resource value: 0x7f080013
-			public const int textView3 = 2131230739;
-			
-			// aapt resource value: 0x7f080005
-			public const int titleDivider = 2131230725;
-			
-			// aapt resource value: 0x7f080002
-			public const int title_template = 2131230722;
+			public const int SelectFrame = 2131230727;
 			
 			// aapt resource value: 0x7f080001
-			public const int topPanel = 2131230721;
+			public const int absoluteLayout1 = 2131230721;
 			
-			// aapt resource value: 0x7f080012
-			public const int txtFirstName = 2131230738;
+			// aapt resource value: 0x7f080004
+			public const int absoluteLayout2 = 2131230724;
 			
-			// aapt resource value: 0x7f080014
-			public const int txtLastName = 2131230740;
+			// aapt resource value: 0x7f080002
+			public const int btnLive = 2131230722;
 			
-			// aapt resource value: 0x7f080011
-			public const int txtSurveyCode = 2131230737;
+			// aapt resource value: 0x7f08000c
+			public const int btnStart = 2131230732;
+			
+			// aapt resource value: 0x7f080005
+			public const int btnStatic = 2131230725;
+			
+			// aapt resource value: 0x7f080003
+			public const int textView1 = 2131230723;
+			
+			// aapt resource value: 0x7f080006
+			public const int textView2 = 2131230726;
+			
+			// aapt resource value: 0x7f08000a
+			public const int textView3 = 2131230730;
+			
+			// aapt resource value: 0x7f080009
+			public const int txtFirstName = 2131230729;
+			
+			// aapt resource value: 0x7f08000b
+			public const int txtLastName = 2131230731;
+			
+			// aapt resource value: 0x7f080008
+			public const int txtSurveyCode = 2131230728;
 			
 			static Id()
 			{
@@ -664,13 +637,10 @@ namespace Skadoosh.DroidPhone
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Alert = 2130903040;
+			public const int Home = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Home = 2130903041;
-			
-			// aapt resource value: 0x7f030002
-			public const int SelectSurvey = 2130903042;
+			public const int SelectSurvey = 2130903041;
 			
 			static Layout()
 			{

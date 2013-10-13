@@ -48,43 +48,14 @@ namespace Skadoosh.DroidPhone
                         }
                         else
                         {
-                            //var builder  = new AlertDialog.Builder(new ContextThemeWrapper(this, Resource.Style.AlertDialogCustom));
-                            ////var builder = new AlertDialog.Builder(this);    
-                            //builder.SetTitle("Error");
-                            //builder.SetMessage("Can't connect to the database.");
-                            //builder.SetCancelable(false);
-                            //builder.SetPositiveButton("OK", delegate { Finish(); });
-                 
-                            //var alert = builder.Show();
-                          
-                            QustomDialogBuilder qustomDialogBuilder = new QustomDialogBuilder(this);
-                          
-                            qustomDialogBuilder.setTitle("Set IP Address");
-                            qustomDialogBuilder.setTitleColor("#FF4F00");
-                            qustomDialogBuilder.setDividerColor("#FF4F00");
-                            qustomDialogBuilder.setMessage("You are now entering the 10th dimension.");
-                           
-                            qustomDialogBuilder.setCustomView(Resource.Layout.Alert, this);
+                            var builder1 = new AlertDialog.Builder(new ContextThemeWrapper(this, Resource.Style.AlertDialogCustom));
+                            builder1.SetTitle("Oops, somethings wrong");
+                            builder1.SetMessage(lvm.ErrorMessage);
+                            //builder1.SetCancelable(false);
+                            builder1.SetPositiveButton("OK", delegate {  });
+                            var alert1 = builder1.Show();
+                            ChangeDialogColor(alert1);
 
-
-                            qustomDialogBuilder.show();
-                            //alert.SetView(alert.LayoutInflater.Inflate(Resource.Layout.Alert, null));
-                            //alert.SetView(alert.LayoutInflater.Inflate(Resource.Layout.Alert, null));
-                            //alert.SetTitle("Error");
-                            //alert.SetMessage("help");
-                           
-                            //alert.Show();
-                         
-                            //var alert = new AlertDialog.Builder.c
-                            //this.LayoutInflater.Inflate(Resource.Layout.CustomAlert,
-                            //var alertBuilder = new AlertDialog.Builder(this);
-                            
-                       
-                            //alert.SetTitle("Error");
-                            //alert.SetMessage(lvm.ErrorMessage);
-                            //var dialog = alert.Show();
-                            //dialog.SetDividerColor();
-                           // this.SetDialogDecoratorBar(dialog);
                         }
                         break;
                     case "ParticipateStaticVM":
@@ -99,11 +70,13 @@ namespace Skadoosh.DroidPhone
                         }
                         else
                         {
-                            //var alert = new AlertDialog.Builder(new ContextThemeWrapper(this, Resource.Style.AlertDialogCustom));
-                            //alert.SetTitle("Error");
-                            //alert.SetMessage(svm.ErrorMessage);
-                            //var dialog = alert.Show();
-                            ////this.SetDialogDecoratorBar(dialog);
+                            var builder2 = new AlertDialog.Builder(new ContextThemeWrapper(this, Resource.Style.AlertDialogCustom));
+                            builder2.SetTitle("Oops, somethings wrong");
+                            builder2.SetMessage(svm.ErrorMessage);
+                            //builder2.SetCancelable(false);
+                            builder2.SetPositiveButton("OK", delegate {  });
+                            var alert2 = builder2.Show();
+                            ChangeDialogColor(alert2);
                         }
                         break;
                 }

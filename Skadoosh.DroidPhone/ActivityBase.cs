@@ -31,5 +31,20 @@ namespace Skadoosh.DroidPhone
             }
         }
 
+        public void ChangeDialogColor(AlertDialog dialog)
+        {
+            var decorView = (ViewGroup)dialog.Window.DecorView;
+            var windowContentView = ViewGroupIndexOf<ViewGroup>(decorView, 0);
+            var contentView = ViewGroupIndexOf<ViewGroup>(windowContentView, 0);
+            var parentPanel = ViewGroupIndexOf<ViewGroup>(contentView, 0);
+            var topPanel = ViewGroupIndexOf<ViewGroup>(parentPanel, 0);
+            var titleDivider = ViewGroupIndexOf<View>(topPanel, 2);
+            titleDivider.SetBackgroundColor(Android.Graphics.Color.ParseColor("#FF4F00"));
+        }
+        public T ViewGroupIndexOf<T>(ViewGroup grp, int index) where T : View
+        {
+            return (T)grp.GetChildAt(index);
+        }
+
     }
 }
