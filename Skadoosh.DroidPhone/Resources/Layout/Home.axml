@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/PandaBack">
+    android:background="@drawable/PandaBack"
+    android:id="@+id/HomeFrame">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -21,7 +22,7 @@
                 android:src="@drawable/liveSurvey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton1"
+                android:id="@+id/btnLive"
                 android:clickable="true"
                 android:padding="3dp" />
             <TextView
@@ -45,7 +46,7 @@
                 android:src="@drawable/staticSurvey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton1"
+                android:id="@+id/btnStatic"
                 android:clickable="true"
                 android:padding="3dp" />
             <TextView

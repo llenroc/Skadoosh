@@ -19,4 +19,5 @@
 
 <resources>
     <color name="pressed_skadoosh">#CCFFB413</color>
+  <color name="skadooshOrange">#FF4F00</color>
 </resources>

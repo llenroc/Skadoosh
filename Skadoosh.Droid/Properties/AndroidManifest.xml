@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" android:versionCode="1" android:versionName="0.1.21.0">
-	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="15" />
-	<application android:label="Skadoosh" android:icon="@drawable/ic_launcher" android:theme="@style/Theme.Skadoosh"></application>
-	<uses-permission android:name="android.permission.INTERNET" />
-</manifest>

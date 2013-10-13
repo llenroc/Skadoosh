@@ -19,7 +19,7 @@ namespace Skadoosh.DroidPhone
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            Thread.Sleep(1000); // Simulate a long loading process on app startup.
+            Thread.Sleep(700); // Simulate a long loading process on app startup.
             StartActivity(typeof(Home));
 
         }
