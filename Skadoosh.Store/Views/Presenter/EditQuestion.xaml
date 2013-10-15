@@ -114,8 +114,9 @@
                 <CheckBox Grid.Row="2" Grid.Column="2"  Margin="10" IsChecked="{Binding CurrentQuestion.IsMultiSelect, Mode=TwoWay}" ></CheckBox>
               
                 <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
-                    <TextBlock  Style="{StaticResource EditFields}">Options</TextBlock>
-                    <TextBlock  Margin="10" HorizontalAlignment="Right">(Add with app bar)</TextBlock>
+                    <Button Style="{StaticResource AddAppBarButtonStyle}"  AutomationProperties.Name="Add Option" Click="Button_Click" HorizontalAlignment="Right"/>
+                    <!--<TextBlock  Style="{StaticResource EditFields}">Options</TextBlock>
+                    <TextBlock  Margin="10" HorizontalAlignment="Right">(Add with app bar)</TextBlock>-->
                 </StackPanel>
 
 
@@ -213,7 +214,7 @@
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button Style="{StaticResource SaveAppBarButtonStyle}"  AutomationProperties.Name="Save Changes" Click="SaveQuestion"/>
-                    <Button Style="{StaticResource AddAppBarButtonStyle}"  AutomationProperties.Name="Add Option" Click="Button_Click"/>
+                    <!--<Button Style="{StaticResource AddAppBarButtonStyle}"  AutomationProperties.Name="Add Option" Click="Button_Click"/>-->
                     <Button Style="{StaticResource DiscardAppBarButtonStyle}" AutomationProperties.Name="Cancel" Click="GoBack"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

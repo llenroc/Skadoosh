@@ -31,13 +31,20 @@ namespace Skadoosh.Store.Views.Presenter
                 var vm = (PresenterVM)VM;
                 if (vm.CurrentQuestion != null)
                 {
+                    vm.IsBusy = true;
                     var ht = itemListView.ActualHeight;
                     var wd = itemListView.ActualWidth;
                     var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);
+                    PieChart.ImageOpened += (pcimgs, pcimga) =>
+                    {
+                        vm.IsBusy = false;
+                    };
                     PieChart.Source = new BitmapImage(new Uri(imgUrl));        
                 }
             };
         }
+
+
 
         private void RefreshData(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {

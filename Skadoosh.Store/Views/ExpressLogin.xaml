@@ -104,7 +104,7 @@
                 <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource EditFields}" HorizontalAlignment="Left" Text="{Binding ErrorMessage, Mode=TwoWay}" Foreground="#FFE80707" FontWeight="Bold"></TextBlock>
 
 
-                <Button Foreground="Black" Background="Black"  Style="{StaticResource ContactAppBarButtonStyle}"  AutomationProperties.Name="Login" Click="Login" Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom"   />
+            
                
 
             </Grid>

@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.Graphics.Printing;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 
 
 
@@ -39,17 +40,19 @@ namespace Skadoosh.Store.Views.Presenter
                     var ht = itemListView.ActualHeight;
                     var wd = itemListView.ActualWidth;
                     var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);
-                    BarChart.Loaded += (be, ba) =>
+
+                    vm.IsBusy = true;
+
+                    BarChart.ImageOpened += (ee, aa) =>
                     {
                         vm.IsBusy = false;
                     };
                     BarChart.Source = new BitmapImage(new Uri(imgUrl));
-                    vm.IsBusy = true;
+                   
                 }
             };
 
         }
-
 
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
