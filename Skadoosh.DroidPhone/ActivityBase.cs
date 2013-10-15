@@ -21,7 +21,7 @@ namespace Skadoosh.DroidPhone
         {
             var surfaceOrientation = WindowManager.DefaultDisplay.Rotation;
             var lo = FindViewById<LinearLayout>(resource);
-            if (surfaceOrientation == SurfaceOrientation.Rotation90)
+            if (surfaceOrientation == SurfaceOrientation.Rotation90 || surfaceOrientation== SurfaceOrientation.Rotation270)
             {
                 lo.SetBackgroundResource(Resource.Drawable.menu_dropdown_panel_skadoosh);
             }
