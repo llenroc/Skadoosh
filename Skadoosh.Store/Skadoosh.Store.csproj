@@ -215,8 +215,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Active.png" />
+    <Content Include="Assets\Delete.png" />
     <Content Include="Assets\facebook.png" />
     <Content Include="Assets\Fuse.png" />
+    <Content Include="Assets\Good.png" />
     <Content Include="Assets\google.png" />
     <Content Include="Assets\Group.png" />
     <Content Include="Assets\Hand.png" />

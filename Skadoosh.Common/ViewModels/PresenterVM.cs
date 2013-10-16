@@ -393,28 +393,40 @@ namespace Skadoosh.Common.ViewModels
         public async void UpdateOptions()
         {
             var table = AzureClient.GetTable<Option>();
-            foreach (var opt in CurrentQuestion.Options)
+            for (int x = CurrentQuestion.Options.Count - 1; x > -1; x--)
             {
+                var opt = CurrentQuestion.Options[x];
                 if (opt.QuestionId != 0)
                 {
-                    if (opt.IsNew && !string.IsNullOrEmpty(opt.OptionText))
-                    {
-                        await table.InsertAsync(opt);
-                    }
-                    else
+                    if (opt.IsNew)
                     {
                         if (!string.IsNullOrEmpty(opt.OptionText))
                         {
-                            await table.UpdateAsync(opt);
+                            await table.InsertAsync(opt);
                         }
                         else
+                        {
+                            CurrentQuestion.Options.Remove(opt);
+                        }
+                    }
+                    else
+                    {
+                        if (opt.IsDeleted)
                         {
                             await table.DeleteAsync(opt);
                             CurrentQuestion.Options.Remove(opt);
                         }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(opt.OptionText))
+                            {
+                                await table.UpdateAsync(opt);
+                            }
+                        }
                     }
                 }
             }
+
 
         }  
         #endregion

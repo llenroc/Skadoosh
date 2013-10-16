@@ -61,7 +61,7 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void SaveQuestion(object sender, RoutedEventArgs e)
         {
-            await VM.UpdateQuestion().ConfigureAwait(true);
+            await VM.UpdateQuestion(); ;
             Frame.GoBack();
         }
 
@@ -84,11 +84,7 @@ namespace Skadoosh.Store.Views.Presenter
         {
             Button b = (Button)e.OriginalSource;
             Option o = (Option)b.DataContext;
-            o.IsDeleted = true;
-            var p = (StackPanel)b.Parent;
-            var g = (Grid)p.Parent;
-            var n = g.Parent.GetType().Name;
-            g.Height = 0;
+            o.IsDeleted = !o.IsDeleted;
         }
     }
 }

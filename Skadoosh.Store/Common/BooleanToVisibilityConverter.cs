@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Skadoosh.Store.Common
 {
@@ -29,7 +30,7 @@ namespace Skadoosh.Store.Common
     }
 
 
-    public sealed class FalseToZeroHeightConverter : IValueConverter
+    public sealed class BoolToImageConverter : IValueConverter
     {
         public bool IsReversed { get; set; }
 
@@ -38,11 +39,15 @@ namespace Skadoosh.Store.Common
             var result = (bool)value;
             if (result == true)
             {
-                return new GridLength(0);
+                BitmapImage image = new BitmapImage();
+                image.UriSource = new Uri("ms-appx:///Assets/Delete.png");
+                return image;
             }
             else
             {
-                return new GridLength(30);
+                BitmapImage image = new BitmapImage();
+                image.UriSource = new Uri("ms-appx:///Assets/Good.png");
+                return image;
             }
         }
 

@@ -14,7 +14,8 @@
         <common:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
         <common:OneZeroConverter x:Key="OneZeroConverter"/>
         <common:BooleanToVisibilityConverter x:Key="BoolToVis" IsReversed="true" ></common:BooleanToVisibilityConverter>
-        <common:FalseToZeroHeightConverter x:Key="FalseToZero"></common:FalseToZeroHeightConverter>
+        <common:BooleanToVisibilityConverter x:Key="FalseInvisible" IsReversed="false" ></common:BooleanToVisibilityConverter>
+        <common:BoolToImageConverter x:Key="BoolToImage"></common:BoolToImageConverter>
         
         <Style x:Key="EditFields" TargetType="TextBlock">
             <Setter Property="Margin" Value="10"/>
@@ -117,7 +118,7 @@
                 <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
                     <Button Style="{StaticResource AddAppBarButtonStyle}"  AutomationProperties.Name="Add Option" Click="Button_Click" HorizontalAlignment="Right"/>
                     <!--<TextBlock  Style="{StaticResource EditFields}">Options</TextBlock>
-                    <TextBlock  Margin="10" HorizontalAlignment="Right">(Add with app bar)</TextBlock>-->
+                         <TextBlock  Margin="10" HorizontalAlignment="Right">(Add with app bar)</TextBlock>-->
                 </StackPanel>
 
 
@@ -128,16 +129,18 @@
                           SelectionMode="None" Background="{StaticResource AppBarItemPointerOverBackgroundThemeBrush}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="5" HorizontalAlignment="Stretch"  Visibility="{Binding IsDeleted,Converter={StaticResource BoolToVis}}">
+                            <Grid Margin="5" HorizontalAlignment="Stretch" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0"  Orientation="Horizontal" Visibility="{Binding IsDeleted,Converter={StaticResource BoolToVis}}">
-                                    <TextBox HorizontalAlignment="Stretch" Text="{Binding OptionText, Mode=TwoWay}" MinWidth="450" Visibility="{Binding IsDeleted,Converter={StaticResource BoolToVis}}"></TextBox>
-                                    <ToggleButton IsChecked="{Binding IsDeleted}"></ToggleButton>
-                                    <Button Click="deleteOption" Visibility="{Binding IsDeleted,Converter={StaticResource BoolToVis}}">
-                                        <Image Source="ms-appx:///Assets/Profile1.png" Height="22" Width="22" Visibility="{Binding IsDeleted,Converter={StaticResource BoolToVis}}"></Image>
-                                </Button>
+                                <StackPanel Grid.Column="0"  Orientation="Horizontal" >
+                                    <TextBox HorizontalAlignment="Stretch" Text="{Binding OptionText, Mode=TwoWay}" MinWidth="450" ></TextBox>
+                                    <Button Click="deleteOption" BorderThickness="0" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Margin="5" Source="{Binding IsDeleted,Converter={StaticResource BoolToImage}}" Height="22" Width="22"></Image>
+                                            <TextBlock Margin="5" Visibility="{Binding IsDeleted,Converter={StaticResource FalseInvisible}}">Delete on save</TextBlock>
+                                        </StackPanel>
+                                    </Button>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
