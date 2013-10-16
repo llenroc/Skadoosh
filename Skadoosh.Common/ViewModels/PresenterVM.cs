@@ -397,7 +397,7 @@ namespace Skadoosh.Common.ViewModels
             {
                 if (opt.QuestionId != 0)
                 {
-                    if (opt.IsNew)
+                    if (opt.IsNew && !string.IsNullOrEmpty(opt.OptionText))
                     {
                         await table.InsertAsync(opt);
                     }

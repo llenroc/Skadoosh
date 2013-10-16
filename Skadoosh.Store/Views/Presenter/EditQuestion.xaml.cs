@@ -1,4 +1,5 @@
-﻿using Skadoosh.Common.ViewModels;
+﻿using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -77,6 +78,17 @@ namespace Skadoosh.Store.Views.Presenter
         private void ShowHelp(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Help), new ParticipateStaticVM());
+        }
+
+        private void deleteOption(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)e.OriginalSource;
+            Option o = (Option)b.DataContext;
+            o.IsDeleted = true;
+            var p = (StackPanel)b.Parent;
+            var g = (Grid)p.Parent;
+            var n = g.Parent.GetType().Name;
+            g.Height = 0;
         }
     }
 }

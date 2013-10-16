@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 
 namespace Skadoosh.Store.Common
@@ -24,6 +25,31 @@ namespace Skadoosh.Store.Common
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             return value is Visibility && (Visibility) value == Visibility.Visible;
+        }
+    }
+
+
+    public sealed class FalseToZeroHeightConverter : IValueConverter
+    {
+        public bool IsReversed { get; set; }
+
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var result = (bool)value;
+            if (result == true)
+            {
+                return new GridLength(0);
+            }
+            else
+            {
+                return new GridLength(30);
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return null;
+            //return value is Visibility && (Visibility)value == Visibility.Visible;
         }
     }
 }

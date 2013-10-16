@@ -83,6 +83,13 @@ namespace Skadoosh.WebPortal.Controllers
             s.Color = Color.FromArgb(215, 47, 6);
             s.BorderColor = Color.FromArgb(159, 27, 13);
 
+            Legend l = new Legend("test");
+            l.Docking = Docking.Bottom;
+            l.BackColor = Color.White;
+            l.Alignment = StringAlignment.Center;
+
+            c.Legends.Add(l);
+
             var cnt = 0;
             foreach (var r in responses.ToLookup(x => x.OptionId))
             {
