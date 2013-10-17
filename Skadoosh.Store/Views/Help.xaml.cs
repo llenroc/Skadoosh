@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,10 +26,11 @@ namespace Skadoosh.Store.Views
     /// </summary>
     public sealed partial class Help : Skadoosh.Store.Common.LayoutAwarePage
     {
-        private string videoID = "irUgRmFlVf0";
+
         public Help()
         {
             this.InitializeComponent();
+
         }
 
 

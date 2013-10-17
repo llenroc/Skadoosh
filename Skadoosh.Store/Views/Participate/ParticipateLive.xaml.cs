@@ -9,6 +9,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Popups;
 using Skadoosh.Common.DomainModels;
+using Windows.UI.ApplicationSettings;
+using Windows.System;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -30,6 +32,7 @@ namespace Skadoosh.Store.Views.Participate
         public ParticipateLive()
         {
             this.InitializeComponent();
+
         }
 
         /// <summary>

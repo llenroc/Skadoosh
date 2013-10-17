@@ -5,6 +5,7 @@ using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -72,6 +73,17 @@ namespace Skadoosh.Store.Common
                     Window.Current.CoreWindow.PointerPressed +=
                         this.CoreWindow_PointerPressed;
                 }
+
+    
+                    SettingsPane.GetForCurrentView().CommandsRequested += (s, args) =>
+                    {
+                        var privacyStatement = new SettingsCommand("privacy", "Privacy Statement", x => Launcher.LaunchUriAsync(
+            new Uri("http://www.azdevelop.net/skadoosh/privacy.html")));
+
+                        args.Request.ApplicationCommands.Clear();
+                        args.Request.ApplicationCommands.Add(privacyStatement);
+                    };
+           
             };
 
             // Undo the same changes when the page is no longer visible

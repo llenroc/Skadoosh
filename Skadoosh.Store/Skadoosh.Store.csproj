@@ -213,7 +213,6 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="packages.config" />
-    <None Include="Skadoosh.pfx" />
     <None Include="Skadoosh.Store_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -333,7 +332,7 @@
       <HintPath>..\packages\WindowsAzure.MobileServices.1.0.2\lib\netcore45\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\netcore45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\netcore45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.15\lib\win8\System.Net.Http.Extensions.dll</HintPath>
@@ -346,7 +345,7 @@
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Skadoosh.Store_TemporaryKey.pfx</AssemblyOriginatorKeyFile>

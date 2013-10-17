@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -33,6 +35,7 @@ namespace Skadoosh.Store.Views.Participate
         public ParticipateStatic()
         {
             this.InitializeComponent();
+
         }
 
         /// <summary>
