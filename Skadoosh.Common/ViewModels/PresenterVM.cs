@@ -414,7 +414,9 @@ namespace Skadoosh.Common.ViewModels
                         if (opt.IsDeleted)
                         {
                             await table.DeleteAsync(opt);
+                            await DeleteReponsesByOptionId(opt.Id);
                             CurrentQuestion.Options.Remove(opt);
+                        
                         }
                         else
                         {

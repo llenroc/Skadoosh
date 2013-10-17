@@ -2,7 +2,7 @@
 <StoreAssociation xmlns="http://schemas.microsoft.com/appx/2010/storeassociation">
   <Publisher>CN=32731AB8-4969-4D74-AFB6-89DD91AE93C0</Publisher>
   <NamespacePrefix>7722PresidioSoftwareLLC</NamespacePrefix>
-  <PublisherDisplayName>Presidio Software LLC</PublisherDisplayName>
+  <PublisherDisplayName>Les Brown</PublisherDisplayName>
   <GeneratePackageHash>http://www.w3.org/2001/04/xmlenc#sha256</GeneratePackageHash>
   <SupportedLocales>
     <Language Code="af" InMinimumRequirementSet="false" />
@@ -67,6 +67,12 @@
     <Language Code="el" InMinimumRequirementSet="true" />
     <Language Code="el-gr" InMinimumRequirementSet="true" />
     <Language Code="en" InMinimumRequirementSet="true" />
+    <Language Code="en-011" InMinimumRequirementSet="true" />
+    <Language Code="en-014" InMinimumRequirementSet="true" />
+    <Language Code="en-018" InMinimumRequirementSet="true" />
+    <Language Code="en-021" InMinimumRequirementSet="true" />
+    <Language Code="en-029" InMinimumRequirementSet="true" />
+    <Language Code="en-053" InMinimumRequirementSet="true" />
     <Language Code="en-au" InMinimumRequirementSet="true" />
     <Language Code="en-bz" InMinimumRequirementSet="true" />
     <Language Code="en-ca" InMinimumRequirementSet="true" />
@@ -88,6 +94,8 @@
     <Language Code="en-vn" InMinimumRequirementSet="true" />
     <Language Code="en-za" InMinimumRequirementSet="true" />
     <Language Code="es" InMinimumRequirementSet="true" />
+    <Language Code="es-019" InMinimumRequirementSet="true" />
+    <Language Code="es-419" InMinimumRequirementSet="true" />
     <Language Code="es-ar" InMinimumRequirementSet="true" />
     <Language Code="es-bo" InMinimumRequirementSet="true" />
     <Language Code="es-cl" InMinimumRequirementSet="true" />
@@ -120,7 +128,11 @@
     <Language Code="fil-latn" InMinimumRequirementSet="false" />
     <Language Code="fil-ph" InMinimumRequirementSet="false" />
     <Language Code="fr" InMinimumRequirementSet="true" />
+    <Language Code="fr-011" InMinimumRequirementSet="true" />
     <Language Code="fr-015" InMinimumRequirementSet="true" />
+    <Language Code="fr-021" InMinimumRequirementSet="true" />
+    <Language Code="fr-029" InMinimumRequirementSet="true" />
+    <Language Code="fr-155" InMinimumRequirementSet="true" />
     <Language Code="fr-be" InMinimumRequirementSet="true" />
     <Language Code="fr-ca" InMinimumRequirementSet="true" />
     <Language Code="fr-cd" InMinimumRequirementSet="true" />
@@ -343,5 +355,10 @@
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames />
-  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/8037c639-fc51-4e7e-874d-ddd6c091b85d" />
+  <PackageInfoList LandingUrl="https://appdev.microsoft.com:443/StorePortals/Developer/Catalog/ReleaseAnchor/8037c639-fc51-4e7e-874d-ddd6c091b85d">
+    <PackageInfo>
+      <PackageArchitecture />
+      <PackageMaxArchitectureVersion>0.0.0.0</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>

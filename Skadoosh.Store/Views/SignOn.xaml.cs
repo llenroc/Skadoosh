@@ -18,9 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.ComponentModel;
-using Statera.Xamarin.Common;
 
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace Skadoosh.Store.Views
 {

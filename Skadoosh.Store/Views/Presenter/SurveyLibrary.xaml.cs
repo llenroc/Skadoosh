@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Skadoosh.Common.Util;
+using Windows.Storage.AccessCache;
 using Windows.Storage;
 // The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
@@ -138,27 +139,14 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void ExportData(object sender, RoutedEventArgs e)
         {
+          
             var list = await VM.GetResponseCSVForCurrentSurvey();
             var exporter = new CsvExport<ResponseCSV>(list);
             var content = exporter.ExportToString();
-            var storageFolder = KnownFolders.DocumentsLibrary;
             var fileName = VM.CurrentSurvey.SurveyTitle.Replace(" ", string.Empty) + ".csv";
-            var file = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, content);
-
-
-            var msg = new MessageDialog("The document was saved to your document library. Do you want to view it?", "Document Saved");
-            msg.Commands.Add(new UICommand("Preview File", async (a) =>
-            {
-                var newFile = await storageFolder.GetFileAsync(fileName);
-                Windows.System.Launcher.LaunchFileAsync(newFile);
-            }));
-            msg.Commands.Add(new UICommand("No", (a) =>
-            {
-
-            }));
-            await msg.ShowAsync();
-
+            Windows.System.Launcher.LaunchFileAsync(file);
         }
         private void ShowHelp(object sender, RoutedEventArgs e)
         {
