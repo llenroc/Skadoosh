@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="7722PresidioSoftwareLLC.Skadoosh" Publisher="CN=32731AB8-4969-4D74-AFB6-89DD91AE93C0" Version="1.0.0.4" />
+  <Identity Name="7722PresidioSoftwareLLC.Skadoosh" Publisher="CN=32731AB8-4969-4D74-AFB6-89DD91AE93C0" Version="1.0.0.5" />
   <Properties>
     <DisplayName>Skadoosh</DisplayName>
     <PublisherDisplayName>Les Brown</PublisherDisplayName>
