@@ -253,6 +253,18 @@ namespace Skadoosh.Common.ViewModels
                 return 0;
             }
         }
+
+
+        public async Task<List<Survey>> GetAllSurveys()
+        {
+            var result = await AzureClient.GetTable<Survey>().ToListAsync();
+            foreach (var survey in result)
+            {
+
+            }
+            return result;
+        }
+
         #endregion
 
         #region Question Code
@@ -329,6 +341,18 @@ namespace Skadoosh.Common.ViewModels
                 }
             }
         }
+
+        public async Task<Question> GetQuestionBySurveyId(int id)
+        {
+            var results = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == id).ToListAsync();
+            if (results != null && results.Count > 0)
+            {
+                var question = results.First();
+                return question;
+            }
+            return null;
+        }
+
         public async Task<int> LoadQuestionsForCurrentSurvey()
         {
             if (CurrentSurvey != null)

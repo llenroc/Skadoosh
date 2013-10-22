@@ -41,7 +41,7 @@ namespace Skadoosh.Web.Controllers
 
 
             Chart c = new Chart();
-
+            c.Titles.Add(vm.CurrentQuestion.QuestionText);
             c.AntiAliasing = AntiAliasingStyles.All;
             c.TextAntiAliasingQuality = TextAntiAliasingQuality.High;
             c.Width = w.HasValue ? w.Value : 640; //SET HEIGHT
@@ -77,11 +77,10 @@ namespace Skadoosh.Web.Controllers
 
             c.ChartAreas.Add(ca);
 
-            Series s = new Series();
-            //s.ChartType = SeriesChartType.Bar;
-            s.Font = new Font("Lucida Sans Unicode", 6f);
-            s.Color = Color.FromArgb(215, 47, 6);
-            s.BorderColor = Color.FromArgb(159, 27, 13);
+            //Series s = new Series();
+            //s.Font = new Font("Lucida Sans Unicode", 6f);
+            //s.Color = Color.FromArgb(215, 47, 6);
+            //s.BorderColor = Color.FromArgb(159, 27, 13);
 
             Legend l = new Legend("test");
             l.Docking = Docking.Bottom;
@@ -103,11 +102,18 @@ namespace Skadoosh.Web.Controllers
                 p.LegendText = vm.CurrentQuestion.Options.First(x => x.Id == r.Key).OptionText;
                 p.YValues = new double[] { count };
                 cnt++;
+
+                Series s = new Series();
+                s.LegendText = vm.CurrentQuestion.Options.First(x => x.Id == r.Key).OptionText;
+                s.Font = new Font("Lucida Sans Unicode", 6f);
+                s.Color = p.Color;
+                s.BorderColor = Color.FromArgb(159, 27, 13);
                 s.Points.Add(p);
+                c.Series.Add(s);
             }
 
 
-            c.Series.Add(s);
+            
             var ms = new MemoryStream();
             c.SaveImage(ms, ChartImageFormat.Png);
 
@@ -118,6 +124,11 @@ namespace Skadoosh.Web.Controllers
         {
 
             PresenterVM vm = new PresenterVM();
+
+            //var surveys = await vm.GetAllSurveys();
+            //var question = await vm.GetQuestionBySurveyId(10010);
+          
+
             var responses = await vm.GetResponsesAndLoadDataByQuestionId(id);
 
             Chart c = new Chart();
