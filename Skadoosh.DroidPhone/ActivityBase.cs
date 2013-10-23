@@ -9,11 +9,15 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Skadoosh.Common.DomainModels;
 
 
 namespace Skadoosh.DroidPhone
 {
-
+    public class AppModel
+    {
+        public static ViewModelBase VM { get; set; }
+    }
     public class ActivityBase : Activity
     {
       

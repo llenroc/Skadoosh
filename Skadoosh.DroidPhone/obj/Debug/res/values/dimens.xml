@@ -1,6 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="tab_host_default_height">48dp</dimen>
-  <dimen name="alert_dialog_title_height">64dip</dimen>
-  <dimen name="alert_dialog_button_bar_height">64dip</dimen>
-</resources>
+<resources><dimen name="tab_host_default_height">48dp</dimen><dimen name="alert_dialog_title_height">64dip</dimen><dimen name="alert_dialog_button_bar_height">64dip</dimen></resources>

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!-- File created by the Android Action Bar Style Generator
 
      Copyright (C) 2011 The Android Open Source Project
@@ -15,9 +14,4 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
--->
-
-<resources>
-    <color name="pressed_skadoosh">#CCFFB413</color>
-  <color name="skadooshOrange">#FF4F00</color>
-</resources>
+--><resources><color name="pressed_skadoosh">#CCFFB413</color><color name="skadooshOrange">#FF4F00</color></resources>

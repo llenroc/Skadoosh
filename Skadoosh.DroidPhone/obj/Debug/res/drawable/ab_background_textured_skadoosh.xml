@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!-- File created by the Android Action Bar Style Generator
 
      Copyright (C) 2012 readyState Software Ltd
@@ -14,8 +13,4 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
--->
-
-<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/ab_texture_tile_skadoosh"
-    android:tileMode="repeat" />
+--><bitmap android:src="@drawable/ab_texture_tile_skadoosh" android:tileMode="repeat" xmlns:android="http://schemas.android.com/apk/res/android" />

@@ -45,14 +45,14 @@ namespace Skadoosh.DroidPhone
                         var lr = await lvm.FindSurveyCurrentChannel();
                         if (lr == 1)
                         {
-                            
+                            AppModel.VM = lvm;
+                            StartActivity(typeof(LiveSurveyActivity));
                         }
                         else
                         {
                             var builder1 = new AlertDialog.Builder(new ContextThemeWrapper(this, Resource.Style.AlertDialogCustom));
                             builder1.SetTitle("Oops, somethings wrong");
                             builder1.SetMessage(lvm.ErrorMessage);
-                            //builder1.SetCancelable(false);
                             builder1.SetPositiveButton("OK", delegate {  });
                             var alert1 = builder1.Show();
                             ChangeDialogColor(alert1);
@@ -67,14 +67,14 @@ namespace Skadoosh.DroidPhone
                         var sr = await svm.FindSurveyCurrentChannel();
                         if (sr == 1)
                         {
-
+                            AppModel.VM = svm;
+                            StartActivity(typeof(StaticSurveyActivity));
                         }
                         else
                         {
                             var builder2 = new AlertDialog.Builder(new ContextThemeWrapper(this, Resource.Style.AlertDialogCustom));
                             builder2.SetTitle("Oops, somethings wrong");
                             builder2.SetMessage(svm.ErrorMessage);
-                            //builder2.SetCancelable(false);
                             builder2.SetPositiveButton("OK", delegate {  });
                             var alert2 = builder2.Show();
                             ChangeDialogColor(alert2);

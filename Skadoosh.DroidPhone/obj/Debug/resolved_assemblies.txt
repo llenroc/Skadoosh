@@ -1,0 +1,3 @@
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\bin\Debug\Skadoosh.DroidPhone.dll
+C:\Users\lbrown\Dropbox\Mobile Common\Resources\Droid\Microsoft.WindowsAzure.MobileServices.Android.dll
+C:\Users\lbrown\Dropbox\Mobile Common\Resources\Droid\Newtonsoft.Json.dll
