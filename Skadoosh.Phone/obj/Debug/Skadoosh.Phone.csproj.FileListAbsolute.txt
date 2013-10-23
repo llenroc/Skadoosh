@@ -1,0 +1,9 @@
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Debug\Skadoosh.Phone.csprojResolveAssemblyReference.cache
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Debug\App.g.cs
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Debug\MainPage.g.cs
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Debug\Views\Closed.g.cs
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Debug\Views\Help.g.cs
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Debug\Views\ParticipateLive.g.cs
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Debug\Views\ParticipateStatic.g.cs
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Debug\Views\SelectSurvey.g.cs
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Debug\Skadoosh.Phone.g.resources
