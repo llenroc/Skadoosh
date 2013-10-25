@@ -11,7 +11,7 @@ namespace Skadoosh.Common.DomainModels
 {
 
 
-    public static class SkadooshExtensions
+    public static class skadooshExtensions
     {
         public static AccountUser CreateWith(this MobileServiceUser mobileUser)
         {

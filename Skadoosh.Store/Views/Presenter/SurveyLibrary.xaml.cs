@@ -1,4 +1,4 @@
-﻿using Skadoosh.Common.DomainModels;
+﻿
 using Skadoosh.Common.ViewModels;
 using Skadoosh.Store.Common;
 using System;
@@ -18,6 +18,8 @@ using Windows.UI.Xaml.Navigation;
 using Skadoosh.Common.Util;
 using Windows.Storage.AccessCache;
 using Windows.Storage;
+using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.ViewModels;
 // The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
 namespace Skadoosh.Store.Views.Presenter

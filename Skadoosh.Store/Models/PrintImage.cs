@@ -1,4 +1,5 @@
-﻿using Skadoosh.Common.DomainModels;
+﻿
+using Skadoosh.Common.DomainModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

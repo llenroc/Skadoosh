@@ -1,0 +1,186 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="Skadoosh.Store.Views.Help"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Skadoosh.Store.Views"
+    xmlns:common="using:Skadoosh.Store.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <SolidColorBrush x:Key="buttonPanelOverlay" Color="#FF5C00" Opacity="0.7"></SolidColorBrush>
+        <LinearGradientBrush x:Key="activeStyle" EndPoint="1,0.5" StartPoint="0,0.5" Opacity="0.85">
+            <GradientStop Color="black" Offset="0.0"  />
+            <GradientStop Color="#FF5C00" Offset="0.1"  />
+            <GradientStop Color="#FFBB00" Offset="0.889" />
+        </LinearGradientBrush>
+
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">Skadoosh Home</x:String>
+
+    </Page.Resources>
+
+
+    <Grid Style="{StaticResource LayoutRootStyle}" x:Name="parentGrid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush x:Name="bckPanda" ImageSource="ms-appx:///Assets/skadooshBck.png"  ></ImageBrush>
+        </Grid.Background>
+
+        <!-- Back button and page title -->
+        <Grid x:Name="FullHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+
+            </Grid.ColumnDefinitions>
+            <Button x:ConnectionId='2' x:Name="backButton"                Margin="36,36,30,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="ms-appx:///Assets/Hand.png"></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <StackPanel x:Name="pageTitle" Grid.Column="1">
+                <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
+                <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
+            </StackPanel>
+
+        </Grid>
+        <Grid Visibility="Collapsed" x:Name="SnappedHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:ConnectionId='1'                Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="ms-appx:///Assets/SplashScreen.png" Stretch="UniformToFill" ></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+        <Border Grid.Row="1"  Padding="5" Margin="10" Background="WhiteSmoke" Opacity="0.7" CornerRadius="0" x:Name="itemGridView" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <RichTextBlock Grid.Column="0" Foreground="Black" FontSize="28" >
+                    <Paragraph Margin="10" TextIndent="20">                     
+                            Welcome to Skadoosh. We had two goals in mind when creating this application.  First, create an avenue for presenters to offer static and live surveys to a group of people using every type of mobile device possible.  Second, provide developers an example of an application created using a common language and development environment.
+                        <LineBreak></LineBreak>
+                    </Paragraph>
+
+                    <Paragraph Margin="10" TextIndent="20">
+                        For the user of the application, we took the theme from Disney’s wonderful Kung Fu Panda where the Dragon Warrior finally defeats the snow leopard Tai Lung.  With a single use of his finger, ‘Skadoosh’ he accomplishes his goal.  We hope that you find the touch experience in creating, delivering and taking surveys a truly empowering activity.
+                    </Paragraph>
+                </RichTextBlock>
+                <RichTextBlock Grid.Column="1" Foreground="Black" FontSize="28" >
+                    <Paragraph Margin="10" TextIndent="20">
+                        Please select from the following list, video tutorials that will help you get the most out of 'Skadoosh'.
+                    </Paragraph>
+
+                    <Paragraph Margin="25,0,0,16" TextIndent="20" >
+                        <InlineUIContainer>
+                            <HyperlinkButton Content="&#x27A4; Administration Basics" Foreground="Black" FontSize="24" NavigateUri="http://youtu.be/Uu-hCGVYYHM"></HyperlinkButton>
+                        </InlineUIContainer>
+                    </Paragraph>
+                    <!--<Paragraph Margin="25,0,0,16" TextIndent="20" >
+                        <InlineUIContainer>
+                            <HyperlinkButton Content="&#x27A4; Taking a survey" Foreground="Black" FontSize="24" ></HyperlinkButton>
+                        </InlineUIContainer>
+                    </Paragraph>-->
+
+                    <Paragraph Margin="10" TextIndent="20">
+                        The following links are for developers.
+                    </Paragraph>
+                    <Paragraph Margin="25,0,0,16" TextIndent="20" >
+                        <InlineUIContainer>
+                            <HyperlinkButton Content="&#x27A4; GitHub Solution" Foreground="Black" FontSize="24" NavigateUri="https://github.com/quicksilver65/Skadoosh/" ></HyperlinkButton>
+                        </InlineUIContainer>
+                    </Paragraph>
+                    <Paragraph Margin="25,0,0,16" TextIndent="20" >
+                        <InlineUIContainer>
+                            <HyperlinkButton Content="&#x27A4; Developer's Blog" Foreground="Black" FontSize="24" NavigateUri="http://azdevelop.azurewebsites.net" ></HyperlinkButton>
+                        </InlineUIContainer>
+                    </Paragraph>
+
+                </RichTextBlock>
+            </Grid>
+                <!--<WebView   HorizontalAlignment="Center"  x:Name="youTube" ></WebView>-->
+        
+        </Border>
+
+                <!-- Vertical scrolling list only used when snapped -->
+        <ListView
+            x:Name="itemListView"
+            AutomationProperties.AutomationId="ItemsListView"
+            AutomationProperties.Name="items"
+            TabIndex="1"
+            Grid.Row="1"
+            Visibility="Collapsed"
+            Margin="0,-10,0,0"
+            Padding="10,0,0,60"
+     
+            ItemTemplate="{StaticResource Standard80ItemTemplate}"
+            SelectionMode="None" 
+            IsSwipeEnabled="false"/>
+
+
+
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Padding">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="96,137,10,56"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!--
+                     The back button and title have different styles when snapped, and the list representation is substituted
+                     for the grid displayed in all other view states
+                -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemGridView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="bckPanda" Storyboard.TargetProperty="Stretch">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="UniformToFill"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>
+

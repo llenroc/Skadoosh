@@ -1,0 +1,12 @@
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\bin\Release\skadoosh.DroidPhone.dll
+C:\Users\lbrown\Dropbox\Mobile Common\Resources\Droid\Microsoft.WindowsAzure.MobileServices.Android.dll
+C:\Users\lbrown\Dropbox\Mobile Common\Resources\Droid\Newtonsoft.Json.dll
+C:\Users\lbrown\Desktop\PushSharp-master\PushSharp.Client\PushSharp.Client.MonoForAndroid.Gcm\bin\Debug\PushSharp.Client.MonoForAndroid.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\mscorlib.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\System.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\Mono.Security.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v4.0.3\Mono.Android.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\System.Xml.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\System.Core.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\System.Runtime.Serialization.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\System.Json.dll

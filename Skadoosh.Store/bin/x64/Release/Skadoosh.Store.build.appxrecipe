@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DEVELOPER</Machine>
+    <WindowsUser>lbrown</WindowsUser>
+    <SolutionConfiguration>Release|x64</SolutionConfiguration>
+    <PackageArchitecture>x64</PackageArchitecture>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Skadoosh.Store.exe">
+      <PackagePath>Skadoosh.Store.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Skadoosh.Store.pdb">
+      <PackagePath>Skadoosh.Store.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.dll">
+      <PackagePath>Microsoft.Threading.Tasks.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.Extensions.dll">
+      <PackagePath>Microsoft.Threading.Tasks.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\packages\WindowsAzure.MobileServices.1.0.2\lib\netcore45\Microsoft.WindowsAzure.Mobile.dll">
+      <PackagePath>Microsoft.WindowsAzure.Mobile.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\packages\WindowsAzure.MobileServices.1.0.2\lib\netcore45\Microsoft.WindowsAzure.Mobile.Ext.dll">
+      <PackagePath>Microsoft.WindowsAzure.Mobile.Ext.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\packages\Newtonsoft.Json.5.0.8\lib\netcore45\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\packages\Microsoft.Net.Http.2.2.15\lib\win8\System.Net.Http.Extensions.dll">
+      <PackagePath>System.Net.Http.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\packages\Microsoft.Net.Http.2.2.15\lib\win8\System.Net.Http.Primitives.dll">
+      <PackagePath>System.Net.Http.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\Active.png">
+      <PackagePath>Assets\Active.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\Delete.png">
+      <PackagePath>Assets\Delete.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\facebook.png">
+      <PackagePath>Assets\facebook.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\Fuse.png">
+      <PackagePath>Assets\Fuse.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\Good.png">
+      <PackagePath>Assets\Good.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\google.png">
+      <PackagePath>Assets\google.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\Group.png">
+      <PackagePath>Assets\Group.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\Hand.png">
+      <PackagePath>Assets\Hand.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\HomeTitle.png">
+      <PackagePath>Assets\HomeTitle.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\LiveSurvey.png">
+      <PackagePath>Assets\LiveSurvey.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\live.png">
+      <PackagePath>Assets\live.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\multi.png">
+      <PackagePath>Assets\multi.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\Participate.png">
+      <PackagePath>Assets\Participate.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\presenter.png">
+      <PackagePath>Assets\presenter.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\Profile.png">
+      <PackagePath>Assets\Profile.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\Profile1.png">
+      <PackagePath>Assets\Profile1.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\single.png">
+      <PackagePath>Assets\single.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\skadooshBck.png">
+      <PackagePath>Assets\skadooshBck.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\skadooshOnly.png">
+      <PackagePath>Assets\skadooshOnly.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\static.png">
+      <PackagePath>Assets\static.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\StaticSurvey.png">
+      <PackagePath>Assets\StaticSurvey.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\strip.png">
+      <PackagePath>Assets\strip.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\SurveryEdit.png">
+      <PackagePath>Assets\SurveryEdit.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\twitter.png">
+      <PackagePath>Assets\twitter.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Assets\YY.png">
+      <PackagePath>Assets\YY.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Common\ReadMe.txt">
+      <PackagePath>Common\ReadMe.txt</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\ExpressLogin.xaml">
+      <PackagePath>Views\ExpressLogin.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Help.xaml">
+      <PackagePath>Views\Help.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Home.xaml">
+      <PackagePath>Views\Home.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Common\StandardStyles.xaml">
+      <PackagePath>Common\StandardStyles.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Participate\ParticipateLive.xaml">
+      <PackagePath>Views\Participate\ParticipateLive.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Participate\ParticipateStatic.xaml">
+      <PackagePath>Views\Participate\ParticipateStatic.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Participate\SelectSurvey.xaml">
+      <PackagePath>Views\Participate\SelectSurvey.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Presenter\EditQuestion.xaml">
+      <PackagePath>Views\Presenter\EditQuestion.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Presenter\EditSurvery.xaml">
+      <PackagePath>Views\Presenter\EditSurvery.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Presenter\PresenterProfile.xaml">
+      <PackagePath>Views\Presenter\PresenterProfile.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Presenter\QuestionBarChart.xaml">
+      <PackagePath>Views\Presenter\QuestionBarChart.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Presenter\QuestionPieChart.xaml">
+      <PackagePath>Views\Presenter\QuestionPieChart.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Presenter\ReportPrint.xaml">
+      <PackagePath>Views\Presenter\ReportPrint.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Presenter\SurveyQuestions.xaml">
+      <PackagePath>Views\Presenter\SurveyQuestions.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\SignOn.xaml">
+      <PackagePath>Views\SignOn.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\Views\Presenter\SurveyLibrary.xaml">
+      <PackagePath>Views\Presenter\SurveyLibrary.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\x64\Release\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

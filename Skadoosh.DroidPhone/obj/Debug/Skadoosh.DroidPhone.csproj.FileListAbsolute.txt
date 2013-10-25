@@ -421,3 +421,6 @@ C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\obj\Debug\R.cs.fla
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\obj\Debug\uploadflags.txt
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\obj\Debug\res\layout\livesurvey.xml
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\obj\Debug\res\layout\staticsurvey.xml
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\bin\Debug\PushSharp.Client.MonoForAndroid.dll
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\bin\Debug\PushSharp.Client.MonoForAndroid.pdb
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\bin\Debug\PushSharp.Client.MonoForAndroid.dll.mdb

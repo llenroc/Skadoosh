@@ -12,7 +12,8 @@ using Android.Widget;
 using Skadoosh.Common.DomainModels;
 
 
-namespace Skadoosh.DroidPhone
+
+namespace skadoosh.DroidPhone
 {
     public class AppModel
     {

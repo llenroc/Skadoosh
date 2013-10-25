@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skadoosh.Phone", "Skadoosh.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skadoosh.IPhone", "Skadoosh.IPhone\Skadoosh.IPhone.csproj", "{DD94C3F7-5985-4D56-B559-87B417EDFB2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skadoosh.DroidPhone", "Skadoosh.DroidPhone\Skadoosh.DroidPhone.csproj", "{3C293914-F8A7-42A6-8DDA-33FF74FBA3EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "skadoosh.DroidPhone", "Skadoosh.DroidPhone\skadoosh.DroidPhone.csproj", "{3C293914-F8A7-42A6-8DDA-33FF74FBA3EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skadoosh.Web", "Skadoosh.Web\Skadoosh.Web.csproj", "{0139A598-BE24-4947-A3A0-2B006276C204}"
 EndProject

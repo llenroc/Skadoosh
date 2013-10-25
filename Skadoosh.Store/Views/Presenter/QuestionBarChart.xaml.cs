@@ -1,6 +1,5 @@
 ﻿using Windows.UI.Core;
 using Windows.UI.Xaml.Printing;
-using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
 using Skadoosh.Store.Common;
 using System;

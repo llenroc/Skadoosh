@@ -1,0 +1,1 @@
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\Skadoosh.Store.csproj;x64

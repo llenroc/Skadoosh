@@ -1,0 +1,10 @@
+skadoosh.DroidPhone.ActivityBase;skadoosh.droidphone.ActivityBase
+skadoosh.DroidPhone.Home;skadoosh.droidphone.Home
+skadoosh.DroidPhone.LiveSurveyActivity;skadoosh.droidphone.LiveSurveyActivity
+skadoosh.DroidPhone.PushHandlerBroadcastReceiver;skadoosh.droidphone.PushHandlerBroadcastReceiver
+skadoosh.DroidPhone.PushHandlerService;skadoosh.droidphone.PushHandlerService
+skadoosh.DroidPhone.SelectSurveyActivity;skadoosh.droidphone.SelectSurveyActivity
+skadoosh.DroidPhone.SplashActivity;skadoosh.droidphone.SplashActivity
+skadoosh.DroidPhone.StaticSurveyActivity;skadoosh.droidphone.StaticSurveyActivity
+PushSharp.Client.PushHandlerServiceBase;pushsharp.client.PushHandlerServiceBase
+PushSharp.Client.PushHandlerBroadcastReceiverBase`1;pushsharp.client.PushHandlerBroadcastReceiverBase_1

@@ -9,20 +9,48 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using skadoosh.DroidPhone;
 using Skadoosh.Common.ViewModels;
+using PushSharp.Client;
+using Android.Util;
 
-namespace Skadoosh.DroidPhone
+namespace skadoosh.DroidPhone
 {
     [Activity(Label = "Live Survey", Icon = "@drawable/ic_launcher")]
     public class LiveSurveyActivity : Activity
     {
+        const string TAG = "PushSharp-GCM";
         private ParticipateLiveVM VM;
+        private bool registered = false;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.LiveSurvey);
             VM = (ParticipateLiveVM)AppModel.VM;
-            // Create your application here
+            PushClient.CheckDevice(this);
+            PushClient.CheckManifest(this);
+          
+            var txtGCM = FindViewById<TextView>(Resource.Id.txtGMCCllient);
+            var txtPush = FindViewById<TextView>(Resource.Id.txtPushClient);
+
+            if (!registered)
+            {
+                Log.Info(TAG, "Registering...");
+
+                //Call to register
+                PushClient.Register(this, PushHandlerBroadcastReceiver.SENDER_IDS);
+                var registrationId = PushClient.GetRegistrationId(this);
+                txtGCM.Text = "GCMID-> " + registrationId;
+            }
+            else
+            {
+                Log.Info(TAG, "Unregistering...");
+
+                //Call to unregister
+                PushClient.UnRegister(this);
+            }
+
         }
     }
 }

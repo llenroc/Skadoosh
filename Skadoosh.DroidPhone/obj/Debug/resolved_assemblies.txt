@@ -1,3 +1,4 @@
-C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\bin\Debug\Skadoosh.DroidPhone.dll
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\bin\Debug\skadoosh.DroidPhone.dll
 C:\Users\lbrown\Dropbox\Mobile Common\Resources\Droid\Microsoft.WindowsAzure.MobileServices.Android.dll
 C:\Users\lbrown\Dropbox\Mobile Common\Resources\Droid\Newtonsoft.Json.dll
+C:\Users\lbrown\Desktop\PushSharp-master\PushSharp.Client\PushSharp.Client.MonoForAndroid.Gcm\bin\Debug\PushSharp.Client.MonoForAndroid.dll

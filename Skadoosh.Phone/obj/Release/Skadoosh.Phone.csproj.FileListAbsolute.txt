@@ -37,3 +37,4 @@ C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\Bin\Release\System.Net.
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Release\Skadoosh.Phone.dll
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Release\Skadoosh.Phone.pdb
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Release\XapCacheFile.xml
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Phone\obj\Release\Skadoosh.Phone.csprojResolveAssemblyReference.cache

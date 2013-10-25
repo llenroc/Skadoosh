@@ -210,25 +210,27 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class id {
         public static final int HomeFrame=0x7f080000;
         public static final int LiveSurvey=0x7f080007;
-        public static final int SelectFrame=0x7f080008;
-        public static final int StaticSurvey=0x7f08000e;
+        public static final int SelectFrame=0x7f08000a;
+        public static final int StaticSurvey=0x7f080010;
         public static final int absoluteLayout1=0x7f080001;
         public static final int absoluteLayout2=0x7f080004;
+        public static final int btnBack=0x7f080014;
         public static final int btnLive=0x7f080002;
-        public static final int btnNext=0x7f080014;
-        public static final int btnQuit=0x7f080013;
-        public static final int btnStart=0x7f08000d;
+        public static final int btnNext=0x7f080016;
+        public static final int btnQuit=0x7f080015;
+        public static final int btnStart=0x7f08000f;
         public static final int btnStatic=0x7f080005;
-        public static final int linearLayout1=0x7f080011;
-        public static final int optionLayout=0x7f080010;
+        public static final int linearLayout1=0x7f080013;
+        public static final int optionLayout=0x7f080012;
         public static final int textView1=0x7f080003;
         public static final int textView2=0x7f080006;
-        public static final int textView3=0x7f08000b;
-        public static final int txtFirstName=0x7f08000a;
-        public static final int txtLastName=0x7f08000c;
-        public static final int txtPosition=0x7f080012;
-        public static final int txtQuesationText=0x7f08000f;
-        public static final int txtSurveyCode=0x7f080009;
+        public static final int textView3=0x7f08000d;
+        public static final int txtFirstName=0x7f08000c;
+        public static final int txtGMCCllient=0x7f080008;
+        public static final int txtLastName=0x7f08000e;
+        public static final int txtPushClient=0x7f080009;
+        public static final int txtQuesationText=0x7f080011;
+        public static final int txtSurveyCode=0x7f08000b;
     }
     public static final class layout {
         public static final int home=0x7f030000;
@@ -241,23 +243,23 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Hello=0x7f070000;
     }
     public static final class style {
-        public static final int ActionBar_Solid_Skadoosh=0x7f060003;
-        public static final int ActionBar_Transparent_Skadoosh=0x7f060004;
-        public static final int ActionBarTabStyle_Skadoosh=0x7f060007;
-        public static final int ActionButton_CloseMode_Skadoosh=0x7f06000a;
+        public static final int ActionBar_Solid_skadoosh=0x7f060003;
+        public static final int ActionBar_Transparent_skadoosh=0x7f060004;
+        public static final int ActionBarTabStyle_skadoosh=0x7f060007;
+        public static final int ActionButton_CloseMode_skadoosh=0x7f06000a;
         /** <item name="android:typeface">monospace</item>
       <item name="android:textSize">10sp</item>
          */
         public static final int AlertDialogCustom=0x7f060002;
-        public static final int AutoCompleteTextViewSkadoosh=0x7f06000d;
-        public static final int ButtonSkadoosh=0x7f060010;
-        public static final int CheckBoxSkadoosh=0x7f06000e;
-        public static final int DropDownListView_Skadoosh=0x7f060006;
-        public static final int DropDownNav_Skadoosh=0x7f060008;
-        public static final int EditTextSkadoosh=0x7f06000c;
-        public static final int ImageButtonSkadoosh=0x7f060011;
-        public static final int ListViewSkadoosh=0x7f06001d;
-        public static final int ListViewSkadoosh_White=0x7f06001e;
+        public static final int AutoCompleteTextViewskadoosh=0x7f06000d;
+        public static final int Buttonskadoosh=0x7f060010;
+        public static final int CheckBoxskadoosh=0x7f06000e;
+        public static final int DropDownListView_skadoosh=0x7f060006;
+        public static final int DropDownNav_skadoosh=0x7f060008;
+        public static final int EditTextskadoosh=0x7f06000c;
+        public static final int ImageButtonskadoosh=0x7f060011;
+        public static final int ListViewskadoosh=0x7f06001d;
+        public static final int ListViewskadoosh_White=0x7f06001e;
         /** <item name="solidColor">@android:color/transparent</item>">
     <item name="selectionDivider">@drawable/numberpicker_selection_divider</item>">
     <item name="selectionDividerHeight">2dip</item>">
@@ -266,29 +268,29 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     <item name="internalMaxHeight">180dip</item>">
     <item name="virtualButtonPressedDrawable">@drawable/item_background_holo_light</item>">
          */
-        public static final int NumberPickerSkadoosh=0x7f060020;
-        public static final int PopupMenu_Skadoosh=0x7f060005;
-        public static final int ProgressBar_Skadoosh=0x7f060009;
-        public static final int ProgressBarSkadoosh=0x7f060017;
-        public static final int RadioButtonSkadoosh=0x7f06000f;
-        public static final int RatingBarBigSkadoosh=0x7f06001a;
-        public static final int RatingBarSkadoosh=0x7f060019;
-        public static final int RatingBarSmallSkadoosh=0x7f06001b;
-        public static final int SeekBarSkadoosh=0x7f060018;
-        public static final int SpinnerDropDownItemSkadoosh=0x7f060014;
-        public static final int SpinnerItemSkadoosh=0x7f06001f;
-        public static final int SpinnerSkadoosh=0x7f060012;
-        public static final int SpinnerSkadoosh_DropDown=0x7f060013;
-        public static final int TabSkadoosh=0x7f060015;
-        public static final int TabTextSkadoosh=0x7f060016;
-        /** <item name="numberPickerStyle">@style/NumberPickerSkadoosh</item>
+        public static final int NumberPickerskadoosh=0x7f060020;
+        public static final int PopupMenu_skadoosh=0x7f060005;
+        public static final int ProgressBar_skadoosh=0x7f060009;
+        public static final int ProgressBarskadoosh=0x7f060017;
+        public static final int RadioButtonskadoosh=0x7f06000f;
+        public static final int RatingBarBigskadoosh=0x7f06001a;
+        public static final int RatingBarSmallskadoosh=0x7f06001b;
+        public static final int RatingBarskadoosh=0x7f060019;
+        public static final int SeekBarskadoosh=0x7f060018;
+        public static final int SpinnerDropDownItemskadoosh=0x7f060014;
+        public static final int SpinnerItemskadoosh=0x7f06001f;
+        public static final int Spinnerskadoosh=0x7f060012;
+        public static final int Spinnerskadoosh_DropDown=0x7f060013;
+        public static final int TabTextskadoosh=0x7f060016;
+        public static final int Tabskadoosh=0x7f060015;
+        public static final int Theme_Splash=0x7f060000;
+        /** <item name="numberPickerStyle">@style/NumberPickerskadoosh</item>
          */
-        public static final int Theme_Skadoosh=0x7f060001;
+        public static final int Theme_skadoosh=0x7f060001;
         /**  this style is only referenced in a Light.DarkActionBar based theme 
          */
-        public static final int Theme_Skadoosh_Widget=0x7f06000b;
-        public static final int Theme_Splash=0x7f060000;
-        public static final int ToggleSkadoosh=0x7f06001c;
+        public static final int Theme_skadoosh_Widget=0x7f06000b;
+        public static final int Toggleskadoosh=0x7f06001c;
     }
     public static final class styleable {
         /** Attributes that can be used with a TabWidget.
@@ -297,11 +299,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #TabWidget_divider Skadoosh.DroidPhone:divider}</code></td><td> Drawable used to draw the divider between tabs.</td></tr>
-           <tr><td><code>{@link #TabWidget_tabLayout Skadoosh.DroidPhone:tabLayout}</code></td><td> Layout used to organize each tab's content.</td></tr>
-           <tr><td><code>{@link #TabWidget_tabStripEnabled Skadoosh.DroidPhone:tabStripEnabled}</code></td><td> Determines whether the strip under the tab indicators is drawn or not.</td></tr>
-           <tr><td><code>{@link #TabWidget_tabStripLeft Skadoosh.DroidPhone:tabStripLeft}</code></td><td> Drawable used to draw the left part of the strip underneath the tabs.</td></tr>
-           <tr><td><code>{@link #TabWidget_tabStripRight Skadoosh.DroidPhone:tabStripRight}</code></td><td> Drawable used to draw the right part of the strip underneath the tabs.</td></tr>
+           <tr><td><code>{@link #TabWidget_divider skadoosh.DroidPhone:divider}</code></td><td> Drawable used to draw the divider between tabs.</td></tr>
+           <tr><td><code>{@link #TabWidget_tabLayout skadoosh.DroidPhone:tabLayout}</code></td><td> Layout used to organize each tab's content.</td></tr>
+           <tr><td><code>{@link #TabWidget_tabStripEnabled skadoosh.DroidPhone:tabStripEnabled}</code></td><td> Determines whether the strip under the tab indicators is drawn or not.</td></tr>
+           <tr><td><code>{@link #TabWidget_tabStripLeft skadoosh.DroidPhone:tabStripLeft}</code></td><td> Drawable used to draw the left part of the strip underneath the tabs.</td></tr>
+           <tr><td><code>{@link #TabWidget_tabStripRight skadoosh.DroidPhone:tabStripRight}</code></td><td> Drawable used to draw the right part of the strip underneath the tabs.</td></tr>
            </table>
            @see #TabWidget_divider
            @see #TabWidget_tabLayout

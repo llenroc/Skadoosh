@@ -66,9 +66,10 @@ public class MonoPackageManager {
 
 class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
-		"Skadoosh.DroidPhone.dll",
+		"skadoosh.DroidPhone.dll",
 		"Microsoft.WindowsAzure.MobileServices.Android.dll",
 		"Newtonsoft.Json.dll",
+		"PushSharp.Client.MonoForAndroid.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

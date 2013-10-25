@@ -1,5 +1,4 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
-using Skadoosh.Common.DomainModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

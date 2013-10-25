@@ -11,15 +11,17 @@ using Android.Views;
 using Android.Widget;
 using Skadoosh.Common.ViewModels;
 
-namespace Skadoosh.DroidPhone
+
+namespace skadoosh.DroidPhone
 {
     [Activity(Label = "Static Survey", Icon = "@drawable/ic_launcher")]
-    public class StaticSurveyActivity : Activity
+    public class StaticSurveyActivity : ActivityBase
     {
         private ParticipateStaticVM VM;
         private RadioGroup radioGroup;
         private List<CheckBox> checkboxes;
         private Button btnNext;
+        private Button btnBack;
         private Button btnQuit;
         private LinearLayout layout;
         protected override void OnCreate(Bundle bundle)
@@ -29,15 +31,43 @@ namespace Skadoosh.DroidPhone
             VM = (ParticipateStaticVM)AppModel.VM;
             layout = FindViewById<LinearLayout>(Resource.Id.optionLayout);
             btnNext = FindViewById<Button>(Resource.Id.btnNext);
+            btnBack = FindViewById<Button>(Resource.Id.btnBack);
+            btnQuit = FindViewById<Button>(Resource.Id.btnQuit);
             btnNext.Click += (e, a) =>
             {
                 ClearComponents();
                 VM.NextQuestion();
                 InitComponents();
             };
-            btnQuit = FindViewById<Button>(Resource.Id.btnQuit);
+            btnBack.Click += (e, a) =>
+            {
+                ClearComponents();
+                VM.BackQuestion();
+                InitComponents();
+            };
             btnQuit.Click += (e, a) =>
             {
+                
+                var builder1 = new AlertDialog.Builder(new ContextThemeWrapper(this, Resource.Style.AlertDialogCustom));
+                builder1.SetTitle("Exiting...");
+                builder1.SetMessage("Do you want to save your changes");
+                builder1.SetPositiveButton("Yes", async delegate
+                {
+                    var result = await VM.SaveSurveyResponses();
+                    ClearComponents();
+                    StartActivity(typeof(Home));
+                });
+                builder1.SetNegativeButton("No", delegate {
+                    ClearComponents();
+                    StartActivity(typeof(Home));
+                });
+                builder1.SetNeutralButton("Cancel", delegate {
+                    
+                });
+                var alert1 = builder1.Show();
+                ChangeDialogColor(alert1);
+                
+
 
             };
             InitComponents();      
@@ -61,6 +91,7 @@ namespace Skadoosh.DroidPhone
 
         private void InitComponents()
         {
+            this.Title = "Static Survey: " + VM.CurrentPostition;
             var txtQuestion = FindViewById<TextView>(Resource.Id.txtQuesationText);
             
             txtQuestion.Text = VM.CurrentQuestion.QuestionText;

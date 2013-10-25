@@ -7,9 +7,11 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-namespace Skadoosh.DroidPhone
+
+namespace skadoosh.DroidPhone
 {
-    [Activity(Label = "Skadoosh", Icon = "@drawable/ic_launcher")]
+
+    [Activity(Label = "skadoosh", Icon = "@drawable/ic_launcher")]
     public class Home : ActivityBase
     {
         int count = 1;

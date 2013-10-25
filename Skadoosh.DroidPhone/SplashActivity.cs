@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using System.Threading;
 
-namespace Skadoosh.DroidPhone
+namespace skadoosh.DroidPhone
 {
     [Activity(Theme = "@style/Theme.Splash", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : Activity

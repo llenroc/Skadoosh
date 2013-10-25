@@ -7,10 +7,10 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="7722PresidioSoftwareLLC.Skadoosh" Publisher="CN=32731AB8-4969-4D74-AFB6-89DD91AE93C0" Version="1.0.0.4" ProcessorArchitecture="x86" />
+  <Identity Name="Statra.SkadooshTablet" Publisher="CN=B2BC4B4B-426A-4B69-A7AD-349094A9F186" Version="1.0.0.10" ProcessorArchitecture="x86" />
   <Properties>
-    <DisplayName>Skadoosh</DisplayName>
-    <PublisherDisplayName>Les Brown</PublisherDisplayName>
+    <DisplayName>Skadoosh Tablet</DisplayName>
+    <PublisherDisplayName>Statêra</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -22,7 +22,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="Skadoosh.Store.exe" EntryPoint="Skadoosh.Store.App">
-      <VisualElements DisplayName="Skadoosh" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Skadoosh.Store" ForegroundText="dark" BackgroundColor="#ffffff" ToastCapable="true">
+      <VisualElements DisplayName="Skadoosh Tablet" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Skadoosh.Store" ForegroundText="dark" BackgroundColor="#ffffff" ToastCapable="true">
         <DefaultTile ShowName="allLogos" ShortName="Skadoosh" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#ffffff" />
         <InitialRotationPreference>

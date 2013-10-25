@@ -12,9 +12,9 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>Skadoosh.Store_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Skadoosh.Store_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <PackageCertificateThumbprint>E2DC2B4008A0086403B2C4356AC3F1BD2CCA987A</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>B95BEC37F283CD5DFF215B750FE045713C4258CB</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -213,6 +213,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="packages.config" />
+    <None Include="Skadoosh.Store_StoreKey.pfx" />
     <None Include="Skadoosh.Store_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

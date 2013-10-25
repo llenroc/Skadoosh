@@ -1,4 +1,4 @@
-﻿using Skadoosh.Common.DomainModels;
+﻿
 using Skadoosh.Common.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Skadoosh.Store.Common;
+using Skadoosh.Common.ViewModels;
 
 
 namespace Skadoosh.Store.Views.Presenter
