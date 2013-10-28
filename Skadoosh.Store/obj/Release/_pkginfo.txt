@@ -1,1 +1,1 @@
-C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\AppPackages\Skadoosh.Store_1.0.0.12_AnyCPU_Test\Skadoosh.Store_1.0.0.12_AnyCPU.appx
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\AppPackages\Skadoosh.Store_1.0.0.13_AnyCPU_Test\Skadoosh.Store_1.0.0.13_AnyCPU.appx

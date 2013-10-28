@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-10-28T14:59:59.902</Modified>
+      <Modified>2013-10-28T18:39:58.091</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Skadoosh.Store.exe">
       <PackagePath>Skadoosh.Store.exe</PackagePath>
-      <Modified>2013-10-28T16:04:11.431</Modified>
+      <Modified>2013-10-28T18:46:57.743</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Skadoosh.Store.pdb">
       <PackagePath>Skadoosh.Store.pdb</PackagePath>
-      <Modified>2013-10-28T16:04:11.379</Modified>
+      <Modified>2013-10-28T18:46:57.580</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.dll">
       <PackagePath>Microsoft.Threading.Tasks.dll</PackagePath>
@@ -190,7 +190,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Help.xaml">
       <PackagePath>Views\Help.xaml</PackagePath>
-      <Modified>2013-10-17T20:59:34.212</Modified>
+      <Modified>2013-10-28T18:46:54.464</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Home.xaml">
       <PackagePath>Views\Home.xaml</PackagePath>
@@ -202,7 +202,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Participate\ParticipateLive.xaml">
       <PackagePath>Views\Participate\ParticipateLive.xaml</PackagePath>
-      <Modified>2013-10-17T20:59:34.225</Modified>
+      <Modified>2013-10-28T18:39:55.222</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Participate\ParticipateStatic.xaml">
       <PackagePath>Views\Participate\ParticipateStatic.xaml</PackagePath>

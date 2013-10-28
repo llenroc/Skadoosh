@@ -78,7 +78,7 @@ namespace Skadoosh.Store.Common
                     SettingsPane.GetForCurrentView().CommandsRequested += (s, args) =>
                     {
                         var privacyStatement = new SettingsCommand("privacy", "Privacy Statement", x => Launcher.LaunchUriAsync(
-            new Uri("http://www.azdevelop.net/skadoosh/privacy.html")));
+            new Uri("http://statera.com/privacy.aspx")));
 
                         args.Request.ApplicationCommands.Clear();
                         args.Request.ApplicationCommands.Add(privacyStatement);

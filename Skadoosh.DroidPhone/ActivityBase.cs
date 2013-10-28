@@ -18,6 +18,20 @@ namespace skadoosh.DroidPhone
     public class AppModel
     {
         public static ViewModelBase VM { get; set; }
+        public static GCMNotifier GCMNote { get; set; }
+
+    }
+    public delegate void GCMRegistrationHander(string registrationId);
+    public class GCMNotifier
+    {
+        public event GCMRegistrationHander RegistrationUpdated;
+        public void SendGCMNotification(string registrationId)
+        {
+            if (RegistrationUpdated != null)
+            {
+                RegistrationUpdated(registrationId);
+            }
+        }
     }
     public class ActivityBase : Activity
     {

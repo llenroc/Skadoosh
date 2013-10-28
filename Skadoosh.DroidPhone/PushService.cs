@@ -65,6 +65,12 @@ namespace skadoosh.DroidPhone
 
         protected override void OnRegistered(Context context, string registrationId)
         {
+
+            AppModel.GCMNote.SendGCMNotification(registrationId);
+ 
+            //var uiIntent = new Intent(this, typeof(LiveSurveyActivity));
+            //((ILiveActions)uiIntent).PersistRegistrationId(registrationId);
+            //var x = registrationId;
             //Log.Verbose(PushHandlerBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
             //Send back to the server
             //	var wc = new WebClient();

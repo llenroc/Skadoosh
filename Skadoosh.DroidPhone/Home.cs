@@ -14,7 +14,6 @@ namespace skadoosh.DroidPhone
     [Activity(Label = "skadoosh", Icon = "@drawable/ic_launcher")]
     public class Home : ActivityBase
     {
-        int count = 1;
 
         protected override void OnCreate(Bundle bundle)
         {

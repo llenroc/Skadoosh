@@ -143,7 +143,7 @@
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
             Grid.Row="1"
             Visibility="{Binding IsClosed, Converter={StaticResource trueVisible}}" >
-            <TextBlock x:Name="closedNotice" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="36" Margin="0 60 0 0">THE SURVEY HAS CLOSED</TextBlock>
+            <TextBlock x:Name="closedNotice" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="36" Margin="0 60 0 0">THE SURVEY IS NOT CURRENTLY AVAILABLE</TextBlock>
         </StackPanel>
 
         <!-- Vertical scrolling list only used when snapped -->

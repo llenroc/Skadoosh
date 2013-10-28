@@ -111,7 +111,13 @@
                             <HyperlinkButton Content="&#x27A4; Developer's Blog" Foreground="Black" FontSize="24" NavigateUri="http://azdevelop.azurewebsites.net" ></HyperlinkButton>
                         </InlineUIContainer>
                     </Paragraph>
-
+                    <Paragraph Margin="10" >
+                        Created by:
+                        <LineBreak ></LineBreak>
+                        Les Brown - Custom Enterprise Solutions
+                        <LineBreak ></LineBreak>
+                        Statera | www.statera.com
+                    </Paragraph>
                 </RichTextBlock>
             </Grid>
                 <!--<WebView   HorizontalAlignment="Center"  x:Name="youTube" ></WebView>-->
