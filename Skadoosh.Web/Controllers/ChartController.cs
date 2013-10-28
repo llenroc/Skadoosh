@@ -1,9 +1,12 @@
-﻿using Skadoosh.Common.ViewModels;
+﻿using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.Util;
+using Skadoosh.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -34,6 +37,18 @@ namespace Skadoosh.Web.Controllers
         {
             return View();
         }
+
+        public async Task<FileContentResult> GetCSVData(int id)
+        {
+            PresenterVM vm = new PresenterVM();
+            var list = await vm.GetAllCSVResponsesBySurveyId(id);
+            var exporter = new CsvExport<ResponseCSV>(list);
+            var content = exporter.ExportToString();
+            var fileName = vm.CurrentSurvey.SurveyTitle.Replace(" ", string.Empty) + ".csv";
+            var byteArray = Encoding.UTF8.GetBytes(content);
+            return File(byteArray, "text/csv", fileName);
+        }
+
         public async Task<FileContentResult> BarChart(int id, int? w, int? h)
         {
             PresenterVM vm = new PresenterVM();

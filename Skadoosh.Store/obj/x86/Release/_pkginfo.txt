@@ -1,1 +1,1 @@
-C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\AppPackages\Skadoosh.Store_1.0.0.11_x86_Test\Skadoosh.Store_1.0.0.11_x86.appx
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\AppPackages\Skadoosh.Store_1.0.0.12_x86_Test\Skadoosh.Store_1.0.0.12_x86.appx

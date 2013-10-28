@@ -1,4 +1,3 @@
-C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Web\obj\Debug\Skadoosh.Web.csprojResolveAssemblyReference.cache
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Web\bin\Skadoosh.Web.dll.config
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Web\bin\Skadoosh.Web.dll
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Web\bin\Skadoosh.Web.pdb

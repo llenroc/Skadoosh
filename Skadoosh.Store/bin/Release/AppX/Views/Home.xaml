@@ -1,0 +1,199 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="Skadoosh.Store.Views.Home"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Skadoosh.Store"
+    xmlns:common="using:Skadoosh.Store.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" >
+
+    <Page.Resources>
+        <SolidColorBrush x:Key="buttonPanelOverlay" Color="#FF5C00" Opacity="0.7"></SolidColorBrush>
+        <LinearGradientBrush x:Key="activeStyle" EndPoint="1,0.5" StartPoint="0,0.5" Opacity="0.85">
+            <GradientStop Color="black" Offset="0.0"  />
+            <GradientStop Color="#FF5C00" Offset="0.1"  />
+            <GradientStop Color="#FFBB00" Offset="0.889" />
+        </LinearGradientBrush>
+        
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">Skadoosh Home</x:String>
+
+    </Page.Resources>
+
+
+    <Grid Style="{StaticResource LayoutRootStyle}" x:Name="parentGrid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush x:Name="bckPanda" ImageSource="ms-appx:///Assets/skadooshBck.png"  ></ImageBrush>
+        </Grid.Background>
+
+        <!-- Back button and page title -->
+        <Grid x:Name="FullHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Button x:ConnectionId='5' x:Name="backButton"                Margin="36,36,30,36" Height="55" Width="55" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="ms-appx:///Assets/Hand.png"></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <StackPanel x:Name="pageTitle" Grid.Column="1">
+                <Image x:Name="skadooshTitle"  HorizontalAlignment="Left"  Source="ms-appx:///Assets/SkadooshOnly.png" Height="60"  Margin="0 36 0 0"/>
+                <Image x:Name="skadooshUnderline" Source="ms-appx:///Assets/Fuse.png" HorizontalAlignment="Left" Margin="0 5 0 0"  ></Image>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" x:Name="errorMsg" Visibility="Collapsed">
+                <TextBlock Foreground="#FF4F00" FontSize="36" Margin="5 45 20 0">You do not have an internet connection</TextBlock>
+            </StackPanel>
+
+        </Grid>
+        <Grid Visibility="Collapsed" x:Name="SnappedHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:ConnectionId='4'                Margin="10" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="ms-appx:///Assets/SplashScreen.png" Stretch="UniformToFill" ></Image>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+
+        <GridView  Grid.Row="1" Padding="116,75,116,46" x:Name="selectionTitle">
+            <TextBlock Style="{StaticResource PageSubheaderTextStyle}" Foreground="Black">
+               
+                       Select Where To Begin.
+            </TextBlock>
+        </GridView>
+        <GridView  Grid.Row="1" Padding="116,136,116,46" x:Name="gridButtons" Margin="-10,0,10,0">
+           
+            <Grid x:ConnectionId='1' HorizontalAlignment="Left" Width="250" Height="250"                     x:Name="btnPresenter" >
+
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="0" >
+                    <Image Source="ms-appx:///Assets/presenter.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                </Border>
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="0" VerticalAlignment="Bottom">
+                    <StackPanel>
+                        <TextBlock Text="Presenter" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0" FontSize="22"/>
+                        <TextBlock Text="Manage live and static surveys" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid x:ConnectionId='2' HorizontalAlignment="Left" Width="250" Height="250"                     x:Name="btnParticipate" >
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="0" >
+                    <Image Source="ms-appx:///Assets/Participate.png" Margin="20"  Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                </Border>
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="0" VerticalAlignment="Bottom">
+                    <StackPanel >
+                        <TextBlock Text="Live Questionnaire" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
+                        <TextBlock Text="Participate in a real-time survey" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid x:ConnectionId='3' HorizontalAlignment="Left" Width="250" Height="250"                     x:Name="btnGroupInvite">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" CornerRadius="0" >
+                    <Image Source="ms-appx:///Assets/Group.png" Margin="20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                </Border>
+                <Border Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" CornerRadius="0" VerticalAlignment="Bottom">
+                    <StackPanel >
+                        <TextBlock Text="Survey" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0" FontSize="22"/>
+                        <TextBlock Text="Take a traditional questionnaire" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </GridView>
+
+        <!-- Vertical scrolling list only used when snapped -->
+        <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="itemListView" Visibility="Collapsed">
+            <Grid             
+                AutomationProperties.AutomationId="ItemsListView"
+                AutomationProperties.Name="items"         
+                Margin="5"
+                >
+                <StackPanel>
+                <TextBlock  Foreground="Black" FontSize="22" TextWrapping="Wrap" Margin="10">
+                    Snapped mode is availble once you have selected a survey to administer or particiapte in.
+                </TextBlock>
+                <TextBlock Foreground="Black" FontSize="22" TextWrapping="Wrap" Margin="10">
+                    Please drag to full mode to continue.
+                </TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+       
+
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="gridButtons" Storyboard.TargetProperty="Padding">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="96,137,10,56"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!--
+                     The back button and title have different styles when snapped, and the list representation is substituted
+                     for the grid displayed in all other view states
+                -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullHeader" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="selectionTitle" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="gridButtons" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="bckPanda" Storyboard.TargetProperty="Stretch">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="UniformToFill"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+    <Page.BottomAppBar>
+        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
+            <Grid>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:ConnectionId='6' Style="{StaticResource HelpAppBarButtonStyle}"                   />
+
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+</common:LayoutAwarePage>
+

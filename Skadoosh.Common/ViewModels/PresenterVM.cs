@@ -188,12 +188,15 @@ namespace Skadoosh.Common.ViewModels
 
                 var qTable = AzureClient.GetTable<Question>();
                 var activeQuestions = await qTable.Where(x => x.SurveyId == CurrentSurvey.Id && x.IsActive==true).ToListAsync();
-                if (!activeQuestions.Any())
+                if (activeQuestions !=null && activeQuestions.Count<1)
                 {
                     var list = await qTable.Where(x => x.SurveyId == CurrentSurvey.Id).Take(1).ToListAsync();
-                    var q = list.First();
-                    q.IsActive = true;
-                    await qTable.UpdateAsync(q);
+                    if (list != null && list.Count > 0)
+                    {
+                        var q = list.First();
+                        q.IsActive = true;
+                        await qTable.UpdateAsync(q);
+                    }
                 }
 
                 CanStartSurvey = (CurrentSurvey.IsLiveSurvey && !CurrentSurvey.IsActive);
@@ -481,6 +484,33 @@ namespace Skadoosh.Common.ViewModels
                 return responses;
             }
             return new List<Responses>();
+        }
+        public async Task<List<ResponseCSV>> GetAllCSVResponsesBySurveyId(int surveyId)
+        {
+            var list = new List<ResponseCSV>();
+            await LoadSurveyById(surveyId);
+            await LoadQuestionsForCurrentSurvey();
+
+            var table = AzureClient.GetTable<Responses>();
+            var responses = await table.Where(x => x.SurveyId == surveyId).ToListAsync();
+            if (responses != null && responses.Count > 0)
+            {
+                foreach (var r in responses)
+                {
+                    var csv = new ResponseCSV()
+                    {
+                        DateEntered = r.DateEntered,
+                        Id = r.Id,
+                        Survey = CurrentSurvey.SurveyTitle,
+                        Question = CurrentSurvey.Questions.First(x => x.Id == r.QuestionId).QuestionText,
+                        Option = CurrentSurvey.Questions.First(x => x.Id == r.QuestionId).Options.First(x => x.Id == r.OptionId).OptionText,
+                        UserName = r.UserName
+                    };
+                    list.Add(csv);
+                }
+            }
+
+            return list;
         }
 
         public async Task<List<Responses>> GetResponsesAndLoadDataByQuestionId(int questionId)

@@ -7,7 +7,7 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="Statra.SkadooshTablet" Publisher="CN=B2BC4B4B-426A-4B69-A7AD-349094A9F186" Version="1.0.0.11" ProcessorArchitecture="x86" />
+  <Identity Name="Statra.SkadooshTablet" Publisher="CN=B2BC4B4B-426A-4B69-A7AD-349094A9F186" Version="1.0.0.12" ProcessorArchitecture="x86" />
   <Properties>
     <DisplayName>Skadoosh Tablet</DisplayName>
     <PublisherDisplayName>Statêra</PublisherDisplayName>

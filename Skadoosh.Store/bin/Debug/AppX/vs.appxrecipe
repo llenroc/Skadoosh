@@ -5,28 +5,28 @@
     <WindowsUser>lbrown</WindowsUser>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
-    <RegisteredManifestChecksum>2FD54ABFF4EE8F4CBEAA1886AB6C3CCA83429699540E72F2D12C0D6694D4A897</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>Statra.SkadooshTablet_1.0.0.10_neutral__vtg12mz1q3fap</RegisteredPackageMoniker>
+    <RegisteredManifestChecksum>F919DC91517A23E18764C017D1DCDE0F4D2135BC170D36FEFD628CBEB88F401B</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>Statra.SkadooshTablet_1.0.0.12_neutral__vtg12mz1q3fap</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>Statra.SkadooshTablet_vtg12mz1q3fap!App</RegisteredUserModeAppID>
     <RegisteredPackageID>Statra.SkadooshTablet</RegisteredPackageID>
     <RegisteredPackagePublisher>CN=B2BC4B4B-426A-4B69-A7AD-349094A9F186</RegisteredPackagePublisher>
-    <RegisteredVersion>1.0.0.10</RegisteredVersion>
+    <RegisteredVersion>1.0.0.12</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-10-25T14:33:59.706</Modified>
+      <Modified>2013-10-28T14:59:59.902</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Skadoosh.Store.exe">
       <PackagePath>Skadoosh.Store.exe</PackagePath>
-      <Modified>2013-10-25T14:45:00.781</Modified>
+      <Modified>2013-10-28T16:04:11.431</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Skadoosh.Store.pdb">
       <PackagePath>Skadoosh.Store.pdb</PackagePath>
-      <Modified>2013-10-25T14:45:00.732</Modified>
+      <Modified>2013-10-28T16:04:11.379</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.dll">
       <PackagePath>Microsoft.Threading.Tasks.dll</PackagePath>
@@ -250,7 +250,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2013-10-25T14:33:59.259</Modified>
+      <Modified>2013-10-28T14:57:41.716</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,7 @@ namespace skadoosh.DroidPhone
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.StaticSurvey);
+            this.SetOrientationBackground(Resource.Id.StaticSurvey);
             VM = (ParticipateStaticVM)AppModel.VM;
             layout = FindViewById<LinearLayout>(Resource.Id.optionLayout);
             btnNext = FindViewById<Button>(Resource.Id.btnNext);

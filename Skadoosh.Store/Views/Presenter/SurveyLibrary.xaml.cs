@@ -20,6 +20,7 @@ using Windows.Storage.AccessCache;
 using Windows.Storage;
 using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
+using Windows.System;
 // The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
 namespace Skadoosh.Store.Views.Presenter
@@ -141,14 +142,17 @@ namespace Skadoosh.Store.Views.Presenter
 
         private async void ExportData(object sender, RoutedEventArgs e)
         {
-          
-            var list = await VM.GetResponseCSVForCurrentSurvey();
-            var exporter = new CsvExport<ResponseCSV>(list);
-            var content = exporter.ExportToString();
-            var fileName = VM.CurrentSurvey.SurveyTitle.Replace(" ", string.Empty) + ".csv";
-            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, content);
-            Windows.System.Launcher.LaunchFileAsync(file);
+            var surveyId = VM.CurrentSurvey.Id;
+            var url = string.Format("http://www.azdevelop.net/skadoosh/chart/GetCSVData/{0}", surveyId);
+            //var list = await VM.GetResponseCSVForCurrentSurvey();
+            //var exporter = new CsvExport<ResponseCSV>(list);
+            //var content = exporter.ExportToString();
+            //var fileName = VM.CurrentSurvey.SurveyTitle.Replace(" ", string.Empty) + ".csv";
+            //var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+            //await FileIO.WriteTextAsync(file, content);
+            await Launcher.LaunchUriAsync(new Uri(url));
+         
+        
         }
         private void ShowHelp(object sender, RoutedEventArgs e)
         {

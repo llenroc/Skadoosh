@@ -17,7 +17,7 @@ using Android.Util;
 namespace skadoosh.DroidPhone
 {
     [Activity(Label = "Live Survey", Icon = "@drawable/ic_launcher")]
-    public class LiveSurveyActivity : Activity
+    public class LiveSurveyActivity : ActivityBase
     {
         const string TAG = "PushSharp-GCM";
         private ParticipateLiveVM VM;
@@ -27,6 +27,7 @@ namespace skadoosh.DroidPhone
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.LiveSurvey);
+            this.SetOrientationBackground(Resource.Id.LiveSurvey);
             VM = (ParticipateLiveVM)AppModel.VM;
             PushClient.CheckDevice(this);
             PushClient.CheckManifest(this);

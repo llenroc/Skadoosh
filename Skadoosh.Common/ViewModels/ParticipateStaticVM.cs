@@ -137,11 +137,12 @@ namespace Skadoosh.Common.ViewModels
 
         public async Task<int> FindSurveyCurrentChannel()
         {
+        
             IsBusy = true;
             if (!string.IsNullOrEmpty(ChannelName))
             {
                 var results = await AzureClient.GetTable<Survey>().Where(x => x.ChannelName == ChannelName).ToListAsync();
-                if (results != null && results.Any())
+                if (results != null && results.Count>0)
                 {
                     var survey = results.First();
                     if (!survey.IsLiveSurvey)

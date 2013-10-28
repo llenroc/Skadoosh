@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 using PushSharp.Client;
 using Android.Util;
+using Microsoft.WindowsAzure.MobileServices;
+using Skadoosh.Common.DomainModels;
 
 //VERY VERY VERY IMPORTANT NOTE!!!!
 // Your package name MUST NOT start with an uppercase letter.
@@ -47,28 +49,40 @@ namespace skadoosh.DroidPhone
     [Service] //Must use the service tag
     public class PushHandlerService : PushHandlerServiceBase
     {
+        public MobileServiceClient AzureClient
+        {
+            get
+            {
+                return Global.MobileService;
+            }
+            set
+            {
+                Global.MobileService = value;
+            }
+        }
+
         public PushHandlerService() : base(PushHandlerBroadcastReceiver.SENDER_IDS) { }
 
         protected override void OnRegistered(Context context, string registrationId)
         {
-            Log.Verbose(PushHandlerBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
+            //Log.Verbose(PushHandlerBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
             //Send back to the server
             //	var wc = new WebClient();
             //	var result = wc.UploadString("http://your.server.com/api/register/", "POST", 
             //		"{ 'registrationId' : '" + registrationId + "' }");
 
-            createNotification("PushSharp-GCM Registered...", "The device has been Registered, Tap to View!");
+            //createNotification("PushSharp-GCM Registered...", "The device has been Registered, Tap to View!");
         }
 
         protected override void OnUnRegistered(Context context, string registrationId)
         {
-            Log.Verbose(PushHandlerBroadcastReceiver.TAG, "GCM Unregistered: " + registrationId);
+            //Log.Verbose(PushHandlerBroadcastReceiver.TAG, "GCM Unregistered: " + registrationId);
             //Remove from the web service
             //	var wc = new WebClient();
             //	var result = wc.UploadString("http://your.server.com/api/unregister/", "POST",
             //		"{ 'registrationId' : '" + lastRegistrationId + "' }");
 
-            createNotification("PushSharp-GCM Unregistered...", "The device has been unregistered, Tap to View!");
+            //createNotification("PushSharp-GCM Unregistered...", "The device has been unregistered, Tap to View!");
         }
 
         protected override void OnMessage(Context context, Intent intent)
