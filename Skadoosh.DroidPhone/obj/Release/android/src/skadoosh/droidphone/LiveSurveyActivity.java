@@ -2,7 +2,7 @@ package skadoosh.droidphone;
 
 
 public class LiveSurveyActivity
-	extends android.app.Activity
+	extends skadoosh.droidphone.ActivityBase
 	implements
 		mono.android.IGCUserPeer
 {

@@ -5,28 +5,28 @@
     <WindowsUser>lbrown</WindowsUser>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
-    <RegisteredManifestChecksum>F919DC91517A23E18764C017D1DCDE0F4D2135BC170D36FEFD628CBEB88F401B</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>Statra.SkadooshTablet_1.0.0.12_neutral__vtg12mz1q3fap</RegisteredPackageMoniker>
+    <RegisteredManifestChecksum>DBAA885AE00DE9924EF010E66DC2135EEC17A46C3FDF590E56A34F46FC85EBFD</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>Statra.SkadooshTablet_1.0.0.13_neutral__vtg12mz1q3fap</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>Statra.SkadooshTablet_vtg12mz1q3fap!App</RegisteredUserModeAppID>
     <RegisteredPackageID>Statra.SkadooshTablet</RegisteredPackageID>
     <RegisteredPackagePublisher>CN=B2BC4B4B-426A-4B69-A7AD-349094A9F186</RegisteredPackagePublisher>
-    <RegisteredVersion>1.0.0.12</RegisteredVersion>
+    <RegisteredVersion>1.0.0.13</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-10-28T18:39:58.091</Modified>
+      <Modified>2013-10-29T17:34:06.952</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Skadoosh.Store.exe">
       <PackagePath>Skadoosh.Store.exe</PackagePath>
-      <Modified>2013-10-28T18:46:57.743</Modified>
+      <Modified>2013-10-29T18:42:39.515</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Skadoosh.Store.pdb">
       <PackagePath>Skadoosh.Store.pdb</PackagePath>
-      <Modified>2013-10-28T18:46:57.580</Modified>
+      <Modified>2013-10-29T18:42:39.385</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\packages\Microsoft.Bcl.Async.1.0.16\lib\win8\Microsoft.Threading.Tasks.dll">
       <PackagePath>Microsoft.Threading.Tasks.dll</PackagePath>
@@ -186,7 +186,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\ExpressLogin.xaml">
       <PackagePath>Views\ExpressLogin.xaml</PackagePath>
-      <Modified>2013-10-17T20:59:34.205</Modified>
+      <Modified>2013-10-29T18:42:36.413</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Help.xaml">
       <PackagePath>Views\Help.xaml</PackagePath>
@@ -210,27 +210,27 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Participate\SelectSurvey.xaml">
       <PackagePath>Views\Participate\SelectSurvey.xaml</PackagePath>
-      <Modified>2013-10-17T20:59:34.237</Modified>
+      <Modified>2013-10-29T18:28:27.756</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Presenter\EditQuestion.xaml">
       <PackagePath>Views\Presenter\EditQuestion.xaml</PackagePath>
-      <Modified>2013-10-17T20:59:34.243</Modified>
+      <Modified>2013-10-29T18:19:04.922</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Presenter\EditSurvery.xaml">
       <PackagePath>Views\Presenter\EditSurvery.xaml</PackagePath>
-      <Modified>2013-10-17T20:59:34.248</Modified>
+      <Modified>2013-10-29T18:19:04.934</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Presenter\PresenterProfile.xaml">
       <PackagePath>Views\Presenter\PresenterProfile.xaml</PackagePath>
-      <Modified>2013-10-17T20:59:34.255</Modified>
+      <Modified>2013-10-29T18:19:04.887</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Presenter\QuestionBarChart.xaml">
       <PackagePath>Views\Presenter\QuestionBarChart.xaml</PackagePath>
-      <Modified>2013-10-17T20:59:34.261</Modified>
+      <Modified>2013-10-29T18:19:04.874</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Presenter\QuestionPieChart.xaml">
       <PackagePath>Views\Presenter\QuestionPieChart.xaml</PackagePath>
-      <Modified>2013-10-17T20:59:34.266</Modified>
+      <Modified>2013-10-29T18:19:04.855</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Presenter\ReportPrint.xaml">
       <PackagePath>Views\Presenter\ReportPrint.xaml</PackagePath>
@@ -246,11 +246,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\Views\Presenter\SurveyLibrary.xaml">
       <PackagePath>Views\Presenter\SurveyLibrary.xaml</PackagePath>
-      <Modified>2013-10-17T20:59:34.277</Modified>
+      <Modified>2013-10-29T17:56:05.055</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2013-10-28T14:57:41.716</Modified>
+      <Modified>2013-10-29T17:34:06.728</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

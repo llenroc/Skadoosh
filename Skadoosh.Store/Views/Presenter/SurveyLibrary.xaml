@@ -68,7 +68,7 @@
             ItemTemplate="{StaticResource Survey250x250ItemTemplate}" 
             SelectedItem="{Binding CurrentSurvey,Mode=TwoWay}"
             SelectionMode="Single" 
-            IsSwipeEnabled="false"/>
+            IsSwipeEnabled="false" />
 
         <!-- Vertical scrolling list only used when snapped -->
         <ListView

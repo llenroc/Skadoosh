@@ -30,6 +30,8 @@ namespace Skadoosh.Store.Views.Presenter
         public PresenterProfile()
         {
             this.InitializeComponent();
+            this.BottomAppBar.IsOpen = true;
+            this.BottomAppBar.IsSticky = true;
         }
 
         /// <summary>

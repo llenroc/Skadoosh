@@ -32,6 +32,8 @@ namespace Skadoosh.Store.Views.Presenter
         public EditQuestion()
         {
             this.InitializeComponent();
+            this.BottomAppBar.IsOpen = true;
+            this.BottomAppBar.IsSticky = true;
         }
 
         /// <summary>

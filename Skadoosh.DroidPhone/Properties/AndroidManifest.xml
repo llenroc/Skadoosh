@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" android:versionCode="1" android:versionName="vers 1" package="skadoosh.DroidPhone">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="skadoosh.DroidPhone" android:versionCode="1" android:versionName="vers 1">
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="15" />
-	<application android:label="skadoosh" android:theme="@style/Theme.skadoosh" android:icon="@drawable/ic_launcher"></application>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-	<uses-permission android:name="android.permission.INTERNAL_SYSTEM_WINDOW" />
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.USE_CREDENTIALS" />
-	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<application android:label="skadoosh" android:theme="@style/Theme.skadoosh"></application>
 </manifest>

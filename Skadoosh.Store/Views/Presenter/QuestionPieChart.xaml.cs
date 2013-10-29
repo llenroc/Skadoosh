@@ -35,13 +35,17 @@ namespace Skadoosh.Store.Views.Presenter
                     var ht = itemListView.ActualHeight;
                     var wd = itemListView.ActualWidth;
                     var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);
-                    PieChart.ImageOpened += (pcimgs, pcimga) =>
-                    {
-                        vm.IsBusy = false;
-                    };
+                    PieChart.ImageOpened += PieChart_ImageOpened;
                     PieChart.Source = new BitmapImage(new Uri(imgUrl));        
                 }
+                this.BottomAppBar.IsOpen = true;
+                this.BottomAppBar.IsSticky = true;
             };
+        }
+
+        void PieChart_ImageOpened(object sender, RoutedEventArgs e)
+        {
+            vm.IsBusy = false;
         }
 
 
@@ -50,6 +54,7 @@ namespace Skadoosh.Store.Views.Presenter
         {
             if (vm.CurrentQuestion != null)
             {
+                vm.IsBusy = true;
                 var ht = itemListView.ActualHeight;
                 var wd = itemListView.ActualWidth;
                 var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);

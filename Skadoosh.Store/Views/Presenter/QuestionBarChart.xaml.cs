@@ -41,16 +41,19 @@ namespace Skadoosh.Store.Views.Presenter
                     var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);
 
                     vm.IsBusy = true;
-
-                    BarChart.ImageOpened += (ee, aa) =>
-                    {
-                        vm.IsBusy = false;
-                    };
+                    BarChart.ImageOpened += BarChart_ImageOpened;
                     BarChart.Source = new BitmapImage(new Uri(imgUrl));
                    
                 }
+                this.BottomAppBar.IsOpen = true;
+                this.BottomAppBar.IsSticky = true;
             };
 
+        }
+
+        void BarChart_ImageOpened(object sender, RoutedEventArgs e)
+        {
+            vm.IsBusy = false;
         }
 
         protected override void SaveState(Dictionary<String, Object> pageState)
@@ -61,6 +64,7 @@ namespace Skadoosh.Store.Views.Presenter
         {
             if (vm.CurrentQuestion != null)
             {
+                vm.IsBusy = true;
                 var ht = itemListView.ActualHeight;
                 var wd = itemListView.ActualWidth;
                 var imgUrl = string.Format(url, vm.CurrentQuestion.Id, wd, ht);

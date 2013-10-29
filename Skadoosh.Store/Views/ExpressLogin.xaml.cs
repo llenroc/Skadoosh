@@ -38,6 +38,8 @@ namespace Skadoosh.Store.Views
             vm = (PresenterVM)navigationParameter;
             vm.ErrorMessage = string.Empty;
             this.DataContext = vm;
+            this.BottomAppBar.IsOpen = true;
+            this.BottomAppBar.IsSticky = true;
         }
 
         /// <summary>

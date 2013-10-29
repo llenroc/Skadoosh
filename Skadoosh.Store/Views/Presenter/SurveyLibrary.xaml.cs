@@ -59,6 +59,10 @@ namespace Skadoosh.Store.Views.Presenter
             await VM.LoadSurveysForCurrentUser();
             if(!VM.SurveyCollection.Any())
                 CollectionIsEmptyNotification();
+
+            this.BottomAppBar.IsOpen = true;
+            this.BottomAppBar.IsSticky = true;
+
         }
 
 
@@ -78,6 +82,7 @@ namespace Skadoosh.Store.Views.Presenter
             messageDialog.DefaultCommandIndex = 0;
             messageDialog.CancelCommandIndex = 1;
             await messageDialog.ShowAsync();
+
         }
 
         private void CommandInvokedHandler(IUICommand command)
@@ -163,6 +168,7 @@ namespace Skadoosh.Store.Views.Presenter
         {
             Frame.Navigate(typeof(PresenterProfile), VM);
         }
+
 
     }
 }

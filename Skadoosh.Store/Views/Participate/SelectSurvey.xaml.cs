@@ -46,6 +46,8 @@ namespace Skadoosh.Store.Views.Participate
         {
             baseVM = (ViewModelBase)navigationParameter;
             this.DataContext = baseVM;
+            this.BottomAppBar.IsOpen = true;
+            this.BottomAppBar.IsSticky = true;
         }
 
         /// <summary>

@@ -47,6 +47,11 @@ namespace Skadoosh.Store.Views.Presenter
             //await VM.LoadQuestionsForCurrentSurvey();
             if (!VM.CurrentSurvey.Questions.Any())
                 CollectionIsEmptyNotification();
+
+
+            this.BottomAppBar.IsOpen = true;
+            this.BottomAppBar.IsSticky = true;
+
         }
 
         private async void CollectionIsEmptyNotification()
@@ -56,6 +61,7 @@ namespace Skadoosh.Store.Views.Presenter
             messageDialog.DefaultCommandIndex = 0;
             messageDialog.CancelCommandIndex = 1;
             await messageDialog.ShowAsync();
+        
         }
 
         //private void CommandInvokedHandler(IUICommand command)

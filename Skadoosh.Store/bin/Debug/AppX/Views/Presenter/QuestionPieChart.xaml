@@ -30,7 +30,7 @@
         
         
         <!-- Horizontal scrolling grid used in most view states -->
-        <Border Grid.Row="1"  Padding="5" Margin="38" Background="WhiteSmoke" Opacity="0.9" CornerRadius="0" x:Name="itemListView">
+        <Border Grid.Row="1"  Padding="5" Margin="38 5 38 70" Background="WhiteSmoke" Opacity="0.9" CornerRadius="0" x:Name="itemListView">
             <Grid>
                 <Canvas x:Name="printingRoot" Grid.Row="0" Margin="100" Opacity="0" Height="10" Width="10" />
                 <Image x:Name="PieChart" Grid.Row="0" Margin="1"></Image>

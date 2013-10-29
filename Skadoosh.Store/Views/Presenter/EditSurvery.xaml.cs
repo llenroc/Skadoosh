@@ -31,6 +31,8 @@ namespace Skadoosh.Store.Views.Presenter
         public EditSurvery()
         {
             this.InitializeComponent();
+            this.BottomAppBar.IsOpen = true;
+            this.BottomAppBar.IsSticky = true;
         }
 
         /// <summary>

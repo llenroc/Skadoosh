@@ -72,7 +72,7 @@
         </Grid>
 
 
-        <Border Grid.Row="1"  Padding="10" Margin="38" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="itemListView">
+        <Border Grid.Row="1"  Padding="10" Margin="38 5 38 70" Background="{StaticResource ComboBoxItemDisabledForegroundThemeBrush}" Opacity="0.9" CornerRadius="0" x:Name="itemListView">
             <Grid>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
