@@ -222,13 +222,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btnStatic=0x7f080005;
         public static final int linearLayout1=0x7f080013;
         public static final int optionLayout=0x7f080012;
+        public static final int optionLiveLayout=0x7f080009;
         public static final int textView1=0x7f080003;
         public static final int textView2=0x7f080006;
         public static final int textView3=0x7f08000d;
         public static final int txtFirstName=0x7f08000c;
-        public static final int txtGMCCllient=0x7f080008;
         public static final int txtLastName=0x7f08000e;
-        public static final int txtPushClient=0x7f080009;
+        public static final int txtLiveQuesationText=0x7f080008;
         public static final int txtQuesationText=0x7f080011;
         public static final int txtSurveyCode=0x7f08000b;
     }

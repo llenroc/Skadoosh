@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/PandaBack"
     android:id="@+id/LiveSurvey">
     <TextView
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtGMCCllient" />
-    <TextView
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/txtLiveQuesationText"
+        android:layout_margin="10dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtPushClient" />
+        android:id="@+id/optionLiveLayout"
+        android:layout_margin="10dp"
+        android:layout_weight="1" />
 </LinearLayout>
