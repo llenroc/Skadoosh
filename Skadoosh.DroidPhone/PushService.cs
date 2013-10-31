@@ -14,6 +14,7 @@ using Android.Util;
 using Microsoft.WindowsAzure.MobileServices;
 using Skadoosh.Common.DomainModels;
 using Skadoosh.Common.ViewModels;
+using System.Threading;
 
 //VERY VERY VERY IMPORTANT NOTE!!!!
 // Your package name MUST NOT start with an uppercase letter.
@@ -109,6 +110,11 @@ namespace skadoosh.DroidPhone
             }
 
             vm.NotificationMessage = msg.ToString().Replace(";", ". ");
+
+
+            Thread.Sleep(5000);
+            await vm.SaveCurrentQuestionResponses();
+            await vm.LoadCurrentQuestionForSurvey();
 
             ////Store the message
             //var prefs = GetSharedPreferences(context.PackageName, FileCreationMode.Private);

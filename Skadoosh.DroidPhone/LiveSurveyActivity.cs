@@ -14,6 +14,7 @@ using Skadoosh.Common.ViewModels;
 using PushSharp.Client;
 using Android.Util;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace skadoosh.DroidPhone
 {
@@ -31,6 +32,7 @@ namespace skadoosh.DroidPhone
         private List<CheckBox> checkboxes;
         private LinearLayout layout;
         private bool isRegistered;
+
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -53,18 +55,18 @@ namespace skadoosh.DroidPhone
 
             VM.PropertyChanged += (e, a) =>
             {
-                RunOnUiThread( async () =>
+                RunOnUiThread(() =>
                 {
                     if (a.PropertyName == "NotificationMessage")
                     {
                         Toast.MakeText(this, VM.NotificationMessage, ToastLength.Long).Show();
-                        Thread.Sleep(5000);
-                        await VM.SaveCurrentQuestionResponses();
-                        await VM.LoadCurrentQuestionForSurvey();
+                    }
+                    if (a.PropertyName == "CurrentQuestion")
+                    {
+                  
                         ClearComponents();
                         InitComponents();
                     }
-                    
                 });
             };
         }

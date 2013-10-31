@@ -102,14 +102,18 @@ namespace Skadoosh.Common.ViewModels
                 var results = await AzureClient.GetTable<Question>().Where(x => x.SurveyId == CurrentSurvey.Id && x.IsActive==true).ToListAsync();
                 if (results != null && results.Count > 0)
                 {
-                    CurrentQuestion = results.First();
+                    //CurrentQuestion = results.First();
+
+                    var obj = results.First();
+
                     var subResults =
                         await
-                            AzureClient.GetTable<Option>().Where(x => x.QuestionId == CurrentQuestion.Id).ToListAsync();
+                            AzureClient.GetTable<Option>().Where(x => x.QuestionId == obj.Id).ToListAsync();
                     foreach (var o in subResults)
                     {
-                        CurrentQuestion.Options.Add(o);
+                        obj.Options.Add(o);
                     }
+                    CurrentQuestion = obj;
                     CurrentSurvey.Questions.Add(CurrentQuestion);
                     IsBusy = false;
                     return 1;
