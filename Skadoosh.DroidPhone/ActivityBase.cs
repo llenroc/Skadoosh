@@ -66,5 +66,24 @@ namespace skadoosh.DroidPhone
             return (T)grp.GetChildAt(index);
         }
 
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            menu.Add(0, 0, 0, "Help");
+            return base.OnCreateOptionsMenu(menu);
+        }
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == 0)
+            {
+                StartActivity(typeof(Help));
+                return true;
+            }
+            else
+            {
+                return base.OnOptionsItemSelected(item);
+            }
+        }
+
     }
 }

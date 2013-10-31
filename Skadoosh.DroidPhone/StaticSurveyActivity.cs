@@ -56,10 +56,12 @@ namespace skadoosh.DroidPhone
                 {
                     var result = await VM.SaveSurveyResponses();
                     ClearComponents();
+                    this.Finish();
                     StartActivity(typeof(Home));
                 });
                 builder1.SetNegativeButton("No", delegate {
                     ClearComponents();
+                    this.Finish();
                     StartActivity(typeof(Home));
                 });
                 builder1.SetNeutralButton("Cancel", delegate {

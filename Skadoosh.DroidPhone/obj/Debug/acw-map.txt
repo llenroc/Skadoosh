@@ -1,4 +1,5 @@
 skadoosh.DroidPhone.ActivityBase;skadoosh.droidphone.ActivityBase
+skadoosh.DroidPhone.Help;skadoosh.droidphone.Help
 skadoosh.DroidPhone.Home;skadoosh.droidphone.Home
 skadoosh.DroidPhone.LiveSurveyActivity;skadoosh.droidphone.LiveSurveyActivity
 skadoosh.DroidPhone.PushHandlerBroadcastReceiver;skadoosh.droidphone.PushHandlerBroadcastReceiver

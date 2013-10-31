@@ -63,9 +63,15 @@ namespace skadoosh.DroidPhone
                     }
                     if (a.PropertyName == "CurrentQuestion")
                     {
-                  
+
                         ClearComponents();
                         InitComponents();
+
+                    }
+                    if (a.PropertyName == "IsClosed")
+                    {
+                        this.Finish();
+                        StartActivity(typeof(Home));
                     }
                 });
             };

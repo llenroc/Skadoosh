@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="skadoosh.DroidPhone" android:versionCode="1" android:versionName="vers 1">
   <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="15" />
   <application android:label="skadoosh" android:theme="@style/Theme.skadoosh" android:icon="@drawable/ic_launcher" android:name="mono.android.app.Application" android:debuggable="true">
+    <activity android:label="My Activity" android:name="skadoosh.droidphone.Help" />
     <activity android:icon="@drawable/ic_launcher" android:label="skadoosh" android:name="skadoosh.droidphone.Home" />
     <activity android:icon="@drawable/ic_launcher" android:label="Live Survey" android:name="skadoosh.droidphone.LiveSurveyActivity" />
     <receiver android:permission="com.google.android.c2dm.permission.SEND" android:name="skadoosh.droidphone.PushHandlerBroadcastReceiver">
@@ -39,8 +40,8 @@
   </application>
   <uses-permission android:name="android.permission.INTERNET" />
   <permission android:name="skadoosh.DroidPhone.permission.C2D_MESSAGE" />
-  <uses-permission android:name="android.permission.WAKE_LOCK" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
   <uses-permission android:name="skadoosh.DroidPhone.permission.C2D_MESSAGE" />
   <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
   <uses-permission android:name="android.permission.GET_ACCOUNTS" />
