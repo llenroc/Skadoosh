@@ -29,6 +29,7 @@ namespace skadoosh.DroidPhone
         private RadioGroup radioGroup;
         private List<CheckBox> checkboxes;
         private LinearLayout layout;
+        private bool isRegistered;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -36,7 +37,7 @@ namespace skadoosh.DroidPhone
             SetContentView(Resource.Layout.LiveSurvey);
             this.SetOrientationBackground(Resource.Id.LiveSurvey);
             VM = (ParticipateLiveVM)AppModel.VM;
-            layout = FindViewById<LinearLayout>(Resource.Id.optionLiveLayout);
+            layout = FindViewById<LinearLayout>(Resource.Id.liveOptionLayout);
 
             PushClient.CheckDevice(this);
             PushClient.CheckManifest(this);
@@ -48,7 +49,22 @@ namespace skadoosh.DroidPhone
             AppModel.GCMNote = new GCMNotifier();
             AppModel.GCMNote.RegistrationUpdated += GCMNote_RegistrationUpdated;
             PushClient.Register(this, PushHandlerBroadcastReceiver.SENDER_IDS);
+
+            VM.PropertyChanged += (e, a) =>
+            {
+                RunOnUiThread( () =>
+                {
+                    Toast.MakeText(this, a.PropertyName, ToastLength.Long).Show();
+                });
+                //if (a.PropertyName == "CurrentQuestion")
+                //{
+                //    Toast.MakeText(this, "Message received", ToastLength.Long).Show();
+                //}
+            };
+         
         }
+
+
 
         private void CleanGCMNote()
         {
@@ -56,13 +72,27 @@ namespace skadoosh.DroidPhone
             AppModel.GCMNote = null;
         }
 
-        async void GCMNote_RegistrationUpdated(string registrationId)
+        void GCMNote_RegistrationUpdated(string registrationId)
         {
-            progress.Dismiss();
-            CleanGCMNote();
-            await VM.RegisterForNotification(registrationId, "DroidPhone", VM.ChannelName);
+            RunOnUiThread(async () =>
+                {
+                    progress.Dismiss();
+                    CleanGCMNote();
+                    if (!isRegistered)
+                    {
+                        isRegistered = true;
+                        await VM.RegisterForNotification(registrationId, "DroidPhone", VM.ChannelName);
+                        InitComponents();
+                        
+                    }
+                }
+            );
         }
 
+        public void DisplayToastMessage()
+        {
+            Toast.MakeText(this, "Hello there", ToastLength.Long).Show();
+        }
         private void ShowLoading()
         {
             progress = new ProgressDialog(this);
@@ -88,10 +118,16 @@ namespace skadoosh.DroidPhone
             VM.CurrentQuestion.Options.First(x => x.Id == selectedId).IsSelected = true;
         }
 
+        protected override void OnStop()
+        {
+    
+            base.OnStop();
+        }
+
         private void InitComponents()
         {
             this.Title = "Live Survey";
-            var txtQuestion = FindViewById<TextView>(Resource.Id.txtLiveQuesationText);
+            var txtQuestion = FindViewById<TextView>(Resource.Id.txtLiveQuestion);
 
             txtQuestion.Text = VM.CurrentQuestion.QuestionText;
             if (VM.CurrentQuestion.IsMultiSelect)

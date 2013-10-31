@@ -13,6 +13,7 @@ using PushSharp.Client;
 using Android.Util;
 using Microsoft.WindowsAzure.MobileServices;
 using Skadoosh.Common.DomainModels;
+using Skadoosh.Common.ViewModels;
 
 //VERY VERY VERY IMPORTANT NOTE!!!!
 // Your package name MUST NOT start with an uppercase letter.
@@ -67,10 +68,7 @@ namespace skadoosh.DroidPhone
         {
 
             AppModel.GCMNote.SendGCMNotification(registrationId);
- 
-            //var uiIntent = new Intent(this, typeof(LiveSurveyActivity));
-            //((ILiveActions)uiIntent).PersistRegistrationId(registrationId);
-            //var x = registrationId;
+
             //Log.Verbose(PushHandlerBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
             //Send back to the server
             //	var wc = new WebClient();
@@ -91,25 +89,28 @@ namespace skadoosh.DroidPhone
             //createNotification("PushSharp-GCM Unregistered...", "The device has been unregistered, Tap to View!");
         }
 
-        protected override void OnMessage(Context context, Intent intent)
+        protected override async void OnMessage(Context context, Intent intent)
         {
-            Log.Info(PushHandlerBroadcastReceiver.TAG, "GCM Message Received!");
+            var vm = (ParticipateLiveVM)AppModel.VM;
+            await vm.LoadCurrentQuestionForSurvey();
 
-            var msg = new StringBuilder();
+            //Log.Info(PushHandlerBroadcastReceiver.TAG, "GCM Message Received!");
 
-            if (intent != null && intent.Extras != null)
-            {
-                foreach (var key in intent.Extras.KeySet())
-                    msg.AppendLine(key + "=" + intent.Extras.Get(key).ToString());
-            }
+            //var msg = new StringBuilder();
 
-            //Store the message
-            var prefs = GetSharedPreferences(context.PackageName, FileCreationMode.Private);
-            var edit = prefs.Edit();
-            edit.PutString("last_msg", msg.ToString());
-            edit.Commit();
+            //if (intent != null && intent.Extras != null)
+            //{
+            //    foreach (var key in intent.Extras.KeySet())
+            //        msg.AppendLine(key + "=" + intent.Extras.Get(key).ToString());
+            //}
 
-            createNotification("PushSharp-GCM Msg Rec'd", "Message Received for C2DM-Sharp... Tap to View!");
+            ////Store the message
+            //var prefs = GetSharedPreferences(context.PackageName, FileCreationMode.Private);
+            //var edit = prefs.Edit();
+            //edit.PutString("last_msg", msg.ToString());
+            //edit.Commit();
+
+            //createNotification("skadooshclient", "Message Received for C2DM-Sharp... Tap to View!");
         }
 
         protected override bool OnRecoverableError(Context context, string errorId)
@@ -132,6 +133,7 @@ namespace skadoosh.DroidPhone
             //Create an intent to show ui
             var uiIntent = new Intent(this, typeof(LiveSurveyActivity));
 
+
             //Create the notification
             var notification = new Notification(Android.Resource.Drawable.SymActionEmail, title);
 
@@ -141,7 +143,9 @@ namespace skadoosh.DroidPhone
             //Set the notification info
             //we use the pending intent, passing our ui intent over which will get called
             //when the notification is tapped.
-            notification.SetLatestEventInfo(this, title, desc, PendingIntent.GetActivity(this, 0, uiIntent, 0));
+            var activity = PendingIntent.GetActivity(this, 0, uiIntent, 0);
+
+            notification.SetLatestEventInfo(this, title, desc, activity);
 
             //Show the notification
             notificationManager.Notify(1, notification);

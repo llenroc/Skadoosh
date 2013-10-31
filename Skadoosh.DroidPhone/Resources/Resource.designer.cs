@@ -623,11 +623,11 @@ namespace skadoosh.DroidPhone
 			// aapt resource value: 0x7f080013
 			public const int linearLayout1 = 2131230739;
 			
+			// aapt resource value: 0x7f080009
+			public const int liveOptionLayout = 2131230729;
+			
 			// aapt resource value: 0x7f080012
 			public const int optionLayout = 2131230738;
-			
-			// aapt resource value: 0x7f080009
-			public const int optionLiveLayout = 2131230729;
 			
 			// aapt resource value: 0x7f080003
 			public const int textView1 = 2131230723;
@@ -645,7 +645,7 @@ namespace skadoosh.DroidPhone
 			public const int txtLastName = 2131230734;
 			
 			// aapt resource value: 0x7f080008
-			public const int txtLiveQuesationText = 2131230728;
+			public const int txtLiveQuestion = 2131230728;
 			
 			// aapt resource value: 0x7f080011
 			public const int txtQuesationText = 2131230737;

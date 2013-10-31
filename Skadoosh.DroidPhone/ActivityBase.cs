@@ -32,6 +32,7 @@ namespace skadoosh.DroidPhone
                 RegistrationUpdated(registrationId);
             }
         }
+
     }
     public class ActivityBase : Activity
     {

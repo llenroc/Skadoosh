@@ -5,18 +5,18 @@
     <WindowsUser>lbrown</WindowsUser>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
-    <RegisteredManifestChecksum>DBAA885AE00DE9924EF010E66DC2135EEC17A46C3FDF590E56A34F46FC85EBFD</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>Statra.SkadooshTablet_1.0.0.13_neutral__vtg12mz1q3fap</RegisteredPackageMoniker>
+    <RegisteredManifestChecksum>2A4A3C8AAC17A086A199D90B5D495CECE0526C778B9421D5D00C24F597285C08</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>Statra.SkadooshTablet_1.0.1.14_neutral__vtg12mz1q3fap</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>Statra.SkadooshTablet_vtg12mz1q3fap!App</RegisteredUserModeAppID>
     <RegisteredPackageID>Statra.SkadooshTablet</RegisteredPackageID>
     <RegisteredPackagePublisher>CN=B2BC4B4B-426A-4B69-A7AD-349094A9F186</RegisteredPackagePublisher>
-    <RegisteredVersion>1.0.0.13</RegisteredVersion>
+    <RegisteredVersion>1.0.1.14</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-10-29T17:34:06.952</Modified>
+      <Modified>2013-10-30T19:03:24.822</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -250,7 +250,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.Store\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2013-10-29T17:34:06.728</Modified>
+      <Modified>2013-10-30T19:03:24.515</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
