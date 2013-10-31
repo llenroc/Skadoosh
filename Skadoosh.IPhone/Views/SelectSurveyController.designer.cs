@@ -13,6 +13,9 @@ namespace Skadoosh.IPhone
 	partial class SelectSurveyController
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIButton btnCancel { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIButton btnStart { get; set; }
 
 		[Outlet]
@@ -26,9 +29,9 @@ namespace Skadoosh.IPhone
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (txtSurveyCode != null) {
-				txtSurveyCode.Dispose ();
-				txtSurveyCode = null;
+			if (btnStart != null) {
+				btnStart.Dispose ();
+				btnStart = null;
 			}
 
 			if (txtFirstName != null) {
@@ -41,9 +44,14 @@ namespace Skadoosh.IPhone
 				txtLastName = null;
 			}
 
-			if (btnStart != null) {
-				btnStart.Dispose ();
-				btnStart = null;
+			if (txtSurveyCode != null) {
+				txtSurveyCode.Dispose ();
+				txtSurveyCode = null;
+			}
+
+			if (btnCancel != null) {
+				btnCancel.Dispose ();
+				btnCancel = null;
 			}
 		}
 	}
