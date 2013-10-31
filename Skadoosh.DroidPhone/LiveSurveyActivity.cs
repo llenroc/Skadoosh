@@ -13,6 +13,7 @@ using skadoosh.DroidPhone;
 using Skadoosh.Common.ViewModels;
 using PushSharp.Client;
 using Android.Util;
+using System.Threading;
 
 namespace skadoosh.DroidPhone
 {
@@ -52,16 +53,20 @@ namespace skadoosh.DroidPhone
 
             VM.PropertyChanged += (e, a) =>
             {
-                RunOnUiThread( () =>
+                RunOnUiThread( async () =>
                 {
-                    Toast.MakeText(this, a.PropertyName, ToastLength.Long).Show();
+                    if (a.PropertyName == "NotificationMessage")
+                    {
+                        Toast.MakeText(this, VM.NotificationMessage, ToastLength.Long).Show();
+                        Thread.Sleep(5000);
+                        await VM.SaveCurrentQuestionResponses();
+                        await VM.LoadCurrentQuestionForSurvey();
+                        ClearComponents();
+                        InitComponents();
+                    }
+                    
                 });
-                //if (a.PropertyName == "CurrentQuestion")
-                //{
-                //    Toast.MakeText(this, "Message received", ToastLength.Long).Show();
-                //}
             };
-         
         }
 
 

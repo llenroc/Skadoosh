@@ -92,17 +92,23 @@ namespace skadoosh.DroidPhone
         protected override async void OnMessage(Context context, Intent intent)
         {
             var vm = (ParticipateLiveVM)AppModel.VM;
-            await vm.LoadCurrentQuestionForSurvey();
-
+           
             //Log.Info(PushHandlerBroadcastReceiver.TAG, "GCM Message Received!");
 
-            //var msg = new StringBuilder();
+            var msg = new StringBuilder();
 
-            //if (intent != null && intent.Extras != null)
-            //{
-            //    foreach (var key in intent.Extras.KeySet())
-            //        msg.AppendLine(key + "=" + intent.Extras.Get(key).ToString());
-            //}
+            if (intent != null && intent.Extras != null)
+            {
+                foreach (var key in intent.Extras.KeySet())
+                {
+                    if (key == "message")
+                    {
+                        msg.AppendLine(intent.Extras.Get(key).ToString());
+                    }
+                }
+            }
+
+            vm.NotificationMessage = msg.ToString().Replace(";", ". ");
 
             ////Store the message
             //var prefs = GetSharedPreferences(context.PackageName, FileCreationMode.Private);

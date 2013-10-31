@@ -6,11 +6,11 @@
     <activity android:icon="@drawable/ic_launcher" android:label="Live Survey" android:name="skadoosh.droidphone.LiveSurveyActivity" />
     <receiver android:permission="com.google.android.c2dm.permission.SEND" android:name="skadoosh.droidphone.PushHandlerBroadcastReceiver">
       <intent-filter>
-        <action android:name="com.google.android.gcm.intent.RETRY" />
+        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
         <category android:name="skadoosh.DroidPhone" />
       </intent-filter>
       <intent-filter>
-        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+        <action android:name="com.google.android.gcm.intent.RETRY" />
         <category android:name="skadoosh.DroidPhone" />
       </intent-filter>
       <intent-filter>
@@ -39,9 +39,9 @@
   </application>
   <uses-permission android:name="android.permission.INTERNET" />
   <permission android:name="skadoosh.DroidPhone.permission.C2D_MESSAGE" />
-  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
-  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="skadoosh.DroidPhone.permission.C2D_MESSAGE" />
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 </manifest>

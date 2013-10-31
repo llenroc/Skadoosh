@@ -16,7 +16,14 @@ namespace Skadoosh.Common.ViewModels
         private string _errorMessage;
         private bool _isBusy;
         private bool _isClosed;
+        private string notificationMessage;
 
+        public string NotificationMessage
+        {
+            get { return notificationMessage; }
+            set { notificationMessage = value; Notify("NotificationMessage");}
+        }
+        
         public bool IsClosed
         {
             get { return _isClosed; }
