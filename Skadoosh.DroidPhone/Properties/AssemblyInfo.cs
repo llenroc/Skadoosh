@@ -54,3 +54,10 @@ using Android.App;
 
 //[assembly: Permission(Name = "skadoosh.DroidPhone.permission.C2D_MESSAGE")]
 //[assembly: UsesPermission(Name = ".permission.C2D_MESSAGE")]
+
+#if RELEASE
+[assembly: Application(Debuggable=false)]
+#else
+[assembly: Application(Debuggable = true)]
+#endif
+

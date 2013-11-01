@@ -17,6 +17,7 @@ namespace skadoosh.DroidPhone
     [Activity(Label = "Static Survey", Icon = "@drawable/ic_launcher")]
     public class StaticSurveyActivity : ActivityBase
     {
+        private ProgressDialog progress;
         private ParticipateStaticVM VM;
         private RadioGroup radioGroup;
         private List<CheckBox> checkboxes;
@@ -54,7 +55,9 @@ namespace skadoosh.DroidPhone
                 builder1.SetMessage("Do you want to save your changes");
                 builder1.SetPositiveButton("Yes", async delegate
                 {
+                    ShowLoading();
                     var result = await VM.SaveSurveyResponses();
+                    this.progress.Dismiss();
                     ClearComponents();
                     this.Finish();
                     StartActivity(typeof(Home));
@@ -145,6 +148,16 @@ namespace skadoosh.DroidPhone
             }
             layout.RemoveAllViews();
 
+        }
+
+        private void ShowLoading()
+        {
+            progress = new ProgressDialog(this);
+            progress.Indeterminate = true;
+            progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+            progress.SetMessage("Saving your responses. Please wait...");
+            progress.SetCancelable(false);
+            progress.Show();
         }
 
     }

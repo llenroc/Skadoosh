@@ -409,7 +409,7 @@ Global
 		{DD94C3F7-5985-4D56-B559-87B417EDFB2C}.Release|x86.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Skadoosh.IPhone\Skadoosh.IPhone.csproj
+		StartupItem = Skadoosh.DroidPhone\skadoosh.DroidPhone.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

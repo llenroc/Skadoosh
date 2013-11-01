@@ -26,7 +26,6 @@ namespace skadoosh.DroidPhone
 
             var btnStart = FindViewById<Button>(Resource.Id.btnStart);
             var txtFirstName = FindViewById<TextView>(Resource.Id.txtFirstName);
-            var x = txtFirstName.Text;
             var txtlastName = FindViewById<TextView>(Resource.Id.txtLastName);
             var txtSurveyCode = FindViewById<TextView>(Resource.Id.txtSurveyCode);
 

@@ -1,12 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina.7.0" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Skadoosh.IPhone" expanded="True">
-            <Node name="MainStoryboard.storyboard" selected="True" />
-          </Node>
+          <Node name="skadoosh.DroidPhone" selected="True" />
+          <Node name="Skadoosh.IPhone" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
