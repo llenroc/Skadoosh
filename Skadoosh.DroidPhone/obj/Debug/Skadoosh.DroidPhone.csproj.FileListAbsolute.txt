@@ -424,3 +424,4 @@ C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\obj\Debug\res\layo
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\bin\Debug\PushSharp.Client.MonoForAndroid.dll
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\bin\Debug\PushSharp.Client.MonoForAndroid.pdb
 C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\bin\Debug\PushSharp.Client.MonoForAndroid.dll.mdb
+C:\Users\lbrown\Documents\GitHub\Skadoosh\Skadoosh.DroidPhone\obj\Debug\res\layout\help.xml

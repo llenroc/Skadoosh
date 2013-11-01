@@ -208,35 +208,37 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textfield_focused_holo_light=0x7f02009c;
     }
     public static final class id {
-        public static final int HomeFrame=0x7f080000;
-        public static final int LiveSurvey=0x7f080007;
-        public static final int SelectFrame=0x7f08000a;
-        public static final int StaticSurvey=0x7f080010;
-        public static final int absoluteLayout1=0x7f080001;
-        public static final int absoluteLayout2=0x7f080004;
-        public static final int btnBack=0x7f080014;
-        public static final int btnLive=0x7f080002;
-        public static final int btnNext=0x7f080016;
-        public static final int btnQuit=0x7f080015;
-        public static final int btnStart=0x7f08000f;
-        public static final int btnStatic=0x7f080005;
-        public static final int linearLayout1=0x7f080013;
-        public static final int liveOptionLayout=0x7f080009;
-        public static final int optionLayout=0x7f080012;
-        public static final int textView1=0x7f080003;
-        public static final int textView2=0x7f080006;
-        public static final int textView3=0x7f08000d;
-        public static final int txtFirstName=0x7f08000c;
-        public static final int txtLastName=0x7f08000e;
-        public static final int txtLiveQuestion=0x7f080008;
-        public static final int txtQuesationText=0x7f080011;
-        public static final int txtSurveyCode=0x7f08000b;
+        public static final int HelpFrame=0x7f080000;
+        public static final int HomeFrame=0x7f080004;
+        public static final int LiveSurvey=0x7f080009;
+        public static final int SelectFrame=0x7f08000c;
+        public static final int StaticSurvey=0x7f080011;
+        public static final int absoluteLayout1=0x7f080005;
+        public static final int absoluteLayout2=0x7f080007;
+        public static final int btnBack=0x7f080015;
+        public static final int btnLive=0x7f080006;
+        public static final int btnNext=0x7f080017;
+        public static final int btnQuit=0x7f080016;
+        public static final int btnStart=0x7f080010;
+        public static final int btnStatic=0x7f080008;
+        public static final int linearLayout1=0x7f080014;
+        public static final int liveOptionLayout=0x7f08000b;
+        public static final int optionLayout=0x7f080013;
+        public static final int textView1=0x7f080001;
+        public static final int textView2=0x7f080002;
+        public static final int textView3=0x7f080003;
+        public static final int txtFirstName=0x7f08000e;
+        public static final int txtLastName=0x7f08000f;
+        public static final int txtLiveQuestion=0x7f08000a;
+        public static final int txtQuesationText=0x7f080012;
+        public static final int txtSurveyCode=0x7f08000d;
     }
     public static final class layout {
-        public static final int home=0x7f030000;
-        public static final int livesurvey=0x7f030001;
-        public static final int selectsurvey=0x7f030002;
-        public static final int staticsurvey=0x7f030003;
+        public static final int help=0x7f030000;
+        public static final int home=0x7f030001;
+        public static final int livesurvey=0x7f030002;
+        public static final int selectsurvey=0x7f030003;
+        public static final int staticsurvey=0x7f030004;
     }
     public static final class string {
         public static final int ApplicationName=0x7f070001;

@@ -11,7 +11,7 @@ using Android.OS;
 namespace skadoosh.DroidPhone
 {
 
-    [Activity(Label = "skadoosh", Icon = "@drawable/ic_launcher")]
+    [Activity(Label = "Skadoosh", Icon = "@drawable/ic_launcher")]
     public class Home : ActivityBase
     {
 

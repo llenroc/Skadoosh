@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="skadoosh.DroidPhone" android:versionCode="1" android:versionName="vers 1">
   <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="15" />
   <application android:label="skadoosh" android:theme="@style/Theme.skadoosh" android:icon="@drawable/ic_launcher" android:name="mono.android.app.Application" android:debuggable="true">
-    <activity android:label="My Activity" android:name="skadoosh.droidphone.Help" />
-    <activity android:icon="@drawable/ic_launcher" android:label="skadoosh" android:name="skadoosh.droidphone.Home" />
+    <activity android:icon="@drawable/ic_launcher" android:label="Skadoosh Help" android:name="skadoosh.droidphone.Help" />
+    <activity android:icon="@drawable/ic_launcher" android:label="Skadoosh" android:name="skadoosh.droidphone.Home" />
     <activity android:icon="@drawable/ic_launcher" android:label="Live Survey" android:name="skadoosh.droidphone.LiveSurveyActivity" />
     <receiver android:permission="com.google.android.c2dm.permission.SEND" android:name="skadoosh.droidphone.PushHandlerBroadcastReceiver">
       <intent-filter>

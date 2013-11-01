@@ -2,7 +2,7 @@ package skadoosh.droidphone;
 
 
 public class Help
-	extends android.app.Activity
+	extends skadoosh.droidphone.ActivityBase
 	implements
 		mono.android.IGCUserPeer
 {

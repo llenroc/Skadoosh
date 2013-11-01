@@ -12,13 +12,14 @@ using Android.Widget;
 
 namespace skadoosh.DroidPhone
 {
-    [Activity(Label = "My Activity")]
-    public class Help : Activity
+    [Activity(Label = "Skadoosh Help", Icon = "@drawable/ic_launcher")]
+    public class Help : ActivityBase
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
+            SetContentView(Resource.Layout.Help);
+            this.SetOrientationBackground(Resource.Id.HelpFrame);
             // Create your application here
         }
     }
